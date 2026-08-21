@@ -1,0 +1,1896 @@
+./config.status
+config.status: creating Makefile
+config.status: creating config.h
+config.status: config.h is unchanged
+config.status: executing depfiles commands
+gcc  -shared -Xlinker -x -o chan_dongle.so at_command.o at_parse.o at_queue.o at_read.o at_response.o chan_dongle.o channel.o char_conv.o cli.o helpers.o manager.o memmem.o ringbuffer.o cpvt.o dc_config.o pdu.o mixbuffer.o pdiscovery.o 
+at_parse.o: In function `ast_atomic_fetchadd_int':
+/usr/include/asterisk/lock.h:600: multiple definition of `ast_atomic_fetchadd_int'
+at_command.o:/usr/include/asterisk/lock.h:600: first defined here
+at_parse.o: In function `ast_atomic_dec_and_test':
+/usr/include/asterisk/lock.h:646: multiple definition of `ast_atomic_dec_and_test'
+at_command.o:/usr/include/asterisk/lock.h:646: first defined here
+at_parse.o: In function `ast_tvdiff_sec':
+/usr/include/asterisk/time.h:45: multiple definition of `ast_tvdiff_sec'
+at_command.o:/usr/include/asterisk/time.h:45: first defined here
+at_parse.o: In function `ast_tvdiff_us':
+/usr/include/asterisk/time.h:64: multiple definition of `ast_tvdiff_us'
+at_command.o:/usr/include/asterisk/time.h:64: first defined here
+at_parse.o: In function `ast_tvdiff_ms':
+/usr/include/asterisk/time.h:78: multiple definition of `ast_tvdiff_ms'
+at_command.o:/usr/include/asterisk/time.h:78: first defined here
+at_parse.o: In function `ast_tvzero':
+/usr/include/asterisk/time.h:95: multiple definition of `ast_tvzero'
+at_command.o:/usr/include/asterisk/time.h:95: first defined here
+at_parse.o: In function `ast_tvcmp':
+/usr/include/asterisk/time.h:106: multiple definition of `ast_tvcmp'
+at_command.o:/usr/include/asterisk/time.h:106: first defined here
+at_parse.o: In function `ast_tveq':
+/usr/include/asterisk/time.h:125: multiple definition of `ast_tveq'
+at_command.o:/usr/include/asterisk/time.h:125: first defined here
+at_parse.o: In function `ast_tvnow':
+/usr/include/asterisk/time.h:135: multiple definition of `ast_tvnow'
+at_command.o:/usr/include/asterisk/time.h:135: first defined here
+at_parse.o: In function `ast_tv':
+/usr/include/asterisk/time.h:171: multiple definition of `ast_tv'
+at_command.o:/usr/include/asterisk/time.h:171: first defined here
+at_parse.o: In function `ast_samp2tv':
+/usr/include/asterisk/time.h:186: multiple definition of `ast_samp2tv'
+at_command.o:/usr/include/asterisk/time.h:186: first defined here
+at_parse.o: In function `_ast_malloc':
+/usr/include/asterisk/utils.h:490: multiple definition of `_ast_malloc'
+at_command.o:/usr/include/asterisk/utils.h:490: first defined here
+at_parse.o: In function `_ast_calloc':
+/usr/include/asterisk/utils.h:513: multiple definition of `_ast_calloc'
+at_command.o:/usr/include/asterisk/utils.h:513: first defined here
+at_parse.o: In function `_ast_realloc':
+/usr/include/asterisk/utils.h:549: multiple definition of `_ast_realloc'
+at_command.o:/usr/include/asterisk/utils.h:549: first defined here
+at_parse.o: In function `_ast_strdup':
+/usr/include/asterisk/utils.h:576: multiple definition of `_ast_strdup'
+at_command.o:/usr/include/asterisk/utils.h:576: first defined here
+at_parse.o: In function `_ast_strndup':
+/usr/include/asterisk/utils.h:605: multiple definition of `_ast_strndup'
+at_command.o:/usr/include/asterisk/utils.h:605: first defined here
+at_parse.o: In function `_ast_vasprintf':
+/usr/include/asterisk/utils.h:644: multiple definition of `_ast_vasprintf'
+at_command.o:/usr/include/asterisk/utils.h:644: first defined here
+at_parse.o: In function `ast_threadstorage_get':
+/usr/include/asterisk/threadstorage.h:173: multiple definition of `ast_threadstorage_get'
+at_command.o:/usr/include/asterisk/threadstorage.h:173: first defined here
+at_parse.o: In function `ast_skip_blanks':
+/usr/include/asterisk/strings.h:90: multiple definition of `ast_skip_blanks'
+at_command.o:/usr/include/asterisk/strings.h:90: first defined here
+at_parse.o: In function `ast_trim_blanks':
+/usr/include/asterisk/strings.h:104: multiple definition of `ast_trim_blanks'
+at_command.o:/usr/include/asterisk/strings.h:104: first defined here
+at_parse.o: In function `ast_skip_nonblanks':
+/usr/include/asterisk/strings.h:129: multiple definition of `ast_skip_nonblanks'
+at_command.o:/usr/include/asterisk/strings.h:129: first defined here
+at_parse.o: In function `ast_strip':
+/usr/include/asterisk/strings.h:147: multiple definition of `ast_strip'
+at_command.o:/usr/include/asterisk/strings.h:147: first defined here
+at_parse.o: In function `ast_copy_string':
+/usr/include/asterisk/strings.h:212: multiple definition of `ast_copy_string'
+at_command.o:/usr/include/asterisk/strings.h:212: first defined here
+at_parse.o: In function `ast_str_create':
+/usr/include/asterisk/strings.h:420: multiple definition of `ast_str_create'
+at_command.o:/usr/include/asterisk/strings.h:420: first defined here
+at_parse.o: In function `ast_str_reset':
+/usr/include/asterisk/strings.h:441: multiple definition of `ast_str_reset'
+at_command.o:/usr/include/asterisk/strings.h:441: first defined here
+at_parse.o: In function `ast_str_update':
+/usr/include/asterisk/strings.h:456: multiple definition of `ast_str_update'
+at_command.o:/usr/include/asterisk/strings.h:456: first defined here
+at_parse.o: In function `ast_str_trim_blanks':
+/usr/include/asterisk/strings.h:466: multiple definition of `ast_str_trim_blanks'
+at_command.o:/usr/include/asterisk/strings.h:466: first defined here
+at_parse.o: In function `ast_str_strlen':
+/usr/include/asterisk/strings.h:481: multiple definition of `ast_str_strlen'
+at_command.o:/usr/include/asterisk/strings.h:481: first defined here
+at_parse.o: In function `ast_str_size':
+/usr/include/asterisk/strings.h:492: multiple definition of `ast_str_size'
+at_command.o:/usr/include/asterisk/strings.h:492: first defined here
+at_parse.o: In function `ast_str_buffer':
+/usr/include/asterisk/strings.h:503: multiple definition of `ast_str_buffer'
+at_command.o:/usr/include/asterisk/strings.h:503: first defined here
+at_parse.o: In function `ast_str_truncate':
+/usr/include/asterisk/strings.h:521: multiple definition of `ast_str_truncate'
+at_command.o:/usr/include/asterisk/strings.h:521: first defined here
+at_parse.o: In function `ast_str_make_space':
+/usr/include/asterisk/strings.h:581: multiple definition of `ast_str_make_space'
+at_command.o:/usr/include/asterisk/strings.h:581: first defined here
+at_parse.o: In function `ast_str_copy_string':
+/usr/include/asterisk/strings.h:606: multiple definition of `ast_str_copy_string'
+at_command.o:/usr/include/asterisk/strings.h:606: first defined here
+at_parse.o: In function `ast_str_thread_get':
+/usr/include/asterisk/strings.h:666: multiple definition of `ast_str_thread_get'
+at_command.o:/usr/include/asterisk/strings.h:666: first defined here
+at_parse.o: In function `ast_str_set_va':
+/usr/include/asterisk/strings.h:803: multiple definition of `ast_str_set_va'
+at_command.o:/usr/include/asterisk/strings.h:803: first defined here
+at_parse.o: In function `ast_str_append_va':
+/usr/include/asterisk/strings.h:820: multiple definition of `ast_str_append_va'
+at_command.o:/usr/include/asterisk/strings.h:820: first defined here
+at_parse.o: In function `ast_str_set_substr':
+/usr/include/asterisk/strings.h:827: multiple definition of `ast_str_set_substr'
+at_command.o:/usr/include/asterisk/strings.h:827: first defined here
+at_parse.o: In function `ast_str_append_substr':
+/usr/include/asterisk/strings.h:834: multiple definition of `ast_str_append_substr'
+at_command.o:/usr/include/asterisk/strings.h:834: first defined here
+at_parse.o: In function `ast_str_set_escapecommas':
+/usr/include/asterisk/strings.h:841: multiple definition of `ast_str_set_escapecommas'
+at_command.o:/usr/include/asterisk/strings.h:841: first defined here
+at_parse.o: In function `ast_str_append_escapecommas':
+/usr/include/asterisk/strings.h:848: multiple definition of `ast_str_append_escapecommas'
+at_command.o:/usr/include/asterisk/strings.h:848: first defined here
+at_parse.o: In function `ast_str_set':
+/usr/include/asterisk/strings.h:876: multiple definition of `ast_str_set'
+at_command.o:/usr/include/asterisk/strings.h:876: first defined here
+at_parse.o: In function `ast_str_append':
+/usr/include/asterisk/strings.h:902: multiple definition of `ast_str_append'
+at_command.o:/usr/include/asterisk/strings.h:902: first defined here
+at_parse.o: In function `ast_check_digits':
+/usr/include/asterisk/strings.h:923: multiple definition of `ast_check_digits'
+at_command.o:/usr/include/asterisk/strings.h:923: first defined here
+at_parse.o: In function `ast_tech_to_upper':
+/usr/include/asterisk/strings.h:941: multiple definition of `ast_tech_to_upper'
+at_command.o:/usr/include/asterisk/strings.h:941: first defined here
+at_parse.o: In function `ast_rq_is_int':
+/usr/include/asterisk/config.h:816: multiple definition of `ast_rq_is_int'
+at_command.o:/usr/include/asterisk/config.h:816: first defined here
+at_queue.o: In function `ast_atomic_fetchadd_int':
+/usr/include/asterisk/lock.h:600: multiple definition of `ast_atomic_fetchadd_int'
+at_command.o:/usr/include/asterisk/lock.h:600: first defined here
+at_queue.o: In function `ast_atomic_dec_and_test':
+/usr/include/asterisk/lock.h:646: multiple definition of `ast_atomic_dec_and_test'
+at_command.o:/usr/include/asterisk/lock.h:646: first defined here
+at_queue.o: In function `ast_tvdiff_sec':
+/usr/include/asterisk/time.h:45: multiple definition of `ast_tvdiff_sec'
+at_command.o:/usr/include/asterisk/time.h:45: first defined here
+at_queue.o: In function `ast_tvdiff_us':
+/usr/include/asterisk/time.h:64: multiple definition of `ast_tvdiff_us'
+at_command.o:/usr/include/asterisk/time.h:64: first defined here
+at_queue.o: In function `ast_tvdiff_ms':
+/usr/include/asterisk/time.h:78: multiple definition of `ast_tvdiff_ms'
+at_command.o:/usr/include/asterisk/time.h:78: first defined here
+at_queue.o: In function `ast_tvzero':
+/usr/include/asterisk/time.h:95: multiple definition of `ast_tvzero'
+at_command.o:/usr/include/asterisk/time.h:95: first defined here
+at_queue.o: In function `ast_tvcmp':
+/usr/include/asterisk/time.h:106: multiple definition of `ast_tvcmp'
+at_command.o:/usr/include/asterisk/time.h:106: first defined here
+at_queue.o: In function `ast_tveq':
+/usr/include/asterisk/time.h:125: multiple definition of `ast_tveq'
+at_command.o:/usr/include/asterisk/time.h:125: first defined here
+at_queue.o: In function `ast_tvnow':
+/usr/include/asterisk/time.h:135: multiple definition of `ast_tvnow'
+at_command.o:/usr/include/asterisk/time.h:135: first defined here
+at_queue.o: In function `ast_tv':
+/usr/include/asterisk/time.h:171: multiple definition of `ast_tv'
+at_command.o:/usr/include/asterisk/time.h:171: first defined here
+at_queue.o: In function `ast_samp2tv':
+/usr/include/asterisk/time.h:186: multiple definition of `ast_samp2tv'
+at_command.o:/usr/include/asterisk/time.h:186: first defined here
+at_queue.o: In function `_ast_malloc':
+/usr/include/asterisk/utils.h:490: multiple definition of `_ast_malloc'
+at_command.o:/usr/include/asterisk/utils.h:490: first defined here
+at_queue.o: In function `_ast_calloc':
+/usr/include/asterisk/utils.h:513: multiple definition of `_ast_calloc'
+at_command.o:/usr/include/asterisk/utils.h:513: first defined here
+at_queue.o: In function `_ast_realloc':
+/usr/include/asterisk/utils.h:549: multiple definition of `_ast_realloc'
+at_command.o:/usr/include/asterisk/utils.h:549: first defined here
+at_queue.o: In function `_ast_strdup':
+/usr/include/asterisk/utils.h:576: multiple definition of `_ast_strdup'
+at_command.o:/usr/include/asterisk/utils.h:576: first defined here
+at_queue.o: In function `_ast_strndup':
+/usr/include/asterisk/utils.h:605: multiple definition of `_ast_strndup'
+at_command.o:/usr/include/asterisk/utils.h:605: first defined here
+at_queue.o: In function `_ast_vasprintf':
+/usr/include/asterisk/utils.h:644: multiple definition of `_ast_vasprintf'
+at_command.o:/usr/include/asterisk/utils.h:644: first defined here
+at_queue.o: In function `ast_threadstorage_get':
+/usr/include/asterisk/threadstorage.h:173: multiple definition of `ast_threadstorage_get'
+at_command.o:/usr/include/asterisk/threadstorage.h:173: first defined here
+at_queue.o: In function `ast_skip_blanks':
+/usr/include/asterisk/strings.h:90: multiple definition of `ast_skip_blanks'
+at_command.o:/usr/include/asterisk/strings.h:90: first defined here
+at_queue.o: In function `ast_trim_blanks':
+/usr/include/asterisk/strings.h:104: multiple definition of `ast_trim_blanks'
+at_command.o:/usr/include/asterisk/strings.h:104: first defined here
+at_queue.o: In function `ast_skip_nonblanks':
+/usr/include/asterisk/strings.h:129: multiple definition of `ast_skip_nonblanks'
+at_command.o:/usr/include/asterisk/strings.h:129: first defined here
+at_queue.o: In function `ast_strip':
+/usr/include/asterisk/strings.h:147: multiple definition of `ast_strip'
+at_command.o:/usr/include/asterisk/strings.h:147: first defined here
+at_queue.o: In function `ast_copy_string':
+/usr/include/asterisk/strings.h:212: multiple definition of `ast_copy_string'
+at_command.o:/usr/include/asterisk/strings.h:212: first defined here
+at_queue.o: In function `ast_str_create':
+/usr/include/asterisk/strings.h:420: multiple definition of `ast_str_create'
+at_command.o:/usr/include/asterisk/strings.h:420: first defined here
+at_queue.o: In function `ast_str_reset':
+/usr/include/asterisk/strings.h:441: multiple definition of `ast_str_reset'
+at_command.o:/usr/include/asterisk/strings.h:441: first defined here
+at_queue.o: In function `ast_str_update':
+/usr/include/asterisk/strings.h:456: multiple definition of `ast_str_update'
+at_command.o:/usr/include/asterisk/strings.h:456: first defined here
+at_queue.o: In function `ast_str_trim_blanks':
+/usr/include/asterisk/strings.h:466: multiple definition of `ast_str_trim_blanks'
+at_command.o:/usr/include/asterisk/strings.h:466: first defined here
+at_queue.o: In function `ast_str_strlen':
+/usr/include/asterisk/strings.h:481: multiple definition of `ast_str_strlen'
+at_command.o:/usr/include/asterisk/strings.h:481: first defined here
+at_queue.o: In function `ast_str_size':
+/usr/include/asterisk/strings.h:492: multiple definition of `ast_str_size'
+at_command.o:/usr/include/asterisk/strings.h:492: first defined here
+at_queue.o: In function `ast_str_buffer':
+/usr/include/asterisk/strings.h:503: multiple definition of `ast_str_buffer'
+at_command.o:/usr/include/asterisk/strings.h:503: first defined here
+at_queue.o: In function `ast_str_truncate':
+/usr/include/asterisk/strings.h:521: multiple definition of `ast_str_truncate'
+at_command.o:/usr/include/asterisk/strings.h:521: first defined here
+at_queue.o: In function `ast_str_make_space':
+/usr/include/asterisk/strings.h:581: multiple definition of `ast_str_make_space'
+at_command.o:/usr/include/asterisk/strings.h:581: first defined here
+at_queue.o: In function `ast_str_copy_string':
+/usr/include/asterisk/strings.h:606: multiple definition of `ast_str_copy_string'
+at_command.o:/usr/include/asterisk/strings.h:606: first defined here
+at_queue.o: In function `ast_str_thread_get':
+/usr/include/asterisk/strings.h:666: multiple definition of `ast_str_thread_get'
+at_command.o:/usr/include/asterisk/strings.h:666: first defined here
+at_queue.o: In function `ast_str_set_va':
+/usr/include/asterisk/strings.h:803: multiple definition of `ast_str_set_va'
+at_command.o:/usr/include/asterisk/strings.h:803: first defined here
+at_queue.o: In function `ast_str_append_va':
+/usr/include/asterisk/strings.h:820: multiple definition of `ast_str_append_va'
+at_command.o:/usr/include/asterisk/strings.h:820: first defined here
+at_queue.o: In function `ast_str_set_substr':
+/usr/include/asterisk/strings.h:827: multiple definition of `ast_str_set_substr'
+at_command.o:/usr/include/asterisk/strings.h:827: first defined here
+at_queue.o: In function `ast_str_append_substr':
+/usr/include/asterisk/strings.h:834: multiple definition of `ast_str_append_substr'
+at_command.o:/usr/include/asterisk/strings.h:834: first defined here
+at_queue.o: In function `ast_str_set_escapecommas':
+/usr/include/asterisk/strings.h:841: multiple definition of `ast_str_set_escapecommas'
+at_command.o:/usr/include/asterisk/strings.h:841: first defined here
+at_queue.o: In function `ast_str_append_escapecommas':
+/usr/include/asterisk/strings.h:848: multiple definition of `ast_str_append_escapecommas'
+at_command.o:/usr/include/asterisk/strings.h:848: first defined here
+at_queue.o: In function `ast_str_set':
+/usr/include/asterisk/strings.h:876: multiple definition of `ast_str_set'
+at_command.o:/usr/include/asterisk/strings.h:876: first defined here
+at_queue.o: In function `ast_str_append':
+/usr/include/asterisk/strings.h:902: multiple definition of `ast_str_append'
+at_command.o:/usr/include/asterisk/strings.h:902: first defined here
+at_queue.o: In function `ast_check_digits':
+/usr/include/asterisk/strings.h:923: multiple definition of `ast_check_digits'
+at_command.o:/usr/include/asterisk/strings.h:923: first defined here
+at_queue.o: In function `ast_tech_to_upper':
+/usr/include/asterisk/strings.h:941: multiple definition of `ast_tech_to_upper'
+at_command.o:/usr/include/asterisk/strings.h:941: first defined here
+at_queue.o: In function `ast_rq_is_int':
+/usr/include/asterisk/config.h:816: multiple definition of `ast_rq_is_int'
+at_command.o:/usr/include/asterisk/config.h:816: first defined here
+at_read.o: In function `ast_atomic_fetchadd_int':
+/usr/include/asterisk/lock.h:600: multiple definition of `ast_atomic_fetchadd_int'
+at_command.o:/usr/include/asterisk/lock.h:600: first defined here
+at_read.o: In function `ast_atomic_dec_and_test':
+/usr/include/asterisk/lock.h:646: multiple definition of `ast_atomic_dec_and_test'
+at_command.o:/usr/include/asterisk/lock.h:646: first defined here
+at_read.o: In function `ast_tvdiff_sec':
+/usr/include/asterisk/time.h:45: multiple definition of `ast_tvdiff_sec'
+at_command.o:/usr/include/asterisk/time.h:45: first defined here
+at_read.o: In function `ast_tvdiff_us':
+/usr/include/asterisk/time.h:64: multiple definition of `ast_tvdiff_us'
+at_command.o:/usr/include/asterisk/time.h:64: first defined here
+at_read.o: In function `ast_tvdiff_ms':
+/usr/include/asterisk/time.h:78: multiple definition of `ast_tvdiff_ms'
+at_command.o:/usr/include/asterisk/time.h:78: first defined here
+at_read.o: In function `ast_tvzero':
+/usr/include/asterisk/time.h:95: multiple definition of `ast_tvzero'
+at_command.o:/usr/include/asterisk/time.h:95: first defined here
+at_read.o: In function `ast_tvcmp':
+/usr/include/asterisk/time.h:106: multiple definition of `ast_tvcmp'
+at_command.o:/usr/include/asterisk/time.h:106: first defined here
+at_read.o: In function `ast_tveq':
+/usr/include/asterisk/time.h:125: multiple definition of `ast_tveq'
+at_command.o:/usr/include/asterisk/time.h:125: first defined here
+at_read.o: In function `ast_tvnow':
+/usr/include/asterisk/time.h:135: multiple definition of `ast_tvnow'
+at_command.o:/usr/include/asterisk/time.h:135: first defined here
+at_read.o: In function `ast_tv':
+/usr/include/asterisk/time.h:171: multiple definition of `ast_tv'
+at_command.o:/usr/include/asterisk/time.h:171: first defined here
+at_read.o: In function `ast_samp2tv':
+/usr/include/asterisk/time.h:186: multiple definition of `ast_samp2tv'
+at_command.o:/usr/include/asterisk/time.h:186: first defined here
+at_read.o: In function `_ast_malloc':
+/usr/include/asterisk/utils.h:490: multiple definition of `_ast_malloc'
+at_command.o:/usr/include/asterisk/utils.h:490: first defined here
+at_read.o: In function `_ast_calloc':
+/usr/include/asterisk/utils.h:513: multiple definition of `_ast_calloc'
+at_command.o:/usr/include/asterisk/utils.h:513: first defined here
+at_read.o: In function `_ast_realloc':
+/usr/include/asterisk/utils.h:549: multiple definition of `_ast_realloc'
+at_command.o:/usr/include/asterisk/utils.h:549: first defined here
+at_read.o: In function `_ast_strdup':
+/usr/include/asterisk/utils.h:576: multiple definition of `_ast_strdup'
+at_command.o:/usr/include/asterisk/utils.h:576: first defined here
+at_read.o: In function `_ast_strndup':
+/usr/include/asterisk/utils.h:605: multiple definition of `_ast_strndup'
+at_command.o:/usr/include/asterisk/utils.h:605: first defined here
+at_read.o: In function `_ast_vasprintf':
+/usr/include/asterisk/utils.h:644: multiple definition of `_ast_vasprintf'
+at_command.o:/usr/include/asterisk/utils.h:644: first defined here
+at_read.o: In function `ast_threadstorage_get':
+/usr/include/asterisk/threadstorage.h:173: multiple definition of `ast_threadstorage_get'
+at_command.o:/usr/include/asterisk/threadstorage.h:173: first defined here
+at_read.o: In function `ast_skip_blanks':
+/usr/include/asterisk/strings.h:90: multiple definition of `ast_skip_blanks'
+at_command.o:/usr/include/asterisk/strings.h:90: first defined here
+at_read.o: In function `ast_trim_blanks':
+/usr/include/asterisk/strings.h:104: multiple definition of `ast_trim_blanks'
+at_command.o:/usr/include/asterisk/strings.h:104: first defined here
+at_read.o: In function `ast_skip_nonblanks':
+/usr/include/asterisk/strings.h:129: multiple definition of `ast_skip_nonblanks'
+at_command.o:/usr/include/asterisk/strings.h:129: first defined here
+at_read.o: In function `ast_strip':
+/usr/include/asterisk/strings.h:147: multiple definition of `ast_strip'
+at_command.o:/usr/include/asterisk/strings.h:147: first defined here
+at_read.o: In function `ast_copy_string':
+/usr/include/asterisk/strings.h:212: multiple definition of `ast_copy_string'
+at_command.o:/usr/include/asterisk/strings.h:212: first defined here
+at_read.o: In function `ast_str_create':
+/usr/include/asterisk/strings.h:420: multiple definition of `ast_str_create'
+at_command.o:/usr/include/asterisk/strings.h:420: first defined here
+at_read.o: In function `ast_str_reset':
+/usr/include/asterisk/strings.h:441: multiple definition of `ast_str_reset'
+at_command.o:/usr/include/asterisk/strings.h:441: first defined here
+at_read.o: In function `ast_str_update':
+/usr/include/asterisk/strings.h:456: multiple definition of `ast_str_update'
+at_command.o:/usr/include/asterisk/strings.h:456: first defined here
+at_read.o: In function `ast_str_trim_blanks':
+/usr/include/asterisk/strings.h:466: multiple definition of `ast_str_trim_blanks'
+at_command.o:/usr/include/asterisk/strings.h:466: first defined here
+at_read.o: In function `ast_str_strlen':
+/usr/include/asterisk/strings.h:481: multiple definition of `ast_str_strlen'
+at_command.o:/usr/include/asterisk/strings.h:481: first defined here
+at_read.o: In function `ast_str_size':
+/usr/include/asterisk/strings.h:492: multiple definition of `ast_str_size'
+at_command.o:/usr/include/asterisk/strings.h:492: first defined here
+at_read.o: In function `ast_str_buffer':
+/usr/include/asterisk/strings.h:503: multiple definition of `ast_str_buffer'
+at_command.o:/usr/include/asterisk/strings.h:503: first defined here
+at_read.o: In function `ast_str_truncate':
+/usr/include/asterisk/strings.h:521: multiple definition of `ast_str_truncate'
+at_command.o:/usr/include/asterisk/strings.h:521: first defined here
+at_read.o: In function `ast_str_make_space':
+/usr/include/asterisk/strings.h:581: multiple definition of `ast_str_make_space'
+at_command.o:/usr/include/asterisk/strings.h:581: first defined here
+at_read.o: In function `ast_str_copy_string':
+/usr/include/asterisk/strings.h:606: multiple definition of `ast_str_copy_string'
+at_command.o:/usr/include/asterisk/strings.h:606: first defined here
+at_read.o: In function `ast_str_thread_get':
+/usr/include/asterisk/strings.h:666: multiple definition of `ast_str_thread_get'
+at_command.o:/usr/include/asterisk/strings.h:666: first defined here
+at_read.o: In function `ast_str_set_va':
+/usr/include/asterisk/strings.h:803: multiple definition of `ast_str_set_va'
+at_command.o:/usr/include/asterisk/strings.h:803: first defined here
+at_read.o: In function `ast_str_append_va':
+/usr/include/asterisk/strings.h:820: multiple definition of `ast_str_append_va'
+at_command.o:/usr/include/asterisk/strings.h:820: first defined here
+at_read.o: In function `ast_str_set_substr':
+/usr/include/asterisk/strings.h:827: multiple definition of `ast_str_set_substr'
+at_command.o:/usr/include/asterisk/strings.h:827: first defined here
+at_read.o: In function `ast_str_append_substr':
+/usr/include/asterisk/strings.h:834: multiple definition of `ast_str_append_substr'
+at_command.o:/usr/include/asterisk/strings.h:834: first defined here
+at_read.o: In function `ast_str_set_escapecommas':
+/usr/include/asterisk/strings.h:841: multiple definition of `ast_str_set_escapecommas'
+at_command.o:/usr/include/asterisk/strings.h:841: first defined here
+at_read.o: In function `ast_str_append_escapecommas':
+/usr/include/asterisk/strings.h:848: multiple definition of `ast_str_append_escapecommas'
+at_command.o:/usr/include/asterisk/strings.h:848: first defined here
+at_read.o: In function `ast_str_set':
+/usr/include/asterisk/strings.h:876: multiple definition of `ast_str_set'
+at_command.o:/usr/include/asterisk/strings.h:876: first defined here
+at_read.o: In function `ast_str_append':
+/usr/include/asterisk/strings.h:902: multiple definition of `ast_str_append'
+at_command.o:/usr/include/asterisk/strings.h:902: first defined here
+at_read.o: In function `ast_check_digits':
+/usr/include/asterisk/strings.h:923: multiple definition of `ast_check_digits'
+at_command.o:/usr/include/asterisk/strings.h:923: first defined here
+at_read.o: In function `ast_tech_to_upper':
+/usr/include/asterisk/strings.h:941: multiple definition of `ast_tech_to_upper'
+at_command.o:/usr/include/asterisk/strings.h:941: first defined here
+at_read.o: In function `ast_rq_is_int':
+/usr/include/asterisk/config.h:816: multiple definition of `ast_rq_is_int'
+at_command.o:/usr/include/asterisk/config.h:816: first defined here
+at_response.o: In function `ast_atomic_fetchadd_int':
+/usr/include/asterisk/lock.h:600: multiple definition of `ast_atomic_fetchadd_int'
+at_command.o:/usr/include/asterisk/lock.h:600: first defined here
+at_response.o: In function `ast_atomic_dec_and_test':
+/usr/include/asterisk/lock.h:646: multiple definition of `ast_atomic_dec_and_test'
+at_command.o:/usr/include/asterisk/lock.h:646: first defined here
+at_response.o: In function `ast_tvdiff_sec':
+/usr/include/asterisk/time.h:45: multiple definition of `ast_tvdiff_sec'
+at_command.o:/usr/include/asterisk/time.h:45: first defined here
+at_response.o: In function `ast_tvdiff_us':
+/usr/include/asterisk/time.h:64: multiple definition of `ast_tvdiff_us'
+at_command.o:/usr/include/asterisk/time.h:64: first defined here
+at_response.o: In function `ast_tvdiff_ms':
+/usr/include/asterisk/time.h:78: multiple definition of `ast_tvdiff_ms'
+at_command.o:/usr/include/asterisk/time.h:78: first defined here
+at_response.o: In function `ast_tvzero':
+/usr/include/asterisk/time.h:95: multiple definition of `ast_tvzero'
+at_command.o:/usr/include/asterisk/time.h:95: first defined here
+at_response.o: In function `ast_tvcmp':
+/usr/include/asterisk/time.h:106: multiple definition of `ast_tvcmp'
+at_command.o:/usr/include/asterisk/time.h:106: first defined here
+at_response.o: In function `ast_tveq':
+/usr/include/asterisk/time.h:125: multiple definition of `ast_tveq'
+at_command.o:/usr/include/asterisk/time.h:125: first defined here
+at_response.o: In function `ast_tvnow':
+/usr/include/asterisk/time.h:135: multiple definition of `ast_tvnow'
+at_command.o:/usr/include/asterisk/time.h:135: first defined here
+at_response.o: In function `ast_tv':
+/usr/include/asterisk/time.h:171: multiple definition of `ast_tv'
+at_command.o:/usr/include/asterisk/time.h:171: first defined here
+at_response.o: In function `ast_samp2tv':
+/usr/include/asterisk/time.h:186: multiple definition of `ast_samp2tv'
+at_command.o:/usr/include/asterisk/time.h:186: first defined here
+at_response.o: In function `_ast_malloc':
+/usr/include/asterisk/utils.h:490: multiple definition of `_ast_malloc'
+at_command.o:/usr/include/asterisk/utils.h:490: first defined here
+at_response.o: In function `_ast_calloc':
+/usr/include/asterisk/utils.h:513: multiple definition of `_ast_calloc'
+at_command.o:/usr/include/asterisk/utils.h:513: first defined here
+at_response.o: In function `_ast_realloc':
+/usr/include/asterisk/utils.h:549: multiple definition of `_ast_realloc'
+at_command.o:/usr/include/asterisk/utils.h:549: first defined here
+at_response.o: In function `_ast_strdup':
+/usr/include/asterisk/utils.h:576: multiple definition of `_ast_strdup'
+at_command.o:/usr/include/asterisk/utils.h:576: first defined here
+at_response.o: In function `_ast_strndup':
+/usr/include/asterisk/utils.h:605: multiple definition of `_ast_strndup'
+at_command.o:/usr/include/asterisk/utils.h:605: first defined here
+at_response.o: In function `_ast_vasprintf':
+/usr/include/asterisk/utils.h:644: multiple definition of `_ast_vasprintf'
+at_command.o:/usr/include/asterisk/utils.h:644: first defined here
+at_response.o: In function `ast_threadstorage_get':
+/usr/include/asterisk/threadstorage.h:173: multiple definition of `ast_threadstorage_get'
+at_command.o:/usr/include/asterisk/threadstorage.h:173: first defined here
+at_response.o: In function `ast_skip_blanks':
+/usr/include/asterisk/strings.h:90: multiple definition of `ast_skip_blanks'
+at_command.o:/usr/include/asterisk/strings.h:90: first defined here
+at_response.o: In function `ast_trim_blanks':
+/usr/include/asterisk/strings.h:104: multiple definition of `ast_trim_blanks'
+at_command.o:/usr/include/asterisk/strings.h:104: first defined here
+at_response.o: In function `ast_skip_nonblanks':
+/usr/include/asterisk/strings.h:129: multiple definition of `ast_skip_nonblanks'
+at_command.o:/usr/include/asterisk/strings.h:129: first defined here
+at_response.o: In function `ast_strip':
+/usr/include/asterisk/strings.h:147: multiple definition of `ast_strip'
+at_command.o:/usr/include/asterisk/strings.h:147: first defined here
+at_response.o: In function `ast_copy_string':
+/usr/include/asterisk/strings.h:212: multiple definition of `ast_copy_string'
+at_command.o:/usr/include/asterisk/strings.h:212: first defined here
+at_response.o: In function `ast_str_create':
+/usr/include/asterisk/strings.h:420: multiple definition of `ast_str_create'
+at_command.o:/usr/include/asterisk/strings.h:420: first defined here
+at_response.o: In function `ast_str_reset':
+/usr/include/asterisk/strings.h:441: multiple definition of `ast_str_reset'
+at_command.o:/usr/include/asterisk/strings.h:441: first defined here
+at_response.o: In function `ast_str_update':
+/usr/include/asterisk/strings.h:456: multiple definition of `ast_str_update'
+at_command.o:/usr/include/asterisk/strings.h:456: first defined here
+at_response.o: In function `ast_str_trim_blanks':
+/usr/include/asterisk/strings.h:466: multiple definition of `ast_str_trim_blanks'
+at_command.o:/usr/include/asterisk/strings.h:466: first defined here
+at_response.o: In function `ast_str_strlen':
+/usr/include/asterisk/strings.h:481: multiple definition of `ast_str_strlen'
+at_command.o:/usr/include/asterisk/strings.h:481: first defined here
+at_response.o: In function `ast_str_size':
+/usr/include/asterisk/strings.h:492: multiple definition of `ast_str_size'
+at_command.o:/usr/include/asterisk/strings.h:492: first defined here
+at_response.o: In function `ast_str_buffer':
+/usr/include/asterisk/strings.h:503: multiple definition of `ast_str_buffer'
+at_command.o:/usr/include/asterisk/strings.h:503: first defined here
+at_response.o: In function `ast_str_truncate':
+/usr/include/asterisk/strings.h:521: multiple definition of `ast_str_truncate'
+at_command.o:/usr/include/asterisk/strings.h:521: first defined here
+at_response.o: In function `ast_str_make_space':
+/usr/include/asterisk/strings.h:581: multiple definition of `ast_str_make_space'
+at_command.o:/usr/include/asterisk/strings.h:581: first defined here
+at_response.o: In function `ast_str_copy_string':
+/usr/include/asterisk/strings.h:606: multiple definition of `ast_str_copy_string'
+at_command.o:/usr/include/asterisk/strings.h:606: first defined here
+at_response.o: In function `ast_str_thread_get':
+/usr/include/asterisk/strings.h:666: multiple definition of `ast_str_thread_get'
+at_command.o:/usr/include/asterisk/strings.h:666: first defined here
+at_response.o: In function `ast_str_set_va':
+/usr/include/asterisk/strings.h:803: multiple definition of `ast_str_set_va'
+at_command.o:/usr/include/asterisk/strings.h:803: first defined here
+at_response.o: In function `ast_str_append_va':
+/usr/include/asterisk/strings.h:820: multiple definition of `ast_str_append_va'
+at_command.o:/usr/include/asterisk/strings.h:820: first defined here
+at_response.o: In function `ast_str_set_substr':
+/usr/include/asterisk/strings.h:827: multiple definition of `ast_str_set_substr'
+at_command.o:/usr/include/asterisk/strings.h:827: first defined here
+at_response.o: In function `ast_str_append_substr':
+/usr/include/asterisk/strings.h:834: multiple definition of `ast_str_append_substr'
+at_command.o:/usr/include/asterisk/strings.h:834: first defined here
+at_response.o: In function `ast_str_set_escapecommas':
+/usr/include/asterisk/strings.h:841: multiple definition of `ast_str_set_escapecommas'
+at_command.o:/usr/include/asterisk/strings.h:841: first defined here
+at_response.o: In function `ast_str_append_escapecommas':
+/usr/include/asterisk/strings.h:848: multiple definition of `ast_str_append_escapecommas'
+at_command.o:/usr/include/asterisk/strings.h:848: first defined here
+at_response.o: In function `ast_str_set':
+/usr/include/asterisk/strings.h:876: multiple definition of `ast_str_set'
+at_command.o:/usr/include/asterisk/strings.h:876: first defined here
+at_response.o: In function `ast_str_append':
+/usr/include/asterisk/strings.h:902: multiple definition of `ast_str_append'
+at_command.o:/usr/include/asterisk/strings.h:902: first defined here
+at_response.o: In function `ast_check_digits':
+/usr/include/asterisk/strings.h:923: multiple definition of `ast_check_digits'
+at_command.o:/usr/include/asterisk/strings.h:923: first defined here
+at_response.o: In function `ast_tech_to_upper':
+/usr/include/asterisk/strings.h:941: multiple definition of `ast_tech_to_upper'
+at_command.o:/usr/include/asterisk/strings.h:941: first defined here
+at_response.o: In function `ast_rq_is_int':
+/usr/include/asterisk/config.h:816: multiple definition of `ast_rq_is_int'
+at_command.o:/usr/include/asterisk/config.h:816: first defined here
+chan_dongle.o: In function `ast_atomic_fetchadd_int':
+/usr/include/asterisk/lock.h:600: multiple definition of `ast_atomic_fetchadd_int'
+at_command.o:/usr/include/asterisk/lock.h:600: first defined here
+chan_dongle.o: In function `ast_atomic_dec_and_test':
+/usr/include/asterisk/lock.h:646: multiple definition of `ast_atomic_dec_and_test'
+at_command.o:/usr/include/asterisk/lock.h:646: first defined here
+chan_dongle.o: In function `ast_tvdiff_sec':
+/usr/include/asterisk/time.h:45: multiple definition of `ast_tvdiff_sec'
+at_command.o:/usr/include/asterisk/time.h:45: first defined here
+chan_dongle.o: In function `ast_tvdiff_us':
+/usr/include/asterisk/time.h:64: multiple definition of `ast_tvdiff_us'
+at_command.o:/usr/include/asterisk/time.h:64: first defined here
+chan_dongle.o: In function `ast_tvdiff_ms':
+/usr/include/asterisk/time.h:78: multiple definition of `ast_tvdiff_ms'
+at_command.o:/usr/include/asterisk/time.h:78: first defined here
+chan_dongle.o: In function `ast_tvzero':
+/usr/include/asterisk/time.h:95: multiple definition of `ast_tvzero'
+at_command.o:/usr/include/asterisk/time.h:95: first defined here
+chan_dongle.o: In function `ast_tvcmp':
+/usr/include/asterisk/time.h:106: multiple definition of `ast_tvcmp'
+at_command.o:/usr/include/asterisk/time.h:106: first defined here
+chan_dongle.o: In function `ast_tveq':
+/usr/include/asterisk/time.h:125: multiple definition of `ast_tveq'
+at_command.o:/usr/include/asterisk/time.h:125: first defined here
+chan_dongle.o: In function `ast_tvnow':
+/usr/include/asterisk/time.h:135: multiple definition of `ast_tvnow'
+at_command.o:/usr/include/asterisk/time.h:135: first defined here
+chan_dongle.o: In function `ast_tv':
+/usr/include/asterisk/time.h:171: multiple definition of `ast_tv'
+at_command.o:/usr/include/asterisk/time.h:171: first defined here
+chan_dongle.o: In function `ast_samp2tv':
+/usr/include/asterisk/time.h:186: multiple definition of `ast_samp2tv'
+at_command.o:/usr/include/asterisk/time.h:186: first defined here
+chan_dongle.o: In function `_ast_malloc':
+/usr/include/asterisk/utils.h:490: multiple definition of `_ast_malloc'
+at_command.o:/usr/include/asterisk/utils.h:490: first defined here
+chan_dongle.o: In function `_ast_calloc':
+/usr/include/asterisk/utils.h:513: multiple definition of `_ast_calloc'
+at_command.o:/usr/include/asterisk/utils.h:513: first defined here
+chan_dongle.o: In function `_ast_realloc':
+/usr/include/asterisk/utils.h:549: multiple definition of `_ast_realloc'
+at_command.o:/usr/include/asterisk/utils.h:549: first defined here
+chan_dongle.o: In function `_ast_strdup':
+/usr/include/asterisk/utils.h:576: multiple definition of `_ast_strdup'
+at_command.o:/usr/include/asterisk/utils.h:576: first defined here
+chan_dongle.o: In function `_ast_strndup':
+/usr/include/asterisk/utils.h:605: multiple definition of `_ast_strndup'
+at_command.o:/usr/include/asterisk/utils.h:605: first defined here
+chan_dongle.o: In function `_ast_vasprintf':
+/usr/include/asterisk/utils.h:644: multiple definition of `_ast_vasprintf'
+at_command.o:/usr/include/asterisk/utils.h:644: first defined here
+chan_dongle.o: In function `ast_threadstorage_get':
+/usr/include/asterisk/threadstorage.h:173: multiple definition of `ast_threadstorage_get'
+at_command.o:/usr/include/asterisk/threadstorage.h:173: first defined here
+chan_dongle.o: In function `ast_skip_blanks':
+/usr/include/asterisk/strings.h:90: multiple definition of `ast_skip_blanks'
+at_command.o:/usr/include/asterisk/strings.h:90: first defined here
+chan_dongle.o: In function `ast_trim_blanks':
+/usr/include/asterisk/strings.h:104: multiple definition of `ast_trim_blanks'
+at_command.o:/usr/include/asterisk/strings.h:104: first defined here
+chan_dongle.o: In function `ast_skip_nonblanks':
+/usr/include/asterisk/strings.h:129: multiple definition of `ast_skip_nonblanks'
+at_command.o:/usr/include/asterisk/strings.h:129: first defined here
+chan_dongle.o: In function `ast_strip':
+/usr/include/asterisk/strings.h:147: multiple definition of `ast_strip'
+at_command.o:/usr/include/asterisk/strings.h:147: first defined here
+chan_dongle.o: In function `ast_copy_string':
+/usr/include/asterisk/strings.h:212: multiple definition of `ast_copy_string'
+at_command.o:/usr/include/asterisk/strings.h:212: first defined here
+chan_dongle.o: In function `ast_str_create':
+/usr/include/asterisk/strings.h:420: multiple definition of `ast_str_create'
+at_command.o:/usr/include/asterisk/strings.h:420: first defined here
+chan_dongle.o: In function `ast_str_reset':
+/usr/include/asterisk/strings.h:441: multiple definition of `ast_str_reset'
+at_command.o:/usr/include/asterisk/strings.h:441: first defined here
+chan_dongle.o: In function `ast_str_update':
+/usr/include/asterisk/strings.h:456: multiple definition of `ast_str_update'
+at_command.o:/usr/include/asterisk/strings.h:456: first defined here
+chan_dongle.o: In function `ast_str_trim_blanks':
+/usr/include/asterisk/strings.h:466: multiple definition of `ast_str_trim_blanks'
+at_command.o:/usr/include/asterisk/strings.h:466: first defined here
+chan_dongle.o: In function `ast_str_strlen':
+/usr/include/asterisk/strings.h:481: multiple definition of `ast_str_strlen'
+at_command.o:/usr/include/asterisk/strings.h:481: first defined here
+chan_dongle.o: In function `ast_str_size':
+/usr/include/asterisk/strings.h:492: multiple definition of `ast_str_size'
+at_command.o:/usr/include/asterisk/strings.h:492: first defined here
+chan_dongle.o: In function `ast_str_buffer':
+/usr/include/asterisk/strings.h:503: multiple definition of `ast_str_buffer'
+at_command.o:/usr/include/asterisk/strings.h:503: first defined here
+chan_dongle.o: In function `ast_str_truncate':
+/usr/include/asterisk/strings.h:521: multiple definition of `ast_str_truncate'
+at_command.o:/usr/include/asterisk/strings.h:521: first defined here
+chan_dongle.o: In function `ast_str_make_space':
+/usr/include/asterisk/strings.h:581: multiple definition of `ast_str_make_space'
+at_command.o:/usr/include/asterisk/strings.h:581: first defined here
+chan_dongle.o: In function `ast_str_copy_string':
+/usr/include/asterisk/strings.h:606: multiple definition of `ast_str_copy_string'
+at_command.o:/usr/include/asterisk/strings.h:606: first defined here
+chan_dongle.o: In function `ast_str_thread_get':
+/usr/include/asterisk/strings.h:666: multiple definition of `ast_str_thread_get'
+at_command.o:/usr/include/asterisk/strings.h:666: first defined here
+chan_dongle.o: In function `ast_str_set_va':
+/usr/include/asterisk/strings.h:803: multiple definition of `ast_str_set_va'
+at_command.o:/usr/include/asterisk/strings.h:803: first defined here
+chan_dongle.o: In function `ast_str_append_va':
+/usr/include/asterisk/strings.h:820: multiple definition of `ast_str_append_va'
+at_command.o:/usr/include/asterisk/strings.h:820: first defined here
+chan_dongle.o: In function `ast_str_set_substr':
+/usr/include/asterisk/strings.h:827: multiple definition of `ast_str_set_substr'
+at_command.o:/usr/include/asterisk/strings.h:827: first defined here
+chan_dongle.o: In function `ast_str_append_substr':
+/usr/include/asterisk/strings.h:834: multiple definition of `ast_str_append_substr'
+at_command.o:/usr/include/asterisk/strings.h:834: first defined here
+chan_dongle.o: In function `ast_str_set_escapecommas':
+/usr/include/asterisk/strings.h:841: multiple definition of `ast_str_set_escapecommas'
+at_command.o:/usr/include/asterisk/strings.h:841: first defined here
+chan_dongle.o: In function `ast_str_append_escapecommas':
+/usr/include/asterisk/strings.h:848: multiple definition of `ast_str_append_escapecommas'
+at_command.o:/usr/include/asterisk/strings.h:848: first defined here
+chan_dongle.o: In function `ast_str_set':
+/usr/include/asterisk/strings.h:876: multiple definition of `ast_str_set'
+at_command.o:/usr/include/asterisk/strings.h:876: first defined here
+chan_dongle.o: In function `ast_str_append':
+/usr/include/asterisk/strings.h:902: multiple definition of `ast_str_append'
+at_command.o:/usr/include/asterisk/strings.h:902: first defined here
+chan_dongle.o: In function `ast_check_digits':
+/usr/include/asterisk/strings.h:923: multiple definition of `ast_check_digits'
+at_command.o:/usr/include/asterisk/strings.h:923: first defined here
+chan_dongle.o: In function `ast_tech_to_upper':
+/usr/include/asterisk/strings.h:941: multiple definition of `ast_tech_to_upper'
+at_command.o:/usr/include/asterisk/strings.h:941: first defined here
+chan_dongle.o: In function `ast_rq_is_int':
+/usr/include/asterisk/config.h:816: multiple definition of `ast_rq_is_int'
+at_command.o:/usr/include/asterisk/config.h:816: first defined here
+channel.o: In function `ast_atomic_fetchadd_int':
+/usr/include/asterisk/lock.h:600: multiple definition of `ast_atomic_fetchadd_int'
+at_command.o:/usr/include/asterisk/lock.h:600: first defined here
+channel.o: In function `ast_atomic_dec_and_test':
+/usr/include/asterisk/lock.h:646: multiple definition of `ast_atomic_dec_and_test'
+at_command.o:/usr/include/asterisk/lock.h:646: first defined here
+channel.o: In function `ast_tvdiff_sec':
+/usr/include/asterisk/time.h:45: multiple definition of `ast_tvdiff_sec'
+at_command.o:/usr/include/asterisk/time.h:45: first defined here
+channel.o: In function `ast_tvdiff_us':
+/usr/include/asterisk/time.h:64: multiple definition of `ast_tvdiff_us'
+at_command.o:/usr/include/asterisk/time.h:64: first defined here
+channel.o: In function `ast_tvdiff_ms':
+/usr/include/asterisk/time.h:78: multiple definition of `ast_tvdiff_ms'
+at_command.o:/usr/include/asterisk/time.h:78: first defined here
+channel.o: In function `ast_tvzero':
+/usr/include/asterisk/time.h:95: multiple definition of `ast_tvzero'
+at_command.o:/usr/include/asterisk/time.h:95: first defined here
+channel.o: In function `ast_tvcmp':
+/usr/include/asterisk/time.h:106: multiple definition of `ast_tvcmp'
+at_command.o:/usr/include/asterisk/time.h:106: first defined here
+channel.o: In function `ast_tveq':
+/usr/include/asterisk/time.h:125: multiple definition of `ast_tveq'
+at_command.o:/usr/include/asterisk/time.h:125: first defined here
+channel.o: In function `ast_tvnow':
+/usr/include/asterisk/time.h:135: multiple definition of `ast_tvnow'
+at_command.o:/usr/include/asterisk/time.h:135: first defined here
+channel.o: In function `ast_tv':
+/usr/include/asterisk/time.h:171: multiple definition of `ast_tv'
+at_command.o:/usr/include/asterisk/time.h:171: first defined here
+channel.o: In function `ast_samp2tv':
+/usr/include/asterisk/time.h:186: multiple definition of `ast_samp2tv'
+at_command.o:/usr/include/asterisk/time.h:186: first defined here
+channel.o: In function `_ast_malloc':
+/usr/include/asterisk/utils.h:490: multiple definition of `_ast_malloc'
+at_command.o:/usr/include/asterisk/utils.h:490: first defined here
+channel.o: In function `_ast_calloc':
+/usr/include/asterisk/utils.h:513: multiple definition of `_ast_calloc'
+at_command.o:/usr/include/asterisk/utils.h:513: first defined here
+channel.o: In function `_ast_realloc':
+/usr/include/asterisk/utils.h:549: multiple definition of `_ast_realloc'
+at_command.o:/usr/include/asterisk/utils.h:549: first defined here
+channel.o: In function `_ast_strdup':
+/usr/include/asterisk/utils.h:576: multiple definition of `_ast_strdup'
+at_command.o:/usr/include/asterisk/utils.h:576: first defined here
+channel.o: In function `_ast_strndup':
+/usr/include/asterisk/utils.h:605: multiple definition of `_ast_strndup'
+at_command.o:/usr/include/asterisk/utils.h:605: first defined here
+channel.o: In function `_ast_vasprintf':
+/usr/include/asterisk/utils.h:644: multiple definition of `_ast_vasprintf'
+at_command.o:/usr/include/asterisk/utils.h:644: first defined here
+channel.o: In function `ast_threadstorage_get':
+/usr/include/asterisk/threadstorage.h:173: multiple definition of `ast_threadstorage_get'
+at_command.o:/usr/include/asterisk/threadstorage.h:173: first defined here
+channel.o: In function `ast_skip_blanks':
+/usr/include/asterisk/strings.h:90: multiple definition of `ast_skip_blanks'
+at_command.o:/usr/include/asterisk/strings.h:90: first defined here
+channel.o: In function `ast_trim_blanks':
+/usr/include/asterisk/strings.h:104: multiple definition of `ast_trim_blanks'
+at_command.o:/usr/include/asterisk/strings.h:104: first defined here
+channel.o: In function `ast_skip_nonblanks':
+/usr/include/asterisk/strings.h:129: multiple definition of `ast_skip_nonblanks'
+at_command.o:/usr/include/asterisk/strings.h:129: first defined here
+channel.o: In function `ast_strip':
+/usr/include/asterisk/strings.h:147: multiple definition of `ast_strip'
+at_command.o:/usr/include/asterisk/strings.h:147: first defined here
+channel.o: In function `ast_copy_string':
+/usr/include/asterisk/strings.h:212: multiple definition of `ast_copy_string'
+at_command.o:/usr/include/asterisk/strings.h:212: first defined here
+channel.o: In function `ast_str_create':
+/usr/include/asterisk/strings.h:420: multiple definition of `ast_str_create'
+at_command.o:/usr/include/asterisk/strings.h:420: first defined here
+channel.o: In function `ast_str_reset':
+/usr/include/asterisk/strings.h:441: multiple definition of `ast_str_reset'
+at_command.o:/usr/include/asterisk/strings.h:441: first defined here
+channel.o: In function `ast_str_update':
+/usr/include/asterisk/strings.h:456: multiple definition of `ast_str_update'
+at_command.o:/usr/include/asterisk/strings.h:456: first defined here
+channel.o: In function `ast_str_trim_blanks':
+/usr/include/asterisk/strings.h:466: multiple definition of `ast_str_trim_blanks'
+at_command.o:/usr/include/asterisk/strings.h:466: first defined here
+channel.o: In function `ast_str_strlen':
+/usr/include/asterisk/strings.h:481: multiple definition of `ast_str_strlen'
+at_command.o:/usr/include/asterisk/strings.h:481: first defined here
+channel.o: In function `ast_str_size':
+/usr/include/asterisk/strings.h:492: multiple definition of `ast_str_size'
+at_command.o:/usr/include/asterisk/strings.h:492: first defined here
+channel.o: In function `ast_str_buffer':
+/usr/include/asterisk/strings.h:503: multiple definition of `ast_str_buffer'
+at_command.o:/usr/include/asterisk/strings.h:503: first defined here
+channel.o: In function `ast_str_truncate':
+/usr/include/asterisk/strings.h:521: multiple definition of `ast_str_truncate'
+at_command.o:/usr/include/asterisk/strings.h:521: first defined here
+channel.o: In function `ast_str_make_space':
+/usr/include/asterisk/strings.h:581: multiple definition of `ast_str_make_space'
+at_command.o:/usr/include/asterisk/strings.h:581: first defined here
+channel.o: In function `ast_str_copy_string':
+/usr/include/asterisk/strings.h:606: multiple definition of `ast_str_copy_string'
+at_command.o:/usr/include/asterisk/strings.h:606: first defined here
+channel.o: In function `ast_str_thread_get':
+/usr/include/asterisk/strings.h:666: multiple definition of `ast_str_thread_get'
+at_command.o:/usr/include/asterisk/strings.h:666: first defined here
+channel.o: In function `ast_str_set_va':
+/usr/include/asterisk/strings.h:803: multiple definition of `ast_str_set_va'
+at_command.o:/usr/include/asterisk/strings.h:803: first defined here
+channel.o: In function `ast_str_append_va':
+/usr/include/asterisk/strings.h:820: multiple definition of `ast_str_append_va'
+at_command.o:/usr/include/asterisk/strings.h:820: first defined here
+channel.o: In function `ast_str_set_substr':
+/usr/include/asterisk/strings.h:827: multiple definition of `ast_str_set_substr'
+at_command.o:/usr/include/asterisk/strings.h:827: first defined here
+channel.o: In function `ast_str_append_substr':
+/usr/include/asterisk/strings.h:834: multiple definition of `ast_str_append_substr'
+at_command.o:/usr/include/asterisk/strings.h:834: first defined here
+channel.o: In function `ast_str_set_escapecommas':
+/usr/include/asterisk/strings.h:841: multiple definition of `ast_str_set_escapecommas'
+at_command.o:/usr/include/asterisk/strings.h:841: first defined here
+channel.o: In function `ast_str_append_escapecommas':
+/usr/include/asterisk/strings.h:848: multiple definition of `ast_str_append_escapecommas'
+at_command.o:/usr/include/asterisk/strings.h:848: first defined here
+channel.o: In function `ast_str_set':
+/usr/include/asterisk/strings.h:876: multiple definition of `ast_str_set'
+at_command.o:/usr/include/asterisk/strings.h:876: first defined here
+channel.o: In function `ast_str_append':
+/usr/include/asterisk/strings.h:902: multiple definition of `ast_str_append'
+at_command.o:/usr/include/asterisk/strings.h:902: first defined here
+channel.o: In function `ast_check_digits':
+/usr/include/asterisk/strings.h:923: multiple definition of `ast_check_digits'
+at_command.o:/usr/include/asterisk/strings.h:923: first defined here
+channel.o: In function `ast_tech_to_upper':
+/usr/include/asterisk/strings.h:941: multiple definition of `ast_tech_to_upper'
+at_command.o:/usr/include/asterisk/strings.h:941: first defined here
+channel.o: In function `ast_rq_is_int':
+/usr/include/asterisk/config.h:816: multiple definition of `ast_rq_is_int'
+at_command.o:/usr/include/asterisk/config.h:816: first defined here
+cli.o: In function `ast_atomic_fetchadd_int':
+/usr/include/asterisk/lock.h:600: multiple definition of `ast_atomic_fetchadd_int'
+at_command.o:/usr/include/asterisk/lock.h:600: first defined here
+cli.o: In function `ast_atomic_dec_and_test':
+/usr/include/asterisk/lock.h:646: multiple definition of `ast_atomic_dec_and_test'
+at_command.o:/usr/include/asterisk/lock.h:646: first defined here
+cli.o: In function `ast_tvdiff_sec':
+/usr/include/asterisk/time.h:45: multiple definition of `ast_tvdiff_sec'
+at_command.o:/usr/include/asterisk/time.h:45: first defined here
+cli.o: In function `ast_tvdiff_us':
+/usr/include/asterisk/time.h:64: multiple definition of `ast_tvdiff_us'
+at_command.o:/usr/include/asterisk/time.h:64: first defined here
+cli.o: In function `ast_tvdiff_ms':
+/usr/include/asterisk/time.h:78: multiple definition of `ast_tvdiff_ms'
+at_command.o:/usr/include/asterisk/time.h:78: first defined here
+cli.o: In function `ast_tvzero':
+/usr/include/asterisk/time.h:95: multiple definition of `ast_tvzero'
+at_command.o:/usr/include/asterisk/time.h:95: first defined here
+cli.o: In function `ast_tvcmp':
+/usr/include/asterisk/time.h:106: multiple definition of `ast_tvcmp'
+at_command.o:/usr/include/asterisk/time.h:106: first defined here
+cli.o: In function `ast_tveq':
+/usr/include/asterisk/time.h:125: multiple definition of `ast_tveq'
+at_command.o:/usr/include/asterisk/time.h:125: first defined here
+cli.o: In function `ast_tvnow':
+/usr/include/asterisk/time.h:135: multiple definition of `ast_tvnow'
+at_command.o:/usr/include/asterisk/time.h:135: first defined here
+cli.o: In function `ast_tv':
+/usr/include/asterisk/time.h:171: multiple definition of `ast_tv'
+at_command.o:/usr/include/asterisk/time.h:171: first defined here
+cli.o: In function `ast_samp2tv':
+/usr/include/asterisk/time.h:186: multiple definition of `ast_samp2tv'
+at_command.o:/usr/include/asterisk/time.h:186: first defined here
+cli.o: In function `_ast_malloc':
+/usr/include/asterisk/utils.h:490: multiple definition of `_ast_malloc'
+at_command.o:/usr/include/asterisk/utils.h:490: first defined here
+cli.o: In function `_ast_calloc':
+/usr/include/asterisk/utils.h:513: multiple definition of `_ast_calloc'
+at_command.o:/usr/include/asterisk/utils.h:513: first defined here
+cli.o: In function `_ast_realloc':
+/usr/include/asterisk/utils.h:549: multiple definition of `_ast_realloc'
+at_command.o:/usr/include/asterisk/utils.h:549: first defined here
+cli.o: In function `_ast_strdup':
+/usr/include/asterisk/utils.h:576: multiple definition of `_ast_strdup'
+at_command.o:/usr/include/asterisk/utils.h:576: first defined here
+cli.o: In function `_ast_strndup':
+/usr/include/asterisk/utils.h:605: multiple definition of `_ast_strndup'
+at_command.o:/usr/include/asterisk/utils.h:605: first defined here
+cli.o: In function `_ast_vasprintf':
+/usr/include/asterisk/utils.h:644: multiple definition of `_ast_vasprintf'
+at_command.o:/usr/include/asterisk/utils.h:644: first defined here
+cli.o: In function `ast_threadstorage_get':
+/usr/include/asterisk/threadstorage.h:173: multiple definition of `ast_threadstorage_get'
+at_command.o:/usr/include/asterisk/threadstorage.h:173: first defined here
+cli.o: In function `ast_skip_blanks':
+/usr/include/asterisk/strings.h:90: multiple definition of `ast_skip_blanks'
+at_command.o:/usr/include/asterisk/strings.h:90: first defined here
+cli.o: In function `ast_trim_blanks':
+/usr/include/asterisk/strings.h:104: multiple definition of `ast_trim_blanks'
+at_command.o:/usr/include/asterisk/strings.h:104: first defined here
+cli.o: In function `ast_skip_nonblanks':
+/usr/include/asterisk/strings.h:129: multiple definition of `ast_skip_nonblanks'
+at_command.o:/usr/include/asterisk/strings.h:129: first defined here
+cli.o: In function `ast_strip':
+/usr/include/asterisk/strings.h:147: multiple definition of `ast_strip'
+at_command.o:/usr/include/asterisk/strings.h:147: first defined here
+cli.o: In function `ast_copy_string':
+/usr/include/asterisk/strings.h:212: multiple definition of `ast_copy_string'
+at_command.o:/usr/include/asterisk/strings.h:212: first defined here
+cli.o: In function `ast_str_create':
+/usr/include/asterisk/strings.h:420: multiple definition of `ast_str_create'
+at_command.o:/usr/include/asterisk/strings.h:420: first defined here
+cli.o: In function `ast_str_reset':
+/usr/include/asterisk/strings.h:441: multiple definition of `ast_str_reset'
+at_command.o:/usr/include/asterisk/strings.h:441: first defined here
+cli.o: In function `ast_str_update':
+/usr/include/asterisk/strings.h:456: multiple definition of `ast_str_update'
+at_command.o:/usr/include/asterisk/strings.h:456: first defined here
+cli.o: In function `ast_str_trim_blanks':
+/usr/include/asterisk/strings.h:466: multiple definition of `ast_str_trim_blanks'
+at_command.o:/usr/include/asterisk/strings.h:466: first defined here
+cli.o: In function `ast_str_strlen':
+/usr/include/asterisk/strings.h:481: multiple definition of `ast_str_strlen'
+at_command.o:/usr/include/asterisk/strings.h:481: first defined here
+cli.o: In function `ast_str_size':
+/usr/include/asterisk/strings.h:492: multiple definition of `ast_str_size'
+at_command.o:/usr/include/asterisk/strings.h:492: first defined here
+cli.o: In function `ast_str_buffer':
+/usr/include/asterisk/strings.h:503: multiple definition of `ast_str_buffer'
+at_command.o:/usr/include/asterisk/strings.h:503: first defined here
+cli.o: In function `ast_str_truncate':
+/usr/include/asterisk/strings.h:521: multiple definition of `ast_str_truncate'
+at_command.o:/usr/include/asterisk/strings.h:521: first defined here
+cli.o: In function `ast_str_make_space':
+/usr/include/asterisk/strings.h:581: multiple definition of `ast_str_make_space'
+at_command.o:/usr/include/asterisk/strings.h:581: first defined here
+cli.o: In function `ast_str_copy_string':
+/usr/include/asterisk/strings.h:606: multiple definition of `ast_str_copy_string'
+at_command.o:/usr/include/asterisk/strings.h:606: first defined here
+cli.o: In function `ast_str_thread_get':
+/usr/include/asterisk/strings.h:666: multiple definition of `ast_str_thread_get'
+at_command.o:/usr/include/asterisk/strings.h:666: first defined here
+cli.o: In function `ast_str_set_va':
+/usr/include/asterisk/strings.h:803: multiple definition of `ast_str_set_va'
+at_command.o:/usr/include/asterisk/strings.h:803: first defined here
+cli.o: In function `ast_str_append_va':
+/usr/include/asterisk/strings.h:820: multiple definition of `ast_str_append_va'
+at_command.o:/usr/include/asterisk/strings.h:820: first defined here
+cli.o: In function `ast_str_set_substr':
+/usr/include/asterisk/strings.h:827: multiple definition of `ast_str_set_substr'
+at_command.o:/usr/include/asterisk/strings.h:827: first defined here
+cli.o: In function `ast_str_append_substr':
+/usr/include/asterisk/strings.h:834: multiple definition of `ast_str_append_substr'
+at_command.o:/usr/include/asterisk/strings.h:834: first defined here
+cli.o: In function `ast_str_set_escapecommas':
+/usr/include/asterisk/strings.h:841: multiple definition of `ast_str_set_escapecommas'
+at_command.o:/usr/include/asterisk/strings.h:841: first defined here
+cli.o: In function `ast_str_append_escapecommas':
+/usr/include/asterisk/strings.h:848: multiple definition of `ast_str_append_escapecommas'
+at_command.o:/usr/include/asterisk/strings.h:848: first defined here
+cli.o: In function `ast_str_set':
+/usr/include/asterisk/strings.h:876: multiple definition of `ast_str_set'
+at_command.o:/usr/include/asterisk/strings.h:876: first defined here
+cli.o: In function `ast_str_append':
+/usr/include/asterisk/strings.h:902: multiple definition of `ast_str_append'
+at_command.o:/usr/include/asterisk/strings.h:902: first defined here
+cli.o: In function `ast_check_digits':
+/usr/include/asterisk/strings.h:923: multiple definition of `ast_check_digits'
+at_command.o:/usr/include/asterisk/strings.h:923: first defined here
+cli.o: In function `ast_tech_to_upper':
+/usr/include/asterisk/strings.h:941: multiple definition of `ast_tech_to_upper'
+at_command.o:/usr/include/asterisk/strings.h:941: first defined here
+cli.o: In function `ast_rq_is_int':
+/usr/include/asterisk/config.h:816: multiple definition of `ast_rq_is_int'
+at_command.o:/usr/include/asterisk/config.h:816: first defined here
+helpers.o: In function `ast_atomic_fetchadd_int':
+/usr/include/asterisk/lock.h:600: multiple definition of `ast_atomic_fetchadd_int'
+at_command.o:/usr/include/asterisk/lock.h:600: first defined here
+helpers.o: In function `ast_atomic_dec_and_test':
+/usr/include/asterisk/lock.h:646: multiple definition of `ast_atomic_dec_and_test'
+at_command.o:/usr/include/asterisk/lock.h:646: first defined here
+helpers.o: In function `ast_tvdiff_sec':
+/usr/include/asterisk/time.h:45: multiple definition of `ast_tvdiff_sec'
+at_command.o:/usr/include/asterisk/time.h:45: first defined here
+helpers.o: In function `ast_tvdiff_us':
+/usr/include/asterisk/time.h:64: multiple definition of `ast_tvdiff_us'
+at_command.o:/usr/include/asterisk/time.h:64: first defined here
+helpers.o: In function `ast_tvdiff_ms':
+/usr/include/asterisk/time.h:78: multiple definition of `ast_tvdiff_ms'
+at_command.o:/usr/include/asterisk/time.h:78: first defined here
+helpers.o: In function `ast_tvzero':
+/usr/include/asterisk/time.h:95: multiple definition of `ast_tvzero'
+at_command.o:/usr/include/asterisk/time.h:95: first defined here
+helpers.o: In function `ast_tvcmp':
+/usr/include/asterisk/time.h:106: multiple definition of `ast_tvcmp'
+at_command.o:/usr/include/asterisk/time.h:106: first defined here
+helpers.o: In function `ast_tveq':
+/usr/include/asterisk/time.h:125: multiple definition of `ast_tveq'
+at_command.o:/usr/include/asterisk/time.h:125: first defined here
+helpers.o: In function `ast_tvnow':
+/usr/include/asterisk/time.h:135: multiple definition of `ast_tvnow'
+at_command.o:/usr/include/asterisk/time.h:135: first defined here
+helpers.o: In function `ast_tv':
+/usr/include/asterisk/time.h:171: multiple definition of `ast_tv'
+at_command.o:/usr/include/asterisk/time.h:171: first defined here
+helpers.o: In function `ast_samp2tv':
+/usr/include/asterisk/time.h:186: multiple definition of `ast_samp2tv'
+at_command.o:/usr/include/asterisk/time.h:186: first defined here
+helpers.o: In function `_ast_malloc':
+/usr/include/asterisk/utils.h:490: multiple definition of `_ast_malloc'
+at_command.o:/usr/include/asterisk/utils.h:490: first defined here
+helpers.o: In function `_ast_calloc':
+/usr/include/asterisk/utils.h:513: multiple definition of `_ast_calloc'
+at_command.o:/usr/include/asterisk/utils.h:513: first defined here
+helpers.o: In function `_ast_realloc':
+/usr/include/asterisk/utils.h:549: multiple definition of `_ast_realloc'
+at_command.o:/usr/include/asterisk/utils.h:549: first defined here
+helpers.o: In function `_ast_strdup':
+/usr/include/asterisk/utils.h:576: multiple definition of `_ast_strdup'
+at_command.o:/usr/include/asterisk/utils.h:576: first defined here
+helpers.o: In function `_ast_strndup':
+/usr/include/asterisk/utils.h:605: multiple definition of `_ast_strndup'
+at_command.o:/usr/include/asterisk/utils.h:605: first defined here
+helpers.o: In function `_ast_vasprintf':
+/usr/include/asterisk/utils.h:644: multiple definition of `_ast_vasprintf'
+at_command.o:/usr/include/asterisk/utils.h:644: first defined here
+helpers.o: In function `ast_threadstorage_get':
+/usr/include/asterisk/threadstorage.h:173: multiple definition of `ast_threadstorage_get'
+at_command.o:/usr/include/asterisk/threadstorage.h:173: first defined here
+helpers.o: In function `ast_skip_blanks':
+/usr/include/asterisk/strings.h:90: multiple definition of `ast_skip_blanks'
+at_command.o:/usr/include/asterisk/strings.h:90: first defined here
+helpers.o: In function `ast_trim_blanks':
+/usr/include/asterisk/strings.h:104: multiple definition of `ast_trim_blanks'
+at_command.o:/usr/include/asterisk/strings.h:104: first defined here
+helpers.o: In function `ast_skip_nonblanks':
+/usr/include/asterisk/strings.h:129: multiple definition of `ast_skip_nonblanks'
+at_command.o:/usr/include/asterisk/strings.h:129: first defined here
+helpers.o: In function `ast_strip':
+/usr/include/asterisk/strings.h:147: multiple definition of `ast_strip'
+at_command.o:/usr/include/asterisk/strings.h:147: first defined here
+helpers.o: In function `ast_copy_string':
+/usr/include/asterisk/strings.h:212: multiple definition of `ast_copy_string'
+at_command.o:/usr/include/asterisk/strings.h:212: first defined here
+helpers.o: In function `ast_str_create':
+/usr/include/asterisk/strings.h:420: multiple definition of `ast_str_create'
+at_command.o:/usr/include/asterisk/strings.h:420: first defined here
+helpers.o: In function `ast_str_reset':
+/usr/include/asterisk/strings.h:441: multiple definition of `ast_str_reset'
+at_command.o:/usr/include/asterisk/strings.h:441: first defined here
+helpers.o: In function `ast_str_update':
+/usr/include/asterisk/strings.h:456: multiple definition of `ast_str_update'
+at_command.o:/usr/include/asterisk/strings.h:456: first defined here
+helpers.o: In function `ast_str_trim_blanks':
+/usr/include/asterisk/strings.h:466: multiple definition of `ast_str_trim_blanks'
+at_command.o:/usr/include/asterisk/strings.h:466: first defined here
+helpers.o: In function `ast_str_strlen':
+/usr/include/asterisk/strings.h:481: multiple definition of `ast_str_strlen'
+at_command.o:/usr/include/asterisk/strings.h:481: first defined here
+helpers.o: In function `ast_str_size':
+/usr/include/asterisk/strings.h:492: multiple definition of `ast_str_size'
+at_command.o:/usr/include/asterisk/strings.h:492: first defined here
+helpers.o: In function `ast_str_buffer':
+/usr/include/asterisk/strings.h:503: multiple definition of `ast_str_buffer'
+at_command.o:/usr/include/asterisk/strings.h:503: first defined here
+helpers.o: In function `ast_str_truncate':
+/usr/include/asterisk/strings.h:521: multiple definition of `ast_str_truncate'
+at_command.o:/usr/include/asterisk/strings.h:521: first defined here
+helpers.o: In function `ast_str_make_space':
+/usr/include/asterisk/strings.h:581: multiple definition of `ast_str_make_space'
+at_command.o:/usr/include/asterisk/strings.h:581: first defined here
+helpers.o: In function `ast_str_copy_string':
+/usr/include/asterisk/strings.h:606: multiple definition of `ast_str_copy_string'
+at_command.o:/usr/include/asterisk/strings.h:606: first defined here
+helpers.o: In function `ast_str_thread_get':
+/usr/include/asterisk/strings.h:666: multiple definition of `ast_str_thread_get'
+at_command.o:/usr/include/asterisk/strings.h:666: first defined here
+helpers.o: In function `ast_str_set_va':
+/usr/include/asterisk/strings.h:803: multiple definition of `ast_str_set_va'
+at_command.o:/usr/include/asterisk/strings.h:803: first defined here
+helpers.o: In function `ast_str_append_va':
+/usr/include/asterisk/strings.h:820: multiple definition of `ast_str_append_va'
+at_command.o:/usr/include/asterisk/strings.h:820: first defined here
+helpers.o: In function `ast_str_set_substr':
+/usr/include/asterisk/strings.h:827: multiple definition of `ast_str_set_substr'
+at_command.o:/usr/include/asterisk/strings.h:827: first defined here
+helpers.o: In function `ast_str_append_substr':
+/usr/include/asterisk/strings.h:834: multiple definition of `ast_str_append_substr'
+at_command.o:/usr/include/asterisk/strings.h:834: first defined here
+helpers.o: In function `ast_str_set_escapecommas':
+/usr/include/asterisk/strings.h:841: multiple definition of `ast_str_set_escapecommas'
+at_command.o:/usr/include/asterisk/strings.h:841: first defined here
+helpers.o: In function `ast_str_append_escapecommas':
+/usr/include/asterisk/strings.h:848: multiple definition of `ast_str_append_escapecommas'
+at_command.o:/usr/include/asterisk/strings.h:848: first defined here
+helpers.o: In function `ast_str_set':
+/usr/include/asterisk/strings.h:876: multiple definition of `ast_str_set'
+at_command.o:/usr/include/asterisk/strings.h:876: first defined here
+helpers.o: In function `ast_str_append':
+/usr/include/asterisk/strings.h:902: multiple definition of `ast_str_append'
+at_command.o:/usr/include/asterisk/strings.h:902: first defined here
+helpers.o: In function `ast_check_digits':
+/usr/include/asterisk/strings.h:923: multiple definition of `ast_check_digits'
+at_command.o:/usr/include/asterisk/strings.h:923: first defined here
+helpers.o: In function `ast_tech_to_upper':
+/usr/include/asterisk/strings.h:941: multiple definition of `ast_tech_to_upper'
+at_command.o:/usr/include/asterisk/strings.h:941: first defined here
+helpers.o: In function `ast_rq_is_int':
+/usr/include/asterisk/config.h:816: multiple definition of `ast_rq_is_int'
+at_command.o:/usr/include/asterisk/config.h:816: first defined here
+manager.o: In function `ast_atomic_fetchadd_int':
+/usr/include/asterisk/lock.h:600: multiple definition of `ast_atomic_fetchadd_int'
+at_command.o:/usr/include/asterisk/lock.h:600: first defined here
+manager.o: In function `ast_atomic_dec_and_test':
+/usr/include/asterisk/lock.h:646: multiple definition of `ast_atomic_dec_and_test'
+at_command.o:/usr/include/asterisk/lock.h:646: first defined here
+manager.o: In function `ast_tvdiff_sec':
+/usr/include/asterisk/time.h:45: multiple definition of `ast_tvdiff_sec'
+at_command.o:/usr/include/asterisk/time.h:45: first defined here
+manager.o: In function `ast_tvdiff_us':
+/usr/include/asterisk/time.h:64: multiple definition of `ast_tvdiff_us'
+at_command.o:/usr/include/asterisk/time.h:64: first defined here
+manager.o: In function `ast_tvdiff_ms':
+/usr/include/asterisk/time.h:78: multiple definition of `ast_tvdiff_ms'
+at_command.o:/usr/include/asterisk/time.h:78: first defined here
+manager.o: In function `ast_tvzero':
+/usr/include/asterisk/time.h:95: multiple definition of `ast_tvzero'
+at_command.o:/usr/include/asterisk/time.h:95: first defined here
+manager.o: In function `ast_tvcmp':
+/usr/include/asterisk/time.h:106: multiple definition of `ast_tvcmp'
+at_command.o:/usr/include/asterisk/time.h:106: first defined here
+manager.o: In function `ast_tveq':
+/usr/include/asterisk/time.h:125: multiple definition of `ast_tveq'
+at_command.o:/usr/include/asterisk/time.h:125: first defined here
+manager.o: In function `ast_tvnow':
+/usr/include/asterisk/time.h:135: multiple definition of `ast_tvnow'
+at_command.o:/usr/include/asterisk/time.h:135: first defined here
+manager.o: In function `ast_tv':
+/usr/include/asterisk/time.h:171: multiple definition of `ast_tv'
+at_command.o:/usr/include/asterisk/time.h:171: first defined here
+manager.o: In function `ast_samp2tv':
+/usr/include/asterisk/time.h:186: multiple definition of `ast_samp2tv'
+at_command.o:/usr/include/asterisk/time.h:186: first defined here
+manager.o: In function `_ast_malloc':
+/usr/include/asterisk/utils.h:490: multiple definition of `_ast_malloc'
+at_command.o:/usr/include/asterisk/utils.h:490: first defined here
+manager.o: In function `_ast_calloc':
+/usr/include/asterisk/utils.h:513: multiple definition of `_ast_calloc'
+at_command.o:/usr/include/asterisk/utils.h:513: first defined here
+manager.o: In function `_ast_realloc':
+/usr/include/asterisk/utils.h:549: multiple definition of `_ast_realloc'
+at_command.o:/usr/include/asterisk/utils.h:549: first defined here
+manager.o: In function `_ast_strdup':
+/usr/include/asterisk/utils.h:576: multiple definition of `_ast_strdup'
+at_command.o:/usr/include/asterisk/utils.h:576: first defined here
+manager.o: In function `_ast_strndup':
+/usr/include/asterisk/utils.h:605: multiple definition of `_ast_strndup'
+at_command.o:/usr/include/asterisk/utils.h:605: first defined here
+manager.o: In function `_ast_vasprintf':
+/usr/include/asterisk/utils.h:644: multiple definition of `_ast_vasprintf'
+at_command.o:/usr/include/asterisk/utils.h:644: first defined here
+manager.o: In function `ast_threadstorage_get':
+/usr/include/asterisk/threadstorage.h:173: multiple definition of `ast_threadstorage_get'
+at_command.o:/usr/include/asterisk/threadstorage.h:173: first defined here
+manager.o: In function `ast_skip_blanks':
+/usr/include/asterisk/strings.h:90: multiple definition of `ast_skip_blanks'
+at_command.o:/usr/include/asterisk/strings.h:90: first defined here
+manager.o: In function `ast_trim_blanks':
+/usr/include/asterisk/strings.h:104: multiple definition of `ast_trim_blanks'
+at_command.o:/usr/include/asterisk/strings.h:104: first defined here
+manager.o: In function `ast_skip_nonblanks':
+/usr/include/asterisk/strings.h:129: multiple definition of `ast_skip_nonblanks'
+at_command.o:/usr/include/asterisk/strings.h:129: first defined here
+manager.o: In function `ast_strip':
+/usr/include/asterisk/strings.h:147: multiple definition of `ast_strip'
+at_command.o:/usr/include/asterisk/strings.h:147: first defined here
+manager.o: In function `ast_copy_string':
+/usr/include/asterisk/strings.h:212: multiple definition of `ast_copy_string'
+at_command.o:/usr/include/asterisk/strings.h:212: first defined here
+manager.o: In function `ast_str_create':
+/usr/include/asterisk/strings.h:420: multiple definition of `ast_str_create'
+at_command.o:/usr/include/asterisk/strings.h:420: first defined here
+manager.o: In function `ast_str_reset':
+/usr/include/asterisk/strings.h:441: multiple definition of `ast_str_reset'
+at_command.o:/usr/include/asterisk/strings.h:441: first defined here
+manager.o: In function `ast_str_update':
+/usr/include/asterisk/strings.h:456: multiple definition of `ast_str_update'
+at_command.o:/usr/include/asterisk/strings.h:456: first defined here
+manager.o: In function `ast_str_trim_blanks':
+/usr/include/asterisk/strings.h:466: multiple definition of `ast_str_trim_blanks'
+at_command.o:/usr/include/asterisk/strings.h:466: first defined here
+manager.o: In function `ast_str_strlen':
+/usr/include/asterisk/strings.h:481: multiple definition of `ast_str_strlen'
+at_command.o:/usr/include/asterisk/strings.h:481: first defined here
+manager.o: In function `ast_str_size':
+/usr/include/asterisk/strings.h:492: multiple definition of `ast_str_size'
+at_command.o:/usr/include/asterisk/strings.h:492: first defined here
+manager.o: In function `ast_str_buffer':
+/usr/include/asterisk/strings.h:503: multiple definition of `ast_str_buffer'
+at_command.o:/usr/include/asterisk/strings.h:503: first defined here
+manager.o: In function `ast_str_truncate':
+/usr/include/asterisk/strings.h:521: multiple definition of `ast_str_truncate'
+at_command.o:/usr/include/asterisk/strings.h:521: first defined here
+manager.o: In function `ast_str_make_space':
+/usr/include/asterisk/strings.h:581: multiple definition of `ast_str_make_space'
+at_command.o:/usr/include/asterisk/strings.h:581: first defined here
+manager.o: In function `ast_str_copy_string':
+/usr/include/asterisk/strings.h:606: multiple definition of `ast_str_copy_string'
+at_command.o:/usr/include/asterisk/strings.h:606: first defined here
+manager.o: In function `ast_str_thread_get':
+/usr/include/asterisk/strings.h:666: multiple definition of `ast_str_thread_get'
+at_command.o:/usr/include/asterisk/strings.h:666: first defined here
+manager.o: In function `ast_str_set_va':
+/usr/include/asterisk/strings.h:803: multiple definition of `ast_str_set_va'
+at_command.o:/usr/include/asterisk/strings.h:803: first defined here
+manager.o: In function `ast_str_append_va':
+/usr/include/asterisk/strings.h:820: multiple definition of `ast_str_append_va'
+at_command.o:/usr/include/asterisk/strings.h:820: first defined here
+manager.o: In function `ast_str_set_substr':
+/usr/include/asterisk/strings.h:827: multiple definition of `ast_str_set_substr'
+at_command.o:/usr/include/asterisk/strings.h:827: first defined here
+manager.o: In function `ast_str_append_substr':
+/usr/include/asterisk/strings.h:834: multiple definition of `ast_str_append_substr'
+at_command.o:/usr/include/asterisk/strings.h:834: first defined here
+manager.o: In function `ast_str_set_escapecommas':
+/usr/include/asterisk/strings.h:841: multiple definition of `ast_str_set_escapecommas'
+at_command.o:/usr/include/asterisk/strings.h:841: first defined here
+manager.o: In function `ast_str_append_escapecommas':
+/usr/include/asterisk/strings.h:848: multiple definition of `ast_str_append_escapecommas'
+at_command.o:/usr/include/asterisk/strings.h:848: first defined here
+manager.o: In function `ast_str_set':
+/usr/include/asterisk/strings.h:876: multiple definition of `ast_str_set'
+at_command.o:/usr/include/asterisk/strings.h:876: first defined here
+manager.o: In function `ast_str_append':
+/usr/include/asterisk/strings.h:902: multiple definition of `ast_str_append'
+at_command.o:/usr/include/asterisk/strings.h:902: first defined here
+manager.o: In function `ast_check_digits':
+/usr/include/asterisk/strings.h:923: multiple definition of `ast_check_digits'
+at_command.o:/usr/include/asterisk/strings.h:923: first defined here
+manager.o: In function `ast_tech_to_upper':
+/usr/include/asterisk/strings.h:941: multiple definition of `ast_tech_to_upper'
+at_command.o:/usr/include/asterisk/strings.h:941: first defined here
+manager.o: In function `ast_rq_is_int':
+/usr/include/asterisk/config.h:816: multiple definition of `ast_rq_is_int'
+at_command.o:/usr/include/asterisk/config.h:816: first defined here
+cpvt.o: In function `ast_atomic_fetchadd_int':
+/usr/include/asterisk/lock.h:600: multiple definition of `ast_atomic_fetchadd_int'
+at_command.o:/usr/include/asterisk/lock.h:600: first defined here
+cpvt.o: In function `ast_atomic_dec_and_test':
+/usr/include/asterisk/lock.h:646: multiple definition of `ast_atomic_dec_and_test'
+at_command.o:/usr/include/asterisk/lock.h:646: first defined here
+cpvt.o: In function `ast_tvdiff_sec':
+/usr/include/asterisk/time.h:45: multiple definition of `ast_tvdiff_sec'
+at_command.o:/usr/include/asterisk/time.h:45: first defined here
+cpvt.o: In function `ast_tvdiff_us':
+/usr/include/asterisk/time.h:64: multiple definition of `ast_tvdiff_us'
+at_command.o:/usr/include/asterisk/time.h:64: first defined here
+cpvt.o: In function `ast_tvdiff_ms':
+/usr/include/asterisk/time.h:78: multiple definition of `ast_tvdiff_ms'
+at_command.o:/usr/include/asterisk/time.h:78: first defined here
+cpvt.o: In function `ast_tvzero':
+/usr/include/asterisk/time.h:95: multiple definition of `ast_tvzero'
+at_command.o:/usr/include/asterisk/time.h:95: first defined here
+cpvt.o: In function `ast_tvcmp':
+/usr/include/asterisk/time.h:106: multiple definition of `ast_tvcmp'
+at_command.o:/usr/include/asterisk/time.h:106: first defined here
+cpvt.o: In function `ast_tveq':
+/usr/include/asterisk/time.h:125: multiple definition of `ast_tveq'
+at_command.o:/usr/include/asterisk/time.h:125: first defined here
+cpvt.o: In function `ast_tvnow':
+/usr/include/asterisk/time.h:135: multiple definition of `ast_tvnow'
+at_command.o:/usr/include/asterisk/time.h:135: first defined here
+cpvt.o: In function `ast_tv':
+/usr/include/asterisk/time.h:171: multiple definition of `ast_tv'
+at_command.o:/usr/include/asterisk/time.h:171: first defined here
+cpvt.o: In function `ast_samp2tv':
+/usr/include/asterisk/time.h:186: multiple definition of `ast_samp2tv'
+at_command.o:/usr/include/asterisk/time.h:186: first defined here
+cpvt.o: In function `_ast_malloc':
+/usr/include/asterisk/utils.h:490: multiple definition of `_ast_malloc'
+at_command.o:/usr/include/asterisk/utils.h:490: first defined here
+cpvt.o: In function `_ast_calloc':
+/usr/include/asterisk/utils.h:513: multiple definition of `_ast_calloc'
+at_command.o:/usr/include/asterisk/utils.h:513: first defined here
+cpvt.o: In function `_ast_realloc':
+/usr/include/asterisk/utils.h:549: multiple definition of `_ast_realloc'
+at_command.o:/usr/include/asterisk/utils.h:549: first defined here
+cpvt.o: In function `_ast_strdup':
+/usr/include/asterisk/utils.h:576: multiple definition of `_ast_strdup'
+at_command.o:/usr/include/asterisk/utils.h:576: first defined here
+cpvt.o: In function `_ast_strndup':
+/usr/include/asterisk/utils.h:605: multiple definition of `_ast_strndup'
+at_command.o:/usr/include/asterisk/utils.h:605: first defined here
+cpvt.o: In function `_ast_vasprintf':
+/usr/include/asterisk/utils.h:644: multiple definition of `_ast_vasprintf'
+at_command.o:/usr/include/asterisk/utils.h:644: first defined here
+cpvt.o: In function `ast_threadstorage_get':
+/usr/include/asterisk/threadstorage.h:173: multiple definition of `ast_threadstorage_get'
+at_command.o:/usr/include/asterisk/threadstorage.h:173: first defined here
+cpvt.o: In function `ast_skip_blanks':
+/usr/include/asterisk/strings.h:90: multiple definition of `ast_skip_blanks'
+at_command.o:/usr/include/asterisk/strings.h:90: first defined here
+cpvt.o: In function `ast_trim_blanks':
+/usr/include/asterisk/strings.h:104: multiple definition of `ast_trim_blanks'
+at_command.o:/usr/include/asterisk/strings.h:104: first defined here
+cpvt.o: In function `ast_skip_nonblanks':
+/usr/include/asterisk/strings.h:129: multiple definition of `ast_skip_nonblanks'
+at_command.o:/usr/include/asterisk/strings.h:129: first defined here
+cpvt.o: In function `ast_strip':
+/usr/include/asterisk/strings.h:147: multiple definition of `ast_strip'
+at_command.o:/usr/include/asterisk/strings.h:147: first defined here
+cpvt.o: In function `ast_copy_string':
+/usr/include/asterisk/strings.h:212: multiple definition of `ast_copy_string'
+at_command.o:/usr/include/asterisk/strings.h:212: first defined here
+cpvt.o: In function `ast_str_create':
+/usr/include/asterisk/strings.h:420: multiple definition of `ast_str_create'
+at_command.o:/usr/include/asterisk/strings.h:420: first defined here
+cpvt.o: In function `ast_str_reset':
+/usr/include/asterisk/strings.h:441: multiple definition of `ast_str_reset'
+at_command.o:/usr/include/asterisk/strings.h:441: first defined here
+cpvt.o: In function `ast_str_update':
+/usr/include/asterisk/strings.h:456: multiple definition of `ast_str_update'
+at_command.o:/usr/include/asterisk/strings.h:456: first defined here
+cpvt.o: In function `ast_str_trim_blanks':
+/usr/include/asterisk/strings.h:466: multiple definition of `ast_str_trim_blanks'
+at_command.o:/usr/include/asterisk/strings.h:466: first defined here
+cpvt.o: In function `ast_str_strlen':
+/usr/include/asterisk/strings.h:481: multiple definition of `ast_str_strlen'
+at_command.o:/usr/include/asterisk/strings.h:481: first defined here
+cpvt.o: In function `ast_str_size':
+/usr/include/asterisk/strings.h:492: multiple definition of `ast_str_size'
+at_command.o:/usr/include/asterisk/strings.h:492: first defined here
+cpvt.o: In function `ast_str_buffer':
+/usr/include/asterisk/strings.h:503: multiple definition of `ast_str_buffer'
+at_command.o:/usr/include/asterisk/strings.h:503: first defined here
+cpvt.o: In function `ast_str_truncate':
+/usr/include/asterisk/strings.h:521: multiple definition of `ast_str_truncate'
+at_command.o:/usr/include/asterisk/strings.h:521: first defined here
+cpvt.o: In function `ast_str_make_space':
+/usr/include/asterisk/strings.h:581: multiple definition of `ast_str_make_space'
+at_command.o:/usr/include/asterisk/strings.h:581: first defined here
+cpvt.o: In function `ast_str_copy_string':
+/usr/include/asterisk/strings.h:606: multiple definition of `ast_str_copy_string'
+at_command.o:/usr/include/asterisk/strings.h:606: first defined here
+cpvt.o: In function `ast_str_thread_get':
+/usr/include/asterisk/strings.h:666: multiple definition of `ast_str_thread_get'
+at_command.o:/usr/include/asterisk/strings.h:666: first defined here
+cpvt.o: In function `ast_str_set_va':
+/usr/include/asterisk/strings.h:803: multiple definition of `ast_str_set_va'
+at_command.o:/usr/include/asterisk/strings.h:803: first defined here
+cpvt.o: In function `ast_str_append_va':
+/usr/include/asterisk/strings.h:820: multiple definition of `ast_str_append_va'
+at_command.o:/usr/include/asterisk/strings.h:820: first defined here
+cpvt.o: In function `ast_str_set_substr':
+/usr/include/asterisk/strings.h:827: multiple definition of `ast_str_set_substr'
+at_command.o:/usr/include/asterisk/strings.h:827: first defined here
+cpvt.o: In function `ast_str_append_substr':
+/usr/include/asterisk/strings.h:834: multiple definition of `ast_str_append_substr'
+at_command.o:/usr/include/asterisk/strings.h:834: first defined here
+cpvt.o: In function `ast_str_set_escapecommas':
+/usr/include/asterisk/strings.h:841: multiple definition of `ast_str_set_escapecommas'
+at_command.o:/usr/include/asterisk/strings.h:841: first defined here
+cpvt.o: In function `ast_str_append_escapecommas':
+/usr/include/asterisk/strings.h:848: multiple definition of `ast_str_append_escapecommas'
+at_command.o:/usr/include/asterisk/strings.h:848: first defined here
+cpvt.o: In function `ast_str_set':
+/usr/include/asterisk/strings.h:876: multiple definition of `ast_str_set'
+at_command.o:/usr/include/asterisk/strings.h:876: first defined here
+cpvt.o: In function `ast_str_append':
+/usr/include/asterisk/strings.h:902: multiple definition of `ast_str_append'
+at_command.o:/usr/include/asterisk/strings.h:902: first defined here
+cpvt.o: In function `ast_check_digits':
+/usr/include/asterisk/strings.h:923: multiple definition of `ast_check_digits'
+at_command.o:/usr/include/asterisk/strings.h:923: first defined here
+cpvt.o: In function `ast_tech_to_upper':
+/usr/include/asterisk/strings.h:941: multiple definition of `ast_tech_to_upper'
+at_command.o:/usr/include/asterisk/strings.h:941: first defined here
+cpvt.o: In function `ast_rq_is_int':
+/usr/include/asterisk/config.h:816: multiple definition of `ast_rq_is_int'
+at_command.o:/usr/include/asterisk/config.h:816: first defined here
+dc_config.o: In function `ast_atomic_fetchadd_int':
+/usr/include/asterisk/lock.h:600: multiple definition of `ast_atomic_fetchadd_int'
+at_command.o:/usr/include/asterisk/lock.h:600: first defined here
+dc_config.o: In function `ast_atomic_dec_and_test':
+/usr/include/asterisk/lock.h:646: multiple definition of `ast_atomic_dec_and_test'
+at_command.o:/usr/include/asterisk/lock.h:646: first defined here
+dc_config.o: In function `ast_tvdiff_sec':
+/usr/include/asterisk/time.h:45: multiple definition of `ast_tvdiff_sec'
+at_command.o:/usr/include/asterisk/time.h:45: first defined here
+dc_config.o: In function `ast_tvdiff_us':
+/usr/include/asterisk/time.h:64: multiple definition of `ast_tvdiff_us'
+at_command.o:/usr/include/asterisk/time.h:64: first defined here
+dc_config.o: In function `ast_tvdiff_ms':
+/usr/include/asterisk/time.h:78: multiple definition of `ast_tvdiff_ms'
+at_command.o:/usr/include/asterisk/time.h:78: first defined here
+dc_config.o: In function `ast_tvzero':
+/usr/include/asterisk/time.h:95: multiple definition of `ast_tvzero'
+at_command.o:/usr/include/asterisk/time.h:95: first defined here
+dc_config.o: In function `ast_tvcmp':
+/usr/include/asterisk/time.h:106: multiple definition of `ast_tvcmp'
+at_command.o:/usr/include/asterisk/time.h:106: first defined here
+dc_config.o: In function `ast_tveq':
+/usr/include/asterisk/time.h:125: multiple definition of `ast_tveq'
+at_command.o:/usr/include/asterisk/time.h:125: first defined here
+dc_config.o: In function `ast_tvnow':
+/usr/include/asterisk/time.h:135: multiple definition of `ast_tvnow'
+at_command.o:/usr/include/asterisk/time.h:135: first defined here
+dc_config.o: In function `ast_tv':
+/usr/include/asterisk/time.h:171: multiple definition of `ast_tv'
+at_command.o:/usr/include/asterisk/time.h:171: first defined here
+dc_config.o: In function `ast_samp2tv':
+/usr/include/asterisk/time.h:186: multiple definition of `ast_samp2tv'
+at_command.o:/usr/include/asterisk/time.h:186: first defined here
+dc_config.o: In function `_ast_malloc':
+/usr/include/asterisk/utils.h:490: multiple definition of `_ast_malloc'
+at_command.o:/usr/include/asterisk/utils.h:490: first defined here
+dc_config.o: In function `_ast_calloc':
+/usr/include/asterisk/utils.h:513: multiple definition of `_ast_calloc'
+at_command.o:/usr/include/asterisk/utils.h:513: first defined here
+dc_config.o: In function `_ast_realloc':
+/usr/include/asterisk/utils.h:549: multiple definition of `_ast_realloc'
+at_command.o:/usr/include/asterisk/utils.h:549: first defined here
+dc_config.o: In function `_ast_strdup':
+/usr/include/asterisk/utils.h:576: multiple definition of `_ast_strdup'
+at_command.o:/usr/include/asterisk/utils.h:576: first defined here
+dc_config.o: In function `_ast_strndup':
+/usr/include/asterisk/utils.h:605: multiple definition of `_ast_strndup'
+at_command.o:/usr/include/asterisk/utils.h:605: first defined here
+dc_config.o: In function `_ast_vasprintf':
+/usr/include/asterisk/utils.h:644: multiple definition of `_ast_vasprintf'
+at_command.o:/usr/include/asterisk/utils.h:644: first defined here
+dc_config.o: In function `ast_threadstorage_get':
+/usr/include/asterisk/threadstorage.h:173: multiple definition of `ast_threadstorage_get'
+at_command.o:/usr/include/asterisk/threadstorage.h:173: first defined here
+dc_config.o: In function `ast_skip_blanks':
+/usr/include/asterisk/strings.h:90: multiple definition of `ast_skip_blanks'
+at_command.o:/usr/include/asterisk/strings.h:90: first defined here
+dc_config.o: In function `ast_trim_blanks':
+/usr/include/asterisk/strings.h:104: multiple definition of `ast_trim_blanks'
+at_command.o:/usr/include/asterisk/strings.h:104: first defined here
+dc_config.o: In function `ast_skip_nonblanks':
+/usr/include/asterisk/strings.h:129: multiple definition of `ast_skip_nonblanks'
+at_command.o:/usr/include/asterisk/strings.h:129: first defined here
+dc_config.o: In function `ast_strip':
+/usr/include/asterisk/strings.h:147: multiple definition of `ast_strip'
+at_command.o:/usr/include/asterisk/strings.h:147: first defined here
+dc_config.o: In function `ast_copy_string':
+/usr/include/asterisk/strings.h:212: multiple definition of `ast_copy_string'
+at_command.o:/usr/include/asterisk/strings.h:212: first defined here
+dc_config.o: In function `ast_str_create':
+/usr/include/asterisk/strings.h:420: multiple definition of `ast_str_create'
+at_command.o:/usr/include/asterisk/strings.h:420: first defined here
+dc_config.o: In function `ast_str_reset':
+/usr/include/asterisk/strings.h:441: multiple definition of `ast_str_reset'
+at_command.o:/usr/include/asterisk/strings.h:441: first defined here
+dc_config.o: In function `ast_str_update':
+/usr/include/asterisk/strings.h:456: multiple definition of `ast_str_update'
+at_command.o:/usr/include/asterisk/strings.h:456: first defined here
+dc_config.o: In function `ast_str_trim_blanks':
+/usr/include/asterisk/strings.h:466: multiple definition of `ast_str_trim_blanks'
+at_command.o:/usr/include/asterisk/strings.h:466: first defined here
+dc_config.o: In function `ast_str_strlen':
+/usr/include/asterisk/strings.h:481: multiple definition of `ast_str_strlen'
+at_command.o:/usr/include/asterisk/strings.h:481: first defined here
+dc_config.o: In function `ast_str_size':
+/usr/include/asterisk/strings.h:492: multiple definition of `ast_str_size'
+at_command.o:/usr/include/asterisk/strings.h:492: first defined here
+dc_config.o: In function `ast_str_buffer':
+/usr/include/asterisk/strings.h:503: multiple definition of `ast_str_buffer'
+at_command.o:/usr/include/asterisk/strings.h:503: first defined here
+dc_config.o: In function `ast_str_truncate':
+/usr/include/asterisk/strings.h:521: multiple definition of `ast_str_truncate'
+at_command.o:/usr/include/asterisk/strings.h:521: first defined here
+dc_config.o: In function `ast_str_make_space':
+/usr/include/asterisk/strings.h:581: multiple definition of `ast_str_make_space'
+at_command.o:/usr/include/asterisk/strings.h:581: first defined here
+dc_config.o: In function `ast_str_copy_string':
+/usr/include/asterisk/strings.h:606: multiple definition of `ast_str_copy_string'
+at_command.o:/usr/include/asterisk/strings.h:606: first defined here
+dc_config.o: In function `ast_str_thread_get':
+/usr/include/asterisk/strings.h:666: multiple definition of `ast_str_thread_get'
+at_command.o:/usr/include/asterisk/strings.h:666: first defined here
+dc_config.o: In function `ast_str_set_va':
+/usr/include/asterisk/strings.h:803: multiple definition of `ast_str_set_va'
+at_command.o:/usr/include/asterisk/strings.h:803: first defined here
+dc_config.o: In function `ast_str_append_va':
+/usr/include/asterisk/strings.h:820: multiple definition of `ast_str_append_va'
+at_command.o:/usr/include/asterisk/strings.h:820: first defined here
+dc_config.o: In function `ast_str_set_substr':
+/usr/include/asterisk/strings.h:827: multiple definition of `ast_str_set_substr'
+at_command.o:/usr/include/asterisk/strings.h:827: first defined here
+dc_config.o: In function `ast_str_append_substr':
+/usr/include/asterisk/strings.h:834: multiple definition of `ast_str_append_substr'
+at_command.o:/usr/include/asterisk/strings.h:834: first defined here
+dc_config.o: In function `ast_str_set_escapecommas':
+/usr/include/asterisk/strings.h:841: multiple definition of `ast_str_set_escapecommas'
+at_command.o:/usr/include/asterisk/strings.h:841: first defined here
+dc_config.o: In function `ast_str_append_escapecommas':
+/usr/include/asterisk/strings.h:848: multiple definition of `ast_str_append_escapecommas'
+at_command.o:/usr/include/asterisk/strings.h:848: first defined here
+dc_config.o: In function `ast_str_set':
+/usr/include/asterisk/strings.h:876: multiple definition of `ast_str_set'
+at_command.o:/usr/include/asterisk/strings.h:876: first defined here
+dc_config.o: In function `ast_str_append':
+/usr/include/asterisk/strings.h:902: multiple definition of `ast_str_append'
+at_command.o:/usr/include/asterisk/strings.h:902: first defined here
+dc_config.o: In function `ast_check_digits':
+/usr/include/asterisk/strings.h:923: multiple definition of `ast_check_digits'
+at_command.o:/usr/include/asterisk/strings.h:923: first defined here
+dc_config.o: In function `ast_tech_to_upper':
+/usr/include/asterisk/strings.h:941: multiple definition of `ast_tech_to_upper'
+at_command.o:/usr/include/asterisk/strings.h:941: first defined here
+dc_config.o: In function `ast_rq_is_int':
+/usr/include/asterisk/config.h:816: multiple definition of `ast_rq_is_int'
+at_command.o:/usr/include/asterisk/config.h:816: first defined here
+pdu.o: In function `ast_atomic_fetchadd_int':
+/usr/include/asterisk/lock.h:600: multiple definition of `ast_atomic_fetchadd_int'
+at_command.o:/usr/include/asterisk/lock.h:600: first defined here
+pdu.o: In function `ast_atomic_dec_and_test':
+/usr/include/asterisk/lock.h:646: multiple definition of `ast_atomic_dec_and_test'
+at_command.o:/usr/include/asterisk/lock.h:646: first defined here
+pdu.o: In function `ast_tvdiff_sec':
+/usr/include/asterisk/time.h:45: multiple definition of `ast_tvdiff_sec'
+at_command.o:/usr/include/asterisk/time.h:45: first defined here
+pdu.o: In function `ast_tvdiff_us':
+/usr/include/asterisk/time.h:64: multiple definition of `ast_tvdiff_us'
+at_command.o:/usr/include/asterisk/time.h:64: first defined here
+pdu.o: In function `ast_tvdiff_ms':
+/usr/include/asterisk/time.h:78: multiple definition of `ast_tvdiff_ms'
+at_command.o:/usr/include/asterisk/time.h:78: first defined here
+pdu.o: In function `ast_tvzero':
+/usr/include/asterisk/time.h:95: multiple definition of `ast_tvzero'
+at_command.o:/usr/include/asterisk/time.h:95: first defined here
+pdu.o: In function `ast_tvcmp':
+/usr/include/asterisk/time.h:106: multiple definition of `ast_tvcmp'
+at_command.o:/usr/include/asterisk/time.h:106: first defined here
+pdu.o: In function `ast_tveq':
+/usr/include/asterisk/time.h:125: multiple definition of `ast_tveq'
+at_command.o:/usr/include/asterisk/time.h:125: first defined here
+pdu.o: In function `ast_tvnow':
+/usr/include/asterisk/time.h:135: multiple definition of `ast_tvnow'
+at_command.o:/usr/include/asterisk/time.h:135: first defined here
+pdu.o: In function `ast_tv':
+/usr/include/asterisk/time.h:171: multiple definition of `ast_tv'
+at_command.o:/usr/include/asterisk/time.h:171: first defined here
+pdu.o: In function `ast_samp2tv':
+/usr/include/asterisk/time.h:186: multiple definition of `ast_samp2tv'
+at_command.o:/usr/include/asterisk/time.h:186: first defined here
+pdu.o: In function `_ast_malloc':
+/usr/include/asterisk/utils.h:490: multiple definition of `_ast_malloc'
+at_command.o:/usr/include/asterisk/utils.h:490: first defined here
+pdu.o: In function `_ast_calloc':
+/usr/include/asterisk/utils.h:513: multiple definition of `_ast_calloc'
+at_command.o:/usr/include/asterisk/utils.h:513: first defined here
+pdu.o: In function `_ast_realloc':
+/usr/include/asterisk/utils.h:549: multiple definition of `_ast_realloc'
+at_command.o:/usr/include/asterisk/utils.h:549: first defined here
+pdu.o: In function `_ast_strdup':
+/usr/include/asterisk/utils.h:576: multiple definition of `_ast_strdup'
+at_command.o:/usr/include/asterisk/utils.h:576: first defined here
+pdu.o: In function `_ast_strndup':
+/usr/include/asterisk/utils.h:605: multiple definition of `_ast_strndup'
+at_command.o:/usr/include/asterisk/utils.h:605: first defined here
+pdu.o: In function `_ast_vasprintf':
+/usr/include/asterisk/utils.h:644: multiple definition of `_ast_vasprintf'
+at_command.o:/usr/include/asterisk/utils.h:644: first defined here
+pdu.o: In function `ast_threadstorage_get':
+/usr/include/asterisk/threadstorage.h:173: multiple definition of `ast_threadstorage_get'
+at_command.o:/usr/include/asterisk/threadstorage.h:173: first defined here
+pdu.o: In function `ast_skip_blanks':
+/usr/include/asterisk/strings.h:90: multiple definition of `ast_skip_blanks'
+at_command.o:/usr/include/asterisk/strings.h:90: first defined here
+pdu.o: In function `ast_trim_blanks':
+/usr/include/asterisk/strings.h:104: multiple definition of `ast_trim_blanks'
+at_command.o:/usr/include/asterisk/strings.h:104: first defined here
+pdu.o: In function `ast_skip_nonblanks':
+/usr/include/asterisk/strings.h:129: multiple definition of `ast_skip_nonblanks'
+at_command.o:/usr/include/asterisk/strings.h:129: first defined here
+pdu.o: In function `ast_strip':
+/usr/include/asterisk/strings.h:147: multiple definition of `ast_strip'
+at_command.o:/usr/include/asterisk/strings.h:147: first defined here
+pdu.o: In function `ast_copy_string':
+/usr/include/asterisk/strings.h:212: multiple definition of `ast_copy_string'
+at_command.o:/usr/include/asterisk/strings.h:212: first defined here
+pdu.o: In function `ast_str_create':
+/usr/include/asterisk/strings.h:420: multiple definition of `ast_str_create'
+at_command.o:/usr/include/asterisk/strings.h:420: first defined here
+pdu.o: In function `ast_str_reset':
+/usr/include/asterisk/strings.h:441: multiple definition of `ast_str_reset'
+at_command.o:/usr/include/asterisk/strings.h:441: first defined here
+pdu.o: In function `ast_str_update':
+/usr/include/asterisk/strings.h:456: multiple definition of `ast_str_update'
+at_command.o:/usr/include/asterisk/strings.h:456: first defined here
+pdu.o: In function `ast_str_trim_blanks':
+/usr/include/asterisk/strings.h:466: multiple definition of `ast_str_trim_blanks'
+at_command.o:/usr/include/asterisk/strings.h:466: first defined here
+pdu.o: In function `ast_str_strlen':
+/usr/include/asterisk/strings.h:481: multiple definition of `ast_str_strlen'
+at_command.o:/usr/include/asterisk/strings.h:481: first defined here
+pdu.o: In function `ast_str_size':
+/usr/include/asterisk/strings.h:492: multiple definition of `ast_str_size'
+at_command.o:/usr/include/asterisk/strings.h:492: first defined here
+pdu.o: In function `ast_str_buffer':
+/usr/include/asterisk/strings.h:503: multiple definition of `ast_str_buffer'
+at_command.o:/usr/include/asterisk/strings.h:503: first defined here
+pdu.o: In function `ast_str_truncate':
+/usr/include/asterisk/strings.h:521: multiple definition of `ast_str_truncate'
+at_command.o:/usr/include/asterisk/strings.h:521: first defined here
+pdu.o: In function `ast_str_make_space':
+/usr/include/asterisk/strings.h:581: multiple definition of `ast_str_make_space'
+at_command.o:/usr/include/asterisk/strings.h:581: first defined here
+pdu.o: In function `ast_str_copy_string':
+/usr/include/asterisk/strings.h:606: multiple definition of `ast_str_copy_string'
+at_command.o:/usr/include/asterisk/strings.h:606: first defined here
+pdu.o: In function `ast_str_thread_get':
+/usr/include/asterisk/strings.h:666: multiple definition of `ast_str_thread_get'
+at_command.o:/usr/include/asterisk/strings.h:666: first defined here
+pdu.o: In function `ast_str_set_va':
+/usr/include/asterisk/strings.h:803: multiple definition of `ast_str_set_va'
+at_command.o:/usr/include/asterisk/strings.h:803: first defined here
+pdu.o: In function `ast_str_append_va':
+/usr/include/asterisk/strings.h:820: multiple definition of `ast_str_append_va'
+at_command.o:/usr/include/asterisk/strings.h:820: first defined here
+pdu.o: In function `ast_str_set_substr':
+/usr/include/asterisk/strings.h:827: multiple definition of `ast_str_set_substr'
+at_command.o:/usr/include/asterisk/strings.h:827: first defined here
+pdu.o: In function `ast_str_append_substr':
+/usr/include/asterisk/strings.h:834: multiple definition of `ast_str_append_substr'
+at_command.o:/usr/include/asterisk/strings.h:834: first defined here
+pdu.o: In function `ast_str_set_escapecommas':
+/usr/include/asterisk/strings.h:841: multiple definition of `ast_str_set_escapecommas'
+at_command.o:/usr/include/asterisk/strings.h:841: first defined here
+pdu.o: In function `ast_str_append_escapecommas':
+/usr/include/asterisk/strings.h:848: multiple definition of `ast_str_append_escapecommas'
+at_command.o:/usr/include/asterisk/strings.h:848: first defined here
+pdu.o: In function `ast_str_set':
+/usr/include/asterisk/strings.h:876: multiple definition of `ast_str_set'
+at_command.o:/usr/include/asterisk/strings.h:876: first defined here
+pdu.o: In function `ast_str_append':
+/usr/include/asterisk/strings.h:902: multiple definition of `ast_str_append'
+at_command.o:/usr/include/asterisk/strings.h:902: first defined here
+pdu.o: In function `ast_check_digits':
+/usr/include/asterisk/strings.h:923: multiple definition of `ast_check_digits'
+at_command.o:/usr/include/asterisk/strings.h:923: first defined here
+pdu.o: In function `ast_tech_to_upper':
+/usr/include/asterisk/strings.h:941: multiple definition of `ast_tech_to_upper'
+at_command.o:/usr/include/asterisk/strings.h:941: first defined here
+pdu.o: In function `ast_rq_is_int':
+/usr/include/asterisk/config.h:816: multiple definition of `ast_rq_is_int'
+at_command.o:/usr/include/asterisk/config.h:816: first defined here
+mixbuffer.o: In function `ast_atomic_fetchadd_int':
+/usr/include/asterisk/lock.h:600: multiple definition of `ast_atomic_fetchadd_int'
+at_command.o:/usr/include/asterisk/lock.h:600: first defined here
+mixbuffer.o: In function `ast_atomic_dec_and_test':
+/usr/include/asterisk/lock.h:646: multiple definition of `ast_atomic_dec_and_test'
+at_command.o:/usr/include/asterisk/lock.h:646: first defined here
+mixbuffer.o: In function `ast_tvdiff_sec':
+/usr/include/asterisk/time.h:45: multiple definition of `ast_tvdiff_sec'
+at_command.o:/usr/include/asterisk/time.h:45: first defined here
+mixbuffer.o: In function `ast_tvdiff_us':
+/usr/include/asterisk/time.h:64: multiple definition of `ast_tvdiff_us'
+at_command.o:/usr/include/asterisk/time.h:64: first defined here
+mixbuffer.o: In function `ast_tvdiff_ms':
+/usr/include/asterisk/time.h:78: multiple definition of `ast_tvdiff_ms'
+at_command.o:/usr/include/asterisk/time.h:78: first defined here
+mixbuffer.o: In function `ast_tvzero':
+/usr/include/asterisk/time.h:95: multiple definition of `ast_tvzero'
+at_command.o:/usr/include/asterisk/time.h:95: first defined here
+mixbuffer.o: In function `ast_tvcmp':
+/usr/include/asterisk/time.h:106: multiple definition of `ast_tvcmp'
+at_command.o:/usr/include/asterisk/time.h:106: first defined here
+mixbuffer.o: In function `ast_tveq':
+/usr/include/asterisk/time.h:125: multiple definition of `ast_tveq'
+at_command.o:/usr/include/asterisk/time.h:125: first defined here
+mixbuffer.o: In function `ast_tvnow':
+/usr/include/asterisk/time.h:135: multiple definition of `ast_tvnow'
+at_command.o:/usr/include/asterisk/time.h:135: first defined here
+mixbuffer.o: In function `ast_tv':
+/usr/include/asterisk/time.h:171: multiple definition of `ast_tv'
+at_command.o:/usr/include/asterisk/time.h:171: first defined here
+mixbuffer.o: In function `ast_samp2tv':
+/usr/include/asterisk/time.h:186: multiple definition of `ast_samp2tv'
+at_command.o:/usr/include/asterisk/time.h:186: first defined here
+mixbuffer.o: In function `_ast_malloc':
+/usr/include/asterisk/utils.h:490: multiple definition of `_ast_malloc'
+at_command.o:/usr/include/asterisk/utils.h:490: first defined here
+mixbuffer.o: In function `_ast_calloc':
+/usr/include/asterisk/utils.h:513: multiple definition of `_ast_calloc'
+at_command.o:/usr/include/asterisk/utils.h:513: first defined here
+mixbuffer.o: In function `_ast_realloc':
+/usr/include/asterisk/utils.h:549: multiple definition of `_ast_realloc'
+at_command.o:/usr/include/asterisk/utils.h:549: first defined here
+mixbuffer.o: In function `_ast_strdup':
+/usr/include/asterisk/utils.h:576: multiple definition of `_ast_strdup'
+at_command.o:/usr/include/asterisk/utils.h:576: first defined here
+mixbuffer.o: In function `_ast_strndup':
+/usr/include/asterisk/utils.h:605: multiple definition of `_ast_strndup'
+at_command.o:/usr/include/asterisk/utils.h:605: first defined here
+mixbuffer.o: In function `_ast_vasprintf':
+/usr/include/asterisk/utils.h:644: multiple definition of `_ast_vasprintf'
+at_command.o:/usr/include/asterisk/utils.h:644: first defined here
+mixbuffer.o: In function `ast_threadstorage_get':
+/usr/include/asterisk/threadstorage.h:173: multiple definition of `ast_threadstorage_get'
+at_command.o:/usr/include/asterisk/threadstorage.h:173: first defined here
+mixbuffer.o: In function `ast_skip_blanks':
+/usr/include/asterisk/strings.h:90: multiple definition of `ast_skip_blanks'
+at_command.o:/usr/include/asterisk/strings.h:90: first defined here
+mixbuffer.o: In function `ast_trim_blanks':
+/usr/include/asterisk/strings.h:104: multiple definition of `ast_trim_blanks'
+at_command.o:/usr/include/asterisk/strings.h:104: first defined here
+mixbuffer.o: In function `ast_skip_nonblanks':
+/usr/include/asterisk/strings.h:129: multiple definition of `ast_skip_nonblanks'
+at_command.o:/usr/include/asterisk/strings.h:129: first defined here
+mixbuffer.o: In function `ast_strip':
+/usr/include/asterisk/strings.h:147: multiple definition of `ast_strip'
+at_command.o:/usr/include/asterisk/strings.h:147: first defined here
+mixbuffer.o: In function `ast_copy_string':
+/usr/include/asterisk/strings.h:212: multiple definition of `ast_copy_string'
+at_command.o:/usr/include/asterisk/strings.h:212: first defined here
+mixbuffer.o: In function `ast_str_create':
+/usr/include/asterisk/strings.h:420: multiple definition of `ast_str_create'
+at_command.o:/usr/include/asterisk/strings.h:420: first defined here
+mixbuffer.o: In function `ast_str_reset':
+/usr/include/asterisk/strings.h:441: multiple definition of `ast_str_reset'
+at_command.o:/usr/include/asterisk/strings.h:441: first defined here
+mixbuffer.o: In function `ast_str_update':
+/usr/include/asterisk/strings.h:456: multiple definition of `ast_str_update'
+at_command.o:/usr/include/asterisk/strings.h:456: first defined here
+mixbuffer.o: In function `ast_str_trim_blanks':
+/usr/include/asterisk/strings.h:466: multiple definition of `ast_str_trim_blanks'
+at_command.o:/usr/include/asterisk/strings.h:466: first defined here
+mixbuffer.o: In function `ast_str_strlen':
+/usr/include/asterisk/strings.h:481: multiple definition of `ast_str_strlen'
+at_command.o:/usr/include/asterisk/strings.h:481: first defined here
+mixbuffer.o: In function `ast_str_size':
+/usr/include/asterisk/strings.h:492: multiple definition of `ast_str_size'
+at_command.o:/usr/include/asterisk/strings.h:492: first defined here
+mixbuffer.o: In function `ast_str_buffer':
+/usr/include/asterisk/strings.h:503: multiple definition of `ast_str_buffer'
+at_command.o:/usr/include/asterisk/strings.h:503: first defined here
+mixbuffer.o: In function `ast_str_truncate':
+/usr/include/asterisk/strings.h:521: multiple definition of `ast_str_truncate'
+at_command.o:/usr/include/asterisk/strings.h:521: first defined here
+mixbuffer.o: In function `ast_str_make_space':
+/usr/include/asterisk/strings.h:581: multiple definition of `ast_str_make_space'
+at_command.o:/usr/include/asterisk/strings.h:581: first defined here
+mixbuffer.o: In function `ast_str_copy_string':
+/usr/include/asterisk/strings.h:606: multiple definition of `ast_str_copy_string'
+at_command.o:/usr/include/asterisk/strings.h:606: first defined here
+mixbuffer.o: In function `ast_str_thread_get':
+/usr/include/asterisk/strings.h:666: multiple definition of `ast_str_thread_get'
+at_command.o:/usr/include/asterisk/strings.h:666: first defined here
+mixbuffer.o: In function `ast_str_set_va':
+/usr/include/asterisk/strings.h:803: multiple definition of `ast_str_set_va'
+at_command.o:/usr/include/asterisk/strings.h:803: first defined here
+mixbuffer.o: In function `ast_str_append_va':
+/usr/include/asterisk/strings.h:820: multiple definition of `ast_str_append_va'
+at_command.o:/usr/include/asterisk/strings.h:820: first defined here
+mixbuffer.o: In function `ast_str_set_substr':
+/usr/include/asterisk/strings.h:827: multiple definition of `ast_str_set_substr'
+at_command.o:/usr/include/asterisk/strings.h:827: first defined here
+mixbuffer.o: In function `ast_str_append_substr':
+/usr/include/asterisk/strings.h:834: multiple definition of `ast_str_append_substr'
+at_command.o:/usr/include/asterisk/strings.h:834: first defined here
+mixbuffer.o: In function `ast_str_set_escapecommas':
+/usr/include/asterisk/strings.h:841: multiple definition of `ast_str_set_escapecommas'
+at_command.o:/usr/include/asterisk/strings.h:841: first defined here
+mixbuffer.o: In function `ast_str_append_escapecommas':
+/usr/include/asterisk/strings.h:848: multiple definition of `ast_str_append_escapecommas'
+at_command.o:/usr/include/asterisk/strings.h:848: first defined here
+mixbuffer.o: In function `ast_str_set':
+/usr/include/asterisk/strings.h:876: multiple definition of `ast_str_set'
+at_command.o:/usr/include/asterisk/strings.h:876: first defined here
+mixbuffer.o: In function `ast_str_append':
+/usr/include/asterisk/strings.h:902: multiple definition of `ast_str_append'
+at_command.o:/usr/include/asterisk/strings.h:902: first defined here
+mixbuffer.o: In function `ast_check_digits':
+/usr/include/asterisk/strings.h:923: multiple definition of `ast_check_digits'
+at_command.o:/usr/include/asterisk/strings.h:923: first defined here
+mixbuffer.o: In function `ast_tech_to_upper':
+/usr/include/asterisk/strings.h:941: multiple definition of `ast_tech_to_upper'
+at_command.o:/usr/include/asterisk/strings.h:941: first defined here
+pdiscovery.o: In function `ast_atomic_fetchadd_int':
+/usr/include/asterisk/lock.h:600: multiple definition of `ast_atomic_fetchadd_int'
+at_command.o:/usr/include/asterisk/lock.h:600: first defined here
+pdiscovery.o: In function `ast_atomic_dec_and_test':
+/usr/include/asterisk/lock.h:646: multiple definition of `ast_atomic_dec_and_test'
+at_command.o:/usr/include/asterisk/lock.h:646: first defined here
+pdiscovery.o: In function `ast_tvdiff_sec':
+/usr/include/asterisk/time.h:45: multiple definition of `ast_tvdiff_sec'
+at_command.o:/usr/include/asterisk/time.h:45: first defined here
+pdiscovery.o: In function `ast_tvdiff_us':
+/usr/include/asterisk/time.h:64: multiple definition of `ast_tvdiff_us'
+at_command.o:/usr/include/asterisk/time.h:64: first defined here
+pdiscovery.o: In function `ast_tvdiff_ms':
+/usr/include/asterisk/time.h:78: multiple definition of `ast_tvdiff_ms'
+at_command.o:/usr/include/asterisk/time.h:78: first defined here
+pdiscovery.o: In function `ast_tvzero':
+/usr/include/asterisk/time.h:95: multiple definition of `ast_tvzero'
+at_command.o:/usr/include/asterisk/time.h:95: first defined here
+pdiscovery.o: In function `ast_tvcmp':
+/usr/include/asterisk/time.h:106: multiple definition of `ast_tvcmp'
+at_command.o:/usr/include/asterisk/time.h:106: first defined here
+pdiscovery.o: In function `ast_tveq':
+/usr/include/asterisk/time.h:125: multiple definition of `ast_tveq'
+at_command.o:/usr/include/asterisk/time.h:125: first defined here
+pdiscovery.o: In function `ast_tvnow':
+/usr/include/asterisk/time.h:135: multiple definition of `ast_tvnow'
+at_command.o:/usr/include/asterisk/time.h:135: first defined here
+pdiscovery.o: In function `ast_tv':
+/usr/include/asterisk/time.h:171: multiple definition of `ast_tv'
+at_command.o:/usr/include/asterisk/time.h:171: first defined here
+pdiscovery.o: In function `ast_samp2tv':
+/usr/include/asterisk/time.h:186: multiple definition of `ast_samp2tv'
+at_command.o:/usr/include/asterisk/time.h:186: first defined here
+pdiscovery.o: In function `_ast_malloc':
+/usr/include/asterisk/utils.h:490: multiple definition of `_ast_malloc'
+at_command.o:/usr/include/asterisk/utils.h:490: first defined here
+pdiscovery.o: In function `_ast_calloc':
+/usr/include/asterisk/utils.h:513: multiple definition of `_ast_calloc'
+at_command.o:/usr/include/asterisk/utils.h:513: first defined here
+pdiscovery.o: In function `_ast_realloc':
+/usr/include/asterisk/utils.h:549: multiple definition of `_ast_realloc'
+at_command.o:/usr/include/asterisk/utils.h:549: first defined here
+pdiscovery.o: In function `_ast_strdup':
+/usr/include/asterisk/utils.h:576: multiple definition of `_ast_strdup'
+at_command.o:/usr/include/asterisk/utils.h:576: first defined here
+pdiscovery.o: In function `_ast_strndup':
+/usr/include/asterisk/utils.h:605: multiple definition of `_ast_strndup'
+at_command.o:/usr/include/asterisk/utils.h:605: first defined here
+pdiscovery.o: In function `_ast_vasprintf':
+/usr/include/asterisk/utils.h:644: multiple definition of `_ast_vasprintf'
+at_command.o:/usr/include/asterisk/utils.h:644: first defined here
+pdiscovery.o: In function `ast_threadstorage_get':
+/usr/include/asterisk/threadstorage.h:173: multiple definition of `ast_threadstorage_get'
+at_command.o:/usr/include/asterisk/threadstorage.h:173: first defined here
+pdiscovery.o: In function `ast_skip_blanks':
+/usr/include/asterisk/strings.h:90: multiple definition of `ast_skip_blanks'
+at_command.o:/usr/include/asterisk/strings.h:90: first defined here
+pdiscovery.o: In function `ast_trim_blanks':
+/usr/include/asterisk/strings.h:104: multiple definition of `ast_trim_blanks'
+at_command.o:/usr/include/asterisk/strings.h:104: first defined here
+pdiscovery.o: In function `ast_skip_nonblanks':
+/usr/include/asterisk/strings.h:129: multiple definition of `ast_skip_nonblanks'
+at_command.o:/usr/include/asterisk/strings.h:129: first defined here
+pdiscovery.o: In function `ast_strip':
+/usr/include/asterisk/strings.h:147: multiple definition of `ast_strip'
+at_command.o:/usr/include/asterisk/strings.h:147: first defined here
+pdiscovery.o: In function `ast_copy_string':
+/usr/include/asterisk/strings.h:212: multiple definition of `ast_copy_string'
+at_command.o:/usr/include/asterisk/strings.h:212: first defined here
+pdiscovery.o: In function `ast_str_create':
+/usr/include/asterisk/strings.h:420: multiple definition of `ast_str_create'
+at_command.o:/usr/include/asterisk/strings.h:420: first defined here
+pdiscovery.o: In function `ast_str_reset':
+/usr/include/asterisk/strings.h:441: multiple definition of `ast_str_reset'
+at_command.o:/usr/include/asterisk/strings.h:441: first defined here
+pdiscovery.o: In function `ast_str_update':
+/usr/include/asterisk/strings.h:456: multiple definition of `ast_str_update'
+at_command.o:/usr/include/asterisk/strings.h:456: first defined here
+pdiscovery.o: In function `ast_str_trim_blanks':
+/usr/include/asterisk/strings.h:466: multiple definition of `ast_str_trim_blanks'
+at_command.o:/usr/include/asterisk/strings.h:466: first defined here
+pdiscovery.o: In function `ast_str_strlen':
+/usr/include/asterisk/strings.h:481: multiple definition of `ast_str_strlen'
+at_command.o:/usr/include/asterisk/strings.h:481: first defined here
+pdiscovery.o: In function `ast_str_size':
+/usr/include/asterisk/strings.h:492: multiple definition of `ast_str_size'
+at_command.o:/usr/include/asterisk/strings.h:492: first defined here
+pdiscovery.o: In function `ast_str_buffer':
+/usr/include/asterisk/strings.h:503: multiple definition of `ast_str_buffer'
+at_command.o:/usr/include/asterisk/strings.h:503: first defined here
+pdiscovery.o: In function `ast_str_truncate':
+/usr/include/asterisk/strings.h:521: multiple definition of `ast_str_truncate'
+at_command.o:/usr/include/asterisk/strings.h:521: first defined here
+pdiscovery.o: In function `ast_str_make_space':
+/usr/include/asterisk/strings.h:581: multiple definition of `ast_str_make_space'
+at_command.o:/usr/include/asterisk/strings.h:581: first defined here
+pdiscovery.o: In function `ast_str_copy_string':
+/usr/include/asterisk/strings.h:606: multiple definition of `ast_str_copy_string'
+at_command.o:/usr/include/asterisk/strings.h:606: first defined here
+pdiscovery.o: In function `ast_str_thread_get':
+/usr/include/asterisk/strings.h:666: multiple definition of `ast_str_thread_get'
+at_command.o:/usr/include/asterisk/strings.h:666: first defined here
+pdiscovery.o: In function `ast_str_set_va':
+/usr/include/asterisk/strings.h:803: multiple definition of `ast_str_set_va'
+at_command.o:/usr/include/asterisk/strings.h:803: first defined here
+pdiscovery.o: In function `ast_str_append_va':
+/usr/include/asterisk/strings.h:820: multiple definition of `ast_str_append_va'
+at_command.o:/usr/include/asterisk/strings.h:820: first defined here
+pdiscovery.o: In function `ast_str_set_substr':
+/usr/include/asterisk/strings.h:827: multiple definition of `ast_str_set_substr'
+at_command.o:/usr/include/asterisk/strings.h:827: first defined here
+pdiscovery.o: In function `ast_str_append_substr':
+/usr/include/asterisk/strings.h:834: multiple definition of `ast_str_append_substr'
+at_command.o:/usr/include/asterisk/strings.h:834: first defined here
+pdiscovery.o: In function `ast_str_set_escapecommas':
+/usr/include/asterisk/strings.h:841: multiple definition of `ast_str_set_escapecommas'
+at_command.o:/usr/include/asterisk/strings.h:841: first defined here
+pdiscovery.o: In function `ast_str_append_escapecommas':
+/usr/include/asterisk/strings.h:848: multiple definition of `ast_str_append_escapecommas'
+at_command.o:/usr/include/asterisk/strings.h:848: first defined here
+pdiscovery.o: In function `ast_str_set':
+/usr/include/asterisk/strings.h:876: multiple definition of `ast_str_set'
+at_command.o:/usr/include/asterisk/strings.h:876: first defined here
+pdiscovery.o: In function `ast_str_append':
+/usr/include/asterisk/strings.h:902: multiple definition of `ast_str_append'
+at_command.o:/usr/include/asterisk/strings.h:902: first defined here
+pdiscovery.o: In function `ast_check_digits':
+/usr/include/asterisk/strings.h:923: multiple definition of `ast_check_digits'
+at_command.o:/usr/include/asterisk/strings.h:923: first defined here
+pdiscovery.o: In function `ast_tech_to_upper':
+/usr/include/asterisk/strings.h:941: multiple definition of `ast_tech_to_upper'
+at_command.o:/usr/include/asterisk/strings.h:941: first defined here
+pdiscovery.o: In function `ast_rq_is_int':
+/usr/include/asterisk/config.h:816: multiple definition of `ast_rq_is_int'
+at_command.o:/usr/include/asterisk/config.h:816: first defined here
+collect2: error: ld returned 1 exit status
+Makefile:60: recipe for target 'chan_dongle.so' failed
+make: *** [chan_dongle.so] Error 1

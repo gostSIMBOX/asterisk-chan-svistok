@@ -1,0 +1,11 @@
++ setgroup переделать
+лог установки групп
+выводить не найденные свистки dongle0...
+devices imsi писать список
+dongle update
+(time) 100-0%ATD
+Шаблоны номеров через X ext.conf
+calls.log - extensions.conf
+авктивация мег мск
+ussd 0 новый
+work - кнопка

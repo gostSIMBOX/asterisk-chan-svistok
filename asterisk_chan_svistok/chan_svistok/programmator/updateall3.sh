@@ -1,0 +1,80 @@
+./fupdate4.sh 2 
+exit
+#./fupdate4.sh 5
+#./fupdate4.sh 8
+#./fupdate4.sh 11
+#./fupdate4.sh 14
+#./fupdate4.sh 17
+#./fupdate4.sh 20
+#./fupdate4.sh 23
+#./fupdate4.sh 26
+#./fupdate4.sh 29
+#./fupdate4.sh 32
+#./fupdate4.sh 35
+#./fupdate4.sh 38
+#./fupdate4.sh 41
+#./fupdate4.sh 44
+#./fupdate4.sh 47
+#./fupdate4.sh 65
+#./fupdate4.sh 68
+#./fupdate4.sh 71
+#./fupdate4.sh 74
+#./fupdate4.sh 77
+#./fupdate4.sh 80
+#./fupdate4.sh 83
+#./fupdate4.sh 86
+#./fupdate4.sh 89
+#./fupdate4.sh 92
+#./fupdate4.sh 95
+#./fupdate4.sh 98
+#exit
+
+#./fupdate4.sh 101
+#./fupdate4.sh 104
+#./fupdate4.sh 107
+#./fupdate4.sh 110
+#./fupdate4.sh 113
+#./fupdate4.sh 116
+#./fupdate4.sh 119
+#./fupdate4.sh 122
+#./fupdate4.sh 125
+#exit
+#./fupdate4.sh 128
+#./fupdate4.sh 131
+#./fupdate4.sh 134
+#./fupdate4.sh 137
+#./fupdate4.sh 140
+#./fupdate4.sh 143
+#./fupdate4.sh 146
+#./fupdate4.sh 149
+#./fupdate4.sh 152
+#./fupdate4.sh 155
+#./fupdate4.sh 158
+#./fupdate4.sh 161
+#./fupdate4.sh 164
+#exit
+./fupdate4.sh 167
+./fupdate4.sh 170
+./fupdate4.sh 173
+./fupdate4.sh 176
+./fupdate4.sh 179
+./fupdate4.sh 182
+./fupdate4.sh 185
+./fupdate4.sh 188
+./fupdate4.sh 191
+./fupdate4.sh 194
+./fupdate4.sh 197
+./fupdate4.sh 200
+./fupdate4.sh 203
+./fupdate4.sh 206
+./fupdate4.sh 209
+
+#./fupdate4.sh 212
+#./fupdate4.sh 215
+#./fupdate4.sh 218
+#./fupdate4.sh 221
+#./fupdate4.sh 224
+#./fupdate4.sh 227
+#./fupdate4.sh 230
+#./fupdate4.sh 233
+

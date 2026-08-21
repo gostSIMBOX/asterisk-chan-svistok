@@ -1,0 +1,1 @@
+./configure --with-asterisk=/usr/simbox/src/asterisk-11.8.1/include

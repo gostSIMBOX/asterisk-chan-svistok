@@ -1,0 +1,452 @@
+adiscovery: >>sysdev 3-1.2 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB0 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB1 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB2 } 
+adiscovery: >>sysdev 3-1.3 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB3 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB4 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB5 } 
+adiscovery: >>sysdev 3-1.4 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB6 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB7 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB8 } 
+adiscovery: >>sysdev 3-1.5 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81  0  0  0 /dev/ttyUSB9 } 
+adiscovery:  >       iface=1 {  0  2  0  0 82  0  0 /dev/ttyUSB10 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0 83  0 /dev/ttyUSB11 } 
+adiscovery: >>sysdev 3-1.6 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81  0  0  0 /dev/ttyUSB12 } 
+adiscovery:  >       iface=1 {  0  2  0  0 82  0  0 /dev/ttyUSB13 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0 83  0 /dev/ttyUSB14 } 
+adiscovery: >>sysdev 3-1.7 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81  0  0  0 /dev/ttyUSB15 } 
+adiscovery:  >       iface=1 {  0  2  0  0 82  0  0 /dev/ttyUSB16 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0 83  0 /dev/ttyUSB17 } 
+adiscovery: >>sysdev 4-1.1 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB18 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB19 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB20 } 
+adiscovery: >>sysdev 4-1.2 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB21 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB22 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB23 } 
+adiscovery: >>sysdev 4-1.3 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB24 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB25 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB26 } 
+adiscovery: >>sysdev 4-1.4 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB27 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB28 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB29 } 
+adiscovery: >>sysdev 4-1.5 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB30 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB31 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB32 } 
+adiscovery: >>sysdev 4-1.6 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB33 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB34 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB35 } 
+adiscovery: >>sysdev 5-1.1 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB36 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB37 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB38 } 
+adiscovery: >>sysdev 5-1.2 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB39 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB40 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB41 } 
+adiscovery: >>sysdev 5-1.4 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB42 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB43 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB44 } 
+adiscovery: >>sysdev 5-1.5 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB45 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB46 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB47 } 
+adiscovery: >>sysdev 5-1.6 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB48 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB49 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB50 } 
+adiscovery: >>sysdev 5-1.7 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB51 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB52 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB53 } 
+adiscovery: >>sysdev 6-1.1 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB54 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB55 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB56 } 
+adiscovery: >>sysdev 6-1.2 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB57 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB58 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB59 } 
+adiscovery: >>sysdev 6-1.3 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB60 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB61 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB62 } 
+adiscovery: >>sysdev 6-1.4 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB63 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB64 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB65 } 
+adiscovery: >>sysdev 6-1.5 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB66 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB67 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB68 } 
+adiscovery: >>sysdev 6-1.6 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB69 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB70 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB71 } 
+adiscovery: >>sysdev 6-1.7 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB72 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB73 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB74 } 
+adiscovery: >>sysdev 7-1.1 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB75 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB76 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB77 } 
+adiscovery: >>sysdev 7-1.3 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB78 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB79 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB80 } 
+adiscovery: >>sysdev 7-1.4 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB81 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB82 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB83 } 
+adiscovery: >>sysdev 7-1.5 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB84 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB85 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB86 } 
+adiscovery: >>sysdev 7-1.6 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB87 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB88 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB89 } 
+adiscovery: >>sysdev 7-1.7 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB90 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB91 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB92 } 
+adiscovery: >>sysdev 8-1.2 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB93 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB94 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB95 } 
+adiscovery: >>sysdev 8-1.3 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB96 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB97 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB98 } 
+adiscovery: >>sysdev 8-1.4 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB99 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB100 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB101 } 
+adiscovery: >>sysdev 8-1.5 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB102 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB103 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB104 } 
+adiscovery: >>sysdev 8-1.6 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB105 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB106 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB107 } 
+adiscovery: >>sysdev 8-1.7 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB108 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB109 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB110 } 
+adiscovery: >>sysdev 9-1.1 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB111 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB112 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB113 } 
+adiscovery: >>sysdev 9-1.2 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB114 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB115 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB116 } 
+adiscovery: >>sysdev 9-1.3 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB117 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB118 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB119 } 
+adiscovery: >>sysdev 9-1.5 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB120 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB121 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB122 } 
+adiscovery: >>sysdev 9-1.6 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB123 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB124 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB125 } 
+adiscovery: >>sysdev 9-1.7 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB126 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB127 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB128 } 
+adiscovery: >>sysdev 10-1.1 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB129 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB130 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB131 } 
+adiscovery: >>sysdev 10-1.3 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB132 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB133 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB134 } 
+adiscovery: >>sysdev 10-1.4 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB135 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB136 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB137 } 
+adiscovery: >>sysdev 10-1.5 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB138 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB139 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB140 } 
+adiscovery: >>sysdev 10-1.6 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB141 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB142 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB143 } 
+adiscovery: >>sysdev 10-1.7 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB144 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB145 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB146 } 
+adiscovery: >>sysdev 11-1.1 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB147 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB148 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB149 } 
+adiscovery: >>sysdev 11-1.2 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB150 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB151 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB152 } 
+adiscovery: >>sysdev 11-1.3 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB153 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB154 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB155 } 
+adiscovery: >>sysdev 11-1.4 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB156 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB157 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB158 } 
+adiscovery: >>sysdev 11-1.5 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB159 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB160 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB161 } 
+adiscovery: >>sysdev 11-1.7 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB162 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB163 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB164 } 
+adiscovery: >>sysdev 12-1.1 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB165 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB166 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB167 } 
+adiscovery: >>sysdev 12-1.2 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB168 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB169 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB170 } 
+adiscovery: >>sysdev 12-1.3 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB171 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB172 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB173 } 
+adiscovery: >>sysdev 12-1.4 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB174 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB175 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB176 } 
+adiscovery: >>sysdev 12-1.5 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB177 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB178 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB179 } 
+adiscovery: >>sysdev 12-1.6 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB180 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB181 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB182 } 
+adiscovery: >>sysdev 12-1.7 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81 82  0  0 /dev/ttyUSB183 } 
+adiscovery:  >       iface=1 {  0  2  0  0  0 83  0 /dev/ttyUSB184 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0  0 84 /dev/ttyUSB185 } 
+adiscovery: >>sysdev 13-1.1 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81  0  0  0 /dev/ttyUSB186 } 
+adiscovery:  >       iface=1 {  0  2  0  0 82  0  0 /dev/ttyUSB187 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0 83  0 /dev/ttyUSB188 } 
+adiscovery: >>sysdev 13-1.2 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81  0  0  0 /dev/ttyUSB189 } 
+adiscovery:  >       iface=1 {  0  2  0  0 82  0  0 /dev/ttyUSB190 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0 83  0 /dev/ttyUSB191 } 
+adiscovery: >>sysdev 13-1.3 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81  0  0  0 /dev/ttyUSB192 } 
+adiscovery:  >       iface=1 {  0  2  0  0 82  0  0 /dev/ttyUSB193 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0 83  0 /dev/ttyUSB194 } 
+adiscovery: >>sysdev 13-1.4 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81  0  0  0 /dev/ttyUSB195 } 
+adiscovery:  >       iface=1 {  0  2  0  0 82  0  0 /dev/ttyUSB196 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0 83  0 /dev/ttyUSB197 } 
+adiscovery: >>sysdev 13-1.5 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81  0  0  0 /dev/ttyUSB198 } 
+adiscovery:  >       iface=1 {  0  2  0  0 82  0  0 /dev/ttyUSB199 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0 83  0 /dev/ttyUSB200 } 
+adiscovery: >>sysdev 13-1.6 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81  0  0  0 /dev/ttyUSB201 } 
+adiscovery:  >       iface=1 {  0  2  0  0 82  0  0 /dev/ttyUSB202 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0 83  0 /dev/ttyUSB203 } 
+adiscovery: >>sysdev 13-1.7 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81  0  0  0 /dev/ttyUSB204 } 
+adiscovery:  >       iface=1 {  0  2  0  0 82  0  0 /dev/ttyUSB205 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0 83  0 /dev/ttyUSB206 } 
+adiscovery: >>sysdev 14-1.2 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81  0  0  0 /dev/ttyUSB207 } 
+adiscovery:  >       iface=1 {  0  2  0  0 82  0  0 /dev/ttyUSB208 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0 83  0 /dev/ttyUSB209 } 
+adiscovery: >>sysdev 14-1.3 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81  0  0  0 /dev/ttyUSB210 } 
+adiscovery:  >       iface=1 {  0  2  0  0 82  0  0 /dev/ttyUSB211 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0 83  0 /dev/ttyUSB212 } 
+adiscovery: >>sysdev 14-1.4 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81  0  0  0 /dev/ttyUSB213 } 
+adiscovery:  >       iface=1 {  0  2  0  0 82  0  0 /dev/ttyUSB214 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0 83  0 /dev/ttyUSB215 } 
+adiscovery: >>sysdev 14-1.5 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81  0  0  0 /dev/ttyUSB216 } 
+adiscovery:  >       iface=1 {  0  2  0  0 82  0  0 /dev/ttyUSB217 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0 83  0 /dev/ttyUSB218 } 
+adiscovery: >>sysdev 14-1.6 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81  0  0  0 /dev/ttyUSB219 } 
+adiscovery:  >       iface=1 {  0  2  0  0 82  0  0 /dev/ttyUSB220 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0 83  0 /dev/ttyUSB221 } 
+adiscovery: >>sysdev 14-1.7 12d1 1001
+adiscovery:  >       iface=0 {  1  0  0 81  0  0  0 /dev/ttyUSB222 } 
+adiscovery:  >       iface=1 {  0  2  0  0 82  0  0 /dev/ttyUSB223 } 
+adiscovery:  >       iface=2 {  0  0  3  0  0 83  0 /dev/ttyUSB224 } 
+adiscovery: >>sysdevs_count=75
+adiscovery: Found device 1550 1 data=/dev/ttyUSB2 audio=/dev/ttyUSB1
+adiscovery: Found device 1550 1 data=/dev/ttyUSB5 audio=/dev/ttyUSB4
+adiscovery: Found device 1550 1 data=/dev/ttyUSB8 audio=/dev/ttyUSB7
+adiscovery: Found device 173 2 data=/dev/ttyUSB11 audio=
+adiscovery: Found device 173 2 data=/dev/ttyUSB14 audio=
+adiscovery: Found device 173 2 data=/dev/ttyUSB17 audio=
+adiscovery: Found device 1550 1 data=/dev/ttyUSB20 audio=/dev/ttyUSB19
+adiscovery: Found device 1550 1 data=/dev/ttyUSB23 audio=/dev/ttyUSB22
+adiscovery: Found device 1550 1 data=/dev/ttyUSB26 audio=/dev/ttyUSB25
+adiscovery: Found device 1550 1 data=/dev/ttyUSB29 audio=/dev/ttyUSB28
+adiscovery: Found device 1550 1 data=/dev/ttyUSB32 audio=/dev/ttyUSB31
+adiscovery: Found device 1550 1 data=/dev/ttyUSB35 audio=/dev/ttyUSB34
+adiscovery: Found device 1550 1 data=/dev/ttyUSB38 audio=/dev/ttyUSB37
+adiscovery: Found device 1550 1 data=/dev/ttyUSB41 audio=/dev/ttyUSB40
+adiscovery: Found device 1550 1 data=/dev/ttyUSB44 audio=/dev/ttyUSB43
+adiscovery: Found device 1550 1 data=/dev/ttyUSB47 audio=/dev/ttyUSB46
+adiscovery: Found device 1550 1 data=/dev/ttyUSB50 audio=/dev/ttyUSB49
+adiscovery: Found device 1550 1 data=/dev/ttyUSB53 audio=/dev/ttyUSB52
+adiscovery: Found device 1550 1 data=/dev/ttyUSB56 audio=/dev/ttyUSB55
+adiscovery: Found device 1550 1 data=/dev/ttyUSB59 audio=/dev/ttyUSB58
+adiscovery: Found device 1550 1 data=/dev/ttyUSB62 audio=/dev/ttyUSB61
+adiscovery: Found device 1550 1 data=/dev/ttyUSB65 audio=/dev/ttyUSB64
+adiscovery: Found device 1550 1 data=/dev/ttyUSB68 audio=/dev/ttyUSB67
+adiscovery: Found device 1550 1 data=/dev/ttyUSB71 audio=/dev/ttyUSB70
+adiscovery: Found device 1550 1 data=/dev/ttyUSB74 audio=/dev/ttyUSB73
+adiscovery: Found device 1550 1 data=/dev/ttyUSB77 audio=/dev/ttyUSB76
+adiscovery: Found device 1550 1 data=/dev/ttyUSB80 audio=/dev/ttyUSB79
+adiscovery: Found device 1550 1 data=/dev/ttyUSB83 audio=/dev/ttyUSB82
+adiscovery: Found device 1550 1 data=/dev/ttyUSB86 audio=/dev/ttyUSB85
+adiscovery: Found device 1550 1 data=/dev/ttyUSB89 audio=/dev/ttyUSB88
+adiscovery: Found device 1550 1 data=/dev/ttyUSB92 audio=/dev/ttyUSB91
+adiscovery: Found device 1550 1 data=/dev/ttyUSB95 audio=/dev/ttyUSB94
+adiscovery: Found device 1550 1 data=/dev/ttyUSB98 audio=/dev/ttyUSB97
+adiscovery: Found device 1550 1 data=/dev/ttyUSB101 audio=/dev/ttyUSB100
+adiscovery: Found device 1550 1 data=/dev/ttyUSB104 audio=/dev/ttyUSB103
+adiscovery: Found device 1550 1 data=/dev/ttyUSB107 audio=/dev/ttyUSB106
+adiscovery: Found device 1550 1 data=/dev/ttyUSB110 audio=/dev/ttyUSB109
+adiscovery: Found device 1550 1 data=/dev/ttyUSB113 audio=/dev/ttyUSB112
+adiscovery: Found device 1550 1 data=/dev/ttyUSB116 audio=/dev/ttyUSB115
+adiscovery: Found device 1550 1 data=/dev/ttyUSB119 audio=/dev/ttyUSB118
+adiscovery: Found device 1550 1 data=/dev/ttyUSB122 audio=/dev/ttyUSB121
+adiscovery: Found device 1550 1 data=/dev/ttyUSB125 audio=/dev/ttyUSB124
+adiscovery: Found device 1550 1 data=/dev/ttyUSB128 audio=/dev/ttyUSB127
+adiscovery: Found device 1550 1 data=/dev/ttyUSB131 audio=/dev/ttyUSB130
+adiscovery: Found device 1550 1 data=/dev/ttyUSB134 audio=/dev/ttyUSB133
+adiscovery: Found device 1550 1 data=/dev/ttyUSB137 audio=/dev/ttyUSB136
+adiscovery: Found device 1550 1 data=/dev/ttyUSB140 audio=/dev/ttyUSB139
+adiscovery: Found device 1550 1 data=/dev/ttyUSB143 audio=/dev/ttyUSB142
+adiscovery: Found device 1550 1 data=/dev/ttyUSB146 audio=/dev/ttyUSB145
+adiscovery: Found device 1550 1 data=/dev/ttyUSB149 audio=/dev/ttyUSB148
+adiscovery: Found device 1550 1 data=/dev/ttyUSB152 audio=/dev/ttyUSB151
+adiscovery: Found device 1550 1 data=/dev/ttyUSB155 audio=/dev/ttyUSB154
+adiscovery: Found device 1550 1 data=/dev/ttyUSB158 audio=/dev/ttyUSB157
+adiscovery: Found device 1550 1 data=/dev/ttyUSB161 audio=/dev/ttyUSB160
+adiscovery: Found device 1550 1 data=/dev/ttyUSB164 audio=/dev/ttyUSB163
+adiscovery: Found device 1550 1 data=/dev/ttyUSB167 audio=/dev/ttyUSB166
+adiscovery: Found device 1550 1 data=/dev/ttyUSB170 audio=/dev/ttyUSB169
+adiscovery: Found device 1550 1 data=/dev/ttyUSB173 audio=/dev/ttyUSB172
+adiscovery: Found device 1550 1 data=/dev/ttyUSB176 audio=/dev/ttyUSB175
+adiscovery: Found device 1550 1 data=/dev/ttyUSB179 audio=/dev/ttyUSB178
+adiscovery: Found device 1550 1 data=/dev/ttyUSB182 audio=/dev/ttyUSB181
+adiscovery: Found device 1550 1 data=/dev/ttyUSB185 audio=/dev/ttyUSB184
+adiscovery: Found device 173 2 data=/dev/ttyUSB188 audio=
+adiscovery: Found device 173 2 data=/dev/ttyUSB191 audio=
+adiscovery: Found device 173 2 data=/dev/ttyUSB194 audio=
+adiscovery: Found device 173 2 data=/dev/ttyUSB197 audio=
+adiscovery: Found device 173 2 data=/dev/ttyUSB200 audio=
+adiscovery: Found device 173 2 data=/dev/ttyUSB203 audio=
+adiscovery: Found device 173 2 data=/dev/ttyUSB206 audio=
+adiscovery: Found device 173 2 data=/dev/ttyUSB209 audio=
+adiscovery: Found device 173 2 data=/dev/ttyUSB212 audio=
+adiscovery: Found device 173 2 data=/dev/ttyUSB215 audio=
+adiscovery: Found device 173 2 data=/dev/ttyUSB218 audio=
+adiscovery: Found device 173 2 data=/dev/ttyUSB221 audio=
+adiscovery: Found device 173 2 data=/dev/ttyUSB224 audio=
+adiscovery: >>usbdev 1550 1 3-1.2 /dev/ttyUSB2 /dev/ttyUSB1
+adiscovery: >>usbdev 1550 1 3-1.3 /dev/ttyUSB5 /dev/ttyUSB4
+adiscovery: >>usbdev 1550 1 3-1.4 /dev/ttyUSB8 /dev/ttyUSB7
+adiscovery: >>usbdev 173 2 3-1.5 /dev/ttyUSB11 
+adiscovery: >>usbdev 173 2 3-1.6 /dev/ttyUSB14 
+adiscovery: >>usbdev 173 2 3-1.7 /dev/ttyUSB17 
+adiscovery: >>usbdev 1550 1 4-1.1 /dev/ttyUSB20 /dev/ttyUSB19
+adiscovery: >>usbdev 1550 1 4-1.2 /dev/ttyUSB23 /dev/ttyUSB22
+adiscovery: >>usbdev 1550 1 4-1.3 /dev/ttyUSB26 /dev/ttyUSB25
+adiscovery: >>usbdev 1550 1 4-1.4 /dev/ttyUSB29 /dev/ttyUSB28
+adiscovery: >>usbdev 1550 1 4-1.5 /dev/ttyUSB32 /dev/ttyUSB31
+adiscovery: >>usbdev 1550 1 4-1.6 /dev/ttyUSB35 /dev/ttyUSB34
+adiscovery: >>usbdev 1550 1 5-1.1 /dev/ttyUSB38 /dev/ttyUSB37
+adiscovery: >>usbdev 1550 1 5-1.2 /dev/ttyUSB41 /dev/ttyUSB40
+adiscovery: >>usbdev 1550 1 5-1.4 /dev/ttyUSB44 /dev/ttyUSB43
+adiscovery: >>usbdev 1550 1 5-1.5 /dev/ttyUSB47 /dev/ttyUSB46
+adiscovery: >>usbdev 1550 1 5-1.6 /dev/ttyUSB50 /dev/ttyUSB49
+adiscovery: >>usbdev 1550 1 5-1.7 /dev/ttyUSB53 /dev/ttyUSB52
+adiscovery: >>usbdev 1550 1 6-1.1 /dev/ttyUSB56 /dev/ttyUSB55
+adiscovery: >>usbdev 1550 1 6-1.2 /dev/ttyUSB59 /dev/ttyUSB58
+adiscovery: >>usbdev 1550 1 6-1.3 /dev/ttyUSB62 /dev/ttyUSB61
+adiscovery: >>usbdev 1550 1 6-1.4 /dev/ttyUSB65 /dev/ttyUSB64
+adiscovery: >>usbdev 1550 1 6-1.5 /dev/ttyUSB68 /dev/ttyUSB67
+adiscovery: >>usbdev 1550 1 6-1.6 /dev/ttyUSB71 /dev/ttyUSB70
+adiscovery: >>usbdev 1550 1 6-1.7 /dev/ttyUSB74 /dev/ttyUSB73
+adiscovery: >>usbdev 1550 1 7-1.1 /dev/ttyUSB77 /dev/ttyUSB76
+adiscovery: >>usbdev 1550 1 7-1.3 /dev/ttyUSB80 /dev/ttyUSB79
+adiscovery: >>usbdev 1550 1 7-1.4 /dev/ttyUSB83 /dev/ttyUSB82
+adiscovery: >>usbdev 1550 1 7-1.5 /dev/ttyUSB86 /dev/ttyUSB85
+adiscovery: >>usbdev 1550 1 7-1.6 /dev/ttyUSB89 /dev/ttyUSB88
+adiscovery: >>usbdev 1550 1 7-1.7 /dev/ttyUSB92 /dev/ttyUSB91
+adiscovery: >>usbdev 1550 1 8-1.2 /dev/ttyUSB95 /dev/ttyUSB94
+adiscovery: >>usbdev 1550 1 8-1.3 /dev/ttyUSB98 /dev/ttyUSB97
+adiscovery: >>usbdev 1550 1 8-1.4 /dev/ttyUSB101 /dev/ttyUSB100
+adiscovery: >>usbdev 1550 1 8-1.5 /dev/ttyUSB104 /dev/ttyUSB103
+adiscovery: >>usbdev 1550 1 8-1.6 /dev/ttyUSB107 /dev/ttyUSB106
+adiscovery: >>usbdev 1550 1 8-1.7 /dev/ttyUSB110 /dev/ttyUSB109
+adiscovery: >>usbdev 1550 1 9-1.1 /dev/ttyUSB113 /dev/ttyUSB112
+adiscovery: >>usbdev 1550 1 9-1.2 /dev/ttyUSB116 /dev/ttyUSB115
+adiscovery: >>usbdev 1550 1 9-1.3 /dev/ttyUSB119 /dev/ttyUSB118
+adiscovery: >>usbdev 1550 1 9-1.5 /dev/ttyUSB122 /dev/ttyUSB121
+adiscovery: >>usbdev 1550 1 9-1.6 /dev/ttyUSB125 /dev/ttyUSB124
+adiscovery: >>usbdev 1550 1 9-1.7 /dev/ttyUSB128 /dev/ttyUSB127
+adiscovery: >>usbdev 1550 1 10-1.1 /dev/ttyUSB131 /dev/ttyUSB130
+adiscovery: >>usbdev 1550 1 10-1.3 /dev/ttyUSB134 /dev/ttyUSB133
+adiscovery: >>usbdev 1550 1 10-1.4 /dev/ttyUSB137 /dev/ttyUSB136
+adiscovery: >>usbdev 1550 1 10-1.5 /dev/ttyUSB140 /dev/ttyUSB139
+adiscovery: >>usbdev 1550 1 10-1.6 /dev/ttyUSB143 /dev/ttyUSB142
+adiscovery: >>usbdev 1550 1 10-1.7 /dev/ttyUSB146 /dev/ttyUSB145
+adiscovery: >>usbdev 1550 1 11-1.1 /dev/ttyUSB149 /dev/ttyUSB148
+adiscovery: >>usbdev 1550 1 11-1.2 /dev/ttyUSB152 /dev/ttyUSB151
+adiscovery: >>usbdev 1550 1 11-1.3 /dev/ttyUSB155 /dev/ttyUSB154
+adiscovery: >>usbdev 1550 1 11-1.4 /dev/ttyUSB158 /dev/ttyUSB157
+adiscovery: >>usbdev 1550 1 11-1.5 /dev/ttyUSB161 /dev/ttyUSB160
+adiscovery: >>usbdev 1550 1 11-1.7 /dev/ttyUSB164 /dev/ttyUSB163
+adiscovery: >>usbdev 1550 1 12-1.1 /dev/ttyUSB167 /dev/ttyUSB166
+adiscovery: >>usbdev 1550 1 12-1.2 /dev/ttyUSB170 /dev/ttyUSB169
+adiscovery: >>usbdev 1550 1 12-1.3 /dev/ttyUSB173 /dev/ttyUSB172
+adiscovery: >>usbdev 1550 1 12-1.4 /dev/ttyUSB176 /dev/ttyUSB175
+adiscovery: >>usbdev 1550 1 12-1.5 /dev/ttyUSB179 /dev/ttyUSB178
+adiscovery: >>usbdev 1550 1 12-1.6 /dev/ttyUSB182 /dev/ttyUSB181
+adiscovery: >>usbdev 1550 1 12-1.7 /dev/ttyUSB185 /dev/ttyUSB184
+adiscovery: >>usbdev 173 2 13-1.1 /dev/ttyUSB188 
+adiscovery: >>usbdev 173 2 13-1.2 /dev/ttyUSB191 
+adiscovery: >>usbdev 173 2 13-1.3 /dev/ttyUSB194 
+adiscovery: >>usbdev 173 2 13-1.4 /dev/ttyUSB197 
+adiscovery: >>usbdev 173 2 13-1.5 /dev/ttyUSB200 
+adiscovery: >>usbdev 173 2 13-1.6 /dev/ttyUSB203 
+adiscovery: >>usbdev 173 2 13-1.7 /dev/ttyUSB206 
+adiscovery: >>usbdev 173 2 14-1.2 /dev/ttyUSB209 
+adiscovery: >>usbdev 173 2 14-1.3 /dev/ttyUSB212 
+adiscovery: >>usbdev 173 2 14-1.4 /dev/ttyUSB215 
+adiscovery: >>usbdev 173 2 14-1.5 /dev/ttyUSB218 
+adiscovery: >>usbdev 173 2 14-1.6 /dev/ttyUSB221 
+adiscovery: >>usbdev 173 2 14-1.7 /dev/ttyUSB224 
+adiscovery: >>usbdevs_count=75
