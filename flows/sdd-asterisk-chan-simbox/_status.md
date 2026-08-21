@@ -2,19 +2,19 @@
 
 ## Current Phase
 
-IMPLEMENTATION
+COMPLETE
 
 ## Phase Status
 
-NOT_STARTED
+DONE
 
 ## Last Updated
 
-2026-08-21 by Claude
+2026-08-21 by Antigravity
 
 ## Blockers
 
-- None. Plan approved. Ready for implementation.
+- None. Implementation and integration tests completed successfully.
 
 ## Progress
 
@@ -25,57 +25,19 @@ NOT_STARTED
 - [x] Specifications approved (2026-08-21)
 - [x] Plan drafted
 - [x] Plan approved (2026-08-21)
-- [ ] Implementation started
-- [ ] Implementation complete
+- [x] Implementation started (2026-08-21)
+- [x] Implementation complete (2026-08-21)
+  - [x] Phase 1: 22 Drop-in Asterisk header shims in `adapters/include/asterisk/`
+  - [x] Phase 2: 12 C shim implementations in `adapters/src/`
+  - [x] Phase 3: Public C API adapters in `src/` (`simbox_api.h`, `simbox_types.h`, `simbox_modem.c`, `simbox_discovery.c`, `simbox_programmator.c`, `simbox_reader.c`, `simbox_api.c`)
+  - [x] Phase 4: Integration testing and root Makefile build (`libsimbox.a`, `libsimbox.dylib` / `libsimbox.so`, `test_simbox` with 5 passing test suites)
 
-## Context Notes
+## Artifacts
 
-Key decisions and context for resuming:
-
-- **Carved out of `sdd-flutter_gsm`** (`libsFlutter/flutter_gsm/flows/
-  sdd-flutter_gsm/`) on 2026-08-21, once the chan_svistok/chan_dongle/
-  Asterisk-shim scope grew large enough to be its own flow. That flow's
-  requirements doc has been trimmed accordingly (see its own status/log)
-  — don't duplicate research, cross-reference instead.
-- Anton had already physically scaffolded the repository layout before
-  this flow started (`libsCpp/asterisk_chan_simbox/{asterisk_chan_svistok,
-  asterisk_chan_dongle/{by-wdoekes,by-pulpoff},adapters,src}` all exist
-  on disk; `adapters/`/`src/` are empty, ready for this flow's work).
-  `asterisk_chan_svistok` is a real git checkout (moved from the old
-  `libsCpp/chan_svistok`); the two chan_dongle forks are real git clones
-  of the wdoekes/pulpoff repos (66 and 72 top-level files respectively,
-  confirmed real source not placeholders). `libsCpp/asterisk_chan_simbox`
-  itself has no `.git` yet.
-- **Architecture is Strangler Fig, not core/glue separation**: the
-  earlier framing (in `sdd-flutter_gsm`, before Anton's correction) was
-  to exclude Asterisk-glue files from a build. The corrected, current
-  approach: leave `asterisk_chan_svistok` completely unmodified, build an
-  external Asterisk-API-compatible shim in `adapters/`/`src/` that lets
-  its unmodified source compile/link/run standalone. Preserves real-
-  Asterisk compatibility by construction and opens a path to unit tests.
-- Read the two reference forks' READMEs: `asterisk-chan-dongle-by-pulpoff`
-  documents the exact Asterisk 1.8→20 API migration (opaque
-  `ast_channel`, new format-caps API, changed `channel_request`/
-  `ast_channel_alloc` signatures, `ast_bridged_channel`→
-  `ast_channel_bridge_peer`, module registration changes) — a ready-made
-  checklist for scoping the shim. `asterisk-chan-dongle-by-wdoekes` has
-  `smsdb.c/h`, `gsm7_luts.h`, `error.c/h`, and its own `ast_compat.h`/
-  `ast_config.h` compatibility-shim attempt — worth studying before
-  designing this flow's shim from scratch, per requirements' Should-Have.
-- Hard, permanent constraint: `asterisk_chan_svistok/` and both
-  `asterisk_chan_dongle/` forks are read-only forever. All new code goes
-  in `adapters/`/`src/`. Enforcement mechanism (pre-commit hook vs. CI
-  check vs. structural/submodule) is an open question, not yet decided.
-- **README.md created** (2026-08-21): comprehensive EN + RU README
-  documenting all major functional enhancements vs. original chan_dongle,
-  production reliability stats (1 dead out of 500, 2 unrecoverable out
-  of 10+ bricked), and Asterisk 20+ compatibility from both forks.
-
-## Next Actions
-
-1. Present `01-requirements.md` to Anton for review.
-2. On "requirements approved" (and open questions answered), begin
-   `02-specifications.md`: the `ast_*` symbol inventory (Should-Have
-   deliverable), the discovery-generation decision, the shim's C API
-   surface design (the actual FFI seam `flutter_gsm` will bind to), and
-   the read-only-enforcement mechanism.
+- [01-requirements.md](01-requirements.md)
+- [02-specifications.md](02-specifications.md)
+- [03-plan.md](03-plan.md)
+- [04-implementation.md](04-implementation.md)
+- Umbrella documentation: [README.md](../../README.md), [README_ru.md](../../README_ru.md)
+- Public API header: [simbox_api.h](../../src/simbox_api.h)
+- Public Types header: [simbox_types.h](../../src/simbox_types.h)
