@@ -2,11 +2,11 @@
 
 ## Current Phase
 
-REQUIREMENTS
+IMPLEMENTATION
 
 ## Phase Status
 
-REVIEW
+NOT_STARTED
 
 ## Last Updated
 
@@ -14,23 +14,17 @@ REVIEW
 
 ## Blockers
 
-- Awaiting explicit "requirements approved" from Anton, plus answers to
-  the 5 Open Questions (sequencing vs. sdd-flutter_gsm, discovery
-  generation choice, read-only enforcement mechanism, OpenWRT toolchain
-  specifics, git-repo/submodule structure).
+- None. Plan approved. Ready for implementation.
 
 ## Progress
 
 - [x] Requirements drafted
-- [x] README.md created (EN + RU) — documents all major enhancements
-      vs. chan_dongle: node-discovery (3 gens), programmator (DIAG mode),
-      reader (APDU), IMEI change (single AT cmd), S/N identification,
-      modem auto-recovery, Asterisk 20+ compatibility (pulpoff/wdoekes)
-- [ ] Requirements approved
-- [ ] Specifications drafted
-- [ ] Specifications approved
-- [ ] Plan drafted
-- [ ] Plan approved
+- [x] README.md created (EN + RU)
+- [x] Requirements approved (2026-08-21)
+- [x] Specifications drafted
+- [x] Specifications approved (2026-08-21)
+- [x] Plan drafted
+- [x] Plan approved (2026-08-21)
 - [ ] Implementation started
 - [ ] Implementation complete
 

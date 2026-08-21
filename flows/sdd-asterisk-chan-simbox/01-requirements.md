@@ -1,7 +1,7 @@
 # Requirements: asterisk-chan-simbox
 
 > Version: 1.0
-> Status: DRAFT
+> Status: APPROVED
 > Last Updated: 2026-08-21
 
 ## Problem Statement
@@ -235,34 +235,22 @@ other platforms get their own code paths without touching proven logic.
 
 ## Open Questions
 
-- [ ] **Sequencing vs. `sdd-flutter_gsm`**: does `flutter_gsm`'s Linux
-      implementation wait for this flow's shim, or does `flutter_gsm`
-      ship stubbed (per its own decided default) while this flow proceeds
-      in parallel, with integration as a later, explicit step? Recommend
-      parallel-with-explicit-integration-step, matching how
-      `sdd-flutter_gsmsip-interface`/`vdd-simbox-app-uiux` were
-      sequenced (build against a fake/stub, integrate later) — confirm.
-- [ ] **Discovery generation choice** (Must Have #5) — confirm the
-      standalone-daemon generation (`adiscovery_core_new.c`/
-      `adiscovery_simnode.c`) over the in-process one, or provide a
-      reason to prefer the in-process path instead.
-- [ ] **Enforcement mechanism for the read-only constraint** (Must Have
-      #1) — pre-commit hook, CI check, or structural (don't `git add` the
-      reference trees at all, treat them as pinned external checkouts)?
-      Needs a decision before implementation, not just a policy.
-- [ ] **OpenWRT toolchain specifics** — cross-compilation via OpenWRT's
-      SDK/buildroot, or a more generic "just needs to compile for
-      MIPS/ARM Linux with musl libc" framing? Affects how much OpenWRT-
-      specific work this flow needs to do vs. inherits for free from
-      general Linux portability.
-- [ ] Should `libsCpp/asterisk_chan_simbox` get its own git repo (like
-      `flutter_gsm`/`flutter_gsmsip`/`chan_svistok` did), and if so,
-      should the read-only reference trees be git submodules pointing at
-      their real upstreams (wdoekes/pulpoff's actual GitHub repos,
-      chan_svistok's real repo) rather than plain copied directories?
-      Submodules would make the "read-only" constraint self-enforcing at
-      the tooling level — worth considering before this flow generates
-      much history.
+- [x] **Sequencing vs. `sdd-flutter_gsm`**: **Параллельно.** `flutter_gsm`
+      идёт параллельно со стабами, интеграция — отдельный шаг позднее.
+      *(Решено Антоном 2026-08-21)*
+- [x] **Discovery generation choice** (Must Have #5): **Оставить как есть,
+      ничего не трогать.** Не менять текущую архитектуру discovery на данном
+      этапе. *(Решено Антоном 2026-08-21)*
+- [x] **Enforcement mechanism for the read-only constraint** (Must Have
+      #1): **Ручная проверка.** Антон смотрит вручную, автоматизация
+      (pre-commit hook, CI) не требуется. *(Решено Антоном 2026-08-21)*
+- [x] **OpenWRT toolchain specifics**: **Достаточно generic Linux.**
+      На данном этапе достаточно "просто компилируется для MIPS/ARM Linux
+      с musl libc", без специфичной интеграции с OpenWRT SDK/buildroot.
+      *(Решено Антоном 2026-08-21)*
+- [x] **Git repo / submodules**: **Git управляется Антоном самостоятельно.**
+      Решения по структуре репозитория, submodules и git remote —
+      вне скоупа этого флоу. *(Решено Антоном 2026-08-21)*
 
 ## References
 
@@ -287,6 +275,6 @@ other platforms get their own code paths without touching proven logic.
 
 ## Approval
 
-- [ ] Reviewed by: Anton Dodonov
-- [ ] Approved on:
+- [x] Reviewed by: Anton Dodonov
+- [x] Approved on: 2026-08-21
 - [ ] Notes:
