@@ -91,6 +91,16 @@ typedef struct {
     bool        auto_recover_diag;
 } simbox_config_t;
 
+/* `event` is heap-allocated and ownership transfers to the callback —
+ * the callback must free() it once done reading it. This is required
+ * (not just convenient) because FFI listener-style callbacks (e.g.
+ * Dart's NativeCallable.listener, used by flutter_gsm's
+ * SimboxModemRepository) are asynchronous: the native call that invoked
+ * this callback returns before the receiver actually processes the
+ * event, so a stack-allocated `simbox_event_t` would already be
+ * out-of-scope by the time it's read. Every simbox_*.c call site that
+ * fires this callback must heap-allocate accordingly — see
+ * simbox_api.c's simbox_device_register() for the pattern. */
 typedef void (*simbox_event_cb)(const simbox_event_t *event, void *userdata);
 typedef void (*simbox_prog_progress_cb)(int percent, const char *stage, void *userdata);
 

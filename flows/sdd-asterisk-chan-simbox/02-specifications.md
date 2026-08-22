@@ -1,8 +1,15 @@
 # Specifications: asterisk-chan-simbox
 
-> Version: 1.0
-> Status: APPROVED
-> Last Updated: 2026-08-21
+> Version: 1.1
+> Status: REOPENED — §9 amendment pending approval, rest still valid
+> Last Updated: 2026-08-22
+
+**Everything below through §8 describes the Asterisk-compatibility
+shim (`adapters/`) — confirmed still accurate; chan_svistok's 20 files
+really do compile against it.** §9 is new: it specifies how `src/`'s
+public API must actually *drive* that shimmed chan_svistok, which the
+delivered implementation didn't do — see
+`01-requirements.md`'s "Amendment 2026-08-22" for the full finding.
 
 ## 1. Overview
 
@@ -552,8 +559,311 @@ the read-only tree. **Decision**: implement the macros (~100 lines).
 
 ---
 
+## 9. Amendment 2026-08-22 — Real Adapter Wiring
+
+Specifies how `src/simbox_*.c` must drive chan_svistok's real logic
+through the shim, per requirements' new Must-Haves #8-#10. Grounded in
+direct reads of `channel.c`/`chan_dongle.c`/`at_command.c` (function
+names/signatures below are real, not inferred) — anything not yet
+traced is marked explicitly rather than guessed.
+
+**Platform split (correction 2026-08-22, later same day)**: everything
+in §9.1-9.5 below — the whole point of calling into chan_svistok's real
+`load_module`/`channel_tech`/`at_enque_*`/`gpublic` machinery — is
+**Linux-only**, because chan_svistok itself is Linux-only by design
+(confirmed empirically during Task 5.2: its background discovery thread
+calls real `/sys/bus/usb/devices` scanning code that has no
+non-Linux equivalent and isn't meant to). Every `src/simbox_*.c`
+function this section describes must be written as:
+
+```c
+#ifdef __linux__
+    /* real chan_svistok-driving implementation, per §9.1-9.5 below */
+#else
+    /* macOS/Windows/other: chan_svistok's internals never run here.
+     * Stub-first, per the existing Should-Have default — same
+     * "not implemented on this platform" shape ModemRepositoryImpl
+     * already wraps into a typed exception on the Dart side, not a
+     * fabricated simulation. */
+#endif
+```
+
+This isn't new scope — it directly implements this document's own
+pre-existing secondary user story ("OS-specific code added via
+preprocessor macros... inside the new adapters/src/ layer... Linux
+behavior needs minimal changes... other platforms get their own code
+paths without touching proven logic"), just applied consistently from
+here on, including to Task 5.2's already-built module-capture code
+(the capture mechanism itself — `adapters/`'s macro change — is
+harmless to compile on any platform; it's *calling*
+`simbox_module_bridge_load()` from `src/` that must be
+`#ifdef __linux__`-gated, starting with Task 5.3).
+
+**Corrected 2026-08-22 (same day, per Anton's direct guidance)**: the
+first draft below proposed adding `EXPORT_DEF` to five functions inside
+`asterisk_chan_svistok/` as a "visibility-only" exception to the
+read-only rule. Rejected — the rule has no exceptions. Every design
+below now reaches chan_svistok exclusively through symbols it **already**
+exports, or through adapter-side capture of the `AST_MODULE_INFO` macro
+(which lives in `adapters/`, not the read-only tree). **Zero
+modification of `asterisk_chan_svistok/` anywhere in this section.**
+
+**Governing rule for `src/`**: every function in `src/simbox_*.c` must
+be a thin marshaller — unpack `simbox_api.h`'s primitive parameters,
+call straight into an already-exported chan_svistok symbol (or an
+adapter-side wrapper that itself does the same), pack the result back.
+No independent state, no parallel logic. If a `src/` function needs more
+than a few lines, that logic belongs in `adapters/` instead.
+
+### 9.1 Device population: the real, already-exported `gpublic` list
+
+`simbox_device_t` currently wraps a hand-rolled
+`struct simbox_device_internal` (see `simbox_modem.c`) with no
+connection to chan_svistok. It must instead wrap a real `struct pvt *`
+from chan_dongle's own live device list — which, it turns out,
+chan_svistok **already exports** in full:
+
+```c
+// chan_dongle.h — already EXPORT_DECL, no changes needed:
+typedef struct public_state {
+    AST_RWLIST_HEAD(devices, pvt) devices;   // real, walkable device list
+    ...
+} public_state_t;
+EXPORT_DECL public_state_t * gpublic;         // the live global instance
+
+EXPORT_DECL struct pvt * find_device_ex(struct public_state * state, const char * name);
+EXPORT_DECL struct pvt * find_device_ext(const char * name, const char ** reason);
+```
+
+`gpublic->devices` only gets populated once `load_module()` runs
+(`load_module` → `public_state_init(gpublic)` → per-device
+`pvt_create()`, all internal to `chan_dongle.c`). `load_module` itself
+is `static` — chan_svistok has no exported way to call it directly. But
+it doesn't need one: `chan_dongle.c`'s own unmodified
+
+```c
+AST_MODULE_INFO(ASTERISK_GPL_KEY, AST_MODFLAG_DEFAULT, MODULE_DESCRIPTION,
+    .load = load_module, .unload = unload_module, .reload = reload_module);
+```
+
+expands against the **shim's** `AST_MODULE_INFO` macro
+(`adapters/include/asterisk/module.h`, part of the adapter, freely
+editable). The current shim stores the resulting `ast_module_info`
+in a function-local `static` — invisible outside `chan_dongle.c`'s own
+translation unit. Changing *only the macro's expansion* (not
+chan_svistok's invocation of it, which stays byte-identical) to also
+register that `ast_module_info` pointer in an adapter-owned registry
+(e.g. `simbox_module_registry_register(&__mod_info)`, a new function in
+a new `adapters/src/shim_module_registry.c`) gives `src/simbox_api.c` a
+legitimate way to retrieve `.load`/`.unload` and call them —
+`simbox_init()` calls the captured `load()` once, which runs
+chan_dongle's real, unmodified config-file-driven device population,
+after which `gpublic->devices` is real.
+
+**This reframes discovery** (per requirements' Open Question, resolved
+this way): a "discovered" device becomes a **configured** device
+(data_tty/audio_tty/imei from a config file, chan_dongle-style), not
+something found by scanning `/sys/bus/usb/devices`.
+`simbox_discovery.c`'s USB-scan stub can stay a stub — `simbox_api.h`'s
+public `simbox_device_count`/`get_by_index`/`get_by_sn` should walk
+`gpublic->devices` directly (via the already-shimmed `AST_RWLIST_TRAVERSE`
+macro) instead. `simbox_config_t.config_dir` (already a public field,
+currently unused) is the natural place to point at the dongle-style
+config file consumed by `dc_config.c` during `load_module()`.
+
+### 9.2 Calls: the already-exported `channel_tech` struct
+
+```c
+// channel.c — already EXPORT_DEF, no changes needed:
+EXPORT_DEF struct ast_channel_tech channel_tech = {
+    .requester = channel_request,   // static, but reachable via this pointer
+    .call      = channel_call,      // static, but reachable via this pointer
+    .hangup    = channel_hangup,    // static, but reachable via this pointer
+    .answer    = channel_answer,    // static, but reachable via this pointer
+    ...
+};
+```
+
+`channel_request`/`channel_call`/`channel_hangup`/`channel_answer` are
+individually `static`, but the struct holding pointers to all four is
+already `EXPORT_DEF` — external code reaches them through the struct,
+never needing the individual symbols to be non-static. No
+read-only-tree change of any kind needed here.
+
+- `simbox_call_originate(dev, number)` → build a dial string
+  (`"<donglename>/<number>"`, matching `channel_request`'s
+  `parse_dial_string`+`find_device_by_resource` parsing — confirmed by
+  reading `channel_request`'s body) → `channel_tech.requester(type, cap,
+  NULL, dial_string, &cause)` to allocate an `ast_channel` bound to this
+  `pvt` → `channel_tech.call(channel, dest, 0)` to actually dial. The
+  returned `ast_channel*` must be kept (cached on the
+  `simbox_device_t`/`pvt` wrapper) for the matching hangup/answer calls.
+- `simbox_call_hangup(dev)` → `channel_tech.hangup(channel)` on the
+  cached channel.
+- `simbox_call_answer(dev)` → `channel_tech.answer(channel)` on the
+  cached channel (this path is for *incoming* calls the shim's PBX hook
+  — §9.5 — already allocated a channel for).
+
+### 9.3 SMS / USSD / raw AT: `at_enque_*`
+
+```c
+// at_command.c, real signatures:
+EXPORT_DEF int at_enque_sms(struct cpvt* cpvt, const char* destination, const char* msg, unsigned validity_minutes, int report_req, void ** id);
+EXPORT_DEF int at_enque_ussd(struct cpvt * cpvt, const char * code, const char *u1, unsigned u2, int u3, void ** id);
+EXPORT_DEF int at_enque_cmd_proc(struct cpvt* cpvt, const char * cmd);
+```
+
+Already `EXPORT_DEF` — no visibility change needed, these are already
+part of chan_svistok's intended public seam.
+
+- `simbox_sms_send(dev, number, message)` → `at_enque_sms(cpvt, number,
+  message, /*validity*/ 0, /*report_req*/ 0, &id)`. Needs a `struct
+  cpvt*` (channel-pvt pairing), not just the bare `pvt` — `cpvt.c`
+  (already compiling) is chan_svistok's own management of this; exact
+  cpvt-acquisition call to use for a non-call SMS/USSD context (i.e., no
+  active `ast_channel`) needs verification at implementation time — flag
+  as an implementation-time investigation, not guessed here.
+- `simbox_ussd_send(dev, code)` → `at_enque_ussd(cpvt, code, NULL, 0, 0,
+  &id)`. Result (`SIMBOX_EVENT_USSD_RESPONSE`) arrives asynchronously via
+  the AT-response parser (`at_response.c`) — must be wired to fire
+  through §9.5's event path, not returned synchronously (this was
+  already correctly specified as event-based in `sdd-flutter_gsm-ffi`'s
+  own specs, just never had a real firing source before now).
+- `simbox_at_command(dev, cmd, response_buf, buf_len)` → `at_enque_cmd_proc(cpvt,
+  cmd)`. Response capture: `at_enque_cmd_proc` enqueues async, response
+  arrives via `at_response.c`'s parser — the adapter needs a
+  synchronous-looking wrapper (block on a condition variable until the
+  matching response arrives, or timeout) since `simbox_at_command`'s
+  existing signature is synchronous (`response_buf` filled by return
+  time) — implementation-time detail, not a signature change.
+
+### 9.4 IMEI change
+
+Not yet traced to a specific chan_svistok entry point — `at_command.c`
+has no obvious `at_enque_imei_change`. Investigate at implementation
+time (likely a raw AT command sequence, e.g. Qualcomm DIAG-mode via the
+existing `programmator/` subsystem — `simbox_prog_change_imei` already
+exists in the public API and may be the *actual* right home for this,
+with `simbox_change_imei` becoming a thin wrapper around
+`simbox_prog_*` rather than an AT-command path). Flag as an open
+implementation question, not resolved here.
+
+### 9.5 Events: wire through `shim_pbx.c`, not ad-hoc `simbox_api.c` calls
+
+Per this document's original §2.1 PBX category note: `ast_pbx_start` was
+always meant to become "the incoming call event callback" — that's
+chan_svistok's own real hook for "a call arrived, hand it to the PBX
+layer." `shim_pbx.c` (Phase 2, already implemented per
+`04-implementation.md`) should be the *only* place that invokes
+`simbox_api.c`'s registered `simbox_event_cb` for call/registration
+events — not new ad-hoc `cb(...)` call sites scattered through
+`simbox_modem.c`. SMS/USSD-response events likely need a second real
+hook into `at_response.c`'s completion path (where an enqueued
+`at_enque_sms`/`at_enque_ussd`'s response actually arrives) — verify
+whether `shim_pbx.c` already covers this or whether `at_response.c`
+needs its own event-dispatch hook, at implementation time.
+
+**Ownership/lifetime rule carries over unchanged**: every event fired
+through any of these real hooks must be heap-allocated before invoking
+the callback (see `simbox_types.h`'s `simbox_event_cb` doc comment,
+added by `sdd-flutter_gsm-ffi` after finding a stack-lifetime bug in the
+one event-firing site that existed before this amendment) — applies to
+every new firing site this amendment adds, not just the one already
+fixed.
+
+### 9.6 What stays exactly as-is
+
+- `simbox_prog_*` (DIAG programmator) and `simbox_reader_*` (APDU SIM
+  reader) — not touched by this amendment; requirements' Must-Have #6
+  already scoped them as separate surfaces, and nothing in the "adapter
+  doesn't drive real logic" finding was about these two (not
+  independently re-verified here — worth a follow-up grep before
+  assuming they're fine, but out of this amendment's immediate scope).
+- The public `simbox_api.h` C signatures — per requirements' Amendment,
+  this rework should be purely internal.
+- The Asterisk-compatibility shim itself (`adapters/`) — confirmed
+  working, no changes needed.
+- **`asterisk_chan_svistok/` and `asterisk_chan_dongle/` — literally
+  every byte, forever.** Restated once more here because it's the
+  organizing constraint of this entire section: nothing in §9.1-9.5
+  touches either tree. All new code lives in `adapters/` (macro/registry
+  additions) or `src/` (thin marshalling calls).
+
+### 9.7 `EXPORT_DEF`/`EXPORT_DECL` symbol audit (requirements' Must-Have #9, Task 5.1, done 2026-08-22)
+
+327 total `EXPORT_DEF`/`EXPORT_DECL` hits across chan_svistok's `.c`/`.h`
+files — most are CLI commands, AMI manager actions, and internal
+helpers irrelevant to an FFI driver with no dialplan/CLI/AMI consumer.
+Full grep dump not reproduced here (not useful as prose); the table
+below is the curated subset actually relevant to Phase 5's remaining
+tasks, pulled from `chan_dongle.h`/`.c`, `channel.h`/`.c`,
+`at_command.h`, `cpvt.h`.
+
+| Symbol | File | Signature (abridged) | Relevance |
+|---|---|---|---|
+| `gpublic` | `chan_dongle.h` | `public_state_t *` | The live global device list (§9.1) |
+| `find_device_ex`/`find_device_ext` | `chan_dongle.h` | `(state, name)` / `(name, &reason)` | Device lookup by name |
+| `pvt_str_state`/`pvt_str_state_ex` | `chan_dongle.h` | `(const pvt*) -> const char*` | Human-readable device state, for diagnostics |
+| `pvt_try_restate` | `chan_dongle.h` | `(pvt*)` | Device state-machine driver |
+| `is_dial_possible`/`ready4voice_call` | `chan_dongle.h` | `(const pvt*, ...) -> int` | Pre-flight checks before `simbox_call_originate` |
+| `channel_tech` | `channel.h` | `struct ast_channel_tech` | `.requester`/`.call`/`.hangup`/`.answer` — full `ast_channel`-based call control (§9.2's original design) |
+| `new_channel` | `channel.h` | `(pvt, ast_state, cid_num, call_idx, dir, state, exten, requestor) -> ast_channel*` | Needed if using the `channel_tech` path |
+| `queue_hangup` | `channel.h` | `(ast_channel*, cause) -> int` | Alternative hangup path via channel, not `cpvt` |
+| `change_channel_state` | `channel.h` | `(cpvt*, newstate, cause)` | Direct `cpvt`-level state transition — lower-level than `channel_tech` |
+| **`cpvt_alloc`** | `cpvt.h` | `(pvt*, call_idx, dir, call_state_t) -> cpvt*` | **New finding**: acquires a `cpvt` directly, no `ast_channel` needed — resolves §9.3's flagged-open "cpvt outside a call" question |
+| `cpvt_free`/`pvt_find_cpvt` | `cpvt.h` | | Release / look up a `cpvt` |
+| **`at_enque_dial`** | `at_command.h` | `(cpvt*, number, clir) -> int` | **New finding**: direct `cpvt`-level dial, no `channel_request`/`channel_tech.call` dance needed |
+| **`at_enque_answer`** | `at_command.h` | `(cpvt*) -> int` | Direct `cpvt`-level answer |
+| **`at_enque_hangup`** | `at_command.h` | `(cpvt*, call_idx) -> int` | Direct `cpvt`-level hangup |
+| `at_enque_sms`/`at_enque_ussd`/`at_enque_cmd_proc` | `at_command.h` | (unchanged from earlier draft) | SMS/USSD/raw AT |
+| `at_response` | `at_response.h` | `(pvt*, iovec*, iovcnt, at_res_t) -> int` | Where AT responses actually land — the real hook for event/response wiring (§9.5) |
+| `dc_config_fill`/`dc_sconfig_fill`/`dc_gconfig_fill` | `dc_config.h` | take `struct ast_config *` | Config-file parsing — needs the shim's `ast_config` (already built: `shim_config.c`, per Phase 2) |
+| `self_module` | `chan_dongle.h` | `() -> struct ast_module *` | Possibly relevant to the `AST_MODULE_INFO` capture design (§9.1) — investigate at Task 5.2 |
+
+**Design refinement from this audit**: `cpvt_alloc` +
+`at_enque_dial`/`at_enque_answer`/`at_enque_hangup` are a **simpler,
+lower-level alternative** to §9.2's original `channel_tech`-based call
+design — operating directly on a `cpvt` without needing to fabricate a
+full `ast_channel` via `channel_request` (which does dial-string
+parsing, format-capability checks, and other Asterisk-dialplan-oriented
+work the FFI driver doesn't need). **Preferred for Task 5.5/5.6**: use
+`cpvt_alloc`+`at_enque_*` directly; keep `channel_tech` as a documented
+fallback if the lower-level path turns out to skip state-tracking the
+adapter needs (e.g. if audio routing or hangup-cause propagation
+genuinely requires the full channel machinery — verify empirically at
+implementation time, don't assume either way in advance).
+
+### 9.8 Test sequencing (requirements' Must-Have #10)
+
+- **First** (before any `adapters/`/`src/` code for this amendment):
+  build and run chan_svistok's own existing test files
+  (`chan_svistok/test/test1.c`, `chan_svistok/simnode/adiscovery_test.c`,
+  `chan_svistok/programmator/ttyprog_test.c`,
+  `chan_svistok/reader/old/test.c`) against chan_svistok directly, to
+  establish a verified, known-good behavioral baseline. These files are
+  read-only like the rest of chan_svistok — build a harness *around*
+  them (a new `tests/`-side Makefile target), don't modify them to run.
+- **Last** (once all of §9.1-9.5's wiring is implemented and the
+  regular `tests/test_simbox.c` suite passes): copy those exact same
+  four files **verbatim** into `libsCpp/asterisk_chan_simbox/tests/`
+  and build/run them against the new adapter/shim path. Passing without
+  modification is the concrete, mechanical proof that the adapter
+  forwards to real behavior rather than reimplementing it — the
+  strongest test this flow can offer against its own original failure
+  mode recurring.
+
+---
+
 ## Approval
 
 - [ ] Reviewed by: Anton Dodonov
-- [ ] Approved on:
+- [ ] Approved on: (original §1-8 content — never formally checked off
+      despite `_status.md` claiming "Specifications approved
+      2026-08-21"; carrying that inconsistency forward rather than
+      silently fixing it)
+- [x] Reviewed by: Anton Dodonov — corrected §9's first draft directly
+      (rejected read-only-tree modification, redirected to
+      already-exported-symbol + `AST_MODULE_INFO`-capture design; added
+      §9.7/9.8)
+- [x] Approved on: 2026-08-22 (§9 amendment, corrected version)
 - [ ] Notes:

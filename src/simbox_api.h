@@ -31,6 +31,19 @@ simbox_device_t simbox_device_get_by_index(simbox_handle_t handle, int index);
 simbox_device_t simbox_device_get_by_sn(simbox_handle_t handle, const char *sn);
 
 int             simbox_device_get_info(simbox_device_t dev, simbox_device_info_t *info);
+
+/* Registers a device found by the discovery subsystem (see section 6)
+ * into this handle's device registry, so it becomes visible to
+ * simbox_device_count()/simbox_device_get_by_index()/get_by_sn() and
+ * operable via the call/SMS/AT-command functions below. Idempotent: a
+ * second registration of an already-known serial number is a no-op that
+ * returns 0 without creating a duplicate entry. Fires
+ * SIMBOX_EVENT_DEVICE_CONNECTED via the registered event callback (see
+ * simbox_set_event_callback) on first registration. Returns 0 on
+ * success, -1 on failure (NULL args or registry full). */
+int             simbox_device_register(simbox_handle_t handle,
+                                        const simbox_discovered_device_t *discovered);
+
 const char     *simbox_device_sn(simbox_device_t dev);
 const char     *simbox_device_imei(simbox_device_t dev);
 const char     *simbox_device_imsi(simbox_device_t dev);

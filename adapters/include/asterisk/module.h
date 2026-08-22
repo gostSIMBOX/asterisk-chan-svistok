@@ -29,14 +29,27 @@ struct ast_module_info {
     const char *name;
 };
 
+/* Declared here so simbox_module_bridge.c (adapters/src/) can reach the
+ * definition AST_MODULE_INFO(...) below creates in chan_dongle.c's
+ * translation unit — see that macro's comment. */
+extern struct ast_module_info *ast_module_info;
+
+/* External linkage (not `static`), deliberately: chan_dongle.c's own
+ * unmodified AST_MODULE_INFO(...) invocation expands to this, and
+ * simbox_module_bridge.c (adapters/src/) needs to reach the resulting
+ * .load/.unload/.reload pointers from a different translation unit —
+ * this is the sole "прокидка" mechanism Task 5.2 adds, entirely inside
+ * the adapter, with zero changes to chan_dongle.c itself. Only one file
+ * in this codebase (chan_dongle.c) uses this macro (confirmed via
+ * grep), so there's no multi-definition risk. */
 #define AST_MODULE_INFO(keystr, flags_val, desc, fields...) \
-    static struct ast_module_info __mod_info = { \
+    struct ast_module_info __mod_info = { \
         .key = keystr, \
         .flags = flags_val, \
         .description = desc, \
         fields \
     }; \
-    static struct ast_module_info *ast_module_info = &__mod_info
+    struct ast_module_info *ast_module_info = &__mod_info
 
 #define AST_MODULE_INFO_STANDARD(keystr, desc) \
     AST_MODULE_INFO(keystr, AST_MODFLAG_DEFAULT, desc, .load = load_module, .unload = unload_module)

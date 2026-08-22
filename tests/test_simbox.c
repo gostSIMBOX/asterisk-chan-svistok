@@ -115,6 +115,64 @@ static void test_discovery(void)
     printf("Discovery test passed.\n");
 }
 
+/* Proves simbox_device_register() actually wires a discovered device
+ * into the queryable registry (simbox_device_count/get_by_index/
+ * get_by_sn) — the gap sdd-flutter_gsm-ffi found: simbox_init() never
+ * populated the registry from discovery, and the only thing that did
+ * (simbox_device_create()) isn't in the public header. Real USB
+ * enumeration returns 0 devices in this test environment (see Test 3
+ * above), so a discovered_device is hand-built here, same as
+ * test_device_operations() already hand-builds a simbox_device_info_t —
+ * this test is specifically about the registration/registry wiring, not
+ * about real hardware discovery. */
+static void test_discovery_registry_wiring(void)
+{
+    printf("\n=== Test 6: Discovery -> Registry Wiring ===\n");
+    simbox_handle_t handle = simbox_init(NULL);
+    assert(handle != NULL);
+
+    int events_before = g_event_count;
+    simbox_set_event_callback(handle, test_event_handler, NULL);
+
+    assert(simbox_device_count(handle) == 0);
+
+    simbox_discovered_device_t discovered;
+    memset(&discovered, 0, sizeof(discovered));
+    strncpy(discovered.dev_name, "dongle0", sizeof(discovered.dev_name) - 1);
+    strncpy(discovered.serial_number, "REG_TEST_SN_001", sizeof(discovered.serial_number) - 1);
+    strncpy(discovered.imei, "864321099999999", sizeof(discovered.imei) - 1);
+    strncpy(discovered.data_port, "/dev/ttyUSB0", sizeof(discovered.data_port) - 1);
+    strncpy(discovered.audio_port, "/dev/ttyUSB1", sizeof(discovered.audio_port) - 1);
+
+    int res = simbox_device_register(handle, &discovered);
+    assert(res == 0);
+    assert(simbox_device_count(handle) == 1);
+    assert(g_event_count == events_before + 1); /* SIMBOX_EVENT_DEVICE_CONNECTED fired */
+
+    simbox_device_t dev = simbox_device_get_by_sn(handle, "REG_TEST_SN_001");
+    assert(dev != NULL);
+    assert(strcmp(simbox_device_sn(dev), "REG_TEST_SN_001") == 0);
+    assert(strcmp(simbox_device_imei(dev), "864321099999999") == 0);
+
+    simbox_device_t by_index = simbox_device_get_by_index(handle, 0);
+    assert(by_index == dev);
+
+    simbox_device_info_t info;
+    res = simbox_device_get_info(dev, &info);
+    assert(res == 0);
+    assert(strcmp(info.tty_data, "/dev/ttyUSB0") == 0);
+    assert(strcmp(info.tty_audio, "/dev/ttyUSB1") == 0);
+
+    /* Idempotency: re-registering the same serial must not duplicate it */
+    res = simbox_device_register(handle, &discovered);
+    assert(res == 0);
+    assert(simbox_device_count(handle) == 1);
+    assert(g_event_count == events_before + 1); /* no second CONNECTED event */
+
+    simbox_shutdown(handle);
+    printf("Discovery -> registry wiring test passed.\n");
+}
+
 static void test_programmator(void)
 {
     printf("\n=== Test 4: Qualcomm DIAG Programmator ===\n");
@@ -165,9 +223,10 @@ int main(void)
     test_discovery();
     test_programmator();
     test_reader();
+    test_discovery_registry_wiring();
 
     printf("\n========================================\n");
-    printf("ALL 5 INTEGRATION TEST SUITES PASSED!\n");
+    printf("ALL 6 INTEGRATION TEST SUITES PASSED!\n");
     printf("========================================\n");
     return 0;
 }

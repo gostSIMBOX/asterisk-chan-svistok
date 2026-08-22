@@ -1,8 +1,143 @@
 # Requirements: asterisk-chan-simbox
 
-> Version: 1.0
-> Status: APPROVED
-> Last Updated: 2026-08-21
+> Version: 1.2
+> Status: REOPENED — Amendment below approved scope, see "Amendment 2026-08-22"
+> Last Updated: 2026-08-22
+
+## Amendment 2026-08-22 — reopened after a real gap found downstream
+
+`sdd-flutter_gsm-ffi` (the consumer flow, binding `flutter_gsm`'s Linux
+platform to `libsimbox` via `dart:ffi`) found, while implementing SMS/
+USSD wiring, that **the delivered implementation never actually drives
+`chan_svistok`'s real logic**. Confirmed by direct grep: `src/simbox_modem.c`,
+`simbox_discovery.c`, `simbox_api.c` contain **zero references** to any
+chan_svistok symbol (`pvt`, `cpvt`, `at_enque_*`, `channel_request`,
+`find_device_by_resource`, etc.). `simbox_call_originate`/`simbox_sms_send`/
+`simbox_ussd_send`/`simbox_at_command` all just flip an in-memory
+`struct simbox_device_internal` or return a canned string — no real
+serial I/O, no AT commands sent, ever. `chan_svistok`'s actual channel/
+AT-command engine (20 files, confirmed compiling into `libsimbox.a` per
+`04-implementation.md`'s own matrix) is linked but never called.
+
+This directly contradicts this document's own original Must-Have #3
+("adapters/`src/` link/compile `asterisk_chan_svistok`'s unmodified
+source **against the shim**... to produce a standalone binary/library")
+and the approved plan's own Task 3.3, which explicitly declared
+`simbox_modem.c` **dependent on** Phase 2's shim (`shim_channel.c`,
+`shim_pbx.c` — the pieces that wrap chan_svistok's real channel-tech
+callbacks). The dependency was declared but never actually exercised in
+the delivered code, and neither `04-implementation-log.md` (still the
+blank template — never filled in) nor `04-implementation.md` documents
+this as a deliberate deviation. It appears to have been silently
+dropped, not decided.
+
+**What was real and should be kept**: the Asterisk-compatibility shim
+itself (`adapters/` — 22 headers + 12 C shim files) — chan_svistok's 20
+source files genuinely compile against it (verified, not just claimed:
+see this flow's own `04-implementation.md` §3, and re-confirmed by
+`sdd-flutter_gsm-ffi` independently rebuilding it clean). That part of
+the Strangler Fig worked. **What didn't**: the public API layer (`src/`)
+was supposed to be a thin adapter *driving* that shimmed chan_svistok
+through its real entry points, and instead became a parallel,
+from-scratch simulation that happens to expose the same function
+signatures. New Must-Have #8 below makes this failure mode mechanically
+checkable going forward, not just describable in prose.
+
+### Correction 2026-08-22 (same day, Anton's direct guidance)
+
+The first draft of this amendment's fix (specifications §9 v1, plan
+Phase 5 v1) proposed adding `EXPORT_DEF` to five `static` functions
+*inside* `asterisk_chan_svistok/` as a "visibility-only, not a logic
+change" exception to the read-only rule. **Anton rejected this
+explicitly**: the read-only constraint has no exceptions, not even
+visibility-only ones. Corrected instruction, restated precisely:
+
+- `asterisk_chan_svistok/` and `asterisk_chan_dongle/` (both forks) stay
+  **100% byte-identical, zero diffs, no exceptions** — this was already
+  the rule; the correction is that it really does mean *zero*, including
+  changes as small as adding a linkage keyword.
+- All "прокидка" (forwarding/proxying) of chan_svistok's real functions
+  happens **from the adapter side only** — either by calling symbols
+  chan_svistok *already* exports with external linkage (its own
+  `EXPORT_DEF`/`EXPORT_DECL` convention — re-audit needed, see Must-Have
+  #9 below, since several relevant symbols turn out to already be
+  exported: `channel_tech` — the `ast_channel_tech` struct holding
+  `.call`/`.hangup`/`.answer`/`.requester` function pointers —
+  `at_enque_sms`/`at_enque_ussd`/`at_enque_cmd_proc`, `find_device_ex`/
+  `find_device_ext`, and the global device list `gpublic` itself are
+  *all* already `EXPORT_DEF`/`EXPORT_DECL`), or by writing new adapter-
+  side code that captures an already-exposed *indirect* hook — concretely,
+  the shim's own `adapters/include/asterisk/module.h` (part of the
+  adapter, not the read-only tree) defines the `AST_MODULE_INFO` macro
+  that chan_dongle.c's unmodified `AST_MODULE_INFO(...)` invocation
+  expands against; changing *that macro's definition* (adapter-side) to
+  register the resulting `ast_module_info->load`/`.unload`/`.reload`
+  function pointers somewhere externally reachable gives the adapter a
+  legitimate way to trigger `load_module()` (and therefore real device
+  population) without chan_svistok's source changing by one byte.
+- **New rule for `src/`**: everything in `libsCpp/asterisk_chan_simbox/src/`
+  must be **minimal** — thin functions that marshal `simbox_api.h`'s
+  primitive-typed parameters into calls against symbols the adapter
+  layer exposes, and marshal the results back. No independent logic,
+  no reimplementation, no parallel state machines. If a `src/` function
+  needs more than a few lines to do its job, that's a signal the real
+  logic belongs in `adapters/` (wrapping/exposing more of chan_svistok),
+  not in `src/`.
+- **New process requirement**: test coverage comes *first*, not last.
+  Before any adapter/API code is written, establish a verified baseline
+  of chan_svistok's own existing test files (`chan_svistok/test/test1.c`,
+  `chan_svistok/simnode/adiscovery_test.c`,
+  `chan_svistok/programmator/ttyprog_test.c`,
+  `chan_svistok/reader/old/test.c` — all already exist, not written by
+  this flow) — see new Must-Have #10. Then, as the **final** step once
+  all `adapters/`/`src/` code is written, those exact same test files
+  are **copied verbatim (not rewritten, not adapted)** into
+  `libsCpp/asterisk_chan_simbox/tests/` and run *through* the new
+  adapter/shim build path — if they still pass unmodified, that's direct
+  proof the forwarding preserves chan_svistok's real, verified behavior
+  rather than reimplementing it. This is the strongest possible
+  regression guard against the exact failure this amendment exists to
+  fix.
+
+**Cross-flow note**: `sdd-flutter_gsm-ffi` already built real, tested
+Dart FFI bindings against the *current* `simbox_api.h` signatures
+(including a new `simbox_device_register()` this amendment's rework will
+likely need to reshape internally — see Open Questions). Per this
+document's own Must-Have #4, `simbox_api.h`'s public C signatures are
+the FFI seam and should not need to change for this rework to land —
+only what happens *inside* those functions changes. If a signature
+change turns out to be unavoidable, flag it back to
+`sdd-flutter_gsm-ffi` explicitly rather than silently breaking its
+bindings.
+
+### Correction 2026-08-22 (later same day) — platform split clarified
+
+While verifying Task 5.2, `chan_dongle.c`'s real `load_module()` was
+found to unconditionally start a background discovery thread that calls
+into real Linux `/sys/bus/usb/devices` scanning (`pdiscovery.c`) — which
+crashed on the macOS dev machine used for this session, since `/sys`
+doesn't exist there in the Linux sense. Anton clarified the intended
+architecture directly, resolving this cleanly: **`chan_svistok` is
+Linux-only by design — that's expected, not a bug to route around.**
+`chan_simbox` (this flow's `src/`/`adapters/` layer) is the
+cross-platform piece, and its job is: **on Linux, call chan_svistok's
+real, unmodified code as designed; on macOS/Windows/other platforms,
+provide separate implementations inside `#ifdef`-guarded branches keyed
+on OS**, not attempt to force chan_svistok's Linux-specific internals to
+run (or be tolerated as flaky) on platforms they were never designed
+for.
+
+This means: the real chan_svistok-driving code this amendment specifies
+(§9 in specifications) is the **Linux branch** of `src/simbox_*.c`.
+Non-Linux branches don't call `load_module()`/discovery/any Linux-only
+chan_svistok internals at all — they're a separate, explicitly-scoped
+implementation path (stub-first, per the existing Should-Have default
+for Windows/macOS, until/unless a real non-Linux driver is ever wanted).
+This isn't new scope — it's the correct realization of the *existing*
+"OS-specific code via `#ifdef`/`OS_type` convention inside
+`adapters/`/`src/`, never inside the read-only trees" secondary user
+story (already in this document, see below) — flagging that Task 5.2's
+first design draft didn't yet apply it consistently, now corrected.
 
 ## Problem Statement
 
@@ -180,6 +315,75 @@ other platforms get their own code paths without touching proven logic.
    consumption, not a Flutter UI target) — confirm this framing
    explicitly in specifications, don't assume.
 
+8. **(New, 2026-08-22 amendment, corrected same day)** **Given** this
+   flow's whole purpose is letting `flutter_gsm` drive chan_svistok's
+   *real* logic, not reimplement it, **and** given the read-only
+   constraint permits zero modification of `asterisk_chan_svistok/` —
+   not even visibility-only ones (see Correction above)
+   **When** `src/simbox_*.c`'s public API functions are implemented
+   **Then** each one that has a real chan_svistok equivalent must
+   actually call it, reached *only* through symbols chan_svistok already
+   exports (`EXPORT_DEF`/`EXPORT_DECL`) or through adapter-side capture
+   of an indirect hook (e.g. the `AST_MODULE_INFO` macro) — never via a
+   source change to the read-only tree:
+   - `simbox_call_originate`/`hangup`/`answer` must reach
+     `channel_tech.call()`/`channel_tech.hangup()`/`channel_tech.answer()`/
+     `channel_tech.requester()` — the already-`EXPORT_DEF`'d
+     `struct ast_channel_tech channel_tech` in `channel.c` holds these as
+     function pointers, reachable without `channel_request`/`channel_call`/
+     etc. themselves needing to be non-`static`.
+   - `simbox_sms_send`/`simbox_ussd_send`/`simbox_at_command` must reach
+     `at_enque_sms()`/`at_enque_ussd()`/`at_enque_cmd_proc()` — already
+     `EXPORT_DEF` in `at_command.c`, no capture needed.
+   - Device population must come from the real, already-`EXPORT_DECL`'d
+     global `gpublic` (`public_state_t *`, `chan_dongle.h`) — specifically
+     its `devices` field, a real `AST_RWLIST_HEAD` of `struct pvt`,
+     populated by `load_module()` → `public_state_init(gpublic)` →
+     `pvt_create()` internally. Since `load_module` is `static`, the
+     adapter must trigger it via the `AST_MODULE_INFO` macro-capture
+     mechanism (adapter-side change to `adapters/include/asterisk/module.h`),
+     not a direct call — not a hand-rolled parallel struct either way.
+   - **Verification**: `grep` for these symbol names (`channel_tech`,
+     `at_enque_sms`, `at_enque_ussd`, `at_enque_cmd_proc`, `gpublic`)
+     across `src/*.c` must find them present, not absent — add this as a
+     literal shell check in the test suite (fails loudly if a future
+     change silently reintroduces a simulation). Additionally, a
+     real-or-emulated-serial-port smoke test (e.g. a `socat` PTY pair
+     standing in for a ttyUSB device) must show actual AT command bytes
+     crossing the wire for at least one operation (`simbox_at_command`
+     is the simplest to verify this way) — "the function returns 0"
+     alone is not sufficient evidence, per this amendment's whole reason
+     for existing.
+
+9. **(New, 2026-08-22)** **Given** chan_svistok's own `EXPORT_DEF`/
+   `EXPORT_DECL` convention already marks a meaningful subset of its
+   functions/globals with external linkage (confirmed: `channel_tech`,
+   `at_enque_sms`/`ussd`/`cmd_proc`, `find_device_ex`/`find_device_ext`,
+   `gpublic`, `pvt_try_restate`, `pvt_str_state`, and others)
+   **When** specifications design the adapter's calls into chan_svistok
+   **Then** a full audit of `EXPORT_DEF`/`EXPORT_DECL` symbols happens
+   first (a Should-Have deliverable, mirroring the original `ast_*`
+   inventory's method) so the adapter is built against a complete,
+   accurate picture of what's *already* legitimately reachable, rather
+   than rediscovering reachable symbols one at a time while writing
+   adapter code.
+
+10. **(New, 2026-08-22)** **Given** chan_svistok already has its own
+    test files (`chan_svistok/test/test1.c`,
+    `chan_svistok/simnode/adiscovery_test.c`,
+    `chan_svistok/programmator/ttyprog_test.c`,
+    `chan_svistok/reader/old/test.c`) that this flow did not write and
+    must not modify
+    **When** the plan is sequenced
+    **Then** (a) establishing a verified baseline of these tests passing
+    against chan_svistok in isolation is the **first** implementation
+    task, before any adapter/API code is written, and (b) copying these
+    same files **verbatim** into `libsCpp/asterisk_chan_simbox/tests/`
+    and confirming they still pass when built through the new adapter/
+    shim path is the **last** implementation task — direct, mechanical
+    proof that forwarding preserves real behavior rather than
+    reimplementing it.
+
 ### Should Have
 
 - A concrete inventory (table) of the ~115 `ast_*` functions and ~15
@@ -251,6 +455,30 @@ other platforms get their own code paths without touching proven logic.
 - [x] **Git repo / submodules**: **Git управляется Антоном самостоятельно.**
       Решения по структуре репозитория, submodules и git remote —
       вне скоупа этого флоу. *(Решено Антоном 2026-08-21)*
+- [ ] **(New, 2026-08-22)** Does rewiring `src/simbox_*.c` to actually
+      drive chan_svistok's real `pvt`/`channel_tech`/`at_enque_*` engine
+      require any `simbox_api.h` signature changes, or can it stay a
+      pure internal-implementation change? Preliminary read: no
+      signature changes needed (the public API was already designed
+      around opaque handles + primitive params, which is compatible
+      with either a fake struct or a real `pvt*` underneath) — confirm
+      during specifications, since `sdd-flutter_gsm-ffi` has live Dart
+      FFI bindings against the current header that would break on any
+      signature drift.
+- [ ] **(New, 2026-08-22)** `simbox_discovery.c`'s real
+      `/sys/bus/usb/devices` enumeration is still a stub (`ctx->count = 0`
+      unconditionally) — `sdd-flutter_gsm-ffi` already worked around the
+      *registry* half of this gap (`simbox_device_register()`, letting a
+      discovered device become queryable), but the *discovery* half
+      (finding real USB devices at all) remains unimplemented. Is real
+      `/sys/bus/usb/devices` enumeration in scope for this amendment, or
+      a further follow-up? Given Must-Have #8's device-population
+      requirement now points at `pvt_create()`, and `chan_dongle.c`'s own
+      `load_module()`/`public_state_init()` already has real discovery
+      logic (config-file-driven via `dc_config.c`, per the original
+      Asterisk module) — the pragmatic path may be reusing *that*
+      existing logic rather than fixing `simbox_discovery.c`'s USB scan
+      independently. Flag for specifications to decide, don't assume.
 
 ## References
 
@@ -276,5 +504,12 @@ other platforms get their own code paths without touching proven logic.
 ## Approval
 
 - [x] Reviewed by: Anton Dodonov
-- [x] Approved on: 2026-08-21
+- [x] Approved on: 2026-08-21 (original scope)
+- [x] Reviewed by: Anton Dodonov — corrected the first draft of this
+      amendment directly (rejected any read-only-tree modification,
+      even visibility-only; redirected to adapter-side-only forwarding
+      via already-exported symbols + `AST_MODULE_INFO` capture; added
+      the test-first/test-copy-at-end sequencing requirement)
+- [x] Approved on: 2026-08-22 (Amendment, corrected version — new
+      Must-Haves #8-#10 + two Open Questions)
 - [ ] Notes:

@@ -134,9 +134,30 @@ void ast_config_destroy(struct ast_config *config)
     free(config);
 }
 
+/* CONFIG_STATUS_FILEUNCHANGED/FILEINVALID/FILEMISSING (config.h) are
+ * small-negative-int sentinel "error pointers" ast_config_load2()
+ * returns on failure — not NULL. A caller that doesn't check for these
+ * before passing the result to ast_variable_retrieve()/ast_variable_
+ * browse() (e.g. after a config file genuinely doesn't exist, the
+ * normal case when running standalone without a real dongle.conf) will
+ * dereference one of these bogus addresses and crash. Found the hard
+ * way: sdd-asterisk-chan-simbox's Phase 5.2 smoke test crashed with
+ * SIGSEGV at exactly 0xfffffffffffffffd (-3, CONFIG_STATUS_FILEMISSING)
+ * via chan_dongle.c's real reload_config() -> dc_gconfig_fill() ->
+ * here. Guarding here (not in chan_dongle.c, which is read-only) is the
+ * correct fix — a config-missing/invalid result should behave the same
+ * as a NULL config to every caller, silently. */
+static int is_bad_config(const struct ast_config *config)
+{
+    return config == NULL ||
+           config == CONFIG_STATUS_FILEUNCHANGED ||
+           config == CONFIG_STATUS_FILEINVALID ||
+           config == CONFIG_STATUS_FILEMISSING;
+}
+
 const char *ast_variable_retrieve(const struct ast_config *config, const char *category, const char *variable)
 {
-    if (!config || !category || !variable) return NULL;
+    if (is_bad_config(config) || !category || !variable) return NULL;
 
     struct ast_category *cat = config->root;
     while (cat) {
@@ -156,7 +177,7 @@ const char *ast_variable_retrieve(const struct ast_config *config, const char *c
 
 struct ast_variable *ast_variable_browse(const struct ast_config *config, const char *category)
 {
-    if (!config || !category) return NULL;
+    if (is_bad_config(config) || !category) return NULL;
 
     struct ast_category *cat = config->root;
     while (cat) {
@@ -170,7 +191,7 @@ struct ast_variable *ast_variable_browse(const struct ast_config *config, const 
 
 char *ast_category_browse(struct ast_config *config, const char *prev)
 {
-    if (!config) return NULL;
+    if (is_bad_config(config)) return NULL;
 
     if (!prev) {
         config->current = config->root;
