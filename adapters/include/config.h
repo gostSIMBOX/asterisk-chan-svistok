@@ -20,6 +20,13 @@
 #define MODULE_URL        "https://nativemind.net"
 #define MODULE_BUGREPORT  "https://nativemind.net"
 
+/* Enable chan_svistok's manager_event_* functions (in manager.c) which
+ * are the real dispatch points for SMS/USSD/call-state events. Without
+ * this, manager.h reduces them all to no-op macros. With this, they
+ * compile with EXPORT_DEF and call manager_event() — our shim's hook
+ * point for bridging all events to simbox_event_cb. */
+#define BUILD_MANAGER 1
+
 #ifndef ICONV_CONST
 #define ICONV_CONST
 #endif

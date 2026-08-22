@@ -14,6 +14,7 @@ static void test_event_handler(const simbox_event_t *event, void *userdata)
     printf("[EVENT] Received event type: %d on device %s\n",
            event->type, event->device_sn ? event->device_sn : "N/A");
     g_event_count++;
+    free((void *)event); /* callback owns the heap event; see simbox_types.h */
 }
 
 static void test_lifecycle(void)

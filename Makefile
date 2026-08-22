@@ -85,8 +85,11 @@ $(TEST_BIN): tests/test_simbox.c $(LIB_A)
 test: $(TEST_BIN)
 	./$(TEST_BIN)
 
+test-real-wiring: all
+	./tests/test_real_wiring.sh
+
 clean:
 	rm -f $(ADAPTER_OBJS) $(SRC_OBJS) $(SVISTOK_OBJS) $(LIB_A) $(LIB_SH) $(TEST_BIN)
 	make -C adapters clean
 
-.PHONY: all test clean
+.PHONY: all test test-real-wiring clean

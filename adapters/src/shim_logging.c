@@ -6,13 +6,46 @@
 #include <asterisk/options.h>
 #include <stdio.h>
 #include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
 #include <time.h>
 #include <pthread.h>
+
+#ifdef __linux__
+#include "simbox_internal_linux.h"
+#endif
 
 int ast_opt_debug = 0;
 int ast_opt_verbose = 0;
 
 static pthread_mutex_t log_lock = PTHREAD_MUTEX_INITIALIZER;
+
+#ifdef __linux__
+static void capture_user_command_response(char *message)
+{
+    static const char marker[] = "] Got Response for user's command:'";
+    char *marker_pos;
+    char *response;
+    char *end;
+    char device[128];
+    size_t device_len;
+
+    if (!message || message[0] != '[') return;
+    marker_pos = strstr(message, marker);
+    if (!marker_pos) return;
+    device_len = (size_t)(marker_pos - (message + 1));
+    if (device_len == 0 || device_len >= sizeof(device)) return;
+    memcpy(device, message + 1, device_len);
+    device[device_len] = '\0';
+
+    response = marker_pos + strlen(marker);
+    end = message + strlen(message);
+    while (end > response && (end[-1] == '\r' || end[-1] == '\n')) end--;
+    if (end > response && end[-1] == '\'') end--;
+    *end = '\0';
+    simbox_at_response_bridge_capture(device, response);
+}
+#endif
 
 static const char *level_to_string(int level)
 {
@@ -30,21 +63,36 @@ static const char *level_to_string(int level)
 void ast_log(int level, const char *file, int line, const char *function, const char *fmt, ...)
 {
     char timestr[32];
+    char *message = NULL;
+    int needed;
     time_t now = time(NULL);
     struct tm tm_buf;
     localtime_r(&now, &tm_buf);
     strftime(timestr, sizeof(timestr), "%Y-%m-%d %H:%M:%S", &tm_buf);
 
-    pthread_mutex_lock(&log_lock);
-    fprintf(stderr, "[%s] %s[%s:%d %s]: ", timestr, level_to_string(level),
-            file ? file : "unknown", line, function ? function : "");
-
     va_list ap;
     va_start(ap, fmt);
-    vfprintf(stderr, fmt, ap);
+    va_list copy;
+    va_copy(copy, ap);
+    needed = vsnprintf(NULL, 0, fmt, copy);
+    va_end(copy);
+    if (needed >= 0) {
+        message = (char *)malloc((size_t)needed + 1);
+        if (message) vsnprintf(message, (size_t)needed + 1, fmt, ap);
+    }
     va_end(ap);
+
+    if (!message) return;
+    pthread_mutex_lock(&log_lock);
+    fprintf(stderr, "[%s] %s[%s:%d %s]: %s", timestr, level_to_string(level),
+            file ? file : "unknown", line, function ? function : "", message);
     fflush(stderr);
     pthread_mutex_unlock(&log_lock);
+
+#ifdef __linux__
+    if (level == __LOG_NOTICE) capture_user_command_response(message);
+#endif
+    free(message);
 }
 
 void ast_verbose(const char *fmt, ...)

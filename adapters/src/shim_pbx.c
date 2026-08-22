@@ -8,11 +8,39 @@
 #include <stdlib.h>
 #include <string.h>
 
+#ifdef __linux__
+#include <cpvt.h>
+#include <chan_dongle.h>
+#include "simbox_internal_linux.h"
+#endif
+
 enum ast_pbx_result ast_pbx_start(struct ast_channel *c)
 {
     if (!c) return AST_PBX_FAILED;
     ast_verb(2, "PBX start on channel %s (exten: %s, context: %s)\n",
              c->name, c->exten, c->context);
+
+#ifdef __linux__
+    /* Real hook (specifications §9.5): chan_dongle.c calls this when an
+     * incoming call is ready to hand to the dialplan - the same event
+     * this adapter needs to surface as SIMBOX_EVENT_INCOMING_CALL.
+     * ast_channel_tech_pvt(c) -> struct cpvt* -> ->pvt is the real,
+     * already-confirmed path back to the device (see channel.c's own
+     * use of the same accessor throughout). numbera is pvt's own
+     * new_channel() passes the parsed incoming number to
+     * ast_channel_alloc(), whose shim stores it in connected.id.number;
+     * use that exact value instead of guessing at a pvt side field. */
+    struct cpvt *cpvt = ast_channel_tech_pvt(c);
+    if (cpvt && cpvt->pvt) {
+        const char *caller = c->connected.id.number.valid
+            ? c->connected.id.number.str
+            : cpvt->pvt->numbera;
+        simbox_event_bridge_fire_incoming_call(cpvt->pvt->serial,
+                                                caller,
+                                                cpvt);
+    }
+#endif
+
     return AST_PBX_SUCCESS;
 }
 
