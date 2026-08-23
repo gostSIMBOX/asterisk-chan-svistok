@@ -3,10 +3,23 @@
  * shim_config.c - Minimal INI-style Asterisk config parser
  */
 #include <asterisk/config.h>
+#include <simbox_config_bridge.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+
+static char g_config_dir[512] = {0};
+
+void simbox_config_bridge_set_dir(const char *dir)
+{
+    if (dir) {
+        strncpy(g_config_dir, dir, sizeof(g_config_dir) - 1);
+        g_config_dir[sizeof(g_config_dir) - 1] = '\0';
+    } else {
+        g_config_dir[0] = '\0';
+    }
+}
 
 static char *trim(char *s)
 {
@@ -19,9 +32,44 @@ static char *trim(char *s)
     return s;
 }
 
+/* Real Asterisk config files (including this SDK's own vendored
+ * reference sample, asterisk_chan_svistok/chan_svistok/etc/dongle.conf)
+ * pervasively use trailing "key=value ; comment" / "key=value # comment"
+ * style. Found the hard way (sdd-simbox-app-real-driver's Task 4.1,
+ * validating a real example config): without this, the trailing
+ * comment text silently became part of the parsed value. Truncates at
+ * the first unquoted ';' or '#' and re-trims - real Asterisk config
+ * values are never expected to contain either character. */
+static char *strip_inline_comment(char *val)
+{
+    if (!val) return val;
+    for (char *p = val; *p; p++) {
+        if (*p == ';' || *p == '#') {
+            *p = '\0';
+            break;
+        }
+    }
+    return trim(val);
+}
+
+/* NOTE: lines beginning with '#' (below) are always treated as plain
+ * comments, identical to ';'. Real Asterisk's config engine also
+ * supports '#include'/'#exec' directives; this minimal parser does
+ * not implement them (a pre-existing gap, not something this change
+ * fixes) - a config file using those directives will have them
+ * silently ignored rather than erroring or being processed. */
 struct ast_config *ast_config_load2(const char *filename, const char *who_asked, struct ast_flags flags)
 {
-    FILE *f = fopen(filename, "r");
+    FILE *f = NULL;
+
+    if (g_config_dir[0] != '\0') {
+        char override_path[768];
+        snprintf(override_path, sizeof(override_path), "%s/%s", g_config_dir, filename);
+        f = fopen(override_path, "r");
+    }
+    if (!f) {
+        f = fopen(filename, "r");
+    }
     if (!f) {
         /* Also try /etc/asterisk/<filename> */
         char path[512];
@@ -52,7 +100,7 @@ struct ast_config *ast_config_load2(const char *filename, const char *who_asked,
             char *end = strchr(p, ']');
             if (end) {
                 *end = '\0';
-                char *catname = trim(p + 1);
+                char *catname = strip_inline_comment(trim(p + 1));
                 struct ast_category *cat = (struct ast_category *)calloc(1, sizeof(struct ast_category));
                 if (cat) {
                     strncpy(cat->name, catname, sizeof(cat->name) - 1);
@@ -77,11 +125,11 @@ struct ast_config *ast_config_load2(const char *filename, const char *who_asked,
             if (arrow) {
                 *arrow = '\0';
                 name = trim(p);
-                val = trim(arrow + 2);
+                val = strip_inline_comment(trim(arrow + 2));
             } else if (eq) {
                 *eq = '\0';
                 name = trim(p);
-                val = trim(eq + 1);
+                val = strip_inline_comment(trim(eq + 1));
             }
 
             if (name && val) {

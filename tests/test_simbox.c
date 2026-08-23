@@ -2,10 +2,13 @@
  * Simbox Native SDK - Integration Test Suite
  */
 #include "simbox_api.h"
+#include <asterisk/config.h>
+#include <simbox_config_bridge.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
+#include <unistd.h>
 
 static int g_event_count = 0;
 
@@ -213,6 +216,105 @@ static void test_reader(void)
     printf("APDU Reader test passed.\n");
 }
 
+/* sdd-simbox-app-real-driver: proves simbox_config_bridge_set_dir()
+ * actually redirects ast_config_load2()'s resolution, and that
+ * clearing it (NULL) restores the original CWD-relative/
+ * "/etc/asterisk/" behavior. Exercises adapters/src/shim_config.c
+ * directly - no real chan_dongle device population involved, so this
+ * runs identically on any platform, not just Linux. */
+static void test_config_dir_override(void)
+{
+    printf("\n=== Test 7: Config-Dir Override ===\n");
+
+    char tmpl[] = "/tmp/simbox_test_XXXXXX";
+    char *tmpdir = mkdtemp(tmpl);
+    assert(tmpdir != NULL);
+
+    char conf_path[512];
+    snprintf(conf_path, sizeof(conf_path), "%s/dongle.conf", tmpdir);
+    FILE *f = fopen(conf_path, "w");
+    assert(f != NULL);
+    fprintf(f, "[general]\ninterval=15\n\n[dongle0]\naudio=/dev/ttyUSB1\ndata=/dev/ttyUSB2\n");
+    fclose(f);
+
+    /* Override set: ast_config_load2() must find the file in tmpdir,
+     * ahead of its existing CWD/etc-asterisk fallbacks. */
+    simbox_config_bridge_set_dir(tmpdir);
+    struct ast_flags flags = {0};
+    struct ast_config *cfg = ast_config_load2("dongle.conf", "test_simbox", flags);
+    assert(cfg != NULL);
+    assert(cfg != CONFIG_STATUS_FILEMISSING);
+    assert(cfg != CONFIG_STATUS_FILEINVALID);
+
+    const char *interval = ast_variable_retrieve(cfg, "general", "interval");
+    assert(interval != NULL && strcmp(interval, "15") == 0);
+    const char *audio = ast_variable_retrieve(cfg, "dongle0", "audio");
+    assert(audio != NULL && strcmp(audio, "/dev/ttyUSB1") == 0);
+    ast_config_destroy(cfg);
+
+    /* Override cleared: same bare filename must NOT resolve to the
+     * tmpdir copy anymore - confirms clearing genuinely restores the
+     * original resolution rather than leaking the override. Neither
+     * this test-run's CWD nor /etc/asterisk/ has a dongle.conf of
+     * their own, so this must come back missing. */
+    simbox_config_bridge_set_dir(NULL);
+    struct ast_config *cfg2 = ast_config_load2("dongle.conf", "test_simbox", flags);
+    assert(cfg2 == CONFIG_STATUS_FILEMISSING);
+
+    unlink(conf_path);
+    rmdir(tmpdir);
+    printf("Config-dir override test passed.\n");
+}
+
+/* sdd-simbox-app-real-driver: found the hard way while validating a
+ * real example config (Task 4.1) - the parser only skipped whole-line
+ * ';'/'#' comments, not the "key=value ; trailing comment" style real
+ * Asterisk configs (including this SDK's own vendored reference
+ * dongle.conf sample) use pervasively. Without stripping, the comment
+ * text silently became part of the parsed value - a real bug, not a
+ * hypothetical one. */
+static void test_inline_comment_stripping(void)
+{
+    printf("\n=== Test 8: Inline Comment Stripping ===\n");
+
+    char tmpl[] = "/tmp/simbox_test_XXXXXX";
+    char *tmpdir = mkdtemp(tmpl);
+    assert(tmpdir != NULL);
+
+    char conf_path[512];
+    snprintf(conf_path, sizeof(conf_path), "%s/dongle.conf", tmpdir);
+    FILE *f = fopen(conf_path, "w");
+    assert(f != NULL);
+    fprintf(f,
+        "[general]\n"
+        "interval=15\t\t; seconds between connection attempts\n"
+        "\n"
+        "[dongle0]\n"
+        "audio=/dev/ttyUSB1\t\t; tty port for audio\n"
+        "data=/dev/ttyUSB2 # tty port for AT commands\n");
+    fclose(f);
+
+    simbox_config_bridge_set_dir(tmpdir);
+    struct ast_flags flags = {0};
+    struct ast_config *cfg = ast_config_load2("dongle.conf", "test_simbox", flags);
+    assert(cfg != NULL);
+    assert(cfg != CONFIG_STATUS_FILEMISSING);
+    assert(cfg != CONFIG_STATUS_FILEINVALID);
+
+    const char *interval = ast_variable_retrieve(cfg, "general", "interval");
+    assert(interval != NULL && strcmp(interval, "15") == 0);
+    const char *audio = ast_variable_retrieve(cfg, "dongle0", "audio");
+    assert(audio != NULL && strcmp(audio, "/dev/ttyUSB1") == 0);
+    const char *data = ast_variable_retrieve(cfg, "dongle0", "data");
+    assert(data != NULL && strcmp(data, "/dev/ttyUSB2") == 0);
+
+    ast_config_destroy(cfg);
+    simbox_config_bridge_set_dir(NULL);
+    unlink(conf_path);
+    rmdir(tmpdir);
+    printf("Inline comment stripping test passed.\n");
+}
+
 int main(void)
 {
     printf("========================================\n");
@@ -225,9 +327,11 @@ int main(void)
     test_programmator();
     test_reader();
     test_discovery_registry_wiring();
+    test_config_dir_override();
+    test_inline_comment_stripping();
 
     printf("\n========================================\n");
-    printf("ALL 6 INTEGRATION TEST SUITES PASSED!\n");
+    printf("ALL 8 INTEGRATION TEST SUITES PASSED!\n");
     printf("========================================\n");
     return 0;
 }

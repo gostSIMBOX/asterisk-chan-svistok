@@ -10,6 +10,7 @@
 #ifdef __linux__
 #include "simbox_internal_linux.h"
 #include "simbox_module_bridge.h"
+#include <simbox_config_bridge.h>
 #include <chan_dongle.h>
 #endif
 
@@ -271,6 +272,9 @@ simbox_handle_t simbox_init(const simbox_config_t *config)
     inst->device_count = 0;
 
 #ifdef __linux__
+    if (config && config->config_dir) {
+        simbox_config_bridge_set_dir(config->config_dir);
+    }
     simbox_populate_from_gpublic(inst);
     g_active_linux_instance = inst;
 #endif
