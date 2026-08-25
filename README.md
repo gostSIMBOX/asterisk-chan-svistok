@@ -1,231 +1,69 @@
-# asterisk_chan_simbox
+# chan_svistok - Asterisk Channel Driver for Huawei UMTS Dongles
 
 [🇷🇺 Русский](README_ru.md) | [🇬🇧 English](README.md)
 
 ## Overview
 
-**asterisk_chan_simbox** is an industrial-grade fork of the [chan_dongle](http://code.google.com/p/asterisk-chan-dongle/) Asterisk channel driver, developed by **Anton Dodonov** and the **[Native Mind](https://nativemind.net)** team. Originally known as **chan_svistok**, the project evolved far beyond the original chan_dongle scope during 2+ years of production operation managing **500+ Huawei UMTS 3G modems** simultaneously.
+**chan_svistok** is a fork of the chan_dongle Asterisk PBX channel driver, enhanced by **Anton Dodonov** and the **Native Mind** team. It enables Huawei UMTS 3G dongles to function as telephony channels, supporting voice calls, SMS, and USSD operations.
 
-This repository consolidates:
-- **`asterisk_chan_svistok/`** — the production-hardened driver (read-only reference)
-- **`asterisk_chan_dongle/`** — upstream community forks for Asterisk 20+ compatibility reference (read-only)
-- **`adapters/`** + **`src/`** — new adapter layer (Strangler Fig architecture) for standalone operation without Asterisk
+### What's New in chan_svistok
 
----
+Compared to the original chan_dongle, chan_svistok includes the following enhancements:
 
-## Major Enhancements vs. Original chan_dongle
+| Feature | chan_dongle | chan_svistok |
+|---------|-------------|--------------|
+| State persistence | Limited | Extended file-based storage |
+| CLI commands | Basic | 23 commands with tab completion |
+| Firmware flashing | External tools | Built-in Qualcomm DIAG programmer |
+| Device limits | No | Per-device call/balance limits |
+| Balance tracking | Manual | Automatic with ballast support |
+| Group management | Basic | IMSI-based group assignment |
+| Device binding | By IMSI only | AT^SN serial number binding |
+| IMEI management | Static | Change IMEI on the fly via CLI |
+| **Modem stability** | Basic reconnect | Enhanced disconnect detection & recovery |
+| **Restart mechanism** | Simple restart | Graceful/convenient restart with state machine |
+| Documentation | Minimal | Full SDD flows + ADRs |
+| Call statistics | Basic | Extended with ACD calculation |
+| Error handling | Standard | Enhanced with persistence |
+| Logging | Standard | Extended with per-device logs |
 
-### 🔍 Node Discovery — 3 Generations of Device Auto-Detection
+#### Modem Stability Improvements
 
-The original chan_dongle has a single, primitive device discovery mechanism (`pdiscovery.c`). chan_svistok evolved through **three generations** of discovery, each solving real operational problems at scale:
-
-| Generation | File(s) | Architecture | Use Case |
-|------------|---------|-------------|----------|
-| **Gen 1** — Legacy | `pdiscovery.c` | In-process, synchronous | Original chan_dongle approach. Blocks Asterisk during USB enumeration. Works for 1–5 modems. |
-| **Gen 2** — In-Process Async | `simnode/adiscovery_core.c` | In-process, async with threading | Currently used by the live Asterisk module. Non-blocking discovery for dozens of modems. |
-| **Gen 3** — Standalone Daemon | `simnode/adiscovery_core_new.c` + `adiscovery_simnode.c` | External daemon, IPC | Fully decoupled from Asterisk (`#ifdef IN_SIMBOX` macro-gates Asterisk includes). Designed for 100+ modem nodes, can run independently on headless devices. |
-
-**What the discovery system actually does:**
-- Enumerates all `/dev/ttyUSB*` devices on the system
-- Sends AT identification commands (`ATI`, `AT+CIMI`, `AT^SN`) to each port
-- Matches discovered modems against configuration by **Serial Number (S/N)** — not IMEI
-- Handles USB hub topology for multi-port gateway boards
-- Caches discovered devices to speed up subsequent scans
-
-### 🔧 Programmator — Built-in Qualcomm DIAG Firmware Flasher
-
-The original chan_dongle has **no firmware management** capabilities whatsoever. chan_svistok includes a complete, built-in **Qualcomm DIAG protocol** programmer for Huawei modems (E1550, E173, E171):
-
-```
-chan_svistok/programmator/
-├── ttyprog_programmator.c    # Main programmer entry point
-├── ttyprog_core.c            # DIAG protocol implementation
-├── tty_v2.c                  # Low-level serial I/O for DIAG mode
-└── addons.c                  # State persistence & progress tracking
-```
-
-**Key capabilities:**
-- **Flash custom firmware** via DIAG mode — modem must be switched to DIAG mode first
-- **Track flashing progress** with state machine: `init` → `diag` → `wait` → `flash` → `done`
-- **Per-device state persistence** during multi-step firmware operations
-- **Custom firmware features** implemented:
-  - Correct **S/N (Serial Number)** reporting via `AT^SN` — for reliable device identification when no SIM card is inserted
-  - Single AT command **IMEI change** — without reflashing (see below)
-
-#### 🛡️ Modem Recovery & Reliability Statistics
-
-> **Production reliability over 2 years of continuous operation with 500+ modems:**
->
-> - 🟢 **Only 1 modem died** out of 500 — and likely from age/hardware failure, not from flashing
-> - 🟢 **Successfully recovered all but 2** out of 10+ bricked modems brought in for repair
-> - 🟢 The 2 unrecoverable modems had **hardware-level damage** beyond DIAG mode repair
-
-**Recovery process for bricked modems:**
-1. Force modem into **DIAG mode** (Qualcomm diagnostic mode via USB)
-2. Use the built-in programmator to reflash custom firmware
-3. Modem reboots with correct S/N, default AT configuration, and working state
-4. Auto-discovery picks it up and brings it online
-
-**Auto-recovery of "stuck" modems:**
+**Fixed modem disconnections:**
 - Enhanced `port_status()` detection for USB device availability
 - Automatic device state recovery on communication failure
 - Improved monitor thread restart on device reconnect
-- Auto-reset to default state when modem becomes unresponsive
+- Better handling of device disappearance (USB unplug)
 
-### 📖 Reader — SIM Card APDU Reader (No Radio Module)
+** Redesigned restart mechanism:**
+- **3-stage restart states**: `stop` → `restart` → `remove` → `start`
+- **Graceful restart options**:
+  - `restart now` - Immediate restart
+  - `restart gracefully` - Wait for active calls to complete
+  - `restart when convenient` - Wait until no active channels
+- **State machine**: `desired_state` vs `current_state` tracking
+- **Automatic cleanup**: Proper resource release before restart
+- **Config-triggered restart**: Auto-restart on critical config changes (TTY, IMEI, IMSI)
 
-The original chan_dongle has **no SIM reader support**. chan_svistok includes a standalone `reader/` module for working with **ttyUSB SIM card readers** using APDU (Application Protocol Data Units):
+### Original Project
 
-```
-chan_svistok/reader/
-├── reader_core.c    # APDU command implementation, ATR parsing
-└── reader_core.h    # Reader API definitions
-```
+This project is based on **chan_dongle** by Artem Makhutov, Dmitry Vagin, and bg <bg_one@mail.ru>.
 
-**What the reader does:**
-- Communicates with USB SIM card readers (no GSM radio module needed)
-- Sends/receives APDU commands to SIM cards
-- Parses ATR (Answer to Reset) responses
-- Controls RTS/DTR lines for reader hardware reset
-- Completely independent from the modem/call surface — no calls, no SMS, no network registration
+**Original Project Home**: http://code.google.com/p/asterisk-chan-dongle/
 
-### 🔑 IMEI Change via Single AT Command (No Reflashing!)
+## Features
 
-In the original chan_dongle, IMEI is static and read-only.
-
-In chan_svistok with **custom firmware**, IMEI can be changed **on the fly** with a single AT command via the Asterisk CLI:
-```
-dongle cmd <device> AT+EGMR=1,7,"<new_IMEI>"
-```
-
-- No reflashing required
-- Takes effect immediately
-- Auto-triggers device restart when IMEI config changes (critical config change detection)
-- Persisted across reboots in the modem's NVRAM
-
-### 🆔 Device Identification by S/N (Not IMEI)
-
-This is a **critical architectural difference** from the original chan_dongle:
-
-| Aspect | chan_dongle | chan_svistok |
-|--------|-----------|-------------|
-| **Device identification** | By IMEI | By **Serial Number (S/N)** via `AT^SN` |
-| **Without SIM card** | Cannot reliably identify device | ✅ S/N always available regardless of SIM |
-| **After IMEI change** | Device identity lost | ✅ S/N stays constant, device tracked correctly |
-| **Binding in config** | `imei=` field | `sn=` field — matches hardware S/N |
-
-**Why S/N matters for simbox operations:**
-- When managing 500+ modems, SIM cards are frequently swapped between devices
-- IMEI may be changed for operational reasons
-- The **hardware serial number** is the only truly persistent identifier
-- Without a SIM card inserted, IMEI may not be readable — but S/N always is
-- Custom firmware ensures correct S/N reporting via `AT^SN` response
-
-### 🔄 Enhanced Modem Stability & Auto-Recovery
-
-| Feature | chan_dongle | chan_svistok |
-|---------|-----------|-------------|
-| Disconnect detection | Basic | Enhanced `port_status()` USB monitoring |
-| Recovery on failure | Simple reconnect | Full state machine recovery |
-| Restart options | Single restart | 3 modes: `now`, `gracefully`, `when convenient` |
-| Restart state machine | None | `stop` → `restart` → `remove` → `start` |
-| Config change restart | Manual | Automatic on critical changes (TTY, IMEI, IMSI) |
-| State tracking | None | `desired_state` vs `current_state` |
-| Resource cleanup | Basic | Full resource release before restart |
-
----
-
-## Asterisk 20+ Compatibility
-
-chan_svistok was originally built against an **older Asterisk base** (pre-opaque `ast_channel` era, roughly Asterisk 1.8–11). The Asterisk API underwent breaking changes in versions 12–20+.
-
-Two community forks document and solve these compatibility issues. Both are included in this repository as **read-only references**:
-
-### [pulpoff/asterisk-chan-dongle](https://github.com/pulpoff/asterisk-chan-dongle)
-
-This fork adds **Asterisk 20 support** and documents the exact API migration needed:
-
-| Breaking Change | Old API (Asterisk 1.8) | New API (Asterisk 20+) |
-|----------------|----------------------|----------------------|
-| Channel structure | Direct `ast_channel` field access | Opaque structure with accessor functions |
-| Format capabilities | Legacy format API | `ast_format_cap` / `ast_format_slin` |
-| Channel allocation | `ast_channel_alloc(...)` | `ast_channel_alloc(...)` with `assignedids`/`requestor` params |
-| Bridge peer | `ast_bridged_channel()` | `ast_channel_bridge_peer()` |
-| Channel request | Old callback signature | Updated `channel_request` callback |
-| Module registration | Basic `AST_MODULE_INFO` | Extended with `load_pri`/`support_level` |
-| Version macro | `ASTERISK_FILE_VERSION` | Removed (deprecated) |
-
-Tested with **Asterisk 20.6.0** and Huawei E1762. Also provides Docker deployment (docker-compose) for quick start on Armbian/ARM boards.
-
-### [wdoekes/asterisk-chan-dongle](https://github.com/wdoekes/asterisk-chan-dongle)
-
-This fork (the most popular community fork, originally by bg111) provides:
-
-- **`ast_compat.h` / `ast_config.h`** — a version-compatibility shim that adapts to different Asterisk versions at compile time. This is the closest prior art to the adapter shim being built in this project.
-- **`smsdb.c/h`** — SMS persistence database (chan_svistok uses file-based persistence instead)
-- **`gsm7_luts.h`** — GSM 7-bit encoding lookup tables
-- **`error.c/h`** — structured error handling
-- Supports Asterisk 14+ with automatic version detection during build
-- Includes **Jitter buffer** and **AGC (Automatic Gain Control)** configuration guidance
-
-Both forks are used as **pattern and migration knowledge references only** — their code is not merged into chan_svistok. The adapter layer in `adapters/`/`src/` builds compatibility against chan_svistok's specific API shape.
-
----
-
-## Full Feature Comparison
-
-| Feature | chan_dongle (original) | chan_svistok |
-|---------|----------------------|-------------|
-| **Device Discovery** | Single-gen pdiscovery | 3 generations (sync → async → daemon) |
-| **Firmware Flashing** | ❌ None | ✅ Built-in Qualcomm DIAG programmer |
-| **Bricked Modem Recovery** | ❌ None | ✅ DIAG mode recovery (98% success rate) |
-| **SIM Card Reader** | ❌ None | ✅ APDU reader module |
-| **IMEI Change** | ❌ Static, read-only | ✅ Single AT command, no reflash |
-| **Device ID** | By IMEI | By S/N (`AT^SN`) |
-| **ID without SIM** | ❌ Unreliable | ✅ Always works via S/N |
-| **State Persistence** | Limited | Extended file-based storage |
-| **CLI Commands** | ~10 basic | 23 commands with tab completion |
-| **Device Limits** | ❌ None | ✅ Per-device call/balance limits |
-| **Balance Tracking** | Manual | Automatic with ballast support |
-| **Group Management** | Basic | IMSI-based group assignment |
-| **Modem Stability** | Basic reconnect | Enhanced disconnect detection & recovery |
-| **Restart Mechanism** | Simple | 3-stage state machine (gracefully/convenient) |
-| **Call Statistics** | Basic | Extended with ACD calculation |
-| **Per-device Logging** | ❌ None | ✅ Extended per-device logs |
-| **Asterisk 20+** | ❌ | ✅ (via pulpoff/wdoekes compatibility) |
-| **Scale (tested)** | 1–5 modems | **500+ modems** in production |
-| **Documentation** | Minimal | Full SDD flows + 6 ADRs |
-
----
-
-## Repository Structure
-
-```
-asterisk_chan_simbox/
-├── asterisk_chan_svistok/              # READ-ONLY. Production-hardened driver
-│   └── chan_svistok/                   #   Source code, programmator, reader, simnode
-│       ├── simnode/                    #   Discovery generations (Gen 2 & 3)
-│       ├── programmator/              #   Qualcomm DIAG firmware flasher
-│       ├── reader/                    #   SIM card APDU reader
-│       └── tools/                     #   Standalone utilities (discovery tool)
-├── asterisk_chan_dongle/               # READ-ONLY. Community reference forks
-│   ├── asterisk-chan-dongle-by-wdoekes/  # ast_compat.h, smsdb, Asterisk 14+
-│   └── asterisk-chan-dongle-by-pulpoff/  # Asterisk 20 support, Docker
-├── adapters/                           # NEW: Asterisk-API-compatible shim
-├── src/                                # NEW: Standalone bridge code
-└── flows/                              # SDD development flows
-    └── sdd-asterisk-chan-simbox/        # Active spec-driven development
-```
-
-> ⚠️ **Hard rule**: `asterisk_chan_svistok/` and `asterisk_chan_dongle/` are **permanently read-only**. All new code goes in `adapters/` and `src/`.
+- 📞 **Voice Calls** - Place and receive calls via 3G dongles
+- 📨 **SMS** - Send and receive text messages (PDU mode, UCS-2 encoding)
+- 📟 **USSD** - Execute USSD codes for balance checks and service menus
+- 🔄 **Multi-Device** - Support for multiple dongles with grouping and load balancing
+- 🔧 **Firmware Flashing** - Update device firmware via Qualcomm DIAG protocol
+- 💻 **CLI Management** - 23 Asterisk CLI commands for device control
 
 ## Supported Devices
 
 | Device | Model | Status |
 |--------|-------|--------|
-| Huawei E1550 | ✓ | Primary target, custom firmware available |
-| Huawei E173 | ✓ | Custom firmware available |
-| Huawei E171 | ✓ | Custom firmware available |
 | Huawei K3715 | ✓ | Supported |
 | Huawei E169 / K3520 | ✓ | Supported |
 | Huawei E155X | ✓ | Supported |
@@ -234,18 +72,220 @@ asterisk_chan_simbox/
 
 ## Requirements
 
-- **OS**: Linux 2.6.33+ (production tested on Armbian, OpenWRT)
-- **Asterisk**: 1.8–20+ (with compatibility shim)
+- **OS**: Linux 2.6.33+ or FreeBSD 8.0+
+- **Asterisk**: Compatible version with channel driver support
 - **Hardware**: Huawei UMTS dongle with USB interface
-- **SIM**: PIN code must be disabled
+- **SIM**: PIN code disabled
+
+## Project Structure
+
+```
+chan_svistok/
+├── flows/                           # Development documentation
+│   ├── legacy/                      # Reverse engineering analysis
+│   │   ├── understanding/           # Domain understanding tree
+│   │   ├── mapping.md               # Node to flow mapping
+│   │   └── review.md                # Review items
+│   ├── sdd-at-command-protocol/     # AT command protocol spec
+│   ├── sdd-call-management/         # Call management spec
+│   ├── sdd-device-communication/    # Serial communication spec
+│   ├── sdd-sms-ussd-handling/       # SMS/USSD handling spec
+│   ├── sdd-cli-management/          # CLI management spec
+│   ├── sdd-device-programming/      # Firmware flashing spec
+│   ├── sdd-state-persistence/       # State storage spec
+│   ├── adr-001-at-command-queue/    # ADR: Queue architecture
+│   ├── adr-002-pdu-mode-sms/        # ADR: PDU mode decision
+│   ├── adr-003-file-state-persistence/ # ADR: File storage
+│   ├── adr-004-qualcomm-diag/       # ADR: DIAG protocol
+│   ├── adr-005-115200-baud/         # ADR: Serial configuration
+│   └── adr-006-8-state-call-machine/ # ADR: Call state machine
+├── chan_svistok/                    # Main source code
+│   ├── at_command.*                 # AT command layer
+│   ├── at_response.*                # Response parsing
+│   ├── at_queue.*                   # Command queue
+│   ├── channel.*                    # Asterisk channel driver
+│   ├── cpvt.*                       # Call private data
+│   ├── tty_v2.*                     # Serial communication
+│   ├── pdu.*                        # SMS PDU handling
+│   ├── char_conv.*                  # Character encoding
+│   ├── cli.*                        # CLI commands
+│   ├── ttyprog_*.*                  # Firmware flashing
+│   └── share.*                      # State persistence
+└── README.md                        # This file
+```
+
+## Architecture
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    Asterisk PBX Core                        │
+├─────────────────────────────────────────────────────────────┤
+│ chan_dongle Channel Driver                                  │
+│  ┌─────────────┐ ┌──────────────┐ ┌──────────────┐         │
+│  │ Channel Mgmt│ │ CLI Interface│ │ Manager API  │         │
+│  │ (channel.c) │ │   (cli.c)    │ │ (manager.c)  │         │
+│  └─────────────┘ └──────────────┘ └──────────────┘         │
+│  ┌──────────────────────────────────────────────┐           │
+│  │           AT Command Protocol Layer          │           │
+│  │  ┌──────────┐ ┌──────────┐ ┌──────────────┐ │           │
+│  │  │ Commands │ │ Responses│ │    Queue     │ │           │
+│  │  │(at_cmd.c)│ │(at_resp.c)│ │ (at_queue.c) │ │           │
+│  │  └──────────┘ └──────────┘ └──────────────┘ │           │
+│  └──────────────────────────────────────────────┘           │
+│  ┌──────────────────┐ ┌────────────────────────────┐        │
+│  │ Device Comm (TTY)│ │ State Persistence (Files)  │        │
+│  │  (tty_v2.c)      │ │      (share.c)             │        │
+│  └──────────────────┘ └────────────────────────────┘        │
+├─────────────────────────────────────────────────────────────┤
+│  Firmware Flasher (ttyprog_*.c) - Qualcomm DIAG protocol    │
+└─────────────────────────────────────────────────────────────┘
+                          │
+                    ┌─────┴─────┐
+                    │ Huawei    │
+                    │ UMTS      │
+                    │ Dongle    │
+                    └───────────┘
+```
+
+## Documentation
+
+### SDD Flows (Spec-Driven Development)
+
+| Flow | Description |
+|------|-------------|
+| [AT Command Protocol](flows/sdd-at-command-protocol/) | 60+ AT commands, queue management |
+| [Call Management](flows/sdd-call-management/) | 8-state call machine, channel driver |
+| [Device Communication](flows/sdd-device-communication/) | 115200 baud serial, HDLC framing |
+| [SMS/USSD Handling](flows/sdd-sms-ussd-handling/) | PDU encoding, UCS-2 conversion |
+| [CLI Management](flows/sdd-cli-management/) | 23 CLI commands |
+| [Device Programming](flows/sdd-device-programming/) | Qualcomm DIAG firmware flashing |
+| [State Persistence](flows/sdd-state-persistence/) | File-based KV storage |
+
+### ADRs (Architecture Decision Records)
+
+| ADR | Title | Type |
+|-----|-------|------|
+| [ADR-001](flows/adr-001-at-command-queue/) | AT command queue architecture | enabling |
+| [ADR-002](flows/adr-002-pdu-mode-sms/) | PDU mode vs text mode SMS | constraining |
+| [ADR-003](flows/adr-003-file-state-persistence/) | File-based state persistence | enabling |
+| [ADR-004](flows/adr-004-qualcomm-diag/) | Qualcomm DIAG protocol | enabling |
+| [ADR-005](flows/adr-005-115200-baud/) | 115200 baud serial communication | constraining |
+| [ADR-006](flows/adr-006-8-state-call-machine/) | 8-state call machine | enabling |
+
+### Legacy Analysis
+
+The [legacy analysis](flows/legacy/) contains reverse-engineered documentation from the original codebase:
+
+- [Understanding Tree](flows/legacy/understanding/) - Domain knowledge
+- [Mapping](flows/legacy/mapping.md) - Code to documentation mapping
+- [Review](flows/legacy/review.md) - Items for human review
+
+## CLI Commands
+
+### Show Commands
+```
+dongle show devices              # List all devices
+dongle show devicesl             # List with limits
+dongle show device settings      # Show device settings
+dongle show device state         # Show device state
+dongle show device statistics    # Show statistics
+dongle show version              # Show driver version
+```
+
+### Control Commands
+```
+dongle cmd <device> <at_command> # Execute raw AT command
+dongle sms <device> <number> <msg> # Send SMS
+dongle ussd <device> <code>      # Send USSD
+dongle reset <device>            # Reset device
+dongle start <device>            # Start device
+dongle reload                    # Reload configuration
+```
+
+### Configuration Commands
+```
+dongle setgroup <device> <group> # Set device group
+dongle setgroupimsi <imsi> <g>   # Set group by IMSI
+dongle callwaiting <device>      # Toggle call waiting
+```
+
+## Technical Specifications
+
+### Serial Communication
+- **Baud Rate**: 115200
+- **Data Bits**: 8
+- **Stop Bits**: 1
+- **Parity**: None
+- **Flow Control**: Hardware (CRTSCTS)
+
+### SMS
+- **Mode**: PDU (binary)
+- **Encoding**: UCS-2 / 7-bit GSM
+- **Max Length**: 140 octets (160 chars 7-bit, 70 chars UCS-2)
+
+### Call States
+1. ACTIVE
+2. ONHOLD
+3. DIALING
+4. ALERTING
+5. INCOMING
+6. WAITING
+7. RELEASED
+8. INIT
+
+## Installation
+
+```bash
+# Configure
+./configure
+
+# Build
+make
+
+# Install
+make install
+```
+
+See [INSTALL](chan_svistok/INSTALL) for detailed instructions.
+
+## Configuration
+
+### dongle.conf Example
+```ini
+[general]
+interval = 1
+discoveryinterval = 300
+u2diag = 0
+initcmd = AT+CGMI
+
+[device0]
+device = /dev/ttyUSB0
+imsi = 250000000000000
+group = 1
+```
+
+## Dialplan Examples
+
+```asterisk
+[dongle-incoming]
+exten => sms,1,Verbose(Incoming SMS from ${CALLERID(num)})
+exten => sms,n,System(echo '${BASE64_DECODE(${SMS_BASE64})}' >> /var/log/sms.txt)
+exten => sms,n,Hangup()
+
+exten => ussd,1,Verbose(Incoming USSD: ${BASE64_DECODE(${USSD_BASE64})})
+exten => ussd,n,Hangup()
+
+exten => _X.,1,Dial(Dongle/r1/${EXTEN})
+exten => _X.,n,Hangup()
+```
 
 ## License
 
-GNU General Public License Version 2. See [LICENSE](asterisk_chan_svistok/LICENSE) for details.
+GNU General Public License Version 2. See [LICENSE.txt](chan_svistok/LICENSE.txt) for details.
 
 ## Credits
 
-### chan_svistok / chan_simbox Development
+### chan_svistok Development
 - **Lead Developer**: Anton Dodonov
 - **Company**: [Native Mind](https://nativemind.net)
 
@@ -253,7 +293,15 @@ GNU General Public License Version 2. See [LICENSE](asterisk_chan_svistok/LICENS
 - **Original Authors**: Artem Makhutov, Dmitry Vagin
 - **Maintainer**: bg <bg_one@mail.ru>
 - **Project Home**: http://code.google.com/p/asterisk-chan-dongle/
+- **Wiki**: http://wiki.e1550.mobi
 
-### Community Forks (Asterisk 20+ Compatibility)
-- **pulpoff**: [github.com/pulpoff/asterisk-chan-dongle](https://github.com/pulpoff/asterisk-chan-dongle)
-- **wdoekes**: [github.com/wdoekes/asterisk-chan-dongle](https://github.com/wdoekes/asterisk-chan-dongle)
+## Disclaimer
+
+This software is provided "as is" without warranty. The authors are not responsible for any damages or unexpected charges on your SIM card. Use at your own risk.
+
+## Links
+
+- [🇷🇺 Русская версия](README_ru.md)
+- [Legacy Analysis](flows/legacy/)
+- [SDD Flows](flows/)
+- [ADRs](flows/)
