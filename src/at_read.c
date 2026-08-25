@@ -37,19 +37,19 @@
  * \retval 0 timeout
  */
 
-EXPORT_DEF int at_wait (int fd, int* ms)
-{
-	int exception, outfd;
+                                        
+ 
+                      
 
-	outfd = ast_waitfor_n_fd (&fd, 1, ms, &exception);
+                                                   
 
-	if (outfd < 0)
-	{
-		outfd = 0;
-	}
+               
+  
+            
+  
 
-	return outfd;
-}
+              
+ 
 
 #/* return number of bytes readed */
 EXPORT_DEF ssize_t at_read (int fd, const char * dev, struct ringbuffer* rb)
@@ -207,42 +207,42 @@ EXPORT_DEF int at_read_result_iov (const char * dev, int * read_result, struct r
 	return 0;
 }
 
-EXPORT_DEF at_res_t at_read_result_classification (struct ringbuffer * rb, size_t len)
-{
-	at_res_t at_res = RES_UNKNOWN;
-	unsigned idx;
+                                                                                      
+ 
+                               
+              
 
-	for(idx = at_responses.ids_first; idx < at_responses.ids; idx++)
-	{
-		if (rb_memcmp (rb, at_responses.responses[idx].id, at_responses.responses[idx].idlen) == 0)
-		{
-			at_res = at_responses.responses[idx].res;
-			break;
-		}
-	}
+                                                                 
+  
+                                                                                             
+   
+                                            
+         
+   
+  
 
-	switch (at_res)
-	{
-		case RES_SMS_PROMPT:
-			len = 2;
-			break;
+                
+  
+                      
+           
+         
 
-		case RES_CMGR:
-			len += 7;
-			break;
+                
+            
+         
 
-		case RES_CSSI:
-			len = 8;
-			break;
-		default:
-			len += 1;
-			break;
-	}
+                
+           
+         
+          
+            
+         
+  
 
-	rb_read_upd (rb, len);
+                       
 
-/*	ast_debug (5, "receive result '%s'\n", at_res2str (at_res));
-*/
+                                                               
+  
 
-	return at_res;
-}
+               
+ 

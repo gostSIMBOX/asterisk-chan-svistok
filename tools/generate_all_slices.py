@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate all build-only upstream/Svistok slices and bridges."""
+"""Generate baseline slices and non-filtering Svistok compositions."""
 
 from __future__ import annotations
 
@@ -25,14 +25,37 @@ def load_tool(name: str):
     return module
 
 
-def generate(ownership: dict, output_root: Path) -> dict:
+def generate(ownership: dict, output_root: Path, *, src_root: Path = SRC_ROOT) -> dict:
     clang_manifest = load_tool("clang_manifest")
-    materializer = load_tool("materialize_build_manifest")
     slicer = load_tool("slice_translation_unit")
     bridges = load_tool("generate_bridges")
     verifier = load_tool("verify_source_ownership")
-    materialized = materializer.materialize(ownership)
+    materialized = ownership
     output_root.mkdir(parents=True, exist_ok=True)
+    composed_root = output_root / "composed-headers"
+    composed_report = load_tool("compose_headers").compose(
+        ownership, composed_root, src_root=src_root
+    )
+    composed_defines: list[str] = []
+    for item in composed_report["files"]:
+        relative = item["file"]
+        macro = "SVISTOK_COMPOSED_" + relative.upper().replace(".", "_").replace("/", "_") + "_HEADER"
+        composed_defines.append(f'#define {macro} "{Path(item["output"]).resolve().as_posix()}"')
+    (output_root / "composed-headers.json").write_text(
+        json.dumps(composed_report, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    api_defines_header = output_root / "composed-header-defines.h"
+    api_defines_header.write_text(
+        "#ifndef SVISTOK_GENERATED_COMPOSED_HEADER_DEFINES_H_INCLUDED\n"
+        "#define SVISTOK_GENERATED_COMPOSED_HEADER_DEFINES_H_INCLUDED\n"
+        + "\n".join(composed_defines)
+        + "\n#endif\n",
+        encoding="utf-8",
+    )
+    api_macro = (
+        f'#include "{api_defines_header.resolve().as_posix()}"\n'
+    ).encode("utf-8")
     (output_root / "materialized-manifest.json").write_text(
         json.dumps(materialized, indent=2, sort_keys=True) + "\n", encoding="utf-8"
     )
@@ -46,41 +69,63 @@ def generate(ownership: dict, output_root: Path) -> dict:
         ]
         unit_root = output_root / Path(relative).stem
         unit_root.mkdir(parents=True, exist_ok=True)
-        for side, source in (
-            ("upstream", BASELINE_ROOT / relative),
-            ("svistok", SRC_ROOT / relative),
-        ):
-            raw = slicer.emit_slice(
-                source.read_bytes(),
-                record["symbols"],
-                side=side,
-                display_path=f"{side}/{relative}",
-                included_sources=included,
-                declarations=record.get("declarations"),
-                bridges=record.get("bridges"),
-            )
-            errors = verifier.verify_slice(
-                raw, source.read_bytes(), record["symbols"], side=side
-            )
-            if errors:
-                raise RuntimeError(f'{relative}/{side}: {"; ".join(errors)}')
-            prefix, suffix = bridges.generate_for_side(
-                record["symbols"], record["bridges"], side
-            )
-            output = unit_root / f"{Path(relative).stem}-{side}.c"
-            output.write_bytes(
-                b'#include "svistok_abi.h"\n'
-                + prefix.encode("utf-8")
-                + raw
-                + suffix.encode("utf-8")
-            )
-            generated.append(
-                {"file": relative, "side": side, "source": str(output)}
-            )
+        source = BASELINE_ROOT / relative
+        side = "upstream"
+        raw = slicer.emit_slice(
+            source.read_bytes(),
+            record["symbols"],
+            side=side,
+            display_path=f"{side}/{relative}",
+            included_sources=included,
+            declarations=record.get("declarations"),
+            bridges=record.get("bridges"),
+        )
+        errors = verifier.verify_slice(
+            raw, source.read_bytes(), record["symbols"], side=side
+        )
+        if errors:
+            raise RuntimeError(f'{relative}/{side}: {"; ".join(errors)}')
+        prefix, suffix = bridges.generate_for_side(
+            record["symbols"], record["bridges"], side
+        )
+        output = unit_root / f"{Path(relative).stem}-{side}.c"
+        output.write_bytes(
+            api_macro
+            + b'#include "svistok_abi.h"\n'
+            + prefix.encode("utf-8")
+            + raw
+            + suffix.encode("utf-8")
+        )
+        generated.append(
+            {"file": relative, "side": side, "kind": "baseline-slice", "source": str(output)}
+        )
+
+        side = "svistok"
+        source = src_root / relative
+        prefix, suffix = bridges.generate_for_side(
+            record["symbols"], record["bridges"], side
+        )
+        output = unit_root / f"{Path(relative).stem}-overlay.c"
+        include_path = source.resolve().as_posix().replace('"', '\\"')
+        output.write_text(
+            api_macro.decode("utf-8")
+            + '#include "svistok_abi.h"\n'
+            + prefix
+            + f'#include "{include_path}"\n'
+            + suffix,
+            encoding="utf-8",
+        )
+        generated.append(
+            {"file": relative, "side": side, "kind": "overlay-composition", "source": str(output)}
+        )
     summary = {
         "schema_version": 1,
         "translation_units": len(clang_manifest.MODIFIED_ROOTS),
         "generated_slices": generated,
+        "baseline_slices": len(clang_manifest.MODIFIED_ROOTS),
+        "overlay_compositions": len(clang_manifest.MODIFIED_ROOTS),
+        "composed_header_defines": str(api_defines_header),
+        "composed_header_baseline_units": composed_report["baseline_unit_count"],
         "bridge_count": sum(
             len(record["bridges"])
             for record in materialized["files"]
@@ -97,15 +142,19 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--ownership", type=Path, required=True)
     parser.add_argument("--output-root", type=Path, required=True)
+    parser.add_argument("--src-root", type=Path, default=SRC_ROOT)
     arguments = parser.parse_args()
     try:
         ownership = json.loads(arguments.ownership.read_text(encoding="utf-8"))
-        summary = generate(ownership, arguments.output_root)
+        summary = generate(
+            ownership, arguments.output_root, src_root=arguments.src_root.resolve()
+        )
     except (OSError, RuntimeError, KeyError) as error:
         print(f"slice generation failed: {error}", file=sys.stderr)
         return 1
     print(
-        f'generated {len(summary["generated_slices"])} slices with '
+        f'generated {summary["baseline_slices"]} baseline slices and '
+        f'{summary["overlay_compositions"]} overlay compositions with '
         f'{summary["bridge_count"]} bridges'
     )
     return 0

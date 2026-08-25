@@ -118,12 +118,12 @@ EXPORT_DEF const at_responses_t at_responses = { at_responses_list, 2, ITEMS_OF(
  * \return a string describing the given response
  */
 
-EXPORT_DEF const char* at_res2str (at_res_t res)
-{
-	if((int)res >= at_responses.name_first && (int)res <= at_responses.name_last)
-		return at_responses.responses[res - at_responses.name_first].name;
-	return "UNDEFINED";
-}
+                                                
+ 
+                                                                              
+                                                                    
+                    
+ 
 
 
 
@@ -806,13 +806,12 @@ static int at_response_sysinfo (struct pvt* pvt, char* str, size_t len)
 }
 
 
-static void request_clcc(struct pvt* pvt)
-{
-	if (at_enque_clcc(&pvt->sys_chan))
-	{
-		ast_log (LOG_ERROR, "[%s] Error enque List Current Calls request\n", PVT_ID(pvt));
-	}
-}
+extern void svistok_bridge_upstream_request_clcc(struct pvt * pvt);
+           
+  
+                                                                                    
+  
+ 
 
 /*!
  * \brief Handle ^ORIG response
@@ -822,68 +821,66 @@ static void request_clcc(struct pvt* pvt)
  * \retval -1 error
  */
 
-static int at_response_orig (struct pvt* pvt, const char* str)
-{
-	int call_index;
-	int call_type;
-	struct cpvt * cpvt = pvt->last_dialed_cpvt;
+extern int svistok_bridge_upstream_at_response_orig(struct pvt * pvt, const char * str);
+        
+                                            
 
-	pvt->last_dialed_cpvt = NULL;
-	if(!cpvt)
-	{
-		ast_log (LOG_ERROR, "[%s] ^ORIG '%s' for unknown ATD\n", PVT_ID(pvt), str);
-		return 0;
-	}
+                              
+          
+  
+                                                                             
+           
+  
 
 
-	/*
-	 * parse ORIG info in the following format:
-	 * ^ORIG:<call_index>,<call_type>
-	 */
+   
+                                            
+                                  
+    
 
-	if (sscanf (str, "^ORIG:%d,%d", &call_index, &call_type) != 2)
-	{
-		ast_log (LOG_ERROR, "[%s] Error parsing ORIG event '%s'\n", PVT_ID(pvt), str);
-		return -1;
-	}
+                                                               
+  
+                                                                                
+            
+  
 
-	ast_debug (1, "[%s] ORIG Received call_index: %d call_type %d\n", PVT_ID(pvt), call_index, call_type);
+                                                                                                       
 
-	if (call_type == CLCC_CALL_TYPE_VOICE)
-	{
+                                       
+  
 
-		if(call_index >= MIN_CALL_IDX && call_index <= MAX_CALL_IDX)
-		{
-			/* set REAL call idx */
-/* WARNING if direction mismatch
-			cpvt->dir = CALL_DIR_OUTGOING;
-*/
-			cpvt->call_idx = call_index;
-			
-			change_channel_state(cpvt, CALL_STATE_DIALING, 0);
-/* TODO: move to CONN ? */
-			if(pvt->volume_sync_step == VOLUME_SYNC_BEGIN)
-			{
-				pvt->volume_sync_step = VOLUME_SYNC_BEGIN;
-				if (at_enque_volsync (cpvt))
-				{
-					ast_log (LOG_ERROR, "[%s] Error synchronize audio level\n", PVT_ID(pvt));
-				}
-				else
-					pvt->volume_sync_step++;
-			}
+                                                              
+   
+                          
+                                
+                                 
+  
+                               
+   
+                                                     
+                          
+                                                 
+    
+                                              
+                                
+     
+                                                                              
+     
+        
+                             
+    
 
-			request_clcc(pvt);
-		}
-	}
-	else
-	{
-/* FIXME: and reset call if no-voice, bad call_index !
-*/
-		ast_log (LOG_ERROR, "[%s] ORIG event for non-voice call type '%d' index %d\n", PVT_ID(pvt), call_type, call_index);
-	}
-	return 0;
-}
+                     
+   
+  
+     
+  
+                                                      
+  
+                                                                                                                     
+  
+          
+ 
 
 #if 0
 /*!
@@ -1348,20 +1345,17 @@ else
  * \retval  0 success
  * \retval -1 error
  */
-static int at_response_csca (struct pvt* pvt, char* str)
-{
-	char * csca;
+extern int svistok_bridge_upstream_at_response_csca(struct pvt * pvt, char * str);
+                     
+  
+                                                                               
+            
+  
+                                                                     
 
-	if(at_parse_csca(str, &csca))
-	{
-		ast_debug (1, "[%s] Could not parse CSCA response '%s'\n", PVT_ID(pvt), str);
-		return -1;
-	}
-	ast_copy_string (pvt->sms_scenter, csca, sizeof (pvt->sms_scenter));
-
-	ast_debug (1, "[%s] CSCA: %s\n", PVT_ID(pvt), pvt->sms_scenter);
-	return 0;
-}
+                                                                 
+          
+ 
 
 /*!
  * \brief Handle ^CONN response
@@ -1704,57 +1698,55 @@ static int at_response_clcc (struct pvt* pvt, char* str)
  * \retval -1 error
  */
 
-static int at_response_ccwa(struct pvt* pvt, char* str)
-{
-	int status, n;
-	unsigned class;
+extern int svistok_bridge_upstream_at_response_ccwa(struct pvt * pvt, char * str);
+       
 
-	/* 
-	 * CCWA may be in form:
-	 *	in response of AT+CCWA=?
-	 *		+CCWA: (0,1)
-	 *	in response of AT+CCWA=?
-	 *		+CCWA: <n>
-	 *	in response of "AT+CCWA=[<n>[,<mode>[,<class>]]]"
-	 *		+CCWA: <status>,<class1>
-	 *	unsolicited result code
-	 *		+CCWA: <number>,<type>,<class>,[<alpha>][,<CLI validity>[,<subaddr>,<satype>[,<priority>]]]
-	 *
-	 */
-	if (sscanf(str, "+CCWA: (%u-%u)", &status, &class) == 2)
-		return 0;
+    
+                        
+                            
+                 
+                            
+               
+                                                     
+                             
+                           
+                                                                                                
+   
+    
+                                                         
+           
 
-	n = sscanf (str, "+CCWA:%d,%d", &status, &class);
-	if(n == 1)
-		return 0;
-	else if (n == 2)
-	{
-		if ((class & CCWA_CLASS_VOICE) && (status == CCWA_STATUS_NOT_ACTIVE || status == CCWA_STATUS_ACTIVE))
-		{
-			pvt->has_call_waiting = status == CCWA_STATUS_ACTIVE ? 1 : 0;
-			ast_log (LOG_NOTICE, "Call waiting is %s on device %s\n", status ? "enabled" : "disabled", PVT_ID(pvt));
-		}
-		return 0;
-	}
+                                                  
+           
+           
+                 
+  
+                                                                                                       
+   
+                                                                
+                                                                                                           
+   
+           
+  
 
-	if (pvt->initialized)
-	{
-//		if (sscanf (str, "+CCWA: \"%*[+0-9*#ABCabc]\",%*d,%d", &class) == 1)
-		if (at_parse_ccwa(str, &class) == 0)
-		{
-//			if (CONF_SHARED(pvt, callwaiting) != CALL_WAITING_DISALLOWED && class == CCWA_CLASS_VOICE)
-			if (class == CCWA_CLASS_VOICE)
-			{
-				pvt->rings++;
-				pvt->cwaiting = 1;
-				request_clcc(pvt);
-			}
-		}
-		else
-			ast_log (LOG_ERROR, "[%s] can't parse CCWA line '%s'\n", PVT_ID(pvt), str);
-	}
-	return 0;
-}
+                      
+  
+                                                                        
+                                      
+   
+                                                                                               
+                                 
+    
+                 
+                      
+                      
+    
+   
+      
+                                                                              
+  
+          
+ 
 
 /*!
  * \brief Handle RING response
@@ -1803,38 +1795,37 @@ static int at_response_ring (struct pvt* pvt)
  * \retval -1 error
  */
 
-static int at_response_cmti (struct pvt* pvt, const char* str)
-{
-// FIXME: check format in PDU mode
-	int index = at_parse_cmti (str);
+extern int svistok_bridge_upstream_at_response_cmti(struct pvt * pvt, const char * str);
+          
+                                 
 
-	if (index > -1)
-	{
-		ast_debug (1, "[%s] Incoming SMS message\n", PVT_ID(pvt));
+                
+  
+                                                            
 
-		if (CONF_SHARED(pvt, disablesms))
-		{
-			ast_log (LOG_WARNING, "[%s] SMS reception has been disabled in the configuration.\n", PVT_ID(pvt));
-		}
-		else if(pvt_enabled(pvt))
-		{
-			if (at_enque_retrive_sms (&pvt->sys_chan, index, CONF_SHARED(pvt, autodeletesms)))
-			{
-				ast_log (LOG_ERROR, "[%s] Error sending CMGR to retrieve SMS message\n", PVT_ID(pvt));
-				return -1;
-			}
-			else
-			    pvt->incoming_sms = 1;
-		}
+                                   
+   
+                                                                                                      
+   
+                           
+   
+                                                                                     
+    
+                                                                                          
+              
+    
+       
+                             
+   
 
-		return 0;
-	}
-	else
-	{
-		ast_log (LOG_ERROR, "[%s] Error parsing incoming sms message alert '%s', disconnecting\n", PVT_ID(pvt), str);
-		return -1;
-	}
-}
+           
+  
+     
+  
+                                                                                                               
+            
+  
+ 
 
 /*!
  * \brief Handle +CMGR response
@@ -2115,25 +2106,24 @@ static int at_response_cds (struct pvt* pvt, const char * str, size_t len)
  * \retval -1 error
  */
 
-static int at_response_sms_prompt (struct pvt* pvt)
-{
-	const struct at_queue_cmd * ecmd = at_queue_head_cmd (pvt);
-	if (ecmd && ecmd->res == RES_SMS_PROMPT)
-	{
-		at_queue_handle_result (pvt, RES_SMS_PROMPT);
-	}
-	else if (ecmd)
-	{
-		ast_log (LOG_ERROR, "[%s] Received sms prompt when expecting '%s' response to '%s', ignoring\n", PVT_ID(pvt),
-				at_res2str (ecmd->res), at_cmd2str (ecmd->cmd));
-	}
-	else
-	{
-		ast_log (LOG_ERROR, "[%s] Received unexpected sms prompt\n", PVT_ID(pvt));
-	}
+extern int svistok_bridge_upstream_at_response_sms_prompt(struct pvt * pvt);
+                                     
+                                         
+  
+                                               
+  
+               
+  
+                                                                                                               
+                                                    
+  
+     
+  
+                                                                            
+  
 
-	return 0;
-}
+          
+ 
 
 /*!
  * \brief Handle CUSD response
@@ -2297,11 +2287,10 @@ static int at_response_cpin (struct pvt* pvt, char* str, size_t len)
  * \retval -1 error
  */
 
-static int at_response_smmemfull (struct pvt* pvt)
-{
-	ast_log (LOG_ERROR, "[%s] SMS storage is full\n", PVT_ID(pvt));
-	return 0;
-}
+extern int svistok_bridge_upstream_at_response_smmemfull(struct pvt * pvt);
+                                         
+          
+ 
 
 /*!
  * \brief Handle +CSQ response Here we get the signal strength and bit error rate
@@ -2336,23 +2325,22 @@ static int at_response_csq (struct pvt* pvt, const char* str)
  * \retval -1 error
  */
 
-static int at_response_cnum (struct pvt* pvt, char* str)
-{
-	char* number = at_parse_cnum (str);
+extern int svistok_bridge_upstream_at_response_cnum(struct pvt * pvt, char * str);
+            
 
-	if (number)
-	{
-		ast_copy_string (pvt->subscriber_number, number, sizeof (pvt->subscriber_number));
-		if(pvt->subscriber_number[0] != 0)
-			pvt->has_subscriber_number = 1;
-		return 0;
-	}
+            
+  
+                                                                                    
+                                    
+                                  
+           
+  
 
-	ast_copy_string (pvt->subscriber_number, "Unknown", sizeof (pvt->subscriber_number));
-	pvt->has_subscriber_number = 0;
+                                                                                      
+                                
 
-	return -1;
-}
+           
+ 
 
 /*!
  * \brief Handle +COPS response Here we get the GSM provider name
@@ -2804,20 +2792,19 @@ static int at_response_cimi (struct pvt* pvt, const char* str)
 	return 0;
 }
 
-static void at_response_busy(struct pvt* pvt, enum ast_control_frame_type control)
-{
-	const struct at_queue_task * task = at_queue_head_task (pvt);
-	struct cpvt* cpvt = task->cpvt;
+extern void svistok_bridge_upstream_at_response_busy(struct pvt * pvt, enum ast_control_frame_type control);
+                                      
+                                
 
-	if(cpvt == &pvt->sys_chan)
-		cpvt = pvt->last_dialed_cpvt;
+                           
+                               
 
-	if(cpvt)
-	{
-		CPVT_SET_FLAGS(cpvt, CALL_FLAG_NEED_HANGUP);
-		queue_control_channel (cpvt, control);
-	}
-}
+         
+  
+                                              
+                                        
+  
+ 
 
 
 

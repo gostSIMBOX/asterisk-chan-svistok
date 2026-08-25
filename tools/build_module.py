@@ -61,7 +61,13 @@ def defined_symbols(path: Path) -> set[str]:
     return symbols
 
 
-def build(build_root: Path, asterisk_include: Path, compiler: str) -> dict:
+def build(
+    build_root: Path,
+    asterisk_include: Path,
+    compiler: str,
+    *,
+    src_root: Path = SRC_ROOT,
+) -> dict:
     guard = load_tool("check_source_guards")
     if not guard.check()["ok"]:
         raise RuntimeError("source guard failed before build")
@@ -70,7 +76,9 @@ def build(build_root: Path, asterisk_include: Path, compiler: str) -> dict:
 
     ownership = json.loads(OWNERSHIP.read_text(encoding="utf-8"))
     generated_root = build_root / "generated"
-    summary = load_tool("generate_all_slices").generate(ownership, generated_root)
+    summary = load_tool("generate_all_slices").generate(
+        ownership, generated_root, src_root=src_root
+    )
     config = generated_root / "svistok_config.h"
     config.write_text(load_tool("generate_config").render(), encoding="utf-8")
     objects_root = build_root / "objects"
@@ -78,7 +86,7 @@ def build(build_root: Path, asterisk_include: Path, compiler: str) -> dict:
 
     sources = [Path(item["source"]) for item in summary["generated_slices"]]
     sources.extend(BASELINE_ROOT / item for item in IDENTICAL_SOURCES)
-    sources.append(SRC_ROOT / "svistok_state.c")
+    sources.append(src_root / "svistok_state.c")
     common = [
         compiler,
         "-std=gnu89",
@@ -98,10 +106,12 @@ def build(build_root: Path, asterisk_include: Path, compiler: str) -> dict:
         "-DASTERISK_VERSION_NUM=110000",
         "-include",
         str(config),
+        "-include",
+        summary["composed_header_defines"],
         "-I",
         str(asterisk_include),
         "-I",
-        str(SRC_ROOT),
+        str(src_root),
         "-I",
         str(PROJECT_ROOT),
         "-I",
@@ -200,6 +210,8 @@ def build(build_root: Path, asterisk_include: Path, compiler: str) -> dict:
         "public_bridges": 0,
         "public_symbols_checked": checked_public_symbols,
         "object_ownership_errors": 0,
+        "baseline_slices": summary["baseline_slices"],
+        "overlay_compositions": summary["overlay_compositions"],
         "single_owner_state": sorted(relocated_state),
     }
     (build_root / "build-report.json").write_text(
@@ -212,12 +224,18 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--build-dir", type=Path, default=PROJECT_ROOT / "build" / "module")
     parser.add_argument("--asterisk-include", type=Path, required=True)
+    parser.add_argument("--src-root", type=Path, default=SRC_ROOT)
     parser.add_argument("--compiler", default=shutil.which("clang") or shutil.which("cc"))
     arguments = parser.parse_args()
     try:
         if not arguments.compiler:
             raise RuntimeError("C compiler not found")
-        report = build(arguments.build_dir.resolve(), arguments.asterisk_include.resolve(), arguments.compiler)
+        report = build(
+            arguments.build_dir.resolve(),
+            arguments.asterisk_include.resolve(),
+            arguments.compiler,
+            src_root=arguments.src_root.resolve(),
+        )
     except (OSError, RuntimeError, KeyError) as error:
         print(f"module build failed: {error}", file=sys.stderr)
         return 1

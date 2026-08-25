@@ -37,6 +37,7 @@ class ManifestTests(unittest.TestCase):
 
         symbols = [symbol for record in records for symbol in record["symbols"]]
         macros = [macro for record in records for macro in record["macros"]]
+        types = [type_unit for record in records for type_unit in record.get("types", [])]
         bridges = [bridge for record in records for bridge in record["bridges"]]
         included = [
             included
@@ -55,6 +56,14 @@ class ManifestTests(unittest.TestCase):
 
         self.assertEqual(420, len(symbols))
         self.assertEqual(147, len(macros))
+        self.assertEqual(44, len(types))
+        self.assertEqual(
+            {"equivalent": 30, "modified": 13, "new": 1},
+            {
+                relation: sum(unit["body_relation"] == relation for unit in types)
+                for relation in ("equivalent", "modified", "new")
+            },
+        )
         self.assertEqual(81, len(bridges))
         self.assertEqual(139, len(included_symbols))
         self.assertEqual(222, len(declarations))

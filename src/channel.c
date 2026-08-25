@@ -31,58 +31,57 @@
 #include <asterisk-chan-dongle/at_queue.h>	/* write_all() TODO: move out */
 #include <asterisk-chan-dongle/manager.h>	/* manager_event_call_state_change() */
 
-static char silence_frame[FRAME_SIZE];
+extern char svistok_bridge_upstream_silence_frame[320];
+;
 
 #/* */
-static int parse_dial_string(char * dialstr, const char** number, int * opts)
-{
-	char* options;
-	char* dest_num;
-	int lopts = 0;
+extern int svistok_bridge_upstream_parse_dial_string(char * dialstr, const char ** number, int * opts);
+        
+               
 
-	options = strchr (dialstr, '/');
-	if (!options)
-	{
-		ast_log (LOG_WARNING, "Can't determine destination in chan_dongle\n");
-		return AST_CAUSE_INCOMPATIBLE_DESTINATION;
-	}
-	*options++ = '\0';
+                                 
+              
+  
+                                                                        
+                                            
+  
+                   
 
-	dest_num = strchr(options, ':');
-	if(!dest_num)
-	{
-		dest_num = options;
-	}
-	else
-	{
-		*dest_num++ = '\0';
+                                 
+              
+  
+                     
+  
+     
+  
+                     
 
-		if (!strcasecmp(options, "holdother"))
-			lopts = CALL_FLAG_HOLD_OTHER;
-		else if (!strcasecmp(options, "conference"))
-			lopts = CALL_FLAG_HOLD_OTHER | CALL_FLAG_CONFERENCE;
-		else
-		{
-			ast_log (LOG_WARNING, "Invalid options in chan_dongle\n");
-			return AST_CAUSE_INCOMPATIBLE_DESTINATION;
-		}
-	}
+                                        
+                                
+                                              
+                                                       
+      
+   
+                                                             
+                                             
+   
+  
 
-	if (*dest_num == '\0')
-	{
-		ast_log (LOG_WARNING, "Empty destination in chan_dongle\n");
-		return AST_CAUSE_INCOMPATIBLE_DESTINATION;
-	}
-	if (!is_valid_phone_number(dest_num))
-	{
-		ast_log (LOG_WARNING, "Invalid destination '%s' in chan_dongle, only 0123456789*#+ABC allowed\n", dest_num);
-		return AST_CAUSE_INCOMPATIBLE_DESTINATION;
-	}
+                       
+  
+                                                              
+                                            
+  
+                                      
+  
+                                                                                                              
+                                            
+  
 
-	*number = dest_num;
-	*opts = lopts;
-	return 0;
-}
+                    
+               
+          
+ 
 
 
 #/* */
@@ -307,83 +306,80 @@ static int channel_call (struct ast_channel* channel, char* dest, attribute_unus
 }
 
 #/* ARCH: move to cpvt level */
-static void disactivate_call(struct cpvt* cpvt)
-{
-	if(cpvt->channel && CPVT_TEST_FLAG(cpvt, CALL_FLAG_ACTIVATED))
-	{
-		mixb_detach(&cpvt->pvt->a_write_mixb, &cpvt->mixstream);
-		ast_channel_set_fd (cpvt->channel, 1, -1);
-		ast_channel_set_fd (cpvt->channel, 0, -1);
-		CPVT_RESET_FLAGS(cpvt, CALL_FLAG_ACTIVATED | CALL_FLAG_MASTER);
+extern void svistok_bridge_upstream_disactivate_call(struct cpvt * cpvt);
+                                       
+  
+                                                          
+                                            
+                                            
+                                                                 
 
-		ast_debug (6, "[%s] call idx %d disactivated\n", PVT_ID(cpvt->pvt), cpvt->call_idx);
-	}
-}
+                                                                                      
+  
+ 
 
 #/* ARCH: move to cpvt level */
-static void activate_call(struct cpvt* cpvt)
-{
-	struct cpvt* cpvt2;
-	struct pvt* pvt;
+extern void svistok_bridge_upstream_activate_call(struct cpvt * cpvt);
+              
 
-	/* nothing todo, already main */
-	if(CPVT_TEST_FLAG(cpvt, CALL_FLAG_MASTER))
-		return;
+                                 
+                                           
+         
 
-	/* drop any other from MASTER, any set pipe for actives */
-	pvt = cpvt->pvt;
-	AST_LIST_TRAVERSE(&pvt->chans, cpvt2, entry)
-	{
-		if(cpvt2 != cpvt)
-		{
-			if(CPVT_TEST_FLAG(cpvt, CALL_FLAG_MASTER))
-			{
-				ast_debug (6, "[%s] call idx %d gave master\n", PVT_ID(pvt), cpvt2->call_idx);
-			}
+                                                           
+                 
+                                             
+  
+                   
+   
+                                             
+    
+                                                                                  
+    
 
-			CPVT_RESET_FLAGS(cpvt2, CALL_FLAG_MASTER);
-			if(cpvt2->channel)
-			{
-				ast_channel_set_fd (cpvt2->channel, 1, -1);
-				if(CPVT_TEST_FLAG(cpvt, CALL_FLAG_ACTIVATED))
-				{
-					ast_channel_set_fd (cpvt2->channel, 0, cpvt2->rd_pipe[PIPE_READ]);
-					ast_debug (6, "[%s] call idx %d still active fd %d\n", PVT_ID(pvt), cpvt2->call_idx, cpvt2->rd_pipe[PIPE_READ]);
-				}
-			}
-		}
-	}
+                                             
+                     
+    
+                                               
+                                                 
+     
+                                                                       
+                                                                                                                     
+     
+    
+   
+  
 
-	/* setup call local write possition */
-	if(!CPVT_TEST_FLAG(cpvt, CALL_FLAG_ACTIVATED))
-	{
-		// FIXME: reset possition?
-		mixb_attach(&pvt->a_write_mixb, &cpvt->mixstream);
-//		rb_init (&cpvt->a_write_rb, cpvt->a_write_buf, sizeof (cpvt->a_write_buf));
-//		cpvt->write = pvt->a_write_rb.write;
-//		cpvt->used = pvt->a_write_rb.used;
-	}
+                                       
+                                               
+  
+                            
+                                                    
+                                                                               
+                                        
+                                      
+  
 
-	if (pvt->audio_fd >= 0)
-	{
-		CPVT_SET_FLAGS(cpvt, CALL_FLAG_ACTIVATED | CALL_FLAG_MASTER);
-		if(cpvt->channel)
-		{
-			ast_channel_set_fd (cpvt->channel, 0, pvt->audio_fd);
-			if (pvt->a_timer)
-			{
-				ast_channel_set_fd (cpvt->channel, 1, ast_timer_fd (pvt->a_timer));
-				ast_timer_set_rate (pvt->a_timer, 50);
-/*				ast_debug (3, "[%s] Timer set\n", PVT_ID(pvt));
-*/
-			}
-		}
-		if(pvt->dsp)
-			ast_dsp_digitreset(pvt->dsp);
-		pvt->dtmf_digit = 0;
-		ast_debug (6, "[%s] call idx %d was master\n", PVT_ID(pvt), cpvt->call_idx);
-	}
-}
+                        
+  
+                                                               
+                   
+   
+                                                        
+                    
+    
+                                                                       
+                                          
+                                                     
+  
+    
+   
+              
+                                
+                      
+                                                                              
+  
+ 
 
 #/* we has 2 case of call this function, when local side want terminate call and when called for cleanup after remote side alreay terminate call, CEND received and cpvt destroyed */
 static int channel_hangup (struct ast_channel* channel)
@@ -497,10 +493,11 @@ static int channel_digit_begin (struct ast_channel* channel, char digit)
 
 
 #/* */
-static int channel_digit_end (attribute_unused struct ast_channel* channel, attribute_unused char digit, attribute_unused unsigned int duration)
-{
-	return 0;
-}
+extern int svistok_bridge_upstream_channel_digit_end(struct ast_channel * channel, char digit, unsigned int duration);
+                         
+ 
+          
+ 
 
 #/* ARCH: move to cpvt level */
 static void iov_write(struct pvt* pvt, int fd, struct iovec * iov, int iovcnt)
@@ -553,90 +550,86 @@ again:
 }
 
 #/* */
-static void timing_write (struct pvt* pvt)
-{
-	size_t			used;
-	int			iovcnt;
-	struct iovec		iov[3];
-	const char*		msg = NULL;
-//	char			buffer[FRAME_SIZE];
-//	struct cpvt*		cpvt;
+extern void svistok_bridge_upstream_timing_write(struct pvt * pvt);
+       
+                      
+                         
+                             
+                      
 
-//	ast_debug (6, "[%s] tm write |\n", PVT_ID(pvt));
+                                                   
 
-//	memset(buffer, 0, sizeof(buffer));
+                                     
 
-//	AST_LIST_TRAVERSE(&pvt->chans, cpvt, entry) {
+                                                
 
-//		if(!CPVT_IS_ACTIVE(cpvt))
-//			continue;
+                             
+              
 
-		used = mixb_used (&pvt->a_write_mixb);
-//		used = rb_used (&cpvt->a_write_rb);
+                                        
+                                       
 
-		if (used >= FRAME_SIZE)
-		{
-			iovcnt = mixb_read_n_iov (&pvt->a_write_mixb, iov, FRAME_SIZE);
-			mixb_read_n_iov (&pvt->a_write_mixb, iov, FRAME_SIZE);
-			mixb_read_upd (&pvt->a_write_mixb, FRAME_SIZE);
-		}
-		else if (used > 0)
-		{
-			PVT_STAT(pvt, write_tframes) ++;
-			msg = "[%s] write truncated frame\n";
+                         
+   
+                                                                  
+                                                         
+                                                  
+   
+                    
+   
+                                   
+                                        
 
-			iovcnt = mixb_read_all_iov (&pvt->a_write_mixb, iov);
-			mixb_read_all_iov (&pvt->a_write_mixb, iov);
-			mixb_read_upd (&pvt->a_write_mixb, used);
+                                                        
+                                               
+                                            
 
-			iov[iovcnt].iov_base	= silence_frame;
-			iov[iovcnt].iov_len	= FRAME_SIZE - used;
-			iovcnt++;
-		}
-		else
-		{
-			PVT_STAT(pvt, write_sframes) ++;
-			msg = "[%s] write silence\n";
+                                        
+                                           
+            
+   
+      
+   
+                                   
+                                
 
-			iov[0].iov_base		= silence_frame;
-			iov[0].iov_len		= FRAME_SIZE;
-			iovcnt			= 1;
-//			continue;
-		}
+                                    
+                                
+                
+              
+   
 
-//		iov_add(buffer, sizeof(buffer), iov);
-		if(msg)
-			ast_debug (7, msg, PVT_ID(pvt));
+                                         
+         
+                                   
 
-//	}
+    
 
 
-	PVT_STAT(pvt, write_frames) ++;
-	iov_write(pvt, pvt->audio_fd, iov, iovcnt);
-//	if(write_all(pvt->audio_fd, buffer, sizeof(buffer)) != sizeof(buffer))
-//		ast_debug (1, "[%s] Write error!\n", PVT_ID(pvt));
+                                
+                                            
+                                                                         
+                                                      
 
-}
+ 
 
 #/* copy voice data from device to each channel in conference */
-static void write_conference(struct pvt * pvt, const char * buffer, size_t length)
-{
-	struct cpvt* cpvt;
-	size_t wr;
+extern void svistok_bridge_upstream_write_conference(struct pvt * pvt, const char * buffer, size_t length);
+        
 
-	AST_LIST_TRAVERSE(&pvt->chans, cpvt, entry) {
-		if(CPVT_IS_ACTIVE(cpvt) && !CPVT_IS_MASTER(cpvt) && CPVT_TEST_FLAG(cpvt, CALL_FLAG_MULTIPARTY) && cpvt->rd_pipe[PIPE_WRITE] >= 0)
-		{
-			wr = write_all(cpvt->rd_pipe[PIPE_WRITE], buffer, length);
-//			ast_debug (6, "[%s] write2 | call idx %d pipe fd %d wrote %d bytes\n", PVT_ID(pvt), cpvt->call_idx, cpvt->rd_pipe[PIPE_WRITE], wr);
-			if(wr != length)
-			{
-				ast_debug (1, "[%s] Pipe write error %d\n", PVT_ID(pvt), errno);
-			}
-		}
-	}
+                                              
+                                                                                                                                   
+   
+                                                             
+                                                                                                                                        
+                   
+    
+                                                                    
+    
+   
+  
 
-}
+ 
 
 #if ASTERISK_VERSION_NUM >= 100000 /* 10+ */
 #define subclass_integer	subclass.integer
@@ -1369,38 +1362,38 @@ EXPORT_DEF struct ast_channel* new_channel (struct pvt* pvt, int ast_state, cons
 
 /* NOTE: bg: hmm ast_queue_control() say no need channel lock, trylock got deadlock up to 30 seconds here */
 /* NOTE: called from device and current levels with pvt locked */
-EXPORT_DEF int queue_control_channel (struct cpvt * cpvt, enum ast_control_frame_type control)
-{
-/*
-	for (;;)
-	{
-*/
-		if (cpvt->channel)
-		{
-/*
-			if (ast_channel_trylock (cpvt->channel))
-			{
-				DEADLOCK_AVOIDANCE (&cpvt->pvt->lock);
-			}
-			else
-			{
-*/
-				ast_queue_control (cpvt->channel, control);
-/*
-				ast_channel_unlock (cpvt->channel);
-				break;
-			}
-*/
-		}
-/*
-		else
-		{
-			break;
-		}
-	}
-*/
-	return 0;
-}
+                                                                                              
+ 
+  
+         
+  
+  
+                    
+   
+  
+                                           
+    
+                                          
+    
+       
+    
+  
+                                               
+  
+                                       
+          
+    
+  
+   
+  
+      
+   
+         
+   
+  
+  
+          
+ 
 
 /* NOTE: bg: hmm ast_queue_hangup() say no need channel lock before call, trylock got deadlock up to 30 seconds here */
 /* NOTE: bg: called from device level and change_channel_state() with pvt locked */

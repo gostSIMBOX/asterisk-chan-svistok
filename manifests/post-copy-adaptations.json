@@ -1,0 +1,37 @@
+{
+  "files": [
+    {
+      "after_sha256": "e6f7bddc6c41bc9bc601402e69235bd893f9cfd0d186da323ffb0345de4cf188",
+      "before_sha256": "8336e9126a07e825d03c4919b41872b7a911e0a2e5eea6b574e779604dbfd650",
+      "changes": [
+        {
+          "from": "#include \"math.h\"",
+          "reason": "Resolve the unchanged system header independently of project include paths.",
+          "to": "#include <math.h>"
+        }
+      ],
+      "file": "limits.c",
+      "normalizations": [
+        "Added the missing terminal newline; no executable code changed."
+      ],
+      "scope": "include-only"
+    },
+    {
+      "after_sha256": "002022bb7fef330e13e2144bb8451893f95e15fe3f2f8628d39b26fcb6b0b7d3",
+      "before_sha256": "ac31a3ab0e167f2b276e0fede99d8a96ec84aaf45b69bf81187ba54773cdc188",
+      "changes": [
+        {
+          "from": "#include <config.h>",
+          "reason": "Use the target-generated compatibility configuration without copying legacy config.h.",
+          "to": "#include <svistok_config.h>"
+        }
+      ],
+      "file": "share.c",
+      "normalizations": [
+        "Added the missing terminal newline; no executable code changed."
+      ],
+      "scope": "include-only"
+    }
+  ],
+  "schema_version": 1
+}

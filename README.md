@@ -83,19 +83,31 @@ This tree is composed from two immutable references rather than a flattened
 fork:
 
 - `asterisk-chan-dongle/` owns every implementation proven unchanged.
-- `src/` contains the 12 Svistok-only and 28 modified legacy paths, plus small
-  target-owned ABI/state integration files.
+- `src/` contains the 12 Svistok-only paths and only the new/modified units
+  extracted from 28 modified legacy paths, plus small target-owned ABI/state
+  integration files. It does not contain unchanged function bodies.
 - `manifests/module-files.json` is the exhaustive 52-path module closure and
   109-path `DO NOT COPY` list. The 12 identical paths are not duplicated in
   `src`.
 - `manifests/symbol-ownership.json` assigns functions, file data, macros,
   declarations, and directly included `.c` definitions to one owner.
 
-The build generates two build-only slices for each of the 16 modified root
-translation units. Unchanged bodies compile from `asterisk-chan-dongle/`;
-modified/new bodies compile from the copied code in `src/`. Hidden
-`svistok_bridge_*` aliases/wrappers connect cross-slice static functions and
-state. Generated files are written only below `build/`.
+For each of the 16 modified root translation units, the build generates one
+baseline slice and one non-filtering composition that includes the physical
+`src` delta as-is. Unchanged bodies, such as `app_register()`, are defined
+under their original names by baseline-derived objects; no forwarding wrapper
+or duplicate implementation is generated. Modified/new bodies compile from
+`src/`. Build-only composed headers obtain unchanged declarations, types and
+macros from `asterisk-chan-dongle/`. Hidden `svistok_bridge_*` aliases/wrappers
+are used only where cross-object access to static symbols/state is required.
+Generated files are written only below `build/`.
+
+Reproduce the physical-overlay and complete sequential audits with:
+
+```sh
+python3 tools/verify_overlay_purity.py
+python3 tools/final_audit.py
+```
 
 Build against installed Asterisk headers (the include directory must contain
 `asterisk.h` and `asterisk/`):

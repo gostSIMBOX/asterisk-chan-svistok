@@ -21,32 +21,22 @@ def load_tool(name: str):
     return module
 
 
-class MaterializationTests(unittest.TestCase):
-    def test_adapted_sources_preserve_all_legacy_owned_bodies(self) -> None:
+class OverlayMaterializationTests(unittest.TestCase):
+    def test_build_composition_preserves_delta_and_reuses_baseline_units(self) -> None:
         ownership = json.loads(
             (PROJECT_ROOT / "manifests" / "symbol-ownership.json").read_text(
                 encoding="utf-8"
             )
         )
-        materialized = load_tool("materialize_build_manifest").materialize(ownership)
-        roots = set(load_tool("clang_manifest").MODIFIED_ROOTS)
-        records = [item for item in materialized["files"] if item["legacy_file"] in roots]
-        self.assertEqual(16, len(records))
-        for record in records:
-            for symbol in record["symbols"]:
-                if symbol["legacy"] is not None:
-                    original_record = next(
-                        item for item in ownership["files"]
-                        if item["legacy_file"] == record["legacy_file"]
-                    )
-                    original = next(
-                        item for item in original_record["symbols"]
-                        if item["symbol"] == symbol["symbol"]
-                    )
-                    self.assertEqual(
-                        original["legacy"]["source_sha256"],
-                        symbol["legacy"]["source_sha256"],
-                    )
+        purity = load_tool("verify_overlay_purity").verify_tree(ownership)
+        self.assertTrue(purity["ok"], purity["errors"][:20])
+        self.assertEqual(166, purity["checked_header_baseline_markers"])
+
+        generated = PROJECT_ROOT / "build" / "materialization-test"
+        summary = load_tool("generate_all_slices").generate(ownership, generated)
+        self.assertEqual(16, summary["baseline_slices"])
+        self.assertEqual(16, summary["overlay_compositions"])
+        self.assertEqual(166, summary["composed_header_baseline_units"])
 
 
 if __name__ == "__main__":

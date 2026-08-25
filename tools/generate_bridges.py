@@ -107,6 +107,31 @@ def generate_for_side(
     )
 
 
+def generate_composition_for_side(
+    symbols: list[dict[str, Any]], bridges: list[dict[str, Any]], side: str
+) -> tuple[str, str]:
+    """Return declarations/remaps and producer wrappers for an unsliced overlay."""
+    prefix: list[str] = []
+    by_name = {entry["symbol"]: entry for entry in symbols}
+    for bridge in bridges:
+        if side not in bridge["consumers"]:
+            continue
+        entry = by_name[bridge["symbol"]]
+        owner_key = "baseline" if bridge["owner"] == "upstream" else "legacy"
+        record = entry[owner_key]
+        if record is None:
+            raise RuntimeError(f'bridge owner has no definition: {bridge["symbol"]}')
+        name = bridge_name(bridge["owner"], bridge["symbol"])
+        if entry["kind"] == "function":
+            declaration = function_declaration(name, record["signature"])
+        else:
+            declaration = data_declaration(name, record["signature"]["type"])
+        prefix.append(f"extern {declaration};")
+        prefix.append(f'#define {bridge["symbol"]} {name}')
+    _, suffix = generate_for_side(symbols, bridges, side)
+    return (("\n".join(prefix) + "\n") if prefix else "", suffix)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--manifest", type=Path, required=True)

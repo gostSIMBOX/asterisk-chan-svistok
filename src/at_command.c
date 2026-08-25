@@ -29,11 +29,15 @@
 #include "chan_dongle.h"		/* struct pvt */
 #include "pdu.h"			/* build_pdu() */
 
-static const char cmd_at[] 	 = "AT\r";
-static const char cmd_chld1x[]   = "AT+CHLD=1%d\r";
-static const char cmd_chld2[]    = "AT+CHLD=2\r";
-static const char cmd_clcc[]     = "AT+CLCC\r";
-static const char cmd_ddsetex2[] = "AT^DDSETEX=2\r";
+extern const char svistok_bridge_upstream_cmd_at[4];
+;
+                                                  ;
+extern const char svistok_bridge_upstream_cmd_chld2[11];
+;
+extern const char svistok_bridge_upstream_cmd_clcc[9];
+;
+extern const char svistok_bridge_upstream_cmd_ddsetex2[14];
+;
 
 
 	static const char cmd2[] = "ATZ\r";
@@ -95,21 +99,21 @@ static const char cmd_ddsetex2[] = "AT^DDSETEX=2\r";
  * \return 0 on success
  */
 
-static int at_fill_generic_cmd_va (at_queue_cmd_t * cmd, const char * format, va_list ap)
-{
-	char buf[4096];
-	
-	cmd->length = vsnprintf (buf, sizeof(buf)-1, format, ap);
+                                                                                         
+ 
+                
+ 
+                                                          
 
-	buf[cmd->length] = 0;
-	cmd->data = ast_strdup(buf);
-	if(!cmd->data)
-		return -1;
+                      
+                             
+               
+            
 
-	cmd->flags &= ~ATQ_CMD_FLAG_STATIC;
-	return 0;
+                                    
+          
 
-}
+ 
 
 /*!
  * \brief Format and fill generic command
@@ -118,17 +122,18 @@ static int at_fill_generic_cmd_va (at_queue_cmd_t * cmd, const char * format, va
  * \return 0 on success
  */
 
-static int __attribute__ ((format(printf, 2, 3))) at_fill_generic_cmd (at_queue_cmd_t * cmd, const char * format, ...)
-{
-	va_list ap;
-	int rv;
+extern int svistok_bridge_upstream_at_fill_generic_cmd(at_queue_cmd_t * cmd, const char * format, ...);
+              
+ 
+            
+        
 
-	va_start(ap, format);
-	rv = at_fill_generic_cmd_va(cmd, format, ap);
-	va_end(ap);
+                      
+                                              
+            
 
-	return rv;
-}
+           
+ 
 
 /*!
  * \brief Enque generic command
@@ -139,20 +144,20 @@ static int __attribute__ ((format(printf, 2, 3))) at_fill_generic_cmd (at_queue_
  * \return 0 on success
  */
 
-static int __attribute__ ((format(printf, 4, 5))) at_enque_generic (struct cpvt* cpvt, at_cmd_t cmd, int prio, const char * format, ...)
-{
-	va_list ap;
-	int rv;
-	at_queue_cmd_t at_cmd = ATQ_CMD_DECLARE_DYN(cmd);
+                                                                                                                                        
+ 
+            
+        
+                                                  
 
-	va_start(ap, format);
-	rv = at_fill_generic_cmd_va(&at_cmd, format, ap);
-	va_end(ap);
+                      
+                                                  
+            
 
-	if(!rv)
-		rv = at_queue_insert(cpvt, &at_cmd, 1, prio);
-	return rv;
-}
+        
+                                               
+           
+ 
 
 
 EXPORT_DEF int at_enque_initialization_modem(struct cpvt* cpvt)
@@ -707,38 +712,38 @@ EXPORT_DEF int at_enque_ussd (struct cpvt * cpvt, const char * code, attribute_u
  * \return -2 if digis is invalid, 0 on success
  */
 
-EXPORT_DEF int at_enque_dtmf (struct cpvt* cpvt, char digit)
-{
-	switch (digit)
-	{
-/* unsupported, but AT^DTMF=1,22 OK and "2" sent
-*/
-		case 'a':
-		case 'b':
-		case 'c':
-		case 'd':
-		case 'A':
-		case 'B':
-		case 'C':
-		case 'D':
-			return -1974;
-		case '0':
-		case '1':
-		case '2':
-		case '3':
-		case '4':
-		case '5':
-		case '6':
-		case '7':
-		case '8':
-		case '9':
+                                                            
+ 
+               
+  
+                                                
+  
+           
+           
+           
+           
+           
+           
+           
+           
+                
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
 
-		case '*':
-		case '#':
-			return at_enque_generic(cpvt, CMD_AT_DTMF, 1, "AT^DTMF=%d,%c\r", cpvt->call_idx, digit);
-	}
-	return -1;
-}
+           
+           
+                                                                                           
+  
+           
+ 
 
 /*!
  * \brief Enque the AT+CCWA command (disable call waiting)
@@ -746,41 +751,41 @@ EXPORT_DEF int at_enque_dtmf (struct cpvt* cpvt, char digit)
  * \return 0 on success
  */
 
-EXPORT_DEF int at_enque_set_ccwa (struct cpvt* cpvt, attribute_unused const char * unused1, attribute_unused const char * unused2, unsigned call_waiting)
-{
-	
-	static const char cmd_ccwa_get[] = "AT+CCWA=1,2,1\r"; // A: zapros tekushego
-	static const char cmd_ccwa_set[] = "AT+CCWA=%d,%d,%d\r";
-	int err;
-	call_waiting_t value;
-	at_queue_cmd_t cmds[] = {
-		// 5 seconds timeout 
-		ATQ_CMD_DECLARE_DYNIT(CMD_AT_CCWA_SET, ATQ_CMD_TIMEOUT_15S, 0),				// Set Call-Waiting On/Off
-		ATQ_CMD_DECLARE_STIT(CMD_AT_CCWA_STATUS, cmd_ccwa_get, ATQ_CMD_TIMEOUT_15S, 0),		// Query CCWA Status for Voice Call
+                                                                                                                                                         
+ 
+ 
+                                                                             
+                                                         
+         
+                      
+                          
+                       
+                                                                                               
+                                                                                                                      
 
-	};
-	at_queue_cmd_t * pcmd = cmds;
-	unsigned count = ITEMS_OF(cmds);
+   
+                              
+                                 
 
-	if(call_waiting == CALL_WAITING_DISALLOWED || call_waiting == CALL_WAITING_ALLOWED)
-	{
-		value = call_waiting;
-		err = call_waiting == CALL_WAITING_ALLOWED ? 1 : 0;
-		err = at_fill_generic_cmd(&cmds[0], cmd_ccwa_set, err, err, CCWA_CLASS_VOICE);
-		if(err)
-		    return err;
-	}
-	else
-	{
-		value = CALL_WAITING_AUTO;
-		pcmd++;
-		count--;
-	}
-	CONF_SHARED(cpvt->pvt, callwaiting) = value;
+                                                                                    
+  
+                       
+                                                     
+                                                                                
+         
+                 
+  
+     
+  
+                            
+         
+          
+  
+                                             
 
-	return at_queue_insert(cpvt, pcmd, count, 0);
-//	return 0;
-}
+                                              
+            
+ 
 
 /*!
  * \brief Enque the device reset command (AT+CFUN Operation Mode Setting)
@@ -788,14 +793,14 @@ EXPORT_DEF int at_enque_set_ccwa (struct cpvt* cpvt, attribute_unused const char
  * \return 0 on success
  */
 
-EXPORT_DEF int at_enque_reset (struct cpvt* cpvt)
-{
-	static const char cmd[] = "AT+CFUN=1,1\r";
-	static const at_queue_cmd_t at_cmd = ATQ_CMD_DECLARE_ST(CMD_AT_CFUN, cmd);
+                                                 
+ 
+                                           
+                                                                           
 
 
-	return at_queue_insert_const(cpvt, &at_cmd, 1, 0);
-}
+                                                   
+ 
 
 
 /*!
@@ -896,98 +901,98 @@ EXPORT_DEF int at_enque_dial(struct cpvt* cpvt, const char * number, int clir)
  * \param cpvt -- cpvt structure
  * \return 0 on success
  */
-EXPORT_DEF int at_enque_answer(struct cpvt* cpvt)
-{
-	at_queue_cmd_t cmds[] = {
-		ATQ_CMD_DECLARE_DYN(CMD_AT_A),
-		ATQ_CMD_DECLARE_ST(CMD_AT_DDSETEX, cmd_ddsetex2),
-		};
-	int err;
-	int count = ITEMS_OF(cmds);
-	const char * cmd1;
+                                                 
+ 
+                          
+                                
+                                                   
+    
+         
+                            
+                   
 
-	if(cpvt->state == CALL_STATE_INCOMING)
-	{
-/* FIXME: channel number? */
-		cmd1 = "ATA\r";
-	}
-	else if(cpvt->state == CALL_STATE_WAITING)
-	{
-		cmds[0].cmd = CMD_AT_CHLD_2x;
-		cmd1 = "AT+CHLD=2%d\r";
-/* no need CMD_AT_DDSETEX in this case? */
-		count--;
-	}
-	else
-	{
-		ast_log (LOG_ERROR, "[%s] Request answer for call idx %d with state '%s'\n", PVT_ID(cpvt->pvt), cpvt->call_idx, call_state2str(cpvt->state));
-		return -1;
-	}
+                                       
+  
+                            
+                 
+  
+                                           
+  
+                               
+                         
+                                          
+          
+  
+     
+  
+                                                                                                                                               
+            
+  
 
-	err = at_fill_generic_cmd(&cmds[0], cmd1, cpvt->call_idx);
-	if(err == 0)
-		err = at_queue_insert(cpvt, cmds, count, 1);
-	return err;
-}
+                                                           
+             
+                                              
+            
+ 
 
 /*!
  * \brief Enque an activate commands 'Put active calls on hold and activate call x.'
  * \param cpvt -- cpvt structure
  * \return 0 on success
  */
-EXPORT_DEF int at_enque_activate (struct cpvt* cpvt)
-{
-	at_queue_cmd_t cmds[] = {
-		ATQ_CMD_DECLARE_DYN(CMD_AT_CHLD_2x),
-		ATQ_CMD_DECLARE_ST(CMD_AT_CLCC, cmd_clcc),
-		};
-	int err;
+                                                    
+ 
+                          
+                                      
+                                            
+    
+         
 
-	if (cpvt->state == CALL_STATE_ACTIVE)
-		return 0;
+                                      
+           
 
-	if (cpvt->state != CALL_STATE_ONHOLD && cpvt->state != CALL_STATE_WAITING)
-	{
-		ast_log (LOG_ERROR, "[%s] Imposible activate call idx %d from state '%s'\n", 
-				PVT_ID(cpvt->pvt), cpvt->call_idx, call_state2str(cpvt->state));
-		return -1;
-	}
+                                                                           
+  
+                                                                               
+                                                                    
+            
+  
 
 
-	err = at_fill_generic_cmd(&cmds[0], "AT+CHLD=2%d\r", cpvt->call_idx);
-	if(err == 0)
-		err = at_queue_insert(cpvt, cmds, ITEMS_OF(cmds), 1);
-	return err;
-}
+                                                                      
+             
+                                                       
+            
+ 
 
 /*!
  * \brief Enque an commands for 'Put active calls on hold and activate the waiting or held call.'
  * \param pvt -- pvt structure
  * \return 0 on success
  */
-EXPORT_DEF int at_enque_flip_hold (struct cpvt* cpvt)
-{
-	static const at_queue_cmd_t cmds[] = {
-		ATQ_CMD_DECLARE_ST(CMD_AT_CHLD_2, cmd_chld2),
-		ATQ_CMD_DECLARE_ST(CMD_AT_CLCC, cmd_clcc),
-		};
+                                                     
+ 
+                                       
+                                               
+                                            
+    
 
-	return at_queue_insert_const(cpvt, cmds, ITEMS_OF(cmds), 1);
-}
+                                                             
+ 
 
 /*!
  * \brief Enque ping command
  * \param pvt -- pvt structure
  * \return 0 on success
  */
-EXPORT_DEF int at_enque_ping (struct cpvt * cpvt)
-{
-	static const at_queue_cmd_t cmds[] = {
-		ATQ_CMD_DECLARE_STIT(CMD_AT, cmd_at, ATQ_CMD_TIMEOUT_1S, 0),		/* 1 second timeout */
-		};
+                                                 
+ 
+                                       
+                                                                                      
+    
 
-	return at_queue_insert_const(cpvt, cmds, ITEMS_OF(cmds), 1);
-}
+                                                             
+ 
 
 /*!
  * \brief Enque user-specified command
@@ -995,10 +1000,10 @@ EXPORT_DEF int at_enque_ping (struct cpvt * cpvt)
  * \param input -- user's command
  * \return 0 on success
  */
-EXPORT_DEF int at_enque_user_cmd(struct cpvt* cpvt, const char * input)
-{
-	return at_enque_generic(cpvt, CMD_USER, 1, "%s\r", input);
-}
+                                                                       
+ 
+                                                           
+ 
 
 /*!
  * \brief Enque commands for reading SMS
@@ -1007,35 +1012,35 @@ EXPORT_DEF int at_enque_user_cmd(struct cpvt* cpvt, const char * input)
  * \param delete -- if non-zero also enque commands for delete message in store after reading
  * \return 0 on success
  */
-EXPORT_DEF int at_enque_retrive_sms (struct cpvt* cpvt, int index, int delete)
-{
-	int err;
-	at_queue_cmd_t cmds[] = {
-		ATQ_CMD_DECLARE_DYN2(CMD_AT_CMGR, RES_CMGR),
-		ATQ_CMD_DECLARE_DYN(CMD_AT_CMGD)
-		};
-	unsigned cmdsno = ITEMS_OF (cmds);
+                                                                              
+ 
+         
+                          
+                                              
+                                  
+    
+                                   
 
-	err = at_fill_generic_cmd (&cmds[0], "AT+CMGR=%d\r", index);
-	if (err)
-		return err;
+                                                             
+         
+             
 
-	if (delete)
-	{
-		err = at_fill_generic_cmd (&cmds[1], "AT+CMGD=%d\r\r", index);
-		if(err)
-		{
-			ast_free (cmds[0].data);
-			return err;
-		}
-	}
-	else
-	{
-		cmdsno--;
-	}
+            
+  
+                                                                
+         
+   
+                           
+              
+   
+  
+     
+  
+           
+  
 
-	return at_queue_insert (cpvt, cmds, cmdsno, 0);
-}
+                                                
+ 
 
 /*!
  * \brief Enque AT+CHLD1x or AT+CHUP hangup command
@@ -1158,55 +1163,55 @@ EXPORT_DEF int at_enque_hangup (struct cpvt* cpvt, int call_idx)
  * \return 0 on success
  */
 
-EXPORT_DEF int at_enque_volsync (struct cpvt* cpvt)
-{
-	static const char cmd1[] = "AT+CLVL=1\r";
-	static const char cmd2[] = "AT+CLVL=5\r";
-	static const at_queue_cmd_t cmds[] = {
-		ATQ_CMD_DECLARE_ST(CMD_AT_CLVL, cmd1),
-		ATQ_CMD_DECLARE_ST(CMD_AT_CLVL, cmd2),
-		};
-	return at_queue_insert_const (cpvt, cmds, ITEMS_OF(cmds), 1);
-}
+                                                   
+ 
+                                          
+                                          
+                                       
+                                        
+                                        
+    
+                                                              
+ 
 
 /*!
  * \brief Enque AT+CLCC command
  * \param cpvt -- cpvt structure
  * \return 0 on success
  */
-EXPORT_DEF int at_enque_clcc (struct cpvt* cpvt)
-{
-	static const at_queue_cmd_t at_cmd = ATQ_CMD_DECLARE_ST(CMD_AT_CLCC, cmd_clcc);
+                                                
+ 
+                                                                                
 
-	return at_queue_insert_const(cpvt, &at_cmd, 1, 1);
-}
+                                                   
+ 
 
 /*!
  * \brief Enque AT+CHLD=3 command
  * \param cpvt -- cpvt structure
  * \return 0 on success
  */
-EXPORT_DEF int at_enque_conference (struct cpvt* cpvt)
-{
-	static const char cmd_chld3[] = "AT+CHLD=3\r";
-	static const at_queue_cmd_t cmds[] = {
-		ATQ_CMD_DECLARE_ST(CMD_AT_CHLD_3, cmd_chld3),
-		ATQ_CMD_DECLARE_ST(CMD_AT_CLCC, cmd_clcc),
-		};
+                                                      
+ 
+                                               
+                                       
+                                               
+                                            
+    
 
-	return at_queue_insert_const(cpvt, cmds, ITEMS_OF(cmds), 1);
-}
+                                                             
+ 
 
 
 /*!
  * \brief SEND AT+CHUP command to device IMMEDIALITY
  * \param cpvt -- cpvt structure
  */
-EXPORT_DEF void at_hangup_immediality(struct cpvt* cpvt)
-{
-	char buf[20];
-	int length = snprintf(buf, sizeof(buf), cmd_chld1x, cpvt->call_idx);
+                                                        
+ 
+              
+                                                                     
 
-	if(length > 0)
-		at_write(cpvt->pvt, buf, length);
-}
+               
+                                   
+ 

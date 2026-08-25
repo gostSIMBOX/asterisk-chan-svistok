@@ -372,6 +372,95 @@
           "public_symbol": null,
           "symbol": "dca"
         }
+      ],
+      "types": [
+        {
+          "ast_kind": "RecordDecl",
+          "baseline": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "01ff1a4f6e15455aa6a906d0a958ee6a35a70db657c3944c11987eb4b1102ee5",
+            "definition_range": {
+              "begin": 709,
+              "end": 727
+            },
+            "kind": "record",
+            "source_sha256": "dad68e116948397a98c48bb67bd16b2be90e995827e2a3e16dc13acce00ca73a",
+            "symbol": "ast_channel"
+          },
+          "body_relation": "equivalent",
+          "kind": "record",
+          "legacy": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "01ff1a4f6e15455aa6a906d0a958ee6a35a70db657c3944c11987eb4b1102ee5",
+            "definition_range": {
+              "begin": 733,
+              "end": 751
+            },
+            "kind": "record",
+            "source_sha256": "dad68e116948397a98c48bb67bd16b2be90e995827e2a3e16dc13acce00ca73a",
+            "symbol": "ast_channel"
+          },
+          "owner": "upstream",
+          "symbol": "ast_channel"
+        },
+        {
+          "ast_kind": "RecordDecl",
+          "baseline": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "43e4f8f160f34e9c02283fc94e70ded1273cb3f6b8d4ec5abf59207ae0c0d754",
+            "definition_range": {
+              "begin": 2465,
+              "end": 2618
+            },
+            "kind": "record",
+            "source_sha256": "134e6f69d2c1ed90abecc5d1d89c07f40969b8b7f9352948c0eaa764a2e0ac11",
+            "symbol": "dongle_application"
+          },
+          "body_relation": "equivalent",
+          "kind": "record",
+          "legacy": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "43e4f8f160f34e9c02283fc94e70ded1273cb3f6b8d4ec5abf59207ae0c0d754",
+            "definition_range": {
+              "begin": 2512,
+              "end": 2665
+            },
+            "kind": "record",
+            "source_sha256": "134e6f69d2c1ed90abecc5d1d89c07f40969b8b7f9352948c0eaa764a2e0ac11",
+            "symbol": "dongle_application"
+          },
+          "owner": "upstream",
+          "symbol": "dongle_application"
+        },
+        {
+          "ast_kind": "TypedefDecl",
+          "baseline": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "014282a9de8ca95db9b1faaef43933a7cabb0745a5824f268211d42fdb439bd1",
+            "definition_range": {
+              "begin": 3351,
+              "end": 3425
+            },
+            "kind": "typedef",
+            "source_sha256": "70a819d0310670b0e8489c9299113e7ed4b927f4c9da0fa438913a4098059d1e",
+            "symbol": "app_func_t"
+          },
+          "body_relation": "equivalent",
+          "kind": "typedef",
+          "legacy": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "014282a9de8ca95db9b1faaef43933a7cabb0745a5824f268211d42fdb439bd1",
+            "definition_range": {
+              "begin": 3398,
+              "end": 3472
+            },
+            "kind": "typedef",
+            "source_sha256": "70a819d0310670b0e8489c9299113e7ed4b927f4c9da0fa438913a4098059d1e",
+            "symbol": "app_func_t"
+          },
+          "owner": "upstream",
+          "symbol": "app_func_t"
+        }
       ]
     },
     {
@@ -1511,7 +1600,7 @@
         },
         {
           "baseline": {
-            "ast_sha256": "ac14509cc3a43ebdd149d83818b38f355d0e2611f2844b92da3b40fd057cb799",
+            "ast_sha256": "429d01d3747383d09bbb8b7cb6a09414478e25d1c118cd90f3d9599542ce9ac0",
             "body_range": {
               "begin": 2615,
               "end": 6906
@@ -4087,7 +4176,8 @@
           "public_symbol": null,
           "symbol": "cmd_ddsetex2"
         }
-      ]
+      ],
+      "types": []
     },
     {
       "baseline_file": "at_parse.c",
@@ -5754,7 +5844,8 @@
           "public_symbol": null,
           "symbol": "parse_cmgr_text"
         }
-      ]
+      ],
+      "types": []
     },
     {
       "baseline_file": "at_queue.c",
@@ -7173,7 +7264,8 @@
           "public_symbol": "write_all",
           "symbol": "write_all"
         }
-      ]
+      ],
+      "types": []
     },
     {
       "baseline_file": "at_read.c",
@@ -7570,7 +7662,8 @@
           "public_symbol": "at_wait",
           "symbol": "at_wait"
         }
-      ]
+      ],
+      "types": []
     },
     {
       "baseline_file": "at_response.c",
@@ -10272,7 +10365,7 @@
         },
         {
           "baseline": {
-            "ast_sha256": "2c239ae852f9b93f93acff34c0af63cf5bd70fad1738a7f47f735fc00c243178",
+            "ast_sha256": "cc17a9012eedb98ab5a73bf951c24cfd87fb82c97e0321d1a4628befc9b92ff2",
             "body_range": {
               "begin": 9004,
               "end": 15723
@@ -10321,7 +10414,7 @@
           "body_relation": "modified",
           "kind": "function",
           "legacy": {
-            "ast_sha256": "e4cb68f62724739a63b8d85db32a414cd04c34ec78544f9bd0d2436633445093",
+            "ast_sha256": "fed006efb21b25a614a1db40f978133cddf019122a8fc60960b3a0af5f4f60bf",
             "body_range": {
               "begin": 10678,
               "end": 18864
@@ -11576,7 +11669,8 @@
           "public_symbol": null,
           "symbol": "at_responses_list"
         }
-      ]
+      ],
+      "types": []
     },
     {
       "baseline_file": "chan_dongle.c",
@@ -15089,7 +15183,7 @@
         },
         {
           "baseline": {
-            "ast_sha256": "04e5c0a5ff62e78b84c648cef78607ff46ca634e6118ffdbd31a9bcc66a95440",
+            "ast_sha256": "f0a90265706209ae345c4962c8b0443b1c115a4ad33f1cc7f7018018c0e19796",
             "body_range": {
               "begin": 8816,
               "end": 11300
@@ -15152,7 +15246,7 @@
           "body_relation": "modified",
           "kind": "function",
           "legacy": {
-            "ast_sha256": "0a980bce4af241ab3a5ba811677f3daeb88c87bdd996204d164ea2f7fc7f9b5a",
+            "ast_sha256": "a5630b4d7acbc3f2fcb3eb4cb48972e2419e09800e6066ce973af7e7bc4a8ae3",
             "body_range": {
               "begin": 10100,
               "end": 14064
@@ -18534,7 +18628,8 @@
           "public_symbol": "svistok_version",
           "symbol": "svistok_version"
         }
-      ]
+      ],
+      "types": []
     },
     {
       "baseline_file": "channel.c",
@@ -19771,7 +19866,7 @@
         },
         {
           "baseline": {
-            "ast_sha256": "e626c09f5342b2928789b2ba6056cc42757e9946dce93ad9ffdbf95a417ea15c",
+            "ast_sha256": "53054219fec0fee2f2ea5761212e27db7866dde429c5d7322b99f88a7c2c50c1",
             "body_range": {
               "begin": 14764,
               "end": 19025
@@ -19823,7 +19918,7 @@
           "body_relation": "modified",
           "kind": "function",
           "legacy": {
-            "ast_sha256": "9e6cc456b9cc49f1d4a72ed840ef066dc602127073771fa79a5e60258479b80b",
+            "ast_sha256": "181ec6c9f4b2b3b79eb42fa3834c116d4f45d83b2c1d4ee7a18df37c6b6555ce",
             "body_range": {
               "begin": 16946,
               "end": 24256
@@ -20013,7 +20108,7 @@
         },
         {
           "baseline": {
-            "ast_sha256": "85a680fe284b095bada8aec8be27ea83679c73c7655baf81d170f7d813756078",
+            "ast_sha256": "c7c884b2003aa98efb5e8954fecc57e9c343294b95ccd0093e22624333922609",
             "body_range": {
               "begin": 19110,
               "end": 23301
@@ -20069,7 +20164,7 @@
           "body_relation": "modified",
           "kind": "function",
           "legacy": {
-            "ast_sha256": "1dcdd80fd50d69f56f163269971974f7b57da023eac2d1d748d9e8bf2436ce25",
+            "ast_sha256": "28035ff3af6f73687e2da11ff9c15c486a0e09e1fad3e3dfa3f838452d8e55f2",
             "body_range": {
               "begin": 24341,
               "end": 28838
@@ -20278,7 +20373,7 @@
         },
         {
           "baseline": {
-            "ast_sha256": "360c66583653397e0143f1cf16db1ac05f0f3357f743adbf5fdd569d97deb940",
+            "ast_sha256": "3e4ea89dd18398be81fbbef8f1e5bb826a801f81e9c9c176bc6db3ad30311713",
             "body_range": {
               "begin": 11577,
               "end": 12299
@@ -20326,7 +20421,7 @@
           "body_relation": "modified",
           "kind": "function",
           "legacy": {
-            "ast_sha256": "b112d0ae7974b426f903769838e7653aab029556fac144ae3199d538f58cd43e",
+            "ast_sha256": "3983c106271fb49a148615d571f4a3e8354111e32710114367c1bcf9b70acf64",
             "body_range": {
               "begin": 13648,
               "end": 14370
@@ -21249,7 +21344,8 @@
           "public_symbol": null,
           "symbol": "silence_frame"
         }
-      ]
+      ],
+      "types": []
     },
     {
       "baseline_file": "cli.c",
@@ -27672,6 +27768,37 @@
           "public_symbol": null,
           "symbol": "cli"
         }
+      ],
+      "types": [
+        {
+          "ast_kind": "TypedefDecl",
+          "baseline": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "c8d26a6b2a3b15c6b1305df3b96517d85e723451f88e9b1d94373e9cfde6bbe9",
+            "definition_range": {
+              "begin": 17961,
+              "end": 18009
+            },
+            "kind": "typedef",
+            "source_sha256": "dc4e898134117895322e9efa4d7ebb71ba114c33da6a26330236d8e01995f325",
+            "symbol": "ast_cli_complete2_t"
+          },
+          "body_relation": "equivalent",
+          "kind": "typedef",
+          "legacy": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "c8d26a6b2a3b15c6b1305df3b96517d85e723451f88e9b1d94373e9cfde6bbe9",
+            "definition_range": {
+              "begin": 34927,
+              "end": 34975
+            },
+            "kind": "typedef",
+            "source_sha256": "dc4e898134117895322e9efa4d7ebb71ba114c33da6a26330236d8e01995f325",
+            "symbol": "ast_cli_complete2_t"
+          },
+          "owner": "upstream",
+          "symbol": "ast_cli_complete2_t"
+        }
       ]
     },
     {
@@ -28717,6 +28844,37 @@
           "owner": "upstream",
           "public_symbol": "send_ussd",
           "symbol": "send_ussd"
+        }
+      ],
+      "types": [
+        {
+          "ast_kind": "TypedefDecl",
+          "baseline": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "7d9e1bb5d3fb3cce5ff91cbf24e6afa0be7ddaae00054642b6f0884a3a6cfb1a",
+            "definition_range": {
+              "begin": 1767,
+              "end": 1854
+            },
+            "kind": "typedef",
+            "source_sha256": "e3759a8d1016545b912f179938e6aa6ea7dd4001240b8ee74efa5e857d8db3e5",
+            "symbol": "at_cmd_f"
+          },
+          "body_relation": "equivalent",
+          "kind": "typedef",
+          "legacy": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "7d9e1bb5d3fb3cce5ff91cbf24e6afa0be7ddaae00054642b6f0884a3a6cfb1a",
+            "definition_range": {
+              "begin": 1811,
+              "end": 1898
+            },
+            "kind": "typedef",
+            "source_sha256": "e3759a8d1016545b912f179938e6aa6ea7dd4001240b8ee74efa5e857d8db3e5",
+            "symbol": "at_cmd_f"
+          },
+          "owner": "upstream",
+          "symbol": "at_cmd_f"
         }
       ]
     },
@@ -30956,6 +31114,37 @@
           "public_symbol": null,
           "symbol": "dcm"
         }
+      ],
+      "types": [
+        {
+          "ast_kind": "RecordDecl",
+          "baseline": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "704eb86ebc03fe51cd4e25b3c2920f82c2f29d43b29b1920baafe53570415a72",
+            "definition_range": {
+              "begin": 17050,
+              "end": 17212
+            },
+            "kind": "record",
+            "source_sha256": "7d5583f791344047f12909ea57a1957e1225a76bb8f0968debc481b7b20243bb",
+            "symbol": "dongle_manager"
+          },
+          "body_relation": "equivalent",
+          "kind": "record",
+          "legacy": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "704eb86ebc03fe51cd4e25b3c2920f82c2f29d43b29b1920baafe53570415a72",
+            "definition_range": {
+              "begin": 17109,
+              "end": 17271
+            },
+            "kind": "record",
+            "source_sha256": "7d5583f791344047f12909ea57a1957e1225a76bb8f0968debc481b7b20243bb",
+            "symbol": "dongle_manager"
+          },
+          "owner": "upstream",
+          "symbol": "dongle_manager"
+        }
       ]
     },
     {
@@ -31756,7 +31945,8 @@
           "public_symbol": "rb_write_upd",
           "symbol": "rb_write_upd"
         }
-      ]
+      ],
+      "types": []
     },
     {
       "baseline_file": "cpvt.c",
@@ -31965,7 +32155,7 @@
         },
         {
           "baseline": {
-            "ast_sha256": "be8d8a1bfc365a24cd8b0fb05c87120f22cf203f79d2b894aec36e100c6acae6",
+            "ast_sha256": "921ed5bc609cec7a07c313eb881c24ab4456cfe6823f5e0346e3a8ae7881da27",
             "body_range": {
               "begin": 480,
               "end": 898
@@ -32001,7 +32191,7 @@
           "body_relation": "modified",
           "kind": "function",
           "legacy": {
-            "ast_sha256": "6d088567822defb672b205a33aa2d68bed8aab6c0471dc3a6d47a9e3ded0af53",
+            "ast_sha256": "bb3f4f16e813e869a1d98c2e5b1a7a39d72e73784621188a87e2c04873b60798",
             "body_range": {
               "begin": 480,
               "end": 898
@@ -32183,7 +32373,8 @@
           "public_symbol": "pvt_find_cpvt",
           "symbol": "pvt_find_cpvt"
         }
-      ]
+      ],
+      "types": []
     },
     {
       "baseline_file": "dc_config.c",
@@ -32877,7 +33068,8 @@
           "public_symbol": null,
           "symbol": "jbconf_default"
         }
-      ]
+      ],
+      "types": []
     },
     {
       "baseline_file": "pdu.c",
@@ -34570,7 +34762,8 @@
           "public_symbol": null,
           "symbol": "pdu_store_number"
         }
-      ]
+      ],
+      "types": []
     },
     {
       "baseline_file": "pdiscovery.c",
@@ -38320,6 +38513,124 @@
           "public_symbol": null,
           "symbol": "sys_bus_usb_devices"
         }
+      ],
+      "types": [
+        {
+          "ast_kind": "RecordDecl",
+          "baseline": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "9f287a8e9a5bbe46e212a1a23bec36d0291e80d5d8fcb682a30c6d9b1bd4819e",
+            "definition_range": {
+              "begin": 1305,
+              "end": 1382
+            },
+            "kind": "record",
+            "source_sha256": "42f49932628cf60ba673e499f012108756622a77367396ec907bc17aac97b313",
+            "symbol": "discovery_cache"
+          },
+          "body_relation": "modified",
+          "kind": "record",
+          "legacy": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "71227973c7e00dcc6db766e60886037a0aa13bdc9fbabf1e1ef7474e716aa53d",
+            "definition_range": {
+              "begin": 1328,
+              "end": 1405
+            },
+            "kind": "record",
+            "source_sha256": "42f49932628cf60ba673e499f012108756622a77367396ec907bc17aac97b313",
+            "symbol": "discovery_cache"
+          },
+          "owner": "svistok",
+          "symbol": "discovery_cache"
+        },
+        {
+          "ast_kind": "RecordDecl",
+          "baseline": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "221d10105f778df638e4e47ba98877195f86ca47971a344ef9f99b23dcabe9c5",
+            "definition_range": {
+              "begin": 1147,
+              "end": 1302
+            },
+            "kind": "record",
+            "source_sha256": "dc8cd78a4fdc66b295f91b6390f5b78c1ddbdcde59fba03eb7ad83b541df433b",
+            "symbol": "pdiscovery_cache_item"
+          },
+          "body_relation": "modified",
+          "kind": "record",
+          "legacy": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "c9c38924ff0127d6eea5911a36befe4fb6b7cad5ed1420cede526946fb38da14",
+            "definition_range": {
+              "begin": 1170,
+              "end": 1325
+            },
+            "kind": "record",
+            "source_sha256": "dc8cd78a4fdc66b295f91b6390f5b78c1ddbdcde59fba03eb7ad83b541df433b",
+            "symbol": "pdiscovery_cache_item"
+          },
+          "owner": "svistok",
+          "symbol": "pdiscovery_cache_item"
+        },
+        {
+          "ast_kind": "RecordDecl",
+          "baseline": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "3953e749665a32da3775b82252824c4f503edb23d9eb69f57775e5d3841f32fb",
+            "definition_range": {
+              "begin": 933,
+              "end": 1052
+            },
+            "kind": "record",
+            "source_sha256": "16c373961bae1a0b197aa1cf2ae54984c36b4fc008761beee4611dbec5d18318",
+            "symbol": "pdiscovery_device"
+          },
+          "body_relation": "equivalent",
+          "kind": "record",
+          "legacy": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "3953e749665a32da3775b82252824c4f503edb23d9eb69f57775e5d3841f32fb",
+            "definition_range": {
+              "begin": 934,
+              "end": 1053
+            },
+            "kind": "record",
+            "source_sha256": "16c373961bae1a0b197aa1cf2ae54984c36b4fc008761beee4611dbec5d18318",
+            "symbol": "pdiscovery_device"
+          },
+          "owner": "upstream",
+          "symbol": "pdiscovery_device"
+        },
+        {
+          "ast_kind": "RecordDecl",
+          "baseline": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "09b4d5892e1d7850e96c0d4cb36e88ed4529cb614e3cc897cb5dd077905e3978",
+            "definition_range": {
+              "begin": 1055,
+              "end": 1144
+            },
+            "kind": "record",
+            "source_sha256": "e8b6ae852c4d26590a74a8ca2f81e26f87a324df086cf6398554386884c735e7",
+            "symbol": "pdiscovery_request"
+          },
+          "body_relation": "modified",
+          "kind": "record",
+          "legacy": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "b50600be6be04e38fde7e750624cc43e250991c8405678d1a541268fcfd89521",
+            "definition_range": {
+              "begin": 1056,
+              "end": 1167
+            },
+            "kind": "record",
+            "source_sha256": "da50866f14052cba715d9112fca970546e8caab10941fba405d3239895c25ec7",
+            "symbol": "pdiscovery_request"
+          },
+          "owner": "svistok",
+          "symbol": "pdiscovery_request"
+        }
       ]
     },
     {
@@ -38386,7 +38697,8 @@
           "symbol": "CHAN_DONGLE_APP_H_INCLUDED"
         }
       ],
-      "symbols": []
+      "symbols": [],
+      "types": []
     },
     {
       "baseline_file": "at_command.h",
@@ -39079,6 +39391,66 @@
           "public_symbol": null,
           "symbol": "at_cmd2str"
         }
+      ],
+      "types": [
+        {
+          "ast_kind": "RecordDecl",
+          "baseline": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "224ee1beb5168e1adcb23b2c22fc7f9b2ea78475fc7e808fae31bc0cf1e6c964",
+            "definition_range": {
+              "begin": 2085,
+              "end": 2096
+            },
+            "kind": "record",
+            "source_sha256": "3ee5fc7bc2e110b09ab084e40a559dc1c7f0bbaf0d5dc1ed69776631ad0a08b0",
+            "symbol": "cpvt"
+          },
+          "body_relation": "equivalent",
+          "kind": "record",
+          "legacy": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "224ee1beb5168e1adcb23b2c22fc7f9b2ea78475fc7e808fae31bc0cf1e6c964",
+            "definition_range": {
+              "begin": 2327,
+              "end": 2338
+            },
+            "kind": "record",
+            "source_sha256": "3ee5fc7bc2e110b09ab084e40a559dc1c7f0bbaf0d5dc1ed69776631ad0a08b0",
+            "symbol": "cpvt"
+          },
+          "owner": "upstream",
+          "symbol": "cpvt"
+        },
+        {
+          "ast_kind": "TypedefDecl",
+          "baseline": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "89db505bc3877682533097a2c47ee3a72089231eb0ef66f1119d04363d240dbb",
+            "definition_range": {
+              "begin": 373,
+              "end": 1078
+            },
+            "kind": "typedef",
+            "source_sha256": "b86239b77cc25d32c8e0871218c7acc50492c535c5a00dcdc9bc65887b881aa9",
+            "symbol": "at_cmd_t"
+          },
+          "body_relation": "modified",
+          "kind": "typedef",
+          "legacy": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "9dbf5ff463c12ee7a09fe4ccaf706d04f27561126d150a610af3fc77e62bdff7",
+            "definition_range": {
+              "begin": 373,
+              "end": 1202
+            },
+            "kind": "typedef",
+            "source_sha256": "31e06a4ec0940c3013436dad809e4579e49949be544b4abf9bc4e6d2c574734f",
+            "symbol": "at_cmd_t"
+          },
+          "owner": "svistok",
+          "symbol": "at_cmd_t"
+        }
       ]
     },
     {
@@ -39420,7 +39792,38 @@
           "symbol": "CHAN_DONGLE_AT_PARSE_H_INCLUDED"
         }
       ],
-      "symbols": []
+      "symbols": [],
+      "types": [
+        {
+          "ast_kind": "RecordDecl",
+          "baseline": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "2690cee8dcedc101e5c92d513118f8f4af2d9ca4ea023b23442bdad3f326ea1c",
+            "definition_range": {
+              "begin": 264,
+              "end": 274
+            },
+            "kind": "record",
+            "source_sha256": "daf3f8dadd813706b030614c00b3678dfd0afbea56c80cbf02e1ea72755c25b9",
+            "symbol": "pvt"
+          },
+          "body_relation": "equivalent",
+          "kind": "record",
+          "legacy": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "2690cee8dcedc101e5c92d513118f8f4af2d9ca4ea023b23442bdad3f326ea1c",
+            "definition_range": {
+              "begin": 264,
+              "end": 274
+            },
+            "kind": "record",
+            "source_sha256": "daf3f8dadd813706b030614c00b3678dfd0afbea56c80cbf02e1ea72755c25b9",
+            "symbol": "pvt"
+          },
+          "owner": "upstream",
+          "symbol": "pvt"
+        }
+      ]
     },
     {
       "baseline_file": "at_response.h",
@@ -39486,7 +39889,154 @@
           "symbol": "CHAN_DONGLE_AT_RESPONSE_H_INCLUDED"
         }
       ],
-      "symbols": []
+      "symbols": [],
+      "types": [
+        {
+          "ast_kind": "RecordDecl",
+          "baseline": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "258c7b0e77470467da7385de310612554f05b7d0a7f88fbeb63649f40de06bda",
+            "definition_range": {
+              "begin": 199,
+              "end": 211
+            },
+            "kind": "record",
+            "source_sha256": "5ff616a63ca616c87a70c82bd5b2cbc2865ef3de83da97cb72a5a39d2270f9a7",
+            "symbol": "iovec"
+          },
+          "body_relation": "equivalent",
+          "kind": "record",
+          "legacy": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "258c7b0e77470467da7385de310612554f05b7d0a7f88fbeb63649f40de06bda",
+            "definition_range": {
+              "begin": 199,
+              "end": 211
+            },
+            "kind": "record",
+            "source_sha256": "5ff616a63ca616c87a70c82bd5b2cbc2865ef3de83da97cb72a5a39d2270f9a7",
+            "symbol": "iovec"
+          },
+          "owner": "upstream",
+          "symbol": "iovec"
+        },
+        {
+          "ast_kind": "RecordDecl",
+          "baseline": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "2690cee8dcedc101e5c92d513118f8f4af2d9ca4ea023b23442bdad3f326ea1c",
+            "definition_range": {
+              "begin": 187,
+              "end": 197
+            },
+            "kind": "record",
+            "source_sha256": "daf3f8dadd813706b030614c00b3678dfd0afbea56c80cbf02e1ea72755c25b9",
+            "symbol": "pvt"
+          },
+          "body_relation": "equivalent",
+          "kind": "record",
+          "legacy": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "2690cee8dcedc101e5c92d513118f8f4af2d9ca4ea023b23442bdad3f326ea1c",
+            "definition_range": {
+              "begin": 187,
+              "end": 197
+            },
+            "kind": "record",
+            "source_sha256": "daf3f8dadd813706b030614c00b3678dfd0afbea56c80cbf02e1ea72755c25b9",
+            "symbol": "pvt"
+          },
+          "owner": "upstream",
+          "symbol": "pvt"
+        },
+        {
+          "ast_kind": "TypedefDecl",
+          "baseline": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "c444654fbc521de9a9207b7d4c3c1cf2d7aa51334a0ddd15bc7194c88af83f02",
+            "definition_range": {
+              "begin": 285,
+              "end": 801
+            },
+            "kind": "typedef",
+            "source_sha256": "e1421e98862b56a1c4b491d72aabc9b542e130b603e34369eacf76734107d3cf",
+            "symbol": "at_res_t"
+          },
+          "body_relation": "modified",
+          "kind": "typedef",
+          "legacy": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "43e59d6bb82a8299e4337455f36369a67928fee4566987cd51c17c62338703ae",
+            "definition_range": {
+              "begin": 285,
+              "end": 899
+            },
+            "kind": "typedef",
+            "source_sha256": "ad4af9d47fc2f72d7e23cdbb334d9f768524a9a407a356e1351072187031e27d",
+            "symbol": "at_res_t"
+          },
+          "owner": "svistok",
+          "symbol": "at_res_t"
+        },
+        {
+          "ast_kind": "TypedefDecl",
+          "baseline": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "84a62a17c0bd771ea4c6c8b7962766bc2815d3ec1e62c9e980e2873d9dd9694b",
+            "definition_range": {
+              "begin": 832,
+              "end": 950
+            },
+            "kind": "typedef",
+            "source_sha256": "7f70833bf4fd85f091fee42561ae8e81698caea2a5c11b8db4bad89dbcb7c816",
+            "symbol": "at_response_t"
+          },
+          "body_relation": "equivalent",
+          "kind": "typedef",
+          "legacy": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "84a62a17c0bd771ea4c6c8b7962766bc2815d3ec1e62c9e980e2873d9dd9694b",
+            "definition_range": {
+              "begin": 930,
+              "end": 1048
+            },
+            "kind": "typedef",
+            "source_sha256": "7f70833bf4fd85f091fee42561ae8e81698caea2a5c11b8db4bad89dbcb7c816",
+            "symbol": "at_response_t"
+          },
+          "owner": "upstream",
+          "symbol": "at_response_t"
+        },
+        {
+          "ast_kind": "TypedefDecl",
+          "baseline": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "29d08c5ef446ee892db939926835a9b66e5aa28c7c63fdab7d594057ee5967e7",
+            "definition_range": {
+              "begin": 978,
+              "end": 1260
+            },
+            "kind": "typedef",
+            "source_sha256": "81e014b9f9022a1eeeeba515abf886b8e6950fe71193830f446b626458b32c13",
+            "symbol": "at_responses_t"
+          },
+          "body_relation": "equivalent",
+          "kind": "typedef",
+          "legacy": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "29d08c5ef446ee892db939926835a9b66e5aa28c7c63fdab7d594057ee5967e7",
+            "definition_range": {
+              "begin": 1076,
+              "end": 1358
+            },
+            "kind": "typedef",
+            "source_sha256": "81e014b9f9022a1eeeeba515abf886b8e6950fe71193830f446b626458b32c13",
+            "symbol": "at_responses_t"
+          },
+          "owner": "upstream",
+          "symbol": "at_responses_t"
+        }
+      ]
     },
     {
       "baseline_file": "chan_dongle.h",
@@ -40642,6 +41192,201 @@
           "public_symbol": "total_stat_pddl",
           "symbol": "total_stat_pddl"
         }
+      ],
+      "types": [
+        {
+          "ast_kind": "RecordDecl",
+          "baseline": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "2cd7239e479abfa563738d1807f365d93c7ab08433989c07eed112814395fb4c",
+            "definition_range": {
+              "begin": 3345,
+              "end": 3365
+            },
+            "kind": "record",
+            "source_sha256": "95c2631a5759148622f3de4182b09fff6d18d4587d19af864145bc25c461d527",
+            "symbol": "at_queue_task"
+          },
+          "body_relation": "equivalent",
+          "kind": "record",
+          "legacy": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "2cd7239e479abfa563738d1807f365d93c7ab08433989c07eed112814395fb4c",
+            "definition_range": {
+              "begin": 6130,
+              "end": 6150
+            },
+            "kind": "record",
+            "source_sha256": "95c2631a5759148622f3de4182b09fff6d18d4587d19af864145bc25c461d527",
+            "symbol": "at_queue_task"
+          },
+          "owner": "upstream",
+          "symbol": "at_queue_task"
+        },
+        {
+          "ast_kind": "TypedefDecl",
+          "baseline": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "a0c0af1c0cec2ffe70046e6c4396437f0a208ae71bd6a05f669f743090400747",
+            "definition_range": {
+              "begin": 8191,
+              "end": 8714
+            },
+            "kind": "typedef",
+            "source_sha256": "2ac712a8c677b1fab240799f773d129687ea2427c3cfdce217d176d49437ce5d",
+            "symbol": "public_state_t"
+          },
+          "body_relation": "modified",
+          "kind": "typedef",
+          "legacy": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "dacab604bee58cc4447c0c62dd7de3b12dbc26f9ae49c141fe71ec8fc14424db",
+            "definition_range": {
+              "begin": 12132,
+              "end": 12676
+            },
+            "kind": "typedef",
+            "source_sha256": "06525a4899bceda34235777a524f00c905cd167db6eb64fbed39a98da9dbc0a0",
+            "symbol": "public_state_t"
+          },
+          "owner": "svistok",
+          "symbol": "public_state_t"
+        },
+        {
+          "ast_kind": "TypedefDecl",
+          "baseline": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "243509d0a38930dd1c3a21e978b27e0b2d4367c594feade705980d9aca905cd2",
+            "definition_range": {
+              "begin": 1676,
+              "end": 3293
+            },
+            "kind": "typedef",
+            "source_sha256": "5ff2952706614c808fbb207b76cba385b34da981430d8e5bc9e7cdd401af84bd",
+            "symbol": "pvt_stat_t"
+          },
+          "body_relation": "modified",
+          "kind": "typedef",
+          "legacy": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "2ecac8739a1975ecb0dd4d7a86eca4cd11f8f63572e2f932f8e9b703506f1941",
+            "definition_range": {
+              "begin": 2163,
+              "end": 5760
+            },
+            "kind": "typedef",
+            "source_sha256": "0838426d6afa9a48839704946ad9145f8e5283be5ba180ffcd053498cbff134c",
+            "symbol": "pvt_stat_t"
+          },
+          "owner": "svistok",
+          "symbol": "pvt_stat_t"
+        },
+        {
+          "ast_kind": "TypedefDecl",
+          "baseline": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "893d97fd62fd3e20cf30264dc74b89a8ca36ebd9a0ead1bf7f47a732b8471ec3",
+            "definition_range": {
+              "begin": 1157,
+              "end": 1604
+            },
+            "kind": "typedef",
+            "source_sha256": "db73163f07b3e996b8d1ccd337c20ccfd3c7ccf0d20c523995720d0fa06c4f77",
+            "symbol": "pvt_state_t"
+          },
+          "body_relation": "modified",
+          "kind": "typedef",
+          "legacy": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "6dee987a721fd9a58257f3313b9e0c1e757b0d4c0d104c332d271a836d1808d5",
+            "definition_range": {
+              "begin": 1593,
+              "end": 2091
+            },
+            "kind": "typedef",
+            "source_sha256": "858df58e82b4c57d6b4d2d6cfa537d55b989ad42aadf5171247ae2fd207a11dd",
+            "symbol": "pvt_state_t"
+          },
+          "owner": "svistok",
+          "symbol": "pvt_state_t"
+        },
+        {
+          "ast_kind": "TypedefDecl",
+          "baseline": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "9da29a11c2d0704df92aa0366fca8e89056354ed587dbcdf95bfb90e3e3483b4",
+            "definition_range": {
+              "begin": 3368,
+              "end": 7753
+            },
+            "kind": "typedef",
+            "source_sha256": "050d4eea3c604716e019070b929fff2860de5019d373d8a71143bef4eac06772",
+            "symbol": "pvt_t"
+          },
+          "body_relation": "modified",
+          "kind": "typedef",
+          "legacy": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "88193c207bbd7c383a2289164f1cd4fb1d67384d9ff77f5a85eb786cb0a99107",
+            "definition_range": {
+              "begin": 6234,
+              "end": 11694
+            },
+            "kind": "typedef",
+            "source_sha256": "9322b2a25f9836ef5686254fa9a8c1047089c4017076a9be7b16ea6be436b4a1",
+            "symbol": "pvt_t"
+          },
+          "owner": "svistok",
+          "symbol": "pvt_t"
+        },
+        {
+          "ast_kind": "TypedefDecl",
+          "baseline": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "485a08aa0423586c13b18c89e3cba0fb332b9658bd0989b5d7f13166befd7e28",
+            "definition_range": {
+              "begin": 1036,
+              "end": 1142
+            },
+            "kind": "typedef",
+            "source_sha256": "8d78703553bdba2ec050b98f06783245fa49bd1e24b3cbfe14835daf3d1f9767",
+            "symbol": "restate_time_t"
+          },
+          "body_relation": "equivalent",
+          "kind": "typedef",
+          "legacy": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "485a08aa0423586c13b18c89e3cba0fb332b9658bd0989b5d7f13166befd7e28",
+            "definition_range": {
+              "begin": 1472,
+              "end": 1578
+            },
+            "kind": "typedef",
+            "source_sha256": "8d78703553bdba2ec050b98f06783245fa49bd1e24b3cbfe14835daf3d1f9767",
+            "symbol": "restate_time_t"
+          },
+          "owner": "upstream",
+          "symbol": "restate_time_t"
+        },
+        {
+          "ast_kind": "TypedefDecl",
+          "baseline": null,
+          "body_relation": "new",
+          "kind": "typedef",
+          "legacy": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "d3cad6e03ba9b4df6b907464c74af15128d875c4914e66075342ddd6b60ccf3e",
+            "definition_range": {
+              "begin": 6153,
+              "end": 6231
+            },
+            "kind": "typedef",
+            "source_sha256": "b6dd5e7ce62cdd909d655606e3d66297b7d1a7cd99b4ad8b40f10f44957278c2",
+            "symbol": "soupri_t"
+          },
+          "owner": "svistok",
+          "symbol": "soupri_t"
+        }
       ]
     },
     {
@@ -40796,7 +41541,96 @@
           "symbol": "CHAN_DONGLE_CHANNEL_H_INCLUDED"
         }
       ],
-      "symbols": []
+      "symbols": [],
+      "types": [
+        {
+          "ast_kind": "RecordDecl",
+          "baseline": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "224ee1beb5168e1adcb23b2c22fc7f9b2ea78475fc7e808fae31bc0cf1e6c964",
+            "definition_range": {
+              "begin": 361,
+              "end": 372
+            },
+            "kind": "record",
+            "source_sha256": "3ee5fc7bc2e110b09ab084e40a559dc1c7f0bbaf0d5dc1ed69776631ad0a08b0",
+            "symbol": "cpvt"
+          },
+          "body_relation": "equivalent",
+          "kind": "record",
+          "legacy": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "224ee1beb5168e1adcb23b2c22fc7f9b2ea78475fc7e808fae31bc0cf1e6c964",
+            "definition_range": {
+              "begin": 361,
+              "end": 372
+            },
+            "kind": "record",
+            "source_sha256": "3ee5fc7bc2e110b09ab084e40a559dc1c7f0bbaf0d5dc1ed69776631ad0a08b0",
+            "symbol": "cpvt"
+          },
+          "owner": "upstream",
+          "symbol": "cpvt"
+        },
+        {
+          "ast_kind": "RecordDecl",
+          "baseline": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "2690cee8dcedc101e5c92d513118f8f4af2d9ca4ea023b23442bdad3f326ea1c",
+            "definition_range": {
+              "begin": 349,
+              "end": 359
+            },
+            "kind": "record",
+            "source_sha256": "daf3f8dadd813706b030614c00b3678dfd0afbea56c80cbf02e1ea72755c25b9",
+            "symbol": "pvt"
+          },
+          "body_relation": "equivalent",
+          "kind": "record",
+          "legacy": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "2690cee8dcedc101e5c92d513118f8f4af2d9ca4ea023b23442bdad3f326ea1c",
+            "definition_range": {
+              "begin": 349,
+              "end": 359
+            },
+            "kind": "record",
+            "source_sha256": "daf3f8dadd813706b030614c00b3678dfd0afbea56c80cbf02e1ea72755c25b9",
+            "symbol": "pvt"
+          },
+          "owner": "upstream",
+          "symbol": "pvt"
+        },
+        {
+          "ast_kind": "TypedefDecl",
+          "baseline": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "cf4524f1b209b550b714887eb30034a09eb55d54fff7be60e2dd9593f56f3aa5",
+            "definition_range": {
+              "begin": 266,
+              "end": 346
+            },
+            "kind": "typedef",
+            "source_sha256": "c4a0cea7697cb0e3ea092180c7bc4cc44504917aef5d3850859511b65698a5ac",
+            "symbol": "channel_var_t"
+          },
+          "body_relation": "equivalent",
+          "kind": "typedef",
+          "legacy": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "cf4524f1b209b550b714887eb30034a09eb55d54fff7be60e2dd9593f56f3aa5",
+            "definition_range": {
+              "begin": 266,
+              "end": 346
+            },
+            "kind": "typedef",
+            "source_sha256": "c4a0cea7697cb0e3ea092180c7bc4cc44504917aef5d3850859511b65698a5ac",
+            "symbol": "channel_var_t"
+          },
+          "owner": "upstream",
+          "symbol": "channel_var_t"
+        }
+      ]
     },
     {
       "baseline_file": "cli.h",
@@ -40862,7 +41696,8 @@
           "symbol": "CHAN_DONGLE_CLI_H_INCLUDED"
         }
       ],
-      "symbols": []
+      "symbols": [],
+      "types": []
     },
     {
       "baseline_file": "cpvt.h",
@@ -41160,6 +41995,95 @@
           "owner": "upstream",
           "public_symbol": null,
           "symbol": "call_state2str"
+        }
+      ],
+      "types": [
+        {
+          "ast_kind": "TypedefDecl",
+          "baseline": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "6d286099677315c32e31ec1ec3cee5ac4642db5cee3e2812aa9ec0a529929fcb",
+            "definition_range": {
+              "begin": 1044,
+              "end": 1902
+            },
+            "kind": "typedef",
+            "source_sha256": "1330baf1dbc0e1dcae01d0832be464b32d05ba4693642ee7fbd96bcaee49450e",
+            "symbol": "call_flag_t"
+          },
+          "body_relation": "equivalent",
+          "kind": "typedef",
+          "legacy": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "6d286099677315c32e31ec1ec3cee5ac4642db5cee3e2812aa9ec0a529929fcb",
+            "definition_range": {
+              "begin": 1044,
+              "end": 1902
+            },
+            "kind": "typedef",
+            "source_sha256": "1330baf1dbc0e1dcae01d0832be464b32d05ba4693642ee7fbd96bcaee49450e",
+            "symbol": "call_flag_t"
+          },
+          "owner": "upstream",
+          "symbol": "call_flag_t"
+        },
+        {
+          "ast_kind": "TypedefDecl",
+          "baseline": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "338ee14b183b668be5bda53c1d5441f2d35531f2e221c246b97550cc62f6b0f1",
+            "definition_range": {
+              "begin": 436,
+              "end": 976
+            },
+            "kind": "typedef",
+            "source_sha256": "1704fed6eae19ac0e3ee5d591abfa3cbfe9e3cf35fb98d0407d3af8a73b76c5b",
+            "symbol": "call_state_t"
+          },
+          "body_relation": "equivalent",
+          "kind": "typedef",
+          "legacy": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "338ee14b183b668be5bda53c1d5441f2d35531f2e221c246b97550cc62f6b0f1",
+            "definition_range": {
+              "begin": 436,
+              "end": 976
+            },
+            "kind": "typedef",
+            "source_sha256": "1704fed6eae19ac0e3ee5d591abfa3cbfe9e3cf35fb98d0407d3af8a73b76c5b",
+            "symbol": "call_state_t"
+          },
+          "owner": "upstream",
+          "symbol": "call_state_t"
+        },
+        {
+          "ast_kind": "TypedefDecl",
+          "baseline": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "1814bfbc3036897dea873be2742255ff79e1fdf18b4f202c1d177970c9702cb7",
+            "definition_range": {
+              "begin": 1912,
+              "end": 3000
+            },
+            "kind": "typedef",
+            "source_sha256": "4fa805a6985d8936c394826354ef71e8f8f4425e18bb56ca7a56a5cd09c51452",
+            "symbol": "cpvt_t"
+          },
+          "body_relation": "modified",
+          "kind": "typedef",
+          "legacy": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "c8c39a5fc8423c891821c506d86a3315e4e60406b94319890d1e5c688803e084",
+            "definition_range": {
+              "begin": 1912,
+              "end": 3080
+            },
+            "kind": "typedef",
+            "source_sha256": "282ed9dd74f9908b1e3987e9ccbd3d1611ce6e744f1078ea0e80776ac0082d7b",
+            "symbol": "cpvt_t"
+          },
+          "owner": "svistok",
+          "symbol": "cpvt_t"
         }
       ]
     },
@@ -41469,6 +42393,211 @@
           "public_symbol": null,
           "symbol": "dc_cw_setting2str"
         }
+      ],
+      "types": [
+        {
+          "ast_kind": "TypedefDecl",
+          "baseline": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "02e91fa66fc6a5b034b32daa1d10d31e94c9c480528008987ad2f3c72de48fef",
+            "definition_range": {
+              "begin": 586,
+              "end": 689
+            },
+            "kind": "typedef",
+            "source_sha256": "778484b70441ef1c2d615f8c95daeb6019ad053d84aee0c41fe8f31d36c88c9e",
+            "symbol": "call_waiting_t"
+          },
+          "body_relation": "equivalent",
+          "kind": "typedef",
+          "legacy": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "02e91fa66fc6a5b034b32daa1d10d31e94c9c480528008987ad2f3c72de48fef",
+            "definition_range": {
+              "begin": 610,
+              "end": 713
+            },
+            "kind": "typedef",
+            "source_sha256": "778484b70441ef1c2d615f8c95daeb6019ad053d84aee0c41fe8f31d36c88c9e",
+            "symbol": "call_waiting_t"
+          },
+          "owner": "upstream",
+          "symbol": "call_waiting_t"
+        },
+        {
+          "ast_kind": "TypedefDecl",
+          "baseline": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "28def3dff1e268108def3eed1348e10671b012829da018445968c4e834edd376",
+            "definition_range": {
+              "begin": 883,
+              "end": 992
+            },
+            "kind": "typedef",
+            "source_sha256": "0588c75338fba0925f71213ea84e2f76a1a265755cb9665725da2019cffa531e",
+            "symbol": "dc_dtmf_setting_t"
+          },
+          "body_relation": "equivalent",
+          "kind": "typedef",
+          "legacy": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "28def3dff1e268108def3eed1348e10671b012829da018445968c4e834edd376",
+            "definition_range": {
+              "begin": 907,
+              "end": 1016
+            },
+            "kind": "typedef",
+            "source_sha256": "0588c75338fba0925f71213ea84e2f76a1a265755cb9665725da2019cffa531e",
+            "symbol": "dc_dtmf_setting_t"
+          },
+          "owner": "upstream",
+          "symbol": "dc_dtmf_setting_t"
+        },
+        {
+          "ast_kind": "TypedefDecl",
+          "baseline": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "fcff9807d88da35e58a76e82365f21c639eb028aff2bbf2ea42552c5e5a6c31c",
+            "definition_range": {
+              "begin": 2691,
+              "end": 2915
+            },
+            "kind": "typedef",
+            "source_sha256": "ae8f6fbb748732fb3eaf293ce60b338298203589d3d2d68442603abf5c28d3df",
+            "symbol": "dc_gconfig_t"
+          },
+          "body_relation": "equivalent",
+          "kind": "typedef",
+          "legacy": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "fcff9807d88da35e58a76e82365f21c639eb028aff2bbf2ea42552c5e5a6c31c",
+            "definition_range": {
+              "begin": 2775,
+              "end": 2999
+            },
+            "kind": "typedef",
+            "source_sha256": "ae8f6fbb748732fb3eaf293ce60b338298203589d3d2d68442603abf5c28d3df",
+            "symbol": "dc_gconfig_t"
+          },
+          "owner": "upstream",
+          "symbol": "dc_gconfig_t"
+        },
+        {
+          "ast_kind": "TypedefDecl",
+          "baseline": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "5f325c2f8624ed49491ae28d24de4bce2cc47841a4d8dff652169f83f957da87",
+            "definition_range": {
+              "begin": 1277,
+              "end": 2666
+            },
+            "kind": "typedef",
+            "source_sha256": "bd93bccaaac91455aadb5166600928e78cb6d26a2292bec6beb7a162bb3f34a8",
+            "symbol": "dc_sconfig_t"
+          },
+          "body_relation": "modified",
+          "kind": "typedef",
+          "legacy": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "b17a01ba5150974fe7c7a32f1adad83cc1635c4582442d1ac00285130ca231f6",
+            "definition_range": {
+              "begin": 1301,
+              "end": 2750
+            },
+            "kind": "typedef",
+            "source_sha256": "d80631b4427013fb8a6ebcd9df38141d241e50f2c1901ebce511d134b5fdf71c",
+            "symbol": "dc_sconfig_t"
+          },
+          "owner": "svistok",
+          "symbol": "dc_sconfig_t"
+        },
+        {
+          "ast_kind": "TypedefDecl",
+          "baseline": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "25d50dad768a00f6a47c574942ff28decc31ef469f7834673a323fa93fb576eb",
+            "definition_range": {
+              "begin": 2957,
+              "end": 3316
+            },
+            "kind": "typedef",
+            "source_sha256": "4aabcec48af8190f60603d3009eda31659af6fb8bffb684ee3e85ac78a66f368",
+            "symbol": "dc_uconfig_t"
+          },
+          "body_relation": "modified",
+          "kind": "typedef",
+          "legacy": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "ea32bb2611a6539cd7f0adb09d57a0b32c12d298bc709566227da778c70ce080",
+            "definition_range": {
+              "begin": 3041,
+              "end": 3509
+            },
+            "kind": "typedef",
+            "source_sha256": "f3f6cf05eed11a6cde4c0ab9daa2f99cc8df052ecf65945e71347313a0613c61",
+            "symbol": "dc_uconfig_t"
+          },
+          "owner": "svistok",
+          "symbol": "dc_uconfig_t"
+        },
+        {
+          "ast_kind": "TypedefDecl",
+          "baseline": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "7722e62fbea71f37b79ed599a454580b64ad3ab79eebc122509edf017a26879a",
+            "definition_range": {
+              "begin": 419,
+              "end": 533
+            },
+            "kind": "typedef",
+            "source_sha256": "b58820fd0c4a94b04011580f5ba0c4009f135396071eaaa988319330a758b4e0",
+            "symbol": "dev_state_t"
+          },
+          "body_relation": "equivalent",
+          "kind": "typedef",
+          "legacy": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "7722e62fbea71f37b79ed599a454580b64ad3ab79eebc122509edf017a26879a",
+            "definition_range": {
+              "begin": 443,
+              "end": 557
+            },
+            "kind": "typedef",
+            "source_sha256": "b58820fd0c4a94b04011580f5ba0c4009f135396071eaaa988319330a758b4e0",
+            "symbol": "dev_state_t"
+          },
+          "owner": "upstream",
+          "symbol": "dev_state_t"
+        },
+        {
+          "ast_kind": "TypedefDecl",
+          "baseline": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "e6bd8ddd6b0dedb82c12584daccc53fcea27f02565e889c1418a15b12c580a43",
+            "definition_range": {
+              "begin": 3363,
+              "end": 3517
+            },
+            "kind": "typedef",
+            "source_sha256": "67369b02053ab77d677bdffda021d9431ea7971dcff355790eb071d644d546e7",
+            "symbol": "pvt_config_t"
+          },
+          "body_relation": "equivalent",
+          "kind": "typedef",
+          "legacy": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "e6bd8ddd6b0dedb82c12584daccc53fcea27f02565e889c1418a15b12c580a43",
+            "definition_range": {
+              "begin": 3556,
+              "end": 3710
+            },
+            "kind": "typedef",
+            "source_sha256": "67369b02053ab77d677bdffda021d9431ea7971dcff355790eb071d644d546e7",
+            "symbol": "pvt_config_t"
+          },
+          "owner": "upstream",
+          "symbol": "pvt_config_t"
+        }
       ]
     },
     {
@@ -41623,7 +42752,125 @@
           "symbol": "CHAN_DONGLE_PDISCOVERY_H_INCLUDED"
         }
       ],
-      "symbols": []
+      "symbols": [],
+      "types": [
+        {
+          "ast_kind": "EnumDecl",
+          "baseline": {
+            "ast_kind": "EnumDecl",
+            "ast_sha256": "f2d3d2fbc25cf2743ef6b52614896b8f7bd9a3d2967bc2ed014346410bec29fc",
+            "definition_range": {
+              "begin": 185,
+              "end": 305
+            },
+            "kind": "enum",
+            "source_sha256": "1355165d7eb76fcacb91209e3864709703c1e15c1030f824e71cd3256d2ec3ab",
+            "symbol": "INTERFACE_TYPE"
+          },
+          "body_relation": "equivalent",
+          "kind": "enum",
+          "legacy": {
+            "ast_kind": "EnumDecl",
+            "ast_sha256": "f2d3d2fbc25cf2743ef6b52614896b8f7bd9a3d2967bc2ed014346410bec29fc",
+            "definition_range": {
+              "begin": 185,
+              "end": 305
+            },
+            "kind": "enum",
+            "source_sha256": "1355165d7eb76fcacb91209e3864709703c1e15c1030f824e71cd3256d2ec3ab",
+            "symbol": "INTERFACE_TYPE"
+          },
+          "owner": "upstream",
+          "symbol": "INTERFACE_TYPE"
+        },
+        {
+          "ast_kind": "RecordDecl",
+          "baseline": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "a64565df1b9b89ef819a9f79978cdd33fc05dfd4295aeaf6d93897616df0993c",
+            "definition_range": {
+              "begin": 473,
+              "end": 501
+            },
+            "kind": "record",
+            "source_sha256": "1026e8f987c8c70a4ed077ac7aec51271c57d28f75fd68e83eb5188467390c58",
+            "symbol": "pdiscovery_cache_item"
+          },
+          "body_relation": "equivalent",
+          "kind": "record",
+          "legacy": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "a64565df1b9b89ef819a9f79978cdd33fc05dfd4295aeaf6d93897616df0993c",
+            "definition_range": {
+              "begin": 491,
+              "end": 519
+            },
+            "kind": "record",
+            "source_sha256": "1026e8f987c8c70a4ed077ac7aec51271c57d28f75fd68e83eb5188467390c58",
+            "symbol": "pdiscovery_cache_item"
+          },
+          "owner": "upstream",
+          "symbol": "pdiscovery_cache_item"
+        },
+        {
+          "ast_kind": "RecordDecl",
+          "baseline": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "a861e3a4ecbb4d7c7206a6093864be0f9b2241413f4b7766f6f4f5a54ccbeee0",
+            "definition_range": {
+              "begin": 308,
+              "end": 375
+            },
+            "kind": "record",
+            "source_sha256": "586b8e7c599d8bd0434406628ac570f023217e13dd2fb268bd9a4132223167a0",
+            "symbol": "pdiscovery_ports"
+          },
+          "body_relation": "equivalent",
+          "kind": "record",
+          "legacy": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "a861e3a4ecbb4d7c7206a6093864be0f9b2241413f4b7766f6f4f5a54ccbeee0",
+            "definition_range": {
+              "begin": 308,
+              "end": 375
+            },
+            "kind": "record",
+            "source_sha256": "586b8e7c599d8bd0434406628ac570f023217e13dd2fb268bd9a4132223167a0",
+            "symbol": "pdiscovery_ports"
+          },
+          "owner": "upstream",
+          "symbol": "pdiscovery_ports"
+        },
+        {
+          "ast_kind": "RecordDecl",
+          "baseline": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "616c412f0e9b83a6779d5fae4e1f4d67569f79cfbc2040a472826e6dc2df3e8a",
+            "definition_range": {
+              "begin": 378,
+              "end": 470
+            },
+            "kind": "record",
+            "source_sha256": "9e275d15fd03deef0d1a8c62967114a894580b20df4340adcc0606df393436f9",
+            "symbol": "pdiscovery_result"
+          },
+          "body_relation": "modified",
+          "kind": "record",
+          "legacy": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "ce8e7500f5645328f599cdbed3e6efd7929886c86913fe7bc4f201db7e342b53",
+            "definition_range": {
+              "begin": 378,
+              "end": 488
+            },
+            "kind": "record",
+            "source_sha256": "79567c4957664c5b0f96719c48dbb3c2919d35e612f3f06bbfbee0d49d3cb379",
+            "symbol": "pdiscovery_result"
+          },
+          "owner": "svistok",
+          "symbol": "pdiscovery_result"
+        }
+      ]
     },
     {
       "baseline_file": "pdu.h",
@@ -41744,7 +42991,8 @@
           "symbol": "CHAN_DONGLE_PDU_H_INCLUDED"
         }
       ],
-      "symbols": []
+      "symbols": [],
+      "types": []
     },
     {
       "baseline_file": "ringbuffer.h",
@@ -42261,6 +43509,66 @@
           "owner": "upstream",
           "public_symbol": null,
           "symbol": "rb_write"
+        }
+      ],
+      "types": [
+        {
+          "ast_kind": "RecordDecl",
+          "baseline": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "129b6005d85125fa1a4b8f5c7cdbf49bd07a3da7af72284a5aa9b315f8e8dccd",
+            "definition_range": {
+              "begin": 366,
+              "end": 597
+            },
+            "kind": "record",
+            "source_sha256": "12044be0e442cde37537a1739716eb5225008332a617ddd45ceea7f273e24e53",
+            "symbol": "ringbuffer"
+          },
+          "body_relation": "equivalent",
+          "kind": "record",
+          "legacy": {
+            "ast_kind": "RecordDecl",
+            "ast_sha256": "129b6005d85125fa1a4b8f5c7cdbf49bd07a3da7af72284a5aa9b315f8e8dccd",
+            "definition_range": {
+              "begin": 366,
+              "end": 597
+            },
+            "kind": "record",
+            "source_sha256": "12044be0e442cde37537a1739716eb5225008332a617ddd45ceea7f273e24e53",
+            "symbol": "ringbuffer"
+          },
+          "owner": "upstream",
+          "symbol": "ringbuffer"
+        },
+        {
+          "ast_kind": "TypedefDecl",
+          "baseline": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "e0c347ae2661271a5655c0645f36d34333d04973a6470160813cf5b54ddf80f8",
+            "definition_range": {
+              "begin": 299,
+              "end": 363
+            },
+            "kind": "typedef",
+            "source_sha256": "024698f794a46e469b4f64036b22bb0608f7d8f7902d297941273476a2f931ac",
+            "symbol": "rb_write_f"
+          },
+          "body_relation": "equivalent",
+          "kind": "typedef",
+          "legacy": {
+            "ast_kind": "TypedefDecl",
+            "ast_sha256": "e0c347ae2661271a5655c0645f36d34333d04973a6470160813cf5b54ddf80f8",
+            "definition_range": {
+              "begin": 299,
+              "end": 363
+            },
+            "kind": "typedef",
+            "source_sha256": "024698f794a46e469b4f64036b22bb0608f7d8f7902d297941273476a2f931ac",
+            "symbol": "rb_write_f"
+          },
+          "owner": "upstream",
+          "symbol": "rb_write_f"
         }
       ]
     }

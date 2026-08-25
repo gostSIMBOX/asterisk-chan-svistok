@@ -81,8 +81,8 @@ char svistok_version[64]="1.1200";
 pvt_config_t def_settings;
 
 
-EXPORT_DEF const char * const dev_state_strs[4] = { "stop", "restart", "remove", "start" };
-EXPORT_DEF public_state_t * gpublic;
+                                                                                          ;
+                                   ;
 EXPORT_DEF struct ast_format chan_dongle_format;
 EXPORT_DEF struct ast_format_cap * chan_dongle_format_cap;
 
@@ -96,17 +96,14 @@ static int public_state_init(struct public_state * state);
  * \return 0 if device seems ok, non-0 if it seems not available
  */
 
-static int port_status (int fd)
-{
-	struct termios t;
+extern int svistok_bridge_upstream_port_status(int fd);
+          
+  
+            
+  
 
-	if (fd < 0)
-	{
-		return -1;
-	}
-
-	return tcgetattr (fd, &t);
-}
+                           
+ 
 
 #/* return length of lockname */
 static int lock_build(const char * devname, char * buf, unsigned length)
@@ -389,24 +386,24 @@ static void disconnect_dongle (struct pvt* pvt)
 
 /* anybody wrote some to device before me, and not read results, clean pending results here */
 #/* */
-EXPORT_DEF void clean_read_data(const char * devname, int fd)
-{
-	char buf[2*1024*16];
-	struct ringbuffer rb;
-	int iovcnt;
-	int t;
-	
-	rb_init (&rb, buf, sizeof (buf));
-	for (t = 0; at_wait(fd, &t); t = 0)
-	{
-		iovcnt = at_read (fd, devname, &rb);
-		ast_debug (4, "[%s] drop %u bytes of pending data before initialization\n", devname, (unsigned)rb_used(&rb));
-		/* drop readed */
-		rb_init (&rb, buf, sizeof (buf));
-		if (iovcnt == 0)
-			break;
-	}
-}
+                                                             
+ 
+                     
+                      
+            
+       
+ 
+                                  
+                                    
+  
+                                      
+                                                                                                               
+                   
+                                   
+                  
+         
+  
+ 
 
 
 /*!
@@ -607,16 +604,15 @@ e_restart:
 
 }
 
-static inline int start_monitor (struct pvt * pvt)
-{
-	if (ast_pthread_create_background (&pvt->monitor_thread, NULL, do_monitor_phone, pvt) < 0)
-	{
-		pvt->monitor_thread = AST_PTHREADT_NULL;
-		return 0;
-	}
+extern int svistok_bridge_upstream_start_monitor(struct pvt * pvt);
+                                                                            
+  
+                                          
+           
+  
 
-	return 1;
-}
+          
+ 
 
 #/* */
 static void pvt_stop(struct pvt * pvt)
@@ -933,164 +929,160 @@ static void * do_discovery(void * arg)
 }
 
 #/* */
-static int discovery_restart(public_state_t * state)
-{
-	if(state->discovery_thread == AST_PTHREADT_STOP)
-		return 0;
+extern int svistok_bridge_upstream_discovery_restart(public_state_t * state);
+                          
+           
 
-	ast_mutex_lock(&state->discovery_lock);
-	if (state->discovery_thread == pthread_self()) {
-		ast_mutex_unlock(&state->discovery_lock);
-		ast_log(LOG_WARNING, "Cannot kill myself\n");
-		return -1;
-	}
-	if (state->discovery_thread != AST_PTHREADT_NULL) {
-		/* Wake up the thread */
-		pthread_kill(state->discovery_thread, SIGURG);
-	} else {
-		/* Start a new monitor */
-		if (ast_pthread_create_background(&state->discovery_thread, NULL, do_discovery, state) < 0) {
-			ast_mutex_unlock(&state->discovery_lock);
-			ast_log(LOG_ERROR, "Unable to start discovery thread\n");
-			return -1;
-		}
-	}
-	ast_mutex_unlock(&state->discovery_lock);
-	return 0;
-}
-
-#/* */
-static void discovery_stop(public_state_t * state)
-{
-	/* signal for discovery unloading */
-	state->unloading_flag = 1;
-
-	ast_mutex_lock(&state->discovery_lock);
-	if (state->discovery_thread && (state->discovery_thread != AST_PTHREADT_STOP) && (state->discovery_thread != AST_PTHREADT_NULL)) {
-//		pthread_cancel(state->discovery_thread);
-		pthread_kill(state->discovery_thread, SIGURG);
-		pthread_join(state->discovery_thread, NULL);
-	}
-
-	state->discovery_thread = AST_PTHREADT_STOP;
-	ast_mutex_unlock(&state->discovery_lock);
-}
+                                        
+                                                 
+                                           
+                                               
+            
+  
+                                                    
+                          
+                                                
+         
+                           
+                                                                                               
+                                            
+                                                            
+             
+   
+  
+                                          
+          
+ 
 
 #/* */
-EXPORT_DEF void pvt_on_create_1st_channel(struct pvt* pvt)
-{
-	mixb_init (&pvt->a_write_mixb, pvt->a_write_buf, sizeof (pvt->a_write_buf));
-//	rb_init (&pvt->a_write_rb, pvt->a_write_buf, sizeof (pvt->a_write_buf));
+extern void svistok_bridge_upstream_discovery_stop(public_state_t * state);
+              
+                           
 
-	if(!pvt->a_timer)
-		pvt->a_timer = ast_timer_open ();
+                                        
+                                                                                                                                   
+                                            
+                                                
+                                              
+  
 
-/* FIXME: do on each channel switch */
-	if(pvt->dsp)
-		ast_dsp_digitreset (pvt->dsp);
-	pvt->dtmf_digit = 0;
-	pvt->dtmf_begin_time.tv_sec = 0;
-	pvt->dtmf_begin_time.tv_usec = 0;
-	pvt->dtmf_end_time.tv_sec = 0;
-	pvt->dtmf_end_time.tv_usec = 0;
-
-	manager_event_device_status(PVT_ID(pvt), "Used");
-}
+                                             
+                                          
+ 
 
 #/* */
-EXPORT_DEF void pvt_on_remove_last_channel(struct pvt* pvt)
-{
-	if (pvt->a_timer)
-	{
-		ast_timer_close(pvt->a_timer);
-		pvt->a_timer = NULL;
-	}
-	manager_event_device_status(PVT_ID(pvt), "Free");
-}
+                                                          
+ 
+                                                                             
+                                                                           
+
+                  
+                                   
+
+                                      
+             
+                                
+                     
+                                 
+                                  
+                               
+                                
+
+                                                  
+ 
+
+#/* */
+                                                           
+ 
+                  
+  
+                                
+                      
+  
+                                                  
+ 
 
 #define SET_BIT(dw_array,bitno)		do { (dw_array)[(bitno) >> 5] |= 1 << ((bitno) & 31) ; } while(0)
 #define TEST_BIT(dw_array,bitno)	((dw_array)[(bitno) >> 5] & 1 << ((bitno) & 31))
 #/* */
-EXPORT_DEF int pvt_get_pseudo_call_idx(const struct pvt * pvt)
-{
-	struct cpvt * cpvt;
-	int * bits;
-	int dwords = ((MAX_CALL_IDX + sizeof(*bits) - 1) / sizeof(*bits));
+                                                              
+ 
+                    
+            
+                                                                   
 
-	bits = alloca(dwords * sizeof(*bits));
-	memset(bits, 0, dwords * sizeof(*bits));
+                                       
+                                         
 
-	AST_LIST_TRAVERSE(&pvt->chans, cpvt, entry) {
-		SET_BIT(bits, cpvt->call_idx);
-	}
+                                              
+                                
+  
 
-	for(dwords = 1; dwords <= MAX_CALL_IDX; dwords++)
-	{
-		if(!TEST_BIT(bits, dwords))
-			return dwords;
-	}
-	return 0;
-}
+                                                  
+  
+                             
+                 
+  
+          
+ 
 
 #undef TEST_BIT
 #undef SET_BIT
 
 #/* */
-static int is_dial_possible2(const struct pvt * pvt, int opts, const struct cpvt * ignore_cpvt)
-{
-	struct cpvt * cpvt;
-	int hold = 0;
-	int active = 0;
-	// FIXME: allow HOLD states for CONFERENCE
-	int use_call_waiting = opts & CALL_FLAG_HOLD_OTHER;
+extern int svistok_bridge_upstream_is_dial_possible2(const struct pvt * pvt, int opts, const struct cpvt * ignore_cpvt);
+            
+                
+                                           
+                                                    
 
-	if(pvt->ring || pvt->cwaiting || pvt->dialing)
-		return 0;
+                                               
+           
 
-	AST_LIST_TRAVERSE(&pvt->chans, cpvt, entry) {
-		switch(cpvt->state)
-		{
-			case CALL_STATE_INIT:
-				if(cpvt != ignore_cpvt)
-					return 0;
-				break;
+                                              
+                     
+   
+                        
+                           
+              
+          
 
-			case CALL_STATE_DIALING:
-			case CALL_STATE_ALERTING:
-			case CALL_STATE_INCOMING:
-			case CALL_STATE_WAITING:
-				return 0;
+                           
+                            
+                            
+                           
+             
 
-			case CALL_STATE_ACTIVE:
-				if(hold || !use_call_waiting)
-					return 0;
-				active++;
-				break;
+                          
+                                 
+              
+             
+          
 
-			case CALL_STATE_ONHOLD:
-				if(active || !use_call_waiting)
-					return 0;
-				hold++;
-				break;
+                          
+                                   
+              
+           
+          
 
-			case CALL_STATE_RELEASED:
-				;
-		}
-	}
-	return 1;
-}
+                            
+     
+   
+  
+          
+ 
 
 #/* */
-EXPORT_DEF int is_dial_possible(const struct pvt * pvt, int opts)
-{
-	return is_dial_possible2(pvt, opts, NULL);
-}
+                                                                 
+ 
+                                           
+ 
 
 #/* */
-EXPORT_DECL int pvt_enabled(const struct pvt * pvt)
-{
-	return pvt->current_state == DEV_STATE_STARTED && (pvt->desired_state == pvt->current_state || pvt->restart_time == RESTATE_TIME_CONVENIENT);
-}
+                                                   
+ 
+                                                                                                                                              
+ 
 
 #/* */
 EXPORT_DEF int ready4voice_call(const struct pvt* pvt, const struct cpvt * current_cpvt, int opts)
@@ -1118,17 +1110,17 @@ EXPORT_DEF int ready4voice_call(const struct pvt* pvt, const struct cpvt * curre
 
 
 #/* */
-static int can_dial(struct pvt* pvt, int opts, const struct ast_channel * requestor)
-{
-	/* not allow hold requester channel :) */
-	/* FIXME: requestor may be just proxy/masquerade for real channel */
-	//	use ast_bridged_channel(chan) ?
-	//	use requestor->tech->get_base_channel() ?
+                                                                                    
+ 
+                                          
+                                                                     
+                                   
+                                             
 
-	if((opts & CALL_FLAG_HOLD_OTHER) == CALL_FLAG_HOLD_OTHER && channels_loop(pvt, requestor))
-		return 0;
-	return ready4voice_call(pvt, NULL, opts);
-}
+                                                                                           
+           
+                                          
+ 
 
 
 EXPORT_DEF int can_sms(struct pvt* pvt);
@@ -1392,51 +1384,51 @@ EXPORT_DEF struct ast_str* pvt_str_state_ex(const struct pvt* pvt)
 }
 
 #/* */
-EXPORT_DEF const char* GSM_regstate2str(int gsm_reg_status)
-{
-	static const char * const gsm_states[] = {
-		"Not registered, not searching",
-		"Registered, home network",
-		"Not registered, but searching",
-		"Registration denied",
-		"Unknown",
-		"Registered, roaming",
-		};
-	return enum2str_def(gsm_reg_status, gsm_states, ITEMS_OF (gsm_states), "Unknown");
-}
+                                                           
+ 
+                                           
+                                  
+                             
+                                  
+                        
+            
+                        
+    
+                                                                                   
+ 
 
 #/* */
-EXPORT_DEF const char* sys_mode2str(int sys_mode)
-{
-	static const char * const sys_modes[] = {
-		"No Service",
-		"AMPS",
-		"CDMA",
-		"GSM/GPRS",
-		"HDR",
-		"WCDMA",
-		"GPS",
-		};
+                                                 
+ 
+                                          
+               
+         
+         
+             
+        
+          
+        
+    
 
-	return enum2str_def(sys_mode, sys_modes, ITEMS_OF (sys_modes), "Unknown");
-}
+                                                                           
+ 
 
 #/* */
-EXPORT_DEF const char * sys_submode2str(int sys_submode)
-{
-	static const char * const sys_submodes[] = {
-		"No service",
-		"GSM",
-		"GPRS",
-		"EDGE",
-		"WCDMA",
-		"HSDPA",
-		"HSUPA",
-		"HSDPA and HSUPA",
-		};
+                                                        
+ 
+                                             
+               
+        
+         
+         
+          
+          
+          
+                    
+    
 
-	return enum2str_def(sys_submode, sys_submodes, ITEMS_OF (sys_submodes), "Unknown");
-}
+                                                                                    
+ 
 
 #/* */
 EXPORT_DEF char* rssi2dBm(int rssi, char * buf, unsigned len)
@@ -1616,14 +1608,14 @@ static int pvt_time4restate(const struct pvt * pvt)
 }
 
 #/* */
-EXPORT_DEF void pvt_try_restate(struct pvt * pvt)
-{
-	if(pvt_time4restate(pvt))
-	{
-		pvt->restart_time = RESTATE_TIME_NOW;
-		discovery_restart(gpublic);
-	}
-}
+                                                 
+ 
+                          
+  
+                                       
+                             
+  
+ 
 
 #/* assume caller hold lock */
 static int pvt_reconfigure(struct pvt * pvt, const pvt_config_t * settings, restate_time_t when)
@@ -1797,18 +1789,15 @@ static int reload_config(public_state_t * state, int recofigure, restate_time_t 
 
 
 #/* */
-static void devices_destroy(public_state_t * state)
-{
-	struct pvt * pvt;
-
-	/* Destroy the device list */
-	AST_RWLIST_WRLOCK(&state->devices);
-	while((pvt = AST_RWLIST_REMOVE_HEAD(&state->devices, entry)))
-	{
-		pvt_destroy(pvt);
-	}
-	AST_RWLIST_UNLOCK(&state->devices);
-}
+extern void svistok_bridge_upstream_devices_destroy(public_state_t * state);
+                           
+                                    
+                                                              
+  
+                   
+  
+                                    
+ 
 
 
 static int load_module()
@@ -1917,33 +1906,33 @@ static void public_state_fini(struct public_state * state)
 	AST_RWLIST_HEAD_DESTROY(&state->devices);
 }
 
-static int unload_module()
-{
+                          
+ 
 
-	public_state_fini(gpublic);
-	pdiscovery_fini();
-	
-	ast_free(gpublic);
-	gpublic = NULL;
-	return 0;
-}
+                            
+                   
+ 
+                   
+                
+          
+ 
 
-
-#/* */
-EXPORT_DEF void pvt_reload(restate_time_t when)
-{
-	unsigned dev_reload = 0;
-	reload_config(gpublic, 1, when, &dev_reload);
-	if(dev_reload > 0)
-		discovery_restart(gpublic);
-}
 
 #/* */
-static int reload_module()
-{
-	pvt_reload(RESTATE_TIME_GRACEFULLY);
-	return 0;
-}
+                                               
+ 
+                         
+                                              
+                   
+                             
+ 
+
+#/* */
+                          
+ 
+                                     
+          
+ 
 
 AST_MODULE_INFO(ASTERISK_GPL_KEY, AST_MODFLAG_DEFAULT, MODULE_DESCRIPTION,
 		.load = load_module,
@@ -1953,10 +1942,10 @@ AST_MODULE_INFO(ASTERISK_GPL_KEY, AST_MODFLAG_DEFAULT, MODULE_DESCRIPTION,
 
 //AST_MODULE_INFO_STANDARD (ASTERISK_GPL_KEY, MODULE_DESCRIPTION);
 
-EXPORT_DEF struct ast_module* self_module()
-{
-	return ast_module_info->self;
-}
+                                           
+ 
+                              
+ 
 
 
 

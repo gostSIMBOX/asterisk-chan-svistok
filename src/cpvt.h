@@ -3,6 +3,9 @@
 */
 #ifndef CHAN_DONGLE_CPVT_H_INCLUDED
 #define CHAN_DONGLE_CPVT_H_INCLUDED
+#ifdef SVISTOK_COMPOSED_CPVT_H_HEADER
+#include SVISTOK_COMPOSED_CPVT_H_HEADER
+#else
 
 #include <asterisk.h>
 #include <asterisk/linkedlists.h>		/* AST_LIST_ENTRY() */
@@ -12,37 +15,12 @@
 #include <asterisk-chan-dongle/mixbuffer.h>	/* struct mixstream */
 #include <asterisk-chan-dongle/mutils.h>	/* enum2str() ITEMS_OF() */
 
-#define FRAME_SIZE		320
+/* SVISTOK_BASELINE_UNIT macro FRAME_SIZE */
 
-typedef enum {
-	CALL_STATE_MIN		= 0,
+/* SVISTOK_BASELINE_UNIT typedef call_state_t */
+/* SVISTOK_BASELINE_UNIT macro CALL_STATES_NUMBER */
 
-/* values from CLCC */
-	CALL_STATE_ACTIVE	= CALL_STATE_MIN,		/*!< comes from CLCC */
-	CALL_STATE_ONHOLD,					/*!< comes from CLCC */
-	CALL_STATE_DIALING,					/*!< comes from CLCC */
-	CALL_STATE_ALERTING,					/*!< comes from CLCC */
-	CALL_STATE_INCOMING,					/*!< comes from CLCC */
-	CALL_STATE_WAITING,					/*!< comes from CLCC */
-
-	CALL_STATE_RELEASED,					/*!< on CEND or channel_hangup() called */
-	CALL_STATE_INIT,					/*!< channel_call() called */
-	CALL_STATE_MAX		= CALL_STATE_INIT
-} call_state_t;
-#define CALL_STATES_NUMBER	(CALL_STATE_MAX - CALL_STATE_MIN + 1)
-
-typedef enum {
-	CALL_FLAG_NONE		= 0,
-	CALL_FLAG_HOLD_OTHER	= 1,				/*!< external, from channel_call() hold other calls and dial this number */
-	CALL_FLAG_NEED_HANGUP	= 2,				/*!< internal, require issue AT+CHUP or AT+CHLD=1x for call */
-	CALL_FLAG_ACTIVATED	= 4,				/*!< internal, fd attached to channel fds list */
-	CALL_FLAG_ALIVE		= 8,				/*!< internal, temporary, still listed in CLCC */
-	CALL_FLAG_CONFERENCE	= 16,				/*!< external, from dial() begin conference after activate this call */
-	CALL_FLAG_MASTER	= 32,				/*!< internal, channel fd[0] is pvt->audio_fd and  fd[1] is timer fd */
-	CALL_FLAG_BRIDGE_LOOP	= 64,				/*!< internal, found channel bridged to channel on same device */
-	CALL_FLAG_BRIDGE_CHECK	= 128,				/*!< internal, we already do check for bridge loop */
-	CALL_FLAG_MULTIPARTY	= 256,				/*!< internal, CLCC mpty is 1 */
-} call_flag_t;
+/* SVISTOK_BASELINE_UNIT typedef call_flag_t */
 
 
 /* */
@@ -54,20 +32,20 @@ typedef struct cpvt {
 	struct pvt		*pvt;				/*!< pointer to device structure */
 
 	short			call_idx;			/*!< device call ID */
-#define MIN_CALL_IDX		0
-#define MAX_CALL_IDX		31
+/* SVISTOK_BASELINE_UNIT macro MIN_CALL_IDX */
+/* SVISTOK_BASELINE_UNIT macro MAX_CALL_IDX */
 
 	call_state_t		state;				/*!< see also call_state_t */
 	int			flags;				/*!< see also call_flag_t */
 
 /* TODO: join with flags */
 	unsigned int		dir:1;				/*!< call direction */
-#define CALL_DIR_OUTGOING	0
-#define CALL_DIR_INCOMING	1
+/* SVISTOK_BASELINE_UNIT macro CALL_DIR_OUTGOING */
+/* SVISTOK_BASELINE_UNIT macro CALL_DIR_INCOMING */
 
 	int			rd_pipe[2];			/*!< pipe for split readed from device */
-#define PIPE_READ		0
-#define PIPE_WRITE		1
+/* SVISTOK_BASELINE_UNIT macro PIPE_READ */
+/* SVISTOK_BASELINE_UNIT macro PIPE_WRITE */
 
 	struct mixstream	mixstream;			/*!< mix stream */
 	char			a_read_buf[FRAME_SIZE + AST_FRIENDLY_OFFSET];/*!< audio read buffer */
@@ -82,40 +60,24 @@ typedef struct cpvt {
 	long int answered;
 } cpvt_t;
 
-#define CPVT_SET_FLAGS(cpvt, flag)	do { (cpvt)->flags |= (flag); } while(0)
-#define CPVT_RESET_FLAGS(cpvt, flag)	do { (cpvt)->flags &= ~((int)flag); } while(0)
-#define CPVT_TEST_FLAG(cpvt, flag)	((cpvt)->flags & (flag))
-#define CPVT_TEST_FLAGS(cpvt, flag)	(((cpvt)->flags & (flag)) == (flag))
+/* SVISTOK_BASELINE_UNIT macro CPVT_SET_FLAGS */
+/* SVISTOK_BASELINE_UNIT macro CPVT_RESET_FLAGS */
+/* SVISTOK_BASELINE_UNIT macro CPVT_TEST_FLAG */
+/* SVISTOK_BASELINE_UNIT macro CPVT_TEST_FLAGS */
 
-#define CPVT_IS_MASTER(cpvt)		CPVT_TEST_FLAG(cpvt, CALL_FLAG_MASTER)
-#define CPVT_IS_ACTIVE(cpvt)		((cpvt)->state == CALL_STATE_ACTIVE)
-#define CPVT_IS_SOUND_SOURCE(cpvt)	((cpvt)->state == CALL_STATE_ACTIVE || (cpvt)->state == CALL_STATE_DIALING || (cpvt)->state == CALL_STATE_ALERTING)
+/* SVISTOK_BASELINE_UNIT macro CPVT_IS_MASTER */
+/* SVISTOK_BASELINE_UNIT macro CPVT_IS_ACTIVE */
+/* SVISTOK_BASELINE_UNIT macro CPVT_IS_SOUND_SOURCE */
 
 
-EXPORT_DECL struct cpvt * cpvt_alloc(struct pvt * pvt, int call_idx, unsigned dir, call_state_t statem);
-EXPORT_DECL void cpvt_free(struct cpvt* cpvt);
+/* SVISTOK_BASELINE_UNIT declaration cpvt_alloc */
+/* SVISTOK_BASELINE_UNIT declaration cpvt_free */
 
-EXPORT_DECL struct cpvt * pvt_find_cpvt(struct pvt * pvt, int call_idx);
-EXPORT_DECL const char * pvt_call_dir(const struct pvt * pvt);
+/* SVISTOK_BASELINE_UNIT declaration pvt_find_cpvt */
+/* SVISTOK_BASELINE_UNIT declaration pvt_call_dir */
 
 #/* */
-INLINE_DECL const char * call_state2str(call_state_t state)
-{
-	static const char * const states[] = {
-	/* real device states */
-		"active",
-		"held",
-		"dialing",
-		"alerting",
-		"incoming",
-		"waiting",
+/* SVISTOK_BASELINE_UNIT function call_state2str */
 
-	/* pseudo states */
-		"released",
-		"initialize"
-	};
-
-	return enum2str(state, states, ITEMS_OF(states));
-}
-
+#endif /* SVISTOK_COMPOSED_CPVT_H_HEADER */
 #endif /* CHAN_DONGLE_CPVT_H_INCLUDED */

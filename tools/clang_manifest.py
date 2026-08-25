@@ -424,6 +424,103 @@ def declarations_for(root: Path, relative: str) -> list[dict[str, Any]]:
     return declarations_by_provenance(ast, source, root).get(relative, [])
 
 
+def type_units_for(root: Path, relative: str) -> dict[tuple[str, str], dict[str, Any]]:
+    """Return outermost file-local typedef/record/enum source units."""
+    source = root / relative
+    ast = dump_ast(source, FILE_ARGS.get(relative, ()))
+    source_bytes = source.read_bytes()
+    current_file = source.resolve()
+    candidates: list[tuple[dict[str, Any], int, int]] = []
+    for node in ast.get("inner", []):
+        explicit_file = node.get("loc", {}).get("file")
+        if explicit_file:
+            current_file = Path(explicit_file).resolve()
+        if current_file != source.resolve() or node.get("isImplicit"):
+            continue
+        if node.get("kind") not in {"TypedefDecl", "RecordDecl", "EnumDecl"}:
+            continue
+        try:
+            begin, end = node_range(node)
+        except RuntimeError:
+            continue
+        candidates.append((node, begin, end))
+    typedef_ranges = [
+        (begin, end)
+        for node, begin, end in candidates
+        if node.get("kind") == "TypedefDecl"
+    ]
+    records: dict[tuple[str, str], dict[str, Any]] = {}
+    anonymous_index = 0
+    for node, begin, end in candidates:
+        kind = node["kind"]
+        if kind != "TypedefDecl" and any(
+            outer_begin <= begin and end <= outer_end
+            for outer_begin, outer_end in typedef_ranges
+        ):
+            continue
+        name = node.get("name")
+        if not name:
+            anonymous_index += 1
+            name = f"anonymous_{kind}_{anonymous_index}"
+        key = (kind, name)
+        semantic_nodes = [node]
+        if kind == "TypedefDecl":
+            semantic_nodes.extend(
+                child
+                for child, child_begin, child_end in candidates
+                if child is not node
+                and begin <= child_begin
+                and child_end <= end
+                and child.get("kind") in {"RecordDecl", "EnumDecl"}
+            )
+        records[key] = {
+            "symbol": name,
+            "kind": {
+                "TypedefDecl": "typedef",
+                "RecordDecl": "record",
+                "EnumDecl": "enum",
+            }[kind],
+            "ast_kind": kind,
+            "definition_range": {"begin": begin, "end": end},
+            "ast_sha256": ast_hash(
+                {"kind": "TypeUnit", "inner": semantic_nodes},
+                ignore_types=False,
+            ),
+            "source_sha256": hashlib.sha256(source_bytes[begin:end]).hexdigest(),
+        }
+    return records
+
+
+def compare_type_units(
+    legacy: dict[tuple[str, str], dict[str, Any]],
+    baseline: dict[tuple[str, str], dict[str, Any]],
+) -> list[dict[str, Any]]:
+    records: list[dict[str, Any]] = []
+    for key in sorted(set(legacy) | set(baseline)):
+        legacy_entry = legacy.get(key)
+        baseline_entry = baseline.get(key)
+        if legacy_entry is None:
+            relation, owner = "removed", "none"
+        elif baseline_entry is None:
+            relation, owner = "new", "svistok"
+        elif legacy_entry["ast_sha256"] == baseline_entry["ast_sha256"]:
+            relation, owner = "equivalent", "upstream"
+        else:
+            relation, owner = "modified", "svistok"
+        exemplar = legacy_entry or baseline_entry
+        assert exemplar is not None
+        records.append({
+            "symbol": exemplar["symbol"],
+            "kind": exemplar["kind"],
+            "ast_kind": exemplar["ast_kind"],
+            "body_relation": relation,
+            "owner": owner,
+            "legacy": legacy_entry,
+            "baseline": baseline_entry,
+        })
+    return records
+
+
 def annotate_declarations(
     declarations: dict[str, list[dict[str, Any]]], symbols: list[dict[str, Any]]
 ) -> dict[str, list[dict[str, Any]]]:
@@ -597,6 +694,10 @@ def build_file_manifest(relative: str) -> dict[str, Any]:
         else {}
     )
     record["macros"] = compare_macros(legacy_macros, baseline_macros)
+    record["types"] = compare_type_units(
+        type_units_for(LEGACY_ROOT, relative),
+        type_units_for(BASELINE_ROOT, relative) if baseline_path.is_file() else {},
+    )
     record["declarations"] = annotate_declarations({
         "legacy": declarations_for(LEGACY_ROOT, relative),
         "baseline": declarations_for(BASELINE_ROOT, relative)

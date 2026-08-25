@@ -1,0 +1,3216 @@
+{
+  "files": [
+    {
+      "file": "app.c",
+      "removed": [
+        {
+          "kind": "function",
+          "range": {
+            "begin": 3604,
+            "end": 3797
+          },
+          "symbol": "app_register"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 1617,
+            "end": 2523
+          },
+          "symbol": "app_send_sms_exec"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 3817,
+            "end": 3938
+          },
+          "symbol": "app_unregister"
+        },
+        {
+          "kind": "data",
+          "range": {
+            "begin": 2527,
+            "end": 3389
+          },
+          "symbol": "dca"
+        }
+      ],
+      "removed_count": 4
+    },
+    {
+      "file": "at_command.c",
+      "removed": [
+        {
+          "kind": "function",
+          "range": {
+            "begin": 25145,
+            "end": 25769
+          },
+          "symbol": "at_enque_activate"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 24204,
+            "end": 24982
+          },
+          "symbol": "at_enque_answer"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 30884,
+            "end": 31059
+          },
+          "symbol": "at_enque_clcc"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 31171,
+            "end": 31467
+          },
+          "symbol": "at_enque_conference"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 20066,
+            "end": 20555
+          },
+          "symbol": "at_enque_dtmf"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 25943,
+            "end": 26190
+          },
+          "symbol": "at_enque_flip_hold"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 3841,
+            "end": 4212
+          },
+          "symbol": "at_enque_generic"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 26295,
+            "end": 26532
+          },
+          "symbol": "at_enque_ping"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 21947,
+            "end": 22163
+          },
+          "symbol": "at_enque_reset"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 27065,
+            "end": 27603
+          },
+          "symbol": "at_enque_retrive_sms"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 20693,
+            "end": 21794
+          },
+          "symbol": "at_enque_set_ccwa"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 26683,
+            "end": 26807
+          },
+          "symbol": "at_enque_user_cmd"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 30454,
+            "end": 30774
+          },
+          "symbol": "at_enque_volsync"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 3358,
+            "end": 3599
+          },
+          "symbol": "at_fill_generic_cmd"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 2897,
+            "end": 3201
+          },
+          "symbol": "at_fill_generic_cmd_va"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 31575,
+            "end": 31762
+          },
+          "symbol": "at_hangup_immediality"
+        },
+        {
+          "kind": "data",
+          "range": {
+            "begin": 655,
+            "end": 692
+          },
+          "symbol": "cmd_at"
+        },
+        {
+          "kind": "data",
+          "range": {
+            "begin": 694,
+            "end": 744
+          },
+          "symbol": "cmd_chld1x"
+        },
+        {
+          "kind": "data",
+          "range": {
+            "begin": 746,
+            "end": 794
+          },
+          "symbol": "cmd_chld2"
+        },
+        {
+          "kind": "data",
+          "range": {
+            "begin": 796,
+            "end": 842
+          },
+          "symbol": "cmd_clcc"
+        },
+        {
+          "kind": "data",
+          "range": {
+            "begin": 844,
+            "end": 895
+          },
+          "symbol": "cmd_ddsetex2"
+        }
+      ],
+      "removed_count": 21
+    },
+    {
+      "file": "at_parse.c",
+      "removed": [
+        {
+          "kind": "function",
+          "range": {
+            "begin": 15070,
+            "end": 15686
+          },
+          "symbol": "at_parse_ccwa"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 13832,
+            "end": 15050
+          },
+          "symbol": "at_parse_clcc"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 9217,
+            "end": 9875
+          },
+          "symbol": "at_parse_cmgr"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 5362,
+            "end": 5563
+          },
+          "symbol": "at_parse_cmti"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 1044,
+            "end": 1620
+          },
+          "symbol": "at_parse_cnum"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 1891,
+            "end": 2372
+          },
+          "symbol": "at_parse_cops"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 3418,
+            "end": 5087
+          },
+          "symbol": "at_parse_creg"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 13440,
+            "end": 13812
+          },
+          "symbol": "at_parse_csca"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 12103,
+            "end": 12289
+          },
+          "symbol": "at_parse_csq"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 10119,
+            "end": 11057
+          },
+          "symbol": "at_parse_cusd"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 12878,
+            "end": 13087
+          },
+          "symbol": "at_parse_mode"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 12485,
+            "end": 12661
+          },
+          "symbol": "at_parse_rssi"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 543,
+            "end": 800
+          },
+          "symbol": "mark_line"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 6733,
+            "end": 7662
+          },
+          "symbol": "parse_cmgr_pdu"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 5566,
+            "end": 6731
+          },
+          "symbol": "parse_cmgr_text"
+        }
+      ],
+      "removed_count": 15
+    },
+    {
+      "file": "at_queue.c",
+      "removed": [
+        {
+          "kind": "function",
+          "range": {
+            "begin": 2155,
+            "end": 3158
+          },
+          "symbol": "at_queue_add"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 8210,
+            "end": 8361
+          },
+          "symbol": "at_queue_flush"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 904,
+            "end": 1073
+          },
+          "symbol": "at_queue_free"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 570,
+            "end": 818
+          },
+          "symbol": "at_queue_free_data"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 7981,
+            "end": 8094
+          },
+          "symbol": "at_queue_handle_result"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 8799,
+            "end": 8919
+          },
+          "symbol": "at_queue_head_cmd"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 1662,
+            "end": 1841
+          },
+          "symbol": "at_queue_head_cmd_nc"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 8519,
+            "end": 8635
+          },
+          "symbol": "at_queue_head_task"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 7773,
+            "end": 7959
+          },
+          "symbol": "at_queue_insert"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 7172,
+            "end": 7365
+          },
+          "symbol": "at_queue_insert_const"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 7385,
+            "end": 7753
+          },
+          "symbol": "at_queue_insert_task"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 1192,
+            "end": 1653
+          },
+          "symbol": "at_queue_remove"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 5079,
+            "end": 5743
+          },
+          "symbol": "at_queue_remove_cmd"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 5890,
+            "end": 7038
+          },
+          "symbol": "at_queue_run"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 8939,
+            "end": 9189
+          },
+          "symbol": "at_queue_timeout"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 3480,
+            "end": 3892
+          },
+          "symbol": "write_all"
+        }
+      ],
+      "removed_count": 16
+    },
+    {
+      "file": "at_read.c",
+      "removed": [
+        {
+          "kind": "function",
+          "range": {
+            "begin": 4426,
+            "end": 5076
+          },
+          "symbol": "at_read_result_classification"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 888,
+            "end": 1049
+          },
+          "symbol": "at_wait"
+        }
+      ],
+      "removed_count": 2
+    },
+    {
+      "file": "at_response.c",
+      "removed": [
+        {
+          "kind": "function",
+          "range": {
+            "begin": 3807,
+            "end": 4017
+          },
+          "symbol": "at_res2str"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 73182,
+            "end": 73530
+          },
+          "symbol": "at_response_busy"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 46343,
+            "end": 47694
+          },
+          "symbol": "at_response_ccwa"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 48693,
+            "end": 49487
+          },
+          "symbol": "at_response_cmti"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 61874,
+            "end": 62294
+          },
+          "symbol": "at_response_cnum"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 36483,
+            "end": 36836
+          },
+          "symbol": "at_response_csca"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 23047,
+            "end": 24516
+          },
+          "symbol": "at_response_orig"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 60948,
+            "end": 61078
+          },
+          "symbol": "at_response_smmemfull"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 56506,
+            "end": 57006
+          },
+          "symbol": "at_response_sms_prompt"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 22697,
+            "end": 22869
+          },
+          "symbol": "request_clcc"
+        }
+      ],
+      "removed_count": 10
+    },
+    {
+      "file": "chan_dongle.c",
+      "removed": [
+        {
+          "kind": "function",
+          "range": {
+            "begin": 33239,
+            "end": 33587
+          },
+          "symbol": "GSM_regstate2str"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 26639,
+            "end": 27070
+          },
+          "symbol": "can_dial"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 9603,
+            "end": 10039
+          },
+          "symbol": "clean_read_data"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 43180,
+            "end": 43449
+          },
+          "symbol": "devices_destroy"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 22281,
+            "end": 23043
+          },
+          "symbol": "discovery_restart"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 23052,
+            "end": 23580
+          },
+          "symbol": "discovery_stop"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 25913,
+            "end": 26015
+          },
+          "symbol": "is_dial_possible"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 25043,
+            "end": 25893
+          },
+          "symbol": "is_dial_possible2"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 2875,
+            "end": 2991
+          },
+          "symbol": "port_status"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 26024,
+            "end": 26222
+          },
+          "symbol": "pvt_enabled"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 24561,
+            "end": 25002
+          },
+          "symbol": "pvt_get_pseudo_call_idx"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 23600,
+            "end": 24156
+          },
+          "symbol": "pvt_on_create_1st_channel"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 24176,
+            "end": 24360
+          },
+          "symbol": "pvt_on_remove_last_channel"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 46110,
+            "end": 46273
+          },
+          "symbol": "pvt_reload"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 38768,
+            "end": 38913
+          },
+          "symbol": "pvt_try_restate"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 46282,
+            "end": 46361
+          },
+          "symbol": "reload_module"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 46606,
+            "end": 46673
+          },
+          "symbol": "self_module"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 14154,
+            "end": 14373
+          },
+          "symbol": "start_monitor"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 33607,
+            "end": 33853
+          },
+          "symbol": "sys_mode2str"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 33873,
+            "end": 34158
+          },
+          "symbol": "sys_submode2str"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 45959,
+            "end": 46089
+          },
+          "symbol": "unload_module"
+        },
+        {
+          "kind": "data",
+          "range": {
+            "begin": 2407,
+            "end": 2486
+          },
+          "symbol": "dev_state_strs"
+        },
+        {
+          "kind": "data",
+          "range": {
+            "begin": 2499,
+            "end": 2523
+          },
+          "symbol": "gpublic"
+        }
+      ],
+      "removed_count": 23
+    },
+    {
+      "file": "channel.c",
+      "removed": [
+        {
+          "kind": "function",
+          "range": {
+            "begin": 9033,
+            "end": 10757
+          },
+          "symbol": "activate_call"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 13438,
+            "end": 13597
+          },
+          "symbol": "channel_digit_end"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 8575,
+            "end": 8999
+          },
+          "symbol": "disactivate_call"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 1253,
+            "end": 2379
+          },
+          "symbol": "parse_dial_string"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 37734,
+            "end": 38140
+          },
+          "symbol": "queue_control_channel"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 14441,
+            "end": 15949
+          },
+          "symbol": "timing_write"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 16016,
+            "end": 16624
+          },
+          "symbol": "write_conference"
+        },
+        {
+          "kind": "data",
+          "range": {
+            "begin": 1206,
+            "end": 1243
+          },
+          "symbol": "silence_frame"
+        }
+      ],
+      "removed_count": 8
+    },
+    {
+      "file": "cli.c",
+      "removed": [
+        {
+          "kind": "function",
+          "range": {
+            "begin": 35061,
+            "end": 36059
+          },
+          "symbol": "cli_ccwa_set"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 25839,
+            "end": 26490
+          },
+          "symbol": "cli_cmd"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 40884,
+            "end": 43032
+          },
+          "symbol": "cli_discovery"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 34220,
+            "end": 34917
+          },
+          "symbol": "cli_pdu"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 44617,
+            "end": 44689
+          },
+          "symbol": "cli_register"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 39813,
+            "end": 40875
+          },
+          "symbol": "cli_reload"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 39076,
+            "end": 39219
+          },
+          "symbol": "cli_remove"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 36061,
+            "end": 36610
+          },
+          "symbol": "cli_reset"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 38922,
+            "end": 39067
+          },
+          "symbol": "cli_restart"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 36961,
+            "end": 38764
+          },
+          "symbol": "cli_restart_event"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 25257,
+            "end": 25837
+          },
+          "symbol": "cli_show_version"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 39228,
+            "end": 39811
+          },
+          "symbol": "cli_start"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 38773,
+            "end": 38913
+          },
+          "symbol": "cli_stop"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 44709,
+            "end": 44785
+          },
+          "symbol": "cli_unregister"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 32365,
+            "end": 33113
+          },
+          "symbol": "cli_ussd"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 1085,
+            "end": 1505
+          },
+          "symbol": "complete_device"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 17901,
+            "end": 18057
+          },
+          "symbol": "getASR"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 36757,
+            "end": 36952
+          },
+          "symbol": "restate2str_msg"
+        },
+        {
+          "kind": "data",
+          "range": {
+            "begin": 36612,
+            "end": 36689
+          },
+          "symbol": "a_choices"
+        },
+        {
+          "kind": "data",
+          "range": {
+            "begin": 36691,
+            "end": 36754
+          },
+          "symbol": "a_choices2"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 864,
+            "end": 920
+          },
+          "symbol": "restate2str_msg"
+        }
+      ],
+      "removed_count": 21
+    },
+    {
+      "file": "helpers.c",
+      "removed": [
+        {
+          "kind": "function",
+          "range": {
+            "begin": 859,
+            "end": 1838
+          },
+          "symbol": "get_at_clir_value"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 717,
+            "end": 838
+          },
+          "symbol": "is_valid_phone_number"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 4761,
+            "end": 4979
+          },
+          "symbol": "send_at_command"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 4482,
+            "end": 4741
+          },
+          "symbol": "send_ccwa_set"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 4001,
+            "end": 4225
+          },
+          "symbol": "send_pdu"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 4245,
+            "end": 4462
+          },
+          "symbol": "send_reset"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 3405,
+            "end": 3981
+          },
+          "symbol": "send_sms"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 3068,
+            "end": 3385
+          },
+          "symbol": "send_ussd"
+        }
+      ],
+      "removed_count": 8
+    },
+    {
+      "file": "manager.c",
+      "removed": [
+        {
+          "kind": "function",
+          "range": {
+            "begin": 10609,
+            "end": 11104
+          },
+          "symbol": "espace_newlines"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 13432,
+            "end": 14316
+          },
+          "symbol": "manager_ccwa_set"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 11470,
+            "end": 11730
+          },
+          "symbol": "manager_event_call_state_change"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 11124,
+            "end": 11450
+          },
+          "symbol": "manager_event_cend"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 11750,
+            "end": 11945
+          },
+          "symbol": "manager_event_device_status"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 10146,
+            "end": 10377
+          },
+          "symbol": "manager_event_message"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 10397,
+            "end": 10600
+          },
+          "symbol": "manager_event_message_raw"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 12379,
+            "end": 12916
+          },
+          "symbol": "manager_event_new_sms"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 13182,
+            "end": 13430
+          },
+          "symbol": "manager_event_new_sms_base64"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 9577,
+            "end": 10125
+          },
+          "symbol": "manager_event_new_ussd"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 8983,
+            "end": 9287
+          },
+          "symbol": "manager_event_sent_notify"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 16547,
+            "end": 17141
+          },
+          "symbol": "manager_reload"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 16403,
+            "end": 16538
+          },
+          "symbol": "manager_remove"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 14318,
+            "end": 14896
+          },
+          "symbol": "manager_reset"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 15971,
+            "end": 16109
+          },
+          "symbol": "manager_restart"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 14989,
+            "end": 15962
+          },
+          "symbol": "manager_restart_action"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 8292,
+            "end": 8963
+          },
+          "symbol": "manager_send_pdu"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 7303,
+            "end": 8290
+          },
+          "symbol": "manager_send_sms"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 6618,
+            "end": 7301
+          },
+          "symbol": "manager_send_ussd"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 16260,
+            "end": 16394
+          },
+          "symbol": "manager_start"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 16118,
+            "end": 16251
+          },
+          "symbol": "manager_stop"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 21884,
+            "end": 22012
+          },
+          "symbol": "manager_unregister"
+        },
+        {
+          "kind": "data",
+          "range": {
+            "begin": 14898,
+            "end": 14980
+          },
+          "symbol": "b_choices"
+        },
+        {
+          "kind": "data",
+          "range": {
+            "begin": 17143,
+            "end": 21625
+          },
+          "symbol": "dcm"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 816,
+            "end": 864
+          },
+          "symbol": "espace_newlines"
+        }
+      ],
+      "removed_count": 25
+    },
+    {
+      "file": "ringbuffer.c",
+      "removed": [
+        {
+          "kind": "function",
+          "range": {
+            "begin": 341,
+            "end": 847
+          },
+          "symbol": "rb_memcmp"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 930,
+            "end": 1396
+          },
+          "symbol": "rb_read_all_iov"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 1409,
+            "end": 1905
+          },
+          "symbol": "rb_read_n_iov"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 1918,
+            "end": 2762
+          },
+          "symbol": "rb_read_until_char_iov"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 3686,
+            "end": 5381
+          },
+          "symbol": "rb_read_until_mem_iov"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 5394,
+            "end": 5765
+          },
+          "symbol": "rb_read_upd"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 7272,
+            "end": 7876
+          },
+          "symbol": "rb_write_core"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 6467,
+            "end": 6933
+          },
+          "symbol": "rb_write_iov"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 6946,
+            "end": 7259
+          },
+          "symbol": "rb_write_upd"
+        }
+      ],
+      "removed_count": 9
+    },
+    {
+      "file": "cpvt.c",
+      "removed": [
+        {
+          "kind": "function",
+          "range": {
+            "begin": 962,
+            "end": 1831
+          },
+          "symbol": "cpvt_alloc"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 1851,
+            "end": 2828
+          },
+          "symbol": "cpvt_free"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 3063,
+            "end": 3389
+          },
+          "symbol": "pvt_call_dir"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 2848,
+            "end": 3043
+          },
+          "symbol": "pvt_find_cpvt"
+        }
+      ],
+      "removed_count": 4
+    },
+    {
+      "file": "dc_config.c",
+      "removed": [
+        {
+          "kind": "function",
+          "range": {
+            "begin": 8752,
+            "end": 9150
+          },
+          "symbol": "dc_config_fill"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 451,
+            "end": 571
+          },
+          "symbol": "dc_dtmf_setting2str"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 7957,
+            "end": 8732
+          },
+          "symbol": "dc_gconfig_fill"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 2487,
+            "end": 3192
+          },
+          "symbol": "dc_sconfig_fill_defaults"
+        },
+        {
+          "kind": "data",
+          "range": {
+            "begin": 367,
+            "end": 437
+          },
+          "symbol": "dtmf_values"
+        },
+        {
+          "kind": "data",
+          "range": {
+            "begin": 221,
+            "end": 363
+          },
+          "symbol": "jbconf_default"
+        }
+      ],
+      "removed_count": 6
+    },
+    {
+      "file": "pdu.c",
+      "removed": [
+        {
+          "kind": "function",
+          "range": {
+            "begin": 16415,
+            "end": 16655
+          },
+          "symbol": "check_encoding"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 11579,
+            "end": 12079
+          },
+          "symbol": "pdu_code2digit"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 20433,
+            "end": 20903
+          },
+          "symbol": "pdu_dcs_alpabet2encoding"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 11119,
+            "end": 11570
+          },
+          "symbol": "pdu_digit2code"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 13029,
+            "end": 13395
+          },
+          "symbol": "pdu_parse_byte"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 15872,
+            "end": 16197
+          },
+          "symbol": "pdu_parse_sca"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 16222,
+            "end": 16372
+          },
+          "symbol": "pdu_parse_timestamp"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 12125,
+            "end": 12963
+          },
+          "symbol": "pdu_relative_validity"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 13683,
+            "end": 14014
+          },
+          "symbol": "pdu_store_number"
+        }
+      ],
+      "removed_count": 9
+    },
+    {
+      "file": "pdiscovery.c",
+      "removed": [
+        {
+          "kind": "function",
+          "range": {
+            "begin": 6108,
+            "end": 6468
+          },
+          "symbol": "cache_fini"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 6477,
+            "end": 6653
+          },
+          "symbol": "cache_first_readlock"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 5943,
+            "end": 6099
+          },
+          "symbol": "cache_init"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 3929,
+            "end": 4286
+          },
+          "symbol": "cache_item_create"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 3491,
+            "end": 3619
+          },
+          "symbol": "cache_item_free"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 3628,
+            "end": 3920
+          },
+          "symbol": "cache_item_update"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 4295,
+            "end": 4949
+          },
+          "symbol": "cache_search"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 6662,
+            "end": 6757
+          },
+          "symbol": "cache_unlock"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 5601,
+            "end": 5934
+          },
+          "symbol": "cache_update"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 18454,
+            "end": 19520
+          },
+          "symbol": "pdiscovery_check_device"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 8538,
+            "end": 8891
+          },
+          "symbol": "pdiscovery_find_port"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 20235,
+            "end": 20282
+          },
+          "symbol": "pdiscovery_fini"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 6766,
+            "end": 7082
+          },
+          "symbol": "pdiscovery_get_id"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 16470,
+            "end": 16969
+          },
+          "symbol": "pdiscovery_get_info_cached"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 10586,
+            "end": 11106
+          },
+          "symbol": "pdiscovery_handle_ati"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 11721,
+            "end": 12826
+          },
+          "symbol": "pdiscovery_handle_cimi"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 20168,
+            "end": 20215
+          },
+          "symbol": "pdiscovery_init"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 8208,
+            "end": 8529
+          },
+          "symbol": "pdiscovery_interface"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 8900,
+            "end": 9963
+          },
+          "symbol": "pdiscovery_interfaces"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 7091,
+            "end": 7311
+          },
+          "symbol": "pdiscovery_is_port"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 21731,
+            "end": 21796
+          },
+          "symbol": "pdiscovery_list_end"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 21470,
+            "end": 21722
+          },
+          "symbol": "pdiscovery_list_next"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 9976,
+            "end": 10547
+          },
+          "symbol": "pdiscovery_lookup_ids"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 7321,
+            "end": 7793
+          },
+          "symbol": "pdiscovery_port"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 7803,
+            "end": 8199
+          },
+          "symbol": "pdiscovery_port_name"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 17001,
+            "end": 17741
+          },
+          "symbol": "pdiscovery_read_info"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 19529,
+            "end": 20147
+          },
+          "symbol": "pdiscovery_request_do"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 2332,
+            "end": 2616
+          },
+          "symbol": "ports_copy"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 2625,
+            "end": 2835
+          },
+          "symbol": "ports_free"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 2060,
+            "end": 2323
+          },
+          "symbol": "ports_match"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 3380,
+            "end": 3482
+          },
+          "symbol": "result_free"
+        },
+        {
+          "kind": "data",
+          "range": {
+            "begin": 1981,
+            "end": 2016
+          },
+          "symbol": "cache"
+        },
+        {
+          "kind": "data",
+          "range": {
+            "begin": 869,
+            "end": 933
+          },
+          "symbol": "sys_bus_usb_devices"
+        }
+      ],
+      "removed_count": 33
+    },
+    {
+      "file": "app.h",
+      "removed": [
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 237,
+            "end": 270
+          },
+          "symbol": "app_register"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 270,
+            "end": 305
+          },
+          "symbol": "app_unregister"
+        }
+      ],
+      "removed_count": 2
+    },
+    {
+      "file": "at_command.h",
+      "removed": [
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 316,
+            "end": 343
+          },
+          "symbol": "CCWA_CLASS_VOICE"
+        },
+        {
+          "kind": "record",
+          "range": {
+            "begin": 2367,
+            "end": 2380
+          },
+          "symbol": "cpvt"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 2432,
+            "end": 2516
+          },
+          "symbol": "at_enque_initialization"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 2646,
+            "end": 2698
+          },
+          "symbol": "at_enque_ping"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 2698,
+            "end": 2750
+          },
+          "symbol": "at_enque_cops"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 3300,
+            "end": 3441
+          },
+          "symbol": "at_enque_sms"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 3441,
+            "end": 3602
+          },
+          "symbol": "at_enque_pdu"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 3602,
+            "end": 3765
+          },
+          "symbol": "at_enque_ussd"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 3765,
+            "end": 3829
+          },
+          "symbol": "at_enque_dtmf"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 3829,
+            "end": 3986
+          },
+          "symbol": "at_enque_set_ccwa"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 3986,
+            "end": 4039
+          },
+          "symbol": "at_enque_reset"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 4039,
+            "end": 4121
+          },
+          "symbol": "at_enque_dial"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 4121,
+            "end": 4174
+          },
+          "symbol": "at_enque_answer"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 4174,
+            "end": 4249
+          },
+          "symbol": "at_enque_user_cmd"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 4249,
+            "end": 4330
+          },
+          "symbol": "at_enque_retrive_sms"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 4330,
+            "end": 4398
+          },
+          "symbol": "at_enque_hangup"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 4398,
+            "end": 4453
+          },
+          "symbol": "at_enque_volsync"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 4453,
+            "end": 4505
+          },
+          "symbol": "at_enque_clcc"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 4505,
+            "end": 4561
+          },
+          "symbol": "at_enque_activate"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 4561,
+            "end": 4618
+          },
+          "symbol": "at_enque_flip_hold"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 4618,
+            "end": 4676
+          },
+          "symbol": "at_enque_conference"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 4676,
+            "end": 4736
+          },
+          "symbol": "at_hangup_immediality"
+        }
+      ],
+      "removed_count": 22
+    },
+    {
+      "file": "at_parse.h",
+      "removed": [
+        {
+          "kind": "record",
+          "range": {
+            "begin": 304,
+            "end": 316
+          },
+          "symbol": "pvt"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 317,
+            "end": 362
+          },
+          "symbol": "at_parse_cnum"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 362,
+            "end": 407
+          },
+          "symbol": "at_parse_cops"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 451,
+            "end": 566
+          },
+          "symbol": "at_parse_creg"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 566,
+            "end": 615
+          },
+          "symbol": "at_parse_cmti"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 615,
+            "end": 765
+          },
+          "symbol": "at_parse_cmgr"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 915,
+            "end": 995
+          },
+          "symbol": "at_parse_cusd"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 995,
+            "end": 1050
+          },
+          "symbol": "at_parse_cpin"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 1050,
+            "end": 1109
+          },
+          "symbol": "at_parse_csq"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 1109,
+            "end": 1158
+          },
+          "symbol": "at_parse_rssi"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 1158,
+            "end": 1228
+          },
+          "symbol": "at_parse_mode"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 1343,
+            "end": 1400
+          },
+          "symbol": "at_parse_csca"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 1400,
+            "end": 1564
+          },
+          "symbol": "at_parse_clcc"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 1564,
+            "end": 1624
+          },
+          "symbol": "at_parse_ccwa"
+        }
+      ],
+      "removed_count": 14
+    },
+    {
+      "file": "at_response.h",
+      "removed": [
+        {
+          "kind": "record",
+          "range": {
+            "begin": 206,
+            "end": 218
+          },
+          "symbol": "pvt"
+        },
+        {
+          "kind": "record",
+          "range": {
+            "begin": 218,
+            "end": 232
+          },
+          "symbol": "iovec"
+        },
+        {
+          "kind": "typedef",
+          "range": {
+            "begin": 949,
+            "end": 1069
+          },
+          "symbol": "at_response_t"
+        },
+        {
+          "kind": "typedef",
+          "range": {
+            "begin": 1095,
+            "end": 1379
+          },
+          "symbol": "at_responses_t"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 1456,
+            "end": 1507
+          },
+          "symbol": "at_res2str"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 1507,
+            "end": 1609
+          },
+          "symbol": "at_response"
+        }
+      ],
+      "removed_count": 6
+    },
+    {
+      "file": "chan_dongle.h",
+      "removed": [
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 613,
+            "end": 674
+          },
+          "symbol": "MODULE_DESCRIPTION"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 1007,
+            "end": 1136
+          },
+          "symbol": "dev_state2str"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 1137,
+            "end": 1375
+          },
+          "symbol": "dev_state2str_msg"
+        },
+        {
+          "kind": "typedef",
+          "range": {
+            "begin": 1515,
+            "end": 1623
+          },
+          "symbol": "restate_time_t"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 2137,
+            "end": 2188
+          },
+          "symbol": "PVT_STATE_T"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 6142,
+            "end": 6190
+          },
+          "symbol": "PVT_STAT_T"
+        },
+        {
+          "kind": "record",
+          "range": {
+            "begin": 6191,
+            "end": 6213
+          },
+          "symbol": "at_queue_task"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 7800,
+            "end": 7852
+          },
+          "symbol": "DATA_READ_TIMEOUT"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 10336,
+            "end": 10364
+          },
+          "symbol": "VOLUME_SYNC_BEGIN"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 10364,
+            "end": 10391
+          },
+          "symbol": "VOLUME_SYNC_DONE"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 11758,
+            "end": 11817
+          },
+          "symbol": "CONF_GLOBAL"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 11817,
+            "end": 11883
+          },
+          "symbol": "SCONF_GLOBAL"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 11884,
+            "end": 11950
+          },
+          "symbol": "CONF_SHARED"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 11950,
+            "end": 12014
+          },
+          "symbol": "CONF_UNIQ"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 12014,
+            "end": 12068
+          },
+          "symbol": "PVT_ID"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 12069,
+            "end": 12132
+          },
+          "symbol": "PVT_STATE"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 12132,
+            "end": 12192
+          },
+          "symbol": "PVT_STAT"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 12779,
+            "end": 12843
+          },
+          "symbol": "clean_read_data"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 12843,
+            "end": 12908
+          },
+          "symbol": "pvt_get_pseudo_call_idx"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 12908,
+            "end": 13009
+          },
+          "symbol": "ready4voice_call"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 13009,
+            "end": 13077
+          },
+          "symbol": "is_dial_possible"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 13078,
+            "end": 13141
+          },
+          "symbol": "pvt_str_state"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 13141,
+            "end": 13211
+          },
+          "symbol": "pvt_str_state_ex"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 13211,
+            "end": 13274
+          },
+          "symbol": "GSM_regstate2str"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 13274,
+            "end": 13327
+          },
+          "symbol": "sys_mode2str"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 13327,
+            "end": 13386
+          },
+          "symbol": "sys_submode2str"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 13386,
+            "end": 13449
+          },
+          "symbol": "rssi2dBm"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 13450,
+            "end": 13511
+          },
+          "symbol": "pvt_on_create_1st_channel"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 13511,
+            "end": 13573
+          },
+          "symbol": "pvt_on_remove_last_channel"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 13573,
+            "end": 13623
+          },
+          "symbol": "pvt_reload"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 13623,
+            "end": 13676
+          },
+          "symbol": "pvt_enabled"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 13676,
+            "end": 13728
+          },
+          "symbol": "pvt_try_restate"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 13729,
+            "end": 13790
+          },
+          "symbol": "opentty"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 13790,
+            "end": 13844
+          },
+          "symbol": "closetty"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 13844,
+            "end": 13910
+          },
+          "symbol": "lock_try"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 13910,
+            "end": 13999
+          },
+          "symbol": "find_device_ex"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 14000,
+            "end": 14099
+          },
+          "symbol": "find_device"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 14100,
+            "end": 14182
+          },
+          "symbol": "find_device_ext"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 14182,
+            "end": 14349
+          },
+          "symbol": "find_device_by_resource_ex"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 14350,
+            "end": 14568
+          },
+          "symbol": "find_device_by_resource"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 14569,
+            "end": 14616
+          },
+          "symbol": "self_module"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 14724,
+            "end": 14782
+          },
+          "symbol": "PVT_NO_CHANS"
+        }
+      ],
+      "removed_count": 42
+    },
+    {
+      "file": "channel.h",
+      "removed": [
+        {
+          "kind": "typedef",
+          "range": {
+            "begin": 285,
+            "end": 367
+          },
+          "symbol": "channel_var_t"
+        },
+        {
+          "kind": "record",
+          "range": {
+            "begin": 368,
+            "end": 380
+          },
+          "symbol": "pvt"
+        },
+        {
+          "kind": "record",
+          "range": {
+            "begin": 380,
+            "end": 393
+          },
+          "symbol": "cpvt"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 445,
+            "end": 648
+          },
+          "symbol": "new_channel"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 648,
+            "end": 745
+          },
+          "symbol": "queue_control_channel"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 745,
+            "end": 823
+          },
+          "symbol": "queue_hangup"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 823,
+            "end": 943
+          },
+          "symbol": "start_local_channel"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 943,
+            "end": 1032
+          },
+          "symbol": "change_channel_state"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 1032,
+            "end": 1119
+          },
+          "symbol": "channels_loop"
+        }
+      ],
+      "removed_count": 9
+    },
+    {
+      "file": "cli.h",
+      "removed": [
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 233,
+            "end": 266
+          },
+          "symbol": "cli_register"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 266,
+            "end": 301
+          },
+          "symbol": "cli_unregister"
+        }
+      ],
+      "removed_count": 2
+    },
+    {
+      "file": "cpvt.h",
+      "removed": [
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 465,
+            "end": 489
+          },
+          "symbol": "FRAME_SIZE"
+        },
+        {
+          "kind": "typedef",
+          "range": {
+            "begin": 490,
+            "end": 1032
+          },
+          "symbol": "call_state_t"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 1032,
+            "end": 1097
+          },
+          "symbol": "CALL_STATES_NUMBER"
+        },
+        {
+          "kind": "typedef",
+          "range": {
+            "begin": 1098,
+            "end": 1958
+          },
+          "symbol": "call_flag_t"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 2268,
+            "end": 2292
+          },
+          "symbol": "MIN_CALL_IDX"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 2292,
+            "end": 2317
+          },
+          "symbol": "MAX_CALL_IDX"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 2496,
+            "end": 2524
+          },
+          "symbol": "CALL_DIR_OUTGOING"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 2524,
+            "end": 2552
+          },
+          "symbol": "CALL_DIR_INCOMING"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 2616,
+            "end": 2637
+          },
+          "symbol": "PIPE_READ"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 2637,
+            "end": 2659
+          },
+          "symbol": "PIPE_WRITE"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 3137,
+            "end": 3213
+          },
+          "symbol": "CPVT_SET_FLAGS"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 3213,
+            "end": 3297
+          },
+          "symbol": "CPVT_RESET_FLAGS"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 3297,
+            "end": 3357
+          },
+          "symbol": "CPVT_TEST_FLAG"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 3357,
+            "end": 3430
+          },
+          "symbol": "CPVT_TEST_FLAGS"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 3431,
+            "end": 3500
+          },
+          "symbol": "CPVT_IS_MASTER"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 3500,
+            "end": 3567
+          },
+          "symbol": "CPVT_IS_ACTIVE"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 3567,
+            "end": 3718
+          },
+          "symbol": "CPVT_IS_SOUND_SOURCE"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 3720,
+            "end": 3825
+          },
+          "symbol": "cpvt_alloc"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 3825,
+            "end": 3872
+          },
+          "symbol": "cpvt_free"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 3873,
+            "end": 3946
+          },
+          "symbol": "pvt_find_cpvt"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 3946,
+            "end": 4009
+          },
+          "symbol": "pvt_call_dir"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 4017,
+            "end": 4330
+          },
+          "symbol": "call_state2str"
+        }
+      ],
+      "removed_count": 22
+    },
+    {
+      "file": "dc_config.h",
+      "removed": [
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 332,
+            "end": 367
+          },
+          "symbol": "CONFIG_FILE"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 367,
+            "end": 390
+          },
+          "symbol": "DEVNAMELEN"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 390,
+            "end": 412
+          },
+          "symbol": "IMEI_SIZE"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 412,
+            "end": 434
+          },
+          "symbol": "IMSI_SIZE"
+        },
+        {
+          "kind": "typedef",
+          "range": {
+            "begin": 483,
+            "end": 599
+          },
+          "symbol": "dev_state_t"
+        },
+        {
+          "kind": "typedef",
+          "range": {
+            "begin": 650,
+            "end": 755
+          },
+          "symbol": "call_waiting_t"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 756,
+            "end": 946
+          },
+          "symbol": "dc_cw_setting2str"
+        },
+        {
+          "kind": "typedef",
+          "range": {
+            "begin": 947,
+            "end": 1058
+          },
+          "symbol": "dc_dtmf_setting_t"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 2509,
+            "end": 2539
+          },
+          "symbol": "DEFAULT_MINDTMFGAP"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 2601,
+            "end": 2636
+          },
+          "symbol": "DEFAULT_MINDTMFDURATION"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 2740,
+            "end": 2776
+          },
+          "symbol": "DEFAULT_MINDTMFINTERVAL"
+        },
+        {
+          "kind": "typedef",
+          "range": {
+            "begin": 2815,
+            "end": 3041
+          },
+          "symbol": "dc_gconfig_t"
+        },
+        {
+          "kind": "typedef",
+          "range": {
+            "begin": 3596,
+            "end": 3752
+          },
+          "symbol": "pvt_config_t"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 3752,
+            "end": 3799
+          },
+          "symbol": "SCONFIG"
+        },
+        {
+          "kind": "macro",
+          "range": {
+            "begin": 3799,
+            "end": 3846
+          },
+          "symbol": "UCONFIG"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 3847,
+            "end": 3917
+          },
+          "symbol": "dc_dtmf_setting2str"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 3917,
+            "end": 3988
+          },
+          "symbol": "dc_sconfig_fill_defaults"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 3988,
+            "end": 4093
+          },
+          "symbol": "dc_sconfig_fill"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 4093,
+            "end": 4198
+          },
+          "symbol": "dc_gconfig_fill"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 4198,
+            "end": 4335
+          },
+          "symbol": "dc_config_fill"
+        }
+      ],
+      "removed_count": 20
+    },
+    {
+      "file": "pdiscovery.h",
+      "removed": [
+        {
+          "kind": "enum",
+          "range": {
+            "begin": 204,
+            "end": 326
+          },
+          "symbol": "INTERFACE_TYPE"
+        },
+        {
+          "kind": "record",
+          "range": {
+            "begin": 327,
+            "end": 396
+          },
+          "symbol": "pdiscovery_ports"
+        },
+        {
+          "kind": "record",
+          "range": {
+            "begin": 510,
+            "end": 540
+          },
+          "symbol": "pdiscovery_cache_item"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 541,
+            "end": 577
+          },
+          "symbol": "pdiscovery_init"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 577,
+            "end": 613
+          },
+          "symbol": "pdiscovery_fini"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 789,
+            "end": 903
+          },
+          "symbol": "pdiscovery_list_begin"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 903,
+            "end": 1016
+          },
+          "symbol": "pdiscovery_list_next"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 1016,
+            "end": 1056
+          },
+          "symbol": "pdiscovery_list_end"
+        }
+      ],
+      "removed_count": 8
+    },
+    {
+      "file": "pdu.h",
+      "removed": [
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 293,
+            "end": 338
+          },
+          "symbol": "pdu_digit2code"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 338,
+            "end": 483
+          },
+          "symbol": "pdu_build"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 483,
+            "end": 642
+          },
+          "symbol": "pdu_parse"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 806,
+            "end": 867
+          },
+          "symbol": "pdu_parse_sca"
+        }
+      ],
+      "removed_count": 4
+    },
+    {
+      "file": "ringbuffer.h",
+      "removed": [
+        {
+          "kind": "typedef",
+          "range": {
+            "begin": 318,
+            "end": 384
+          },
+          "symbol": "rb_write_f"
+        },
+        {
+          "kind": "record",
+          "range": {
+            "begin": 385,
+            "end": 618
+          },
+          "symbol": "ringbuffer"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 620,
+            "end": 787
+          },
+          "symbol": "rb_init"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 788,
+            "end": 867
+          },
+          "symbol": "rb_used"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 868,
+            "end": 958
+          },
+          "symbol": "rb_free"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 959,
+            "end": 1034
+          },
+          "symbol": "rb_memcmp"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 1147,
+            "end": 1231
+          },
+          "symbol": "rb_read_all_iov"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 1324,
+            "end": 1416
+          },
+          "symbol": "rb_read_n_iov"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 1417,
+            "end": 1511
+          },
+          "symbol": "rb_read_until_char_iov"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 1623,
+            "end": 1731
+          },
+          "symbol": "rb_read_until_mem_iov"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 1774,
+            "end": 1842
+          },
+          "symbol": "rb_read_upd"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 1952,
+            "end": 2030
+          },
+          "symbol": "rb_write_iov"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 2074,
+            "end": 2136
+          },
+          "symbol": "rb_write_upd"
+        },
+        {
+          "kind": "declaration",
+          "range": {
+            "begin": 2137,
+            "end": 2242
+          },
+          "symbol": "rb_write_core"
+        },
+        {
+          "kind": "function",
+          "range": {
+            "begin": 2243,
+            "end": 2374
+          },
+          "symbol": "rb_write"
+        }
+      ],
+      "removed_count": 15
+    }
+  ],
+  "output_root": "/Users/anton/proj/nativemind.net/simbox.nativemind.net/libsCpp/asterisk-chan-svistok/build/staging-overlay",
+  "removed_units": 380,
+  "schema_version": 1,
+  "source_root": "/Users/anton/proj/nativemind.net/simbox.nativemind.net/libsCpp/asterisk-chan-svistok/src"
+}

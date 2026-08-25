@@ -3,12 +3,15 @@
 */
 #ifndef CHAN_DONGLE_AT_SEND_H_INCLUDED
 #define CHAN_DONGLE_AT_SEND_H_INCLUDED
+#ifdef SVISTOK_COMPOSED_AT_COMMAND_H_HEADER
+#include SVISTOK_COMPOSED_AT_COMMAND_H_HEADER
+#else
 
 #include <asterisk-chan-dongle/export.h>	/* EXPORT_DECL EXPORT_DEF */
 #include "dc_config.h"		/* call_waiting_t */
 #include <asterisk-chan-dongle/mutils.h>	/* enum2str_def() ITEMS_OF() */
 
-#define CCWA_CLASS_VOICE	1
+/* SVISTOK_BASELINE_UNIT macro CCWA_CLASS_VOICE */
 
 /* magic order !!! keep order of this values like in at_cmd2str()
 */
@@ -160,14 +163,14 @@ INLINE_DECL const char* at_cmd2str (at_cmd_t cmd)
 }
 
 
-struct cpvt;
+/* SVISTOK_BASELINE_UNIT record cpvt */
 
 EXPORT_DECL const char* at_cmd2str (at_cmd_t cmd);
-EXPORT_DECL int at_enque_initialization(struct cpvt * cpvt, at_cmd_t from_command);
+/* SVISTOK_BASELINE_UNIT declaration at_enque_initialization */
 EXPORT_DECL int at_enque_initialization_sim(struct cpvt* cpvt);
 EXPORT_DECL int at_enque_initialization_modem(struct cpvt* cpvt);
-EXPORT_DECL int at_enque_ping (struct cpvt * cpvt);
-EXPORT_DECL int at_enque_cops (struct cpvt * cpvt);
+/* SVISTOK_BASELINE_UNIT declaration at_enque_ping */
+/* SVISTOK_BASELINE_UNIT declaration at_enque_cops */
 EXPORT_DECL int at_enque_spn (struct cpvt * cpvt);
 EXPORT_DECL int at_enque_iccid (struct cpvt * cpvt);
 EXPORT_DECL int at_enque_sn (struct cpvt * cpvt);
@@ -179,22 +182,23 @@ EXPORT_DECL int at_enque_cfun5 (struct cpvt * cpvt);
 EXPORT_DECL int at_enque_cfun6 (struct cpvt * cpvt);
 EXPORT_DECL int at_enque_sysinfo (struct cpvt * cpvt);
 
-EXPORT_DECL int at_enque_sms (struct cpvt * cpvt, const char * number, const char * msg, unsigned validity_min, int report_req, void ** id);
-EXPORT_DECL int at_enque_pdu (struct cpvt * cpvt, const char * pdu, attribute_unused const char *, attribute_unused unsigned, attribute_unused int, void ** id);
-EXPORT_DECL int at_enque_ussd (struct cpvt * cpvt, const char * code, attribute_unused const char *, attribute_unused unsigned, attribute_unused int, void ** id);
-EXPORT_DECL int at_enque_dtmf (struct cpvt * cpvt, char digit);
-EXPORT_DECL int at_enque_set_ccwa (struct cpvt * cpvt, attribute_unused const char * unused1, attribute_unused const char * unused2, unsigned call_waiting);
-EXPORT_DECL int at_enque_reset (struct cpvt * cpvt);
-EXPORT_DECL int at_enque_dial(struct cpvt * cpvt, const char * number, int clir);
-EXPORT_DECL int at_enque_answer(struct cpvt * cpvt);
-EXPORT_DECL int at_enque_user_cmd(struct cpvt * cpvt, const char * input);
-EXPORT_DECL int at_enque_retrive_sms(struct cpvt * cpvt, int index, int delete);
-EXPORT_DECL int at_enque_hangup (struct cpvt * cpvt, int call_idx);
-EXPORT_DECL int at_enque_volsync (struct cpvt * cpvt);
-EXPORT_DECL int at_enque_clcc (struct cpvt * cpvt);
-EXPORT_DECL int at_enque_activate (struct cpvt * cpvt);
-EXPORT_DECL int at_enque_flip_hold (struct cpvt * cpvt);
-EXPORT_DECL int at_enque_conference (struct cpvt * cpvt);
-EXPORT_DECL void at_hangup_immediality(struct cpvt * cpvt);
+/* SVISTOK_BASELINE_UNIT declaration at_enque_sms */
+/* SVISTOK_BASELINE_UNIT declaration at_enque_pdu */
+/* SVISTOK_BASELINE_UNIT declaration at_enque_ussd */
+/* SVISTOK_BASELINE_UNIT declaration at_enque_dtmf */
+/* SVISTOK_BASELINE_UNIT declaration at_enque_set_ccwa */
+/* SVISTOK_BASELINE_UNIT declaration at_enque_reset */
+/* SVISTOK_BASELINE_UNIT declaration at_enque_dial */
+/* SVISTOK_BASELINE_UNIT declaration at_enque_answer */
+/* SVISTOK_BASELINE_UNIT declaration at_enque_user_cmd */
+/* SVISTOK_BASELINE_UNIT declaration at_enque_retrive_sms */
+/* SVISTOK_BASELINE_UNIT declaration at_enque_hangup */
+/* SVISTOK_BASELINE_UNIT declaration at_enque_volsync */
+/* SVISTOK_BASELINE_UNIT declaration at_enque_clcc */
+/* SVISTOK_BASELINE_UNIT declaration at_enque_activate */
+/* SVISTOK_BASELINE_UNIT declaration at_enque_flip_hold */
+/* SVISTOK_BASELINE_UNIT declaration at_enque_conference */
+/* SVISTOK_BASELINE_UNIT declaration at_hangup_immediality */
 
+#endif /* SVISTOK_COMPOSED_AT_COMMAND_H_HEADER */
 #endif /* CHAN_DONGLE_AT_SEND_H_INCLUDED */

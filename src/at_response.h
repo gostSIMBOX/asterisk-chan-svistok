@@ -3,11 +3,14 @@
 */
 #ifndef CHAN_DONGLE_AT_RESPONSE_H_INCLUDED
 #define CHAN_DONGLE_AT_RESPONSE_H_INCLUDED
+#ifdef SVISTOK_COMPOSED_AT_RESPONSE_H_HEADER
+#include SVISTOK_COMPOSED_AT_RESPONSE_H_HEADER
+#else
 
 #include <asterisk-chan-dongle/export.h>	/* EXPORT_DECL EXPORT_DEF */
 
-struct pvt;
-struct iovec;
+/* SVISTOK_BASELINE_UNIT record pvt */
+/* SVISTOK_BASELINE_UNIT record iovec */
 
 /* magic order!!! keep this enum order same as in at_responses_list */
 typedef enum {
@@ -67,27 +70,15 @@ typedef enum {
 } at_res_t;
 
 /*! response description */
-typedef struct at_response_t
-{
-	at_res_t		res;
-	const char*		name;
-	const char*		id;
-	unsigned		idlen;
-} at_response_t;
+/* SVISTOK_BASELINE_UNIT typedef at_response_t */
 
 /*! responses control */
-typedef struct at_responses_t
-{
-	const at_response_t*	responses;
-	unsigned		ids_first;		/*!< index of first id */
-	unsigned		ids;			/*!< number of ids */
-	int			name_first;		/*!< value of enum for first name */
-	int			name_last;		/*!< value of enum for last name */
-} at_responses_t;
+/* SVISTOK_BASELINE_UNIT typedef at_responses_t */
 
 /*! responses description */
 EXPORT_DECL const at_responses_t at_responses;
-EXPORT_DECL const char* at_res2str (at_res_t res);
-EXPORT_DECL int at_response (struct pvt* pvt, const struct iovec * iov, int iovcnt, at_res_t at_res);
+/* SVISTOK_BASELINE_UNIT declaration at_res2str */
+/* SVISTOK_BASELINE_UNIT declaration at_response */
 
+#endif /* SVISTOK_COMPOSED_AT_RESPONSE_H_HEADER */
 #endif /* CHAN_DONGLE_AT_RESPONSE_H_INCLUDED */

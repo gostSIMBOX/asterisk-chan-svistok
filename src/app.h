@@ -3,6 +3,9 @@
 */
 #ifndef CHAN_DONGLE_APP_H_INCLUDED
 #define CHAN_DONGLE_APP_H_INCLUDED
+#ifdef SVISTOK_COMPOSED_APP_H_HEADER
+#include SVISTOK_COMPOSED_APP_H_HEADER
+#else
 
 #include "share.h"
 
@@ -10,8 +13,8 @@
 
 #include <asterisk-chan-dongle/export.h>	/* EXPORT_DECL EXPORT_DEF */
 
-EXPORT_DECL void app_register();
-EXPORT_DECL void app_unregister();
+/* SVISTOK_BASELINE_UNIT declaration app_register */
+/* SVISTOK_BASELINE_UNIT declaration app_unregister */
 
 #else /* BUILD_APPLICATIONS */
 
@@ -19,4 +22,5 @@ EXPORT_DECL void app_unregister();
 #define app_unregister()
 
 #endif /* BUILD_APPLICATIONS */
+#endif /* SVISTOK_COMPOSED_APP_H_HEADER */
 #endif /* CHAN_DONGLE_APP_H_INCLUDED */

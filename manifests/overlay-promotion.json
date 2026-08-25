@@ -1,0 +1,176 @@
+{
+  "backup": "/Users/anton/proj/nativemind.net/simbox.nativemind.net/libsCpp/asterisk-chan-svistok/build/corrective-backup",
+  "files": [
+    {
+      "after_sha256": "eafcae3e969b905a9191fa79e63afb09f40d0679b5c63d18b044c39e11e73274",
+      "before_sha256": "3ea2cf28a3a56a18ff1de9716bca7535769ed75a3f19a3b8d414b14538854b43",
+      "file": "app.c",
+      "staged_sha256": "eafcae3e969b905a9191fa79e63afb09f40d0679b5c63d18b044c39e11e73274"
+    },
+    {
+      "after_sha256": "5ea207a0b68cdf8ea3a5998446c9cd0eddff1ef2c01c4beef128012049fca20b",
+      "before_sha256": "aabdd694ec4872cd0fcc41709524cd5cdb7bd382616cfe3a9328338facefb923",
+      "file": "at_command.c",
+      "staged_sha256": "5ea207a0b68cdf8ea3a5998446c9cd0eddff1ef2c01c4beef128012049fca20b"
+    },
+    {
+      "after_sha256": "9926c49ddac3d74a49f5d5ef35163c1174976361892cb1409982a8b6dcc22eb5",
+      "before_sha256": "3b089cd7145cd5c69e179c1bdbfd6bca0fd3650c9dd3b3aa1f3bbbfb23fd6466",
+      "file": "at_parse.c",
+      "staged_sha256": "9926c49ddac3d74a49f5d5ef35163c1174976361892cb1409982a8b6dcc22eb5"
+    },
+    {
+      "after_sha256": "da51820e96b7932530b1fc279639a47b4c829b6b7dcc1dc0e338bd3911bae8de",
+      "before_sha256": "9629dd7f7c8b129d5cdf00c0a544ceffb3a90fc0bb1ef9214bd4bfd917d9d33b",
+      "file": "at_queue.c",
+      "staged_sha256": "da51820e96b7932530b1fc279639a47b4c829b6b7dcc1dc0e338bd3911bae8de"
+    },
+    {
+      "after_sha256": "adc037567fde0f5143f2d75bdac52a99623635c183cfcf835420972a1c4db03e",
+      "before_sha256": "68c1a9f861a2efc0d19898bccaae6b25712596a69a867c40533c077bbe5b49e7",
+      "file": "at_read.c",
+      "staged_sha256": "adc037567fde0f5143f2d75bdac52a99623635c183cfcf835420972a1c4db03e"
+    },
+    {
+      "after_sha256": "fbf4e65ccf8b324789fed9f0e7dbe208b3e79bbe84b5ec087fe6bb020e353ba7",
+      "before_sha256": "3d931a316cb963f7b9bdcd4ecceef20e07f705466742ff18eace668aff9ac6af",
+      "file": "at_response.c",
+      "staged_sha256": "fbf4e65ccf8b324789fed9f0e7dbe208b3e79bbe84b5ec087fe6bb020e353ba7"
+    },
+    {
+      "after_sha256": "2fde78504669c5d4f1f6215bb232da2a6513b49cf47688b2f1e076133bbf9fad",
+      "before_sha256": "dc50f1ef517ddaa66d27b4bde55676cdc855e6f4369a0a6a57be926f05a02ca9",
+      "file": "chan_dongle.c",
+      "staged_sha256": "2fde78504669c5d4f1f6215bb232da2a6513b49cf47688b2f1e076133bbf9fad"
+    },
+    {
+      "after_sha256": "cabbb998f37fa16ff53d937720dafd3c98bee2795b3c53e43b201cb839c452b7",
+      "before_sha256": "6ecb513973b65e9342763d2291571e57900cac00069dd0fde354c2753bb77010",
+      "file": "channel.c",
+      "staged_sha256": "cabbb998f37fa16ff53d937720dafd3c98bee2795b3c53e43b201cb839c452b7"
+    },
+    {
+      "after_sha256": "6f83c98dc48bc01aed7cfbae9799f947a037f0c400a040b0f3bb5173799e3715",
+      "before_sha256": "dfb6044e6eeb2b1599f2ae8b40c670054ad86c701b24266253b0c1f6ee06cec9",
+      "file": "cli.c",
+      "staged_sha256": "6f83c98dc48bc01aed7cfbae9799f947a037f0c400a040b0f3bb5173799e3715"
+    },
+    {
+      "after_sha256": "a4c380148567f21e4008355ff22b01717bc23702de97d7ce7e094537bb9df2c7",
+      "before_sha256": "853ebd69eef082ce59d4d017ccc53d10e39135bbc3b7ffeac533ab3a7fdad71a",
+      "file": "helpers.c",
+      "staged_sha256": "a4c380148567f21e4008355ff22b01717bc23702de97d7ce7e094537bb9df2c7"
+    },
+    {
+      "after_sha256": "f48b350f12c52d1704f1fa7652f495ce9918d58ea274664452b921ccaf4dd26d",
+      "before_sha256": "b5907cdf1636cad80a9a103b47bdcacbbf80197bf5b4fb5dc076ea6b1f2fd9d3",
+      "file": "manager.c",
+      "staged_sha256": "f48b350f12c52d1704f1fa7652f495ce9918d58ea274664452b921ccaf4dd26d"
+    },
+    {
+      "after_sha256": "93bb973a38d91edf0f33f02392d9fc18046ed78a38ebf4f2003ec31330ca300a",
+      "before_sha256": "26374b401ef6407b38e3f350807acd066afc517ae84412b333071d63cd718104",
+      "file": "ringbuffer.c",
+      "staged_sha256": "93bb973a38d91edf0f33f02392d9fc18046ed78a38ebf4f2003ec31330ca300a"
+    },
+    {
+      "after_sha256": "817183bd3e68d7465394b8d096faf99b7e60933fc34842f22aaa2a34d51d14b8",
+      "before_sha256": "7fecc259f5fa25d1b0dff9d4679c5011a6d9abb531c95f9e06d6db0da4401aea",
+      "file": "cpvt.c",
+      "staged_sha256": "817183bd3e68d7465394b8d096faf99b7e60933fc34842f22aaa2a34d51d14b8"
+    },
+    {
+      "after_sha256": "6a112dbf630342404b8934074d9347d68d9bbda30e7183334efb2a2d66f598ac",
+      "before_sha256": "b82c55a53ed1282268d4269406229d922275d52fd948c77516b533ee244f89a1",
+      "file": "dc_config.c",
+      "staged_sha256": "6a112dbf630342404b8934074d9347d68d9bbda30e7183334efb2a2d66f598ac"
+    },
+    {
+      "after_sha256": "5ae7dc347a765bc831d7f75966def3455a55de285426dab26e0e09cd696e1021",
+      "before_sha256": "503d1988f417cf704430c3746395df407d2fd5194720fa4726f08a3aedd0f44f",
+      "file": "pdu.c",
+      "staged_sha256": "5ae7dc347a765bc831d7f75966def3455a55de285426dab26e0e09cd696e1021"
+    },
+    {
+      "after_sha256": "7af8f3d125e7ff7b23b280efab2839d6c3244de11e670e0fe787f5851d77bcc4",
+      "before_sha256": "dc6655eda4bd7424429d5822f8a095ecb742c9bfa1ef04b4f5aa7ebc7f864a1e",
+      "file": "pdiscovery.c",
+      "staged_sha256": "7af8f3d125e7ff7b23b280efab2839d6c3244de11e670e0fe787f5851d77bcc4"
+    },
+    {
+      "after_sha256": "403fa331240202856b85ad0cc5660bdbf7ab0834b3e0525d915f68b984e88488",
+      "before_sha256": "c2cfd85826df0c7094a531deec3614d0281c72420338e69ad3d2690f5869d8a4",
+      "file": "app.h",
+      "staged_sha256": "403fa331240202856b85ad0cc5660bdbf7ab0834b3e0525d915f68b984e88488"
+    },
+    {
+      "after_sha256": "4dd5498668721bb4c595830296c29959b977e7f67ca31d346465033c0633b151",
+      "before_sha256": "0c80cc88c75353b8e1108711c4674f7bc74e5de84b72180e54cb34ce1c74e257",
+      "file": "at_command.h",
+      "staged_sha256": "4dd5498668721bb4c595830296c29959b977e7f67ca31d346465033c0633b151"
+    },
+    {
+      "after_sha256": "5052fab58b5925c2a12acd5bf8fceb26725baf0ceb5d6ae5b1d5ce21d3ee9e92",
+      "before_sha256": "0156a2d52b0633d4b0cb5ee83c25f0760504cbe94696d4cf1b74bd57a8283e14",
+      "file": "at_parse.h",
+      "staged_sha256": "5052fab58b5925c2a12acd5bf8fceb26725baf0ceb5d6ae5b1d5ce21d3ee9e92"
+    },
+    {
+      "after_sha256": "cbdb4391c01748e02d7d242b251a2d5f7fe933a41dd09f0ed0d55ac5c1af2b05",
+      "before_sha256": "6b9d85b59fc6f5f830fc20cf014e65da539ebe5c408261e9e79a7987c2e1ccf2",
+      "file": "at_response.h",
+      "staged_sha256": "cbdb4391c01748e02d7d242b251a2d5f7fe933a41dd09f0ed0d55ac5c1af2b05"
+    },
+    {
+      "after_sha256": "e6e2b5700d460afd1b7740ec44cabd539dd88e1ca67045e10a214a43c839d27c",
+      "before_sha256": "de188dd081c6dd36b5555309f849b6eb1841b0efe4b39e0b9fd4880920c80b66",
+      "file": "chan_dongle.h",
+      "staged_sha256": "e6e2b5700d460afd1b7740ec44cabd539dd88e1ca67045e10a214a43c839d27c"
+    },
+    {
+      "after_sha256": "0bbb230e25127f96de770a73de753774ec52218117defcdf02c22c065f9a46f1",
+      "before_sha256": "27be0a504b892218b737248372d464d3c738428138f2d27671dad128ffa5ac87",
+      "file": "channel.h",
+      "staged_sha256": "0bbb230e25127f96de770a73de753774ec52218117defcdf02c22c065f9a46f1"
+    },
+    {
+      "after_sha256": "07f580ed8d339c488a6e53e1a92d1a1ee0bb3b1ddeb0c298a6827a1228d96a96",
+      "before_sha256": "b9216b9226d8f87de1135d10076870b4298aa5fbf0ad557bfcbda6a4c83494a6",
+      "file": "cli.h",
+      "staged_sha256": "07f580ed8d339c488a6e53e1a92d1a1ee0bb3b1ddeb0c298a6827a1228d96a96"
+    },
+    {
+      "after_sha256": "f74ae5c3fdc7341cc059b8050da9f3103e44752b0ed95272d1894fb509b22779",
+      "before_sha256": "9cb4ff88c3087cb7114c7dec1cf9cb741bfc94b1312ee5b87a1d0496c426df13",
+      "file": "cpvt.h",
+      "staged_sha256": "f74ae5c3fdc7341cc059b8050da9f3103e44752b0ed95272d1894fb509b22779"
+    },
+    {
+      "after_sha256": "48867895a10a0f6d3c02a013d8f901d51b39c2560db62f0ec8d0955aa09290d5",
+      "before_sha256": "11ae4e3f1f52722a936be37a8b7d18097f58cfc16fc88f973794e9fb89210c65",
+      "file": "dc_config.h",
+      "staged_sha256": "48867895a10a0f6d3c02a013d8f901d51b39c2560db62f0ec8d0955aa09290d5"
+    },
+    {
+      "after_sha256": "ff990a158669a91fa276f905bbd37bbdf569903470fe6f2112b77b9b3eefecf2",
+      "before_sha256": "7e65d2d5f16f1d123687b17e95a77e701ec32d39aa0b5c386e68ec94aed1fc38",
+      "file": "pdiscovery.h",
+      "staged_sha256": "ff990a158669a91fa276f905bbd37bbdf569903470fe6f2112b77b9b3eefecf2"
+    },
+    {
+      "after_sha256": "a5575f8def89fcda7c95679874660645f1938322acfdbea55cd2dde104f93213",
+      "before_sha256": "448dbabc962a9ae8ebd83f914f09bfed08ed39f8e5cda683167123fd15851162",
+      "file": "pdu.h",
+      "staged_sha256": "a5575f8def89fcda7c95679874660645f1938322acfdbea55cd2dde104f93213"
+    },
+    {
+      "after_sha256": "721413a6aa9d5e7578202dea6b7ec659ea7b38b0057dacfcbc3fcb0cebbc79b7",
+      "before_sha256": "a1dff5b40085844443b52b2bc867a8cc0fdaae599d7cb5cf08ff354a8381c08a",
+      "file": "ringbuffer.h",
+      "staged_sha256": "721413a6aa9d5e7578202dea6b7ec659ea7b38b0057dacfcbc3fcb0cebbc79b7"
+    }
+  ],
+  "promoted_files": 28,
+  "schema_version": 1,
+  "staging": "/Users/anton/proj/nativemind.net/simbox.nativemind.net/libsCpp/asterisk-chan-svistok/build/staging-overlay"
+}

@@ -39,6 +39,8 @@ class ModuleBuildTests(unittest.TestCase):
         self.assertEqual("chan_svistok.so", report["module_name"])
         self.assertEqual(36, report["objects"])
         self.assertEqual(32, report["slices"])
+        self.assertEqual(16, report["baseline_slices"])
+        self.assertEqual(16, report["overlay_compositions"])
         self.assertEqual(81, report["bridges"])
         self.assertEqual(0, report["unresolved_bridges"])
         self.assertEqual(0, report["public_bridges"])

@@ -9,68 +9,49 @@
 
 #ifndef ____RINGBUFFER_H__
 #define ____RINGBUFFER_H__
+#ifdef SVISTOK_COMPOSED_RINGBUFFER_H_HEADER
+#include SVISTOK_COMPOSED_RINGBUFFER_H_HEADER
+#else
 
 #include <sys/uio.h>			/* struct iovec */
 #include <asterisk-chan-dongle/export.h>	/* EXPORT_DECL EXPORT_DEF */
 
-typedef void * (*rb_write_f)(void* s1, const void* s2, size_t n);
+/* SVISTOK_BASELINE_UNIT typedef rb_write_f */
 
-struct ringbuffer
-{
-	void*	buffer;			/*!< pointer to data buffer */
-	size_t	size;			/*!< size of buffer */
-	size_t	used;			/*!< number of bytes used */
-	size_t	read;			/*!< read position */
-	size_t	write;			/*!< write position */
-};
+/* SVISTOK_BASELINE_UNIT record ringbuffer */
 
 
-INLINE_DECL void rb_init (struct ringbuffer* rb, void* buf, size_t size)
-{
-	rb->buffer = buf;
-	rb->size   = size;
-	rb->used   = 0;
-	rb->read   = 0;
-	rb->write  = 0;
-}
+/* SVISTOK_BASELINE_UNIT function rb_init */
 
-INLINE_DECL size_t rb_used (const struct ringbuffer* rb)
-{
-	return rb->used;
-}
+/* SVISTOK_BASELINE_UNIT function rb_used */
 
-INLINE_DECL size_t rb_free (const struct ringbuffer* rb)
-{
-	return rb->size - rb->used;
-}
+/* SVISTOK_BASELINE_UNIT function rb_free */
 
-EXPORT_DECL int rb_memcmp (const struct ringbuffer*, const char*, size_t);
+/* SVISTOK_BASELINE_UNIT declaration rb_memcmp */
 
 /*!< fill io vectors array with readed data (situable for writev()) and return number of io vectors updated  */
-EXPORT_DECL int rb_read_all_iov (const struct ringbuffer* rb, struct iovec iov[2]);
+/* SVISTOK_BASELINE_UNIT declaration rb_read_all_iov */
 
 /*!< fill io vectors array and return number of io vectors updated for reading len bytes */
-EXPORT_DECL int rb_read_n_iov (const struct ringbuffer* rb, struct iovec* iov, size_t len);
+/* SVISTOK_BASELINE_UNIT declaration rb_read_n_iov */
 
-EXPORT_DECL int rb_read_until_char_iov (const struct ringbuffer*, struct iovec iov[2], char);
+/* SVISTOK_BASELINE_UNIT declaration rb_read_until_char_iov */
 EXPORT_DECL int rb_read_until_char_after_iov (const struct ringbuffer*, struct iovec iov[2], char, int after);
 
-EXPORT_DECL int rb_read_until_mem_iov (const struct ringbuffer*, struct iovec iov[2], const void*, size_t);
+/* SVISTOK_BASELINE_UNIT declaration rb_read_until_mem_iov */
 
 /*!< advice read position to len bytes */
-EXPORT_DECL size_t rb_read_upd (struct ringbuffer* rb, size_t len);
+/* SVISTOK_BASELINE_UNIT declaration rb_read_upd */
 
 /*!< fill io vectors array with free data (situable for readv()) and return number of io vectors updated  */
-EXPORT_DECL int rb_write_iov (const struct ringbuffer*, struct iovec iov[2]);
+/* SVISTOK_BASELINE_UNIT declaration rb_write_iov */
 
 /*!< advice write position to len bytes */
-EXPORT_DECL size_t rb_write_upd (struct ringbuffer*, size_t);
+/* SVISTOK_BASELINE_UNIT declaration rb_write_upd */
 
-EXPORT_DEF size_t rb_write_core (struct ringbuffer* rb, const char* buf, size_t len, rb_write_f method);
+/* SVISTOK_BASELINE_UNIT declaration rb_write_core */
 
-INLINE_DECL size_t rb_write (struct ringbuffer* rb, const char* buf, size_t len)
-{
-	return rb_write_core(rb, buf, len, memmove);
-}
+/* SVISTOK_BASELINE_UNIT function rb_write */
 
+#endif /* SVISTOK_COMPOSED_RINGBUFFER_H_HEADER */
 #endif /* ____RINGBUFFER_H__ */

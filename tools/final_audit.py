@@ -27,7 +27,10 @@ CHECKS = (
     ("syntax-aware slicing", ["python3", "tests/slicer/test_slicing.py"]),
     ("static bridges", ["python3", "tests/slicer/test_bridges.py"]),
     ("body provenance", ["python3", "tests/slicer/test_provenance.py"]),
-    ("adapted range materialization", ["python3", "tests/slicer/test_materialization.py"]),
+    ("overlay purity", ["python3", "tests/slicer/test_overlay_purity.py"]),
+    ("delta/baseline composition", ["python3", "tests/slicer/test_materialization.py"]),
+    ("overlay extraction", ["python3", "tests/slicer/test_overlay_extraction.py"]),
+    ("direct app_register baseline reuse", ["python3", "tests/slicer/test_app_upstream_reuse.py"]),
     ("at_parse pilot", ["python3", "tests/slicer/test_at_parse_pilot.py"]),
     ("full slice generation", ["python3", "tests/slicer/test_full_generation.py"]),
     ("chan_svistok.so compatibility build", ["python3", "tests/test_module_build.py"]),
@@ -86,6 +89,11 @@ def main() -> int:
             encoding="utf-8"
         )
     )["explicit_gaps"]
+    extraction = json.loads(
+        (PROJECT_ROOT / "manifests" / "overlay-extraction.json").read_text(
+            encoding="utf-8"
+        )
+    )
     report = {
         "schema_version": 1,
         "audited_on": date.today().isoformat(),
@@ -97,12 +105,29 @@ def main() -> int:
             "files": len(ownership["files"]),
             "root_symbols": sum(len(item["symbols"]) for item in ownership["files"]),
             "macros": sum(len(item["macros"]) for item in ownership["files"]),
+            "types": sum(len(item.get("types", [])) for item in ownership["files"]),
             "declarations": sum(
                 len(entries)
                 for item in ownership["files"]
                 for entries in item["declarations"].values()
             ),
             "bridges": sum(len(item["bridges"]) for item in ownership["files"]),
+        },
+        "overlay": {
+            "modified_paths": len(extraction["files"]),
+            "removed_upstream_units": sum(
+                item["removed_count"] for item in extraction["files"]
+            ),
+            "removed_c_units": sum(
+                item["removed_count"]
+                for item in extraction["files"]
+                if item["file"].endswith(".c")
+            ),
+            "removed_header_units": sum(
+                item["removed_count"]
+                for item in extraction["files"]
+                if item["file"].endswith(".h")
+            ),
         },
         "build": build_report,
         "external_gaps": gaps,

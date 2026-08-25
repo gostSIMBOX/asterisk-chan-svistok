@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 from pathlib import Path
+import importlib.util
+import json
 import shutil
 import subprocess
 import unittest
@@ -14,7 +16,27 @@ SOURCE = PROJECT_ROOT / "tests" / "test_abi.c"
 BUILD_ROOT = PROJECT_ROOT / "build" / "abi"
 
 
+def load_tool(name: str):
+    path = PROJECT_ROOT / "tools" / f"{name}.py"
+    spec = importlib.util.spec_from_file_location(name, path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"cannot load {path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
 class AbiTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        ownership = json.loads(
+            (PROJECT_ROOT / "manifests" / "symbol-ownership.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        cls.generated_root = BUILD_ROOT / "generated"
+        load_tool("generate_all_slices").generate(ownership, cls.generated_root)
+
     def compile(self, context: str, *extra: str) -> subprocess.CompletedProcess[str]:
         BUILD_ROOT.mkdir(parents=True, exist_ok=True)
         compiler = shutil.which("clang") or shutil.which("cc")
@@ -26,6 +48,8 @@ class AbiTests(unittest.TestCase):
                 "-Wno-invalid-pp-token",
                 f"-DSVISTOK_ABI_CONTEXT_{context}=1",
                 *extra,
+                "-include",
+                str(self.generated_root / "composed-header-defines.h"),
                 "-I",
                 str(STUB_ROOT),
                 "-I",

@@ -8,22 +8,23 @@
 #include "dc_config.h"
 #include <asterisk/callerid.h>				/* ast_parse_caller_presentation() */
 
-static struct ast_jb_conf jbconf_default = 
-{
-	.flags			= 0,
-	.max_size		= -1,
-	.resync_threshold	= -1,
-	.impl			= "",
-	.target_extra		= -1,
-};
+                                           
+ 
+              
+                 
+                        
+              
+                     
+ ;
 
 
-static const char * const dtmf_values[] = { "off", "inband", "relax" };
+extern const char *const svistok_bridge_upstream_dtmf_values[3];
+     ;
 
-EXPORT_DEF const char * dc_dtmf_setting2str(dc_dtmf_setting_t dtmf)
-{
-	return enum2str(dtmf, dtmf_values, ITEMS_OF(dtmf_values));
-}
+                                                                   
+ 
+                                                           
+ 
 
 #/* assume config is zerofill */
 static int dc_uconfig_fill(struct ast_config * cfg, const char * cat, struct dc_uconfig * config)
@@ -82,26 +83,26 @@ static int dc_uconfig_fill(struct ast_config * cfg, const char * cat, struct dc_
 }
 
 #/* */
-EXPORT_DEF void dc_sconfig_fill_defaults(struct dc_sconfig * config)
-{
-	/* first set default values */
-	memset(config, 0, sizeof(*config));
+                                                                    
+ 
+                               
+                                    
 
-	ast_copy_string (config->context, "default", sizeof (config->context));
-	ast_copy_string (config->exten, "", sizeof (config->exten));
-	ast_copy_string (config->language, DEFAULT_LANGUAGE, sizeof (config->language));
+                                                                        
+                                                             
+                                                                                 
 
-	config->u2diag			= -1;
-	config->resetdongle		=  1;
-	config->callingpres		= -1;
-	config->initstate		= DEV_STATE_STARTED;
-	config->callwaiting 		= CALL_WAITING_AUTO;
-	config->dtmf			= DC_DTMF_SETTING_RELAX;
+                       
+                           
+                           
+                                        
+                                           
+                                        
 
-	config->mindtmfgap		= DEFAULT_MINDTMFGAP;
-	config->mindtmfduration		= DEFAULT_MINDTMFDURATION;
-	config->mindtmfinterval		= DEFAULT_MINDTMFINTERVAL;
-}
+                                          
+                                                    
+                                                    
+ 
 
 #/* */
 EXPORT_DEF void dc_sconfig_fill(struct ast_config * cfg, const char * cat, struct dc_sconfig * config)
@@ -237,46 +238,46 @@ EXPORT_DEF void dc_sconfig_fill(struct ast_config * cfg, const char * cat, struc
 }
 
 #/* */
-EXPORT_DEF void dc_gconfig_fill(struct ast_config * cfg, const char * cat, struct dc_gconfig * config)
-{
-	struct ast_variable * v;
-	int tmp;
-	const char * stmp;
+                                                                                                      
+ 
+                         
+         
+                   
 
-	/* set default values */
-	memcpy(&config->jbconf, &jbconf_default, sizeof(config->jbconf));
-	config->discovery_interval = DEFAULT_DISCOVERY_INT;
+                         
+                                                                  
+                                                    
 
-	stmp = ast_variable_retrieve (cfg, cat, "interval");
-	if(stmp)
-	{
-		errno = 0;
-		tmp = (int) strtol (stmp, (char**) NULL, 10);
-		if (tmp == 0 && errno == EINVAL)
-			ast_log (LOG_NOTICE, "Error parsing 'interval' in general section, using default value %d\n", config->discovery_interval);
-		else
-			config->discovery_interval = tmp;
-	}
+                                                     
+         
+  
+            
+                                               
+                                  
+                                                                                                                             
+      
+                                    
+  
 
 
-	for (v = ast_variable_browse (cfg, cat); v; v = v->next)
-		/* handle jb conf */
-		ast_jb_read_conf (&config->jbconf, v->name, v->value);
-}
+                                                         
+                      
+                                                        
+ 
 
 #/* */
-EXPORT_DEF int dc_config_fill(struct ast_config * cfg, const char * cat, const struct dc_sconfig * parent, struct pvt_config * config)
-{
-	/* try set unique first */
-	int err = dc_uconfig_fill(cfg, cat, &config->unique);
-	if(!err)
-	{
-		/* inherit from parent */
-		memcpy(&config->shared, parent, sizeof(config->shared));
+                                                                                                                                      
+ 
+                           
+                                                      
+         
+  
+                           
+                                                          
 
-		/* overwrite local */
-		dc_sconfig_fill(cfg, cat, &config->shared);
-	}
+                       
+                                             
+  
 
-	return err;
-}
+            
+ 

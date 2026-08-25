@@ -274,138 +274,133 @@
 #define LENGTH2OCTETS(x)			(((x) + 1)/2)
 
 #/* get digit code, 0 if invalid  */
-EXPORT_DEF char pdu_digit2code(char digit)
-{
-	switch(digit)
-	{
-		case '0':
-		case '1':
-		case '2':
-		case '3':
-		case '4':
-		case '5':
-		case '6':
-		case '7':
-		case '8':
-		case '9':
-			break;
-		case '*':
-			digit = 'A';
-			break;
-		case '#':
-			digit = 'B';
-			break;
-		case 'a':
-		case 'A':
-			digit = 'C';
-			break;
-		case 'b':
-		case 'B':
-			digit = 'D';
-			break;
-		case 'c':
-		case 'C':
-			digit = 'E';
-			break;
-		default:
-			return 0;
-	}
-	return digit;
-}
+                                          
+ 
+              
+  
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+         
+           
+               
+         
+           
+               
+         
+           
+           
+               
+         
+           
+           
+               
+         
+           
+           
+               
+         
+          
+            
+  
+              
+ 
 
 #/* */
-static char pdu_code2digit(char code)
-{
-	switch(code)
-	{
-		case '0':
-		case '1':
-		case '2':
-		case '3':
-		case '4':
-		case '5':
-		case '6':
-		case '7':
-		case '8':
-		case '9':
-			break;
-		case 'a':
-		case 'A':
-			code = '*';
-			break;
-		case 'b':
-		case 'B':
-			code = '#';
-			break;
-		case 'c':
-		case 'C':
-			code = 'A';
-			break;
-		case 'd':
-		case 'D':
-			code = 'B';
-			break;
-		case 'e':
-		case 'E':
-			code = 'C';
-			break;
-		case 'F':
-			return 0;
-		default:
-			return -1;
-	}
-	return code;
-}
+extern char svistok_bridge_upstream_pdu_code2digit(char code);
+     
+           
+           
+           
+           
+           
+           
+           
+           
+           
+         
+           
+           
+              
+         
+           
+           
+              
+         
+           
+           
+              
+         
+           
+           
+              
+         
+           
+           
+              
+         
+           
+            
+          
+             
+  
+             
+ 
 
 #/* convert minutes to relative VP value */
-static int pdu_relative_validity(unsigned minutes)
-{
+                                                  
+ 
 #define DIV_UP(x,y)	(((x)+(y)-1)/(y))
-/*
-	0 ... 143  (vp + 1) * 5 minutes				   5  ...   720		m = (vp + 1) * 5		m / 5 - 1 = vp
-	144...167  12 hours + (vp - 143) * 30 minutes		 750  ...  1440		m = 720 + (vp - 143) * 30	(m - 720) / 30 + 143 = m / 30 + 119
-	168...196  (vp - 166) * 1 day				2880  ... 43200		m = (vp - 166) * 1440		(m / 1440) + 166
-	197...255  (vp - 192) * 1 week			       50400  ...635040		m = (vp - 192) * 10080		(m / 10080) + 192
-*/
-	int validity;
-	if(minutes <= 720)
-		validity = DIV_UP(minutes, 5) - 1;
-	else if(minutes <= 1440)
-		validity = DIV_UP(minutes, 30) + 119;
-	else if(minutes <= 43200)
-		validity = DIV_UP(minutes, 1440) + 166;
-	else if(minutes <= 635040)
-		validity = DIV_UP(minutes, 10080) + 192;
-	else
-		validity = 0xFF;
-	return validity;
+  
+                                                                                     
+                                                                                                                              
+                                                                                          
+                                                                                                    
+  
+              
+                   
+                                    
+                         
+                                       
+                          
+                                         
+                           
+                                          
+     
+                  
+                 
 #undef DIV_UP
-}
+ 
 
 #/* convert 2 hex digits of PDU to byte, return < 0 on error */
-static int pdu_parse_byte(char ** digits2hex, size_t * length)
-{
-	int res = -1;
-	int res2;
+extern int svistok_bridge_upstream_pdu_parse_byte(char ** digits2hex, size_t * length);
+  
 
-	if(*length >= 2)
-	{
-		res = parse_hexdigit(*digits2hex[0]);
-		if(res >= 0)
-		{
-			(*digits2hex)++;
-			(*length)--;
-			res2 = parse_hexdigit(*digits2hex[0]);
-			if(res2 >= 0)
-			{
-				(*digits2hex)++;
-				(*length)--;
-				return (res << 4) | res2;
-			}
-		}
-	}
-	return res;
-}
+                 
+  
+                                       
+              
+   
+                   
+               
+                                         
+                
+    
+                    
+                
+                             
+    
+   
+  
+            
+ 
 
 /*!
  * \brief Store number in PDU 
@@ -414,23 +409,21 @@ static int pdu_parse_byte(char ** digits2hex, size_t * length)
  * \param length -- length of number
  * \return number of bytes written to buffer
  */
-static int pdu_store_number(char* buffer, const char* number, unsigned length)
-{
-	int i;
-	for(i = 0; length > 1; length -=2, i +=2)
-	{
-		buffer[i] = pdu_digit2code(number[i + 1]);
-		buffer[i + 1] = pdu_digit2code(number[i]);
-	}
+extern int svistok_bridge_upstream_pdu_store_number(char * buffer, const char * number, unsigned int length);
+                     
+  
+                                            
+                                            
+  
 
-	if(length)
-	{
-		buffer[i] = 'F';
-		buffer[i+1] = pdu_digit2code(number[i]);
-		i += 2;
-	}
-	return i;
-}
+           
+  
+                  
+                                          
+         
+  
+          
+ 
 
 /*
 failed parse 07 91  97 62 02 00 01 F9  44  14 D0 F7 FB DD D5 2E 9F C3 E6 B7 1B  0008117050815073618C0500037A020100680066006C0067006800200066006800670020006800640066006A006C006700680066006400680067000A002F00200415043604350434043D04350432043D044B04390020043B04380447043D044B043900200433043E0440043E0441043A043E043F003A0020002A003500300035002300360023002000200028003300200440002F0441 
@@ -481,46 +474,42 @@ static int pdu_parse_number(char ** pdu, size_t * pdu_length, unsigned digits, i
 
 
 #/* return bytes (not octets!) of pdu occupied by SCA or <0 on errors */
-EXPORT_DEF int pdu_parse_sca(char ** pdu, size_t * length)
-{
-	/* get length of SCA field */
-	int sca_len = pdu_parse_byte(pdu, length);
+                                                          
+ 
+                              
+                                           
 
-	if(sca_len >= 0)
-	{
-		sca_len *= 2;
-		if((size_t)sca_len <= *length)
-		{
-			*pdu += sca_len;
-			*length -= sca_len;
+                 
+  
+               
+                                
+   
+                   
+                      
 
-			/* TODO: Parse SCA Address */
-			return sca_len + 2;
-		}
-	}
-	return -EINVAL;
-}
+                                
+                      
+   
+  
+                
+ 
 
 #/* TODO: implement */
-static int pdu_parse_timestamp(char ** pdu, size_t * length)
-{
-	if(*length >= 14)
-	{
-		*pdu += 14;
-		*length -= 14;
-		return 14;
-	}
-	return -EINVAL;
-}
+extern int svistok_bridge_upstream_pdu_parse_timestamp(char ** pdu, size_t * length);
+            
+                
+            
+  
+                
+ 
 
 #/* TODO: remove / TODO: append 8 bit */
-static int check_encoding(const char* msg, unsigned length)
-{
-	str_encoding_t possible_enc = get_encoding(RECODE_ENCODE, msg, length);
-	if(possible_enc == STR_ENCODING_7BIT_HEX)
-		return PDU_DCS_ALPABET_7BIT;
-	return PDU_DCS_ALPABET_UCS2;
-}
+extern int svistok_bridge_upstream_check_encoding(const char * msg, unsigned int length);
+                                            
+                                          
+                              
+                             
+ 
 
 /*!
  * \brief Build PDU text for SMS
@@ -646,26 +635,25 @@ EXPORT_DEF int pdu_build(char* buffer, size_t length, const char* sca, const cha
 
 
 #/* */
-static str_encoding_t pdu_dcs_alpabet2encoding(int alpabet)
-{
-	str_encoding_t rv = STR_ENCODING_UNKNOWN;
+extern str_encoding_t svistok_bridge_upstream_pdu_dcs_alpabet2encoding(int alpabet);
+                   
 
-	alpabet >>= PDU_DCS_ALPABET_SHIFT;
-	switch(alpabet)
-	{
-		case (PDU_DCS_ALPABET_7BIT >> PDU_DCS_ALPABET_SHIFT):
-			rv = STR_ENCODING_7BIT_HEX;
-			break;
-		case (PDU_DCS_ALPABET_8BIT >> PDU_DCS_ALPABET_SHIFT):
-			rv = STR_ENCODING_8BIT_HEX;
-			break;
-		case (PDU_DCS_ALPABET_UCS2 >> PDU_DCS_ALPABET_SHIFT):
-			rv = STR_ENCODING_UCS2_HEX;
-			break;
-	}
+                                   
+                
+  
+                                                       
+                              
+         
+                                                       
+                              
+         
+                                                       
+                              
+         
+  
 
-	return rv;
-}
+           
+ 
 
 /*!
  * \brief Parse PDU

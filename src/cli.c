@@ -27,7 +27,8 @@
 #include "stat.c"
 #include "programmator/ttyprog_svistok.c"
 
-static const char * restate2str_msg(restate_time_t when);
+                                                        msg(restate_time_t when);
+;
 
 #/* */
 static int32_t getACD(uint32_t calls, uint32_t duration)
@@ -44,26 +45,24 @@ static int32_t getACD(uint32_t calls, uint32_t duration)
 }
 
 
-static char* complete_device (const char* word, int state)
-{
-	struct pvt*	pvt;
-	char*	res = NULL;
-	int	which = 0;
-	int	wordlen = strlen (word);
+extern char * svistok_bridge_upstream_complete_device(const char * word, int state);
+            
+               
+                             
 
-	AST_RWLIST_RDLOCK (&gpublic->devices);
-	AST_RWLIST_TRAVERSE (&gpublic->devices, pvt, entry)
-	{
-		if (!strncasecmp (PVT_ID(pvt), word, wordlen) && ++which > state)
-		{
-			res = ast_strdup (PVT_ID(pvt));
-			break;
-		}
-	}
-	AST_RWLIST_UNLOCK (&gpublic->devices);
+                                       
+                                                    
+  
+                                                                   
+   
+                                  
+         
+   
+  
+                                       
 
-	return res;
-}
+            
+ 
 
 
 static char* cli_show_devices (struct ast_cli_entry* e, int cmd, struct ast_cli_args* a)
@@ -590,17 +589,15 @@ AST_LIST_TRAVERSE(&pvt->at_queue, task, entry)
 
 
 #/* */
-static int32_t getASR(uint32_t total, uint32_t handled)
-{
-	int32_t asr;
-	if(total) {
-		asr = handled * 100 / total;
-	} else {
-		asr = -1;
-	}
+extern int32_t svistok_bridge_upstream_getASR(uint32_t total, uint32_t handled);
+   
+                              
+         
+           
+  
 
-	return asr;
-}
+            
+ 
 
 static char* cli_show_device_statistics (struct ast_cli_entry* e, int cmd, struct ast_cli_args* a)
 {
@@ -732,61 +729,55 @@ if (!getfilei("sim",    pvt->imsi,  "stat_datt",&PVT_STAT(pvt, stat_datt[2]))) {
 }
 
 
-static char* cli_show_version (struct ast_cli_entry* e, int cmd, struct ast_cli_args* a)
-{
-	switch (cmd)
-	{
-		case CLI_INIT:
-			e->command =	"dongle show version";
-			e->usage   =	"Usage: dongle show version\n"
-					"       Shows the version of module.\n";
-			return NULL;
+extern char * svistok_bridge_upstream_cli_show_version(struct ast_cli_entry * e, int cmd, struct ast_cli_args * a);
+        
+                                      
+                                              
+                                             
+               
 
-		case CLI_GENERATE:
-			return NULL;
-	}
+                    
+               
+  
 
-	if (a->argc != 3)
-	{
-		return CLI_SHOWUSAGE;
-	}
+                  
+  
+                       
+  
 
-	ast_cli (a->fd, "\n%s: %s, Version %s, Revision %s\nProject Home: %s\nBug Reporting: %s\n\n", AST_MODULE, MODULE_DESCRIPTION, MODULE_VERSION, PACKAGE_REVISION, MODULE_URL, MODULE_BUGREPORT);
+                                                                                                                                                                                               
 
-	return CLI_SUCCESS;
-}
+                    
+ 
 
-static char* cli_cmd (struct ast_cli_entry* e, int cmd, struct ast_cli_args* a)
-{
-	const char * msg;
+extern char * svistok_bridge_upstream_cli_cmd(struct ast_cli_entry * e, int cmd, struct ast_cli_args * a);
+        
+  
+                
+                             
+                                                        
+                                                               
+                                             
+               
 
-	switch (cmd)
-	{
-		case CLI_INIT:
-			e->command =	"dongle cmd";
-			e->usage   =	"Usage: dongle cmd <device> <command>\n"
-					"       Send <command> to the rfcomm port on the device\n"
-					"       with the specified <device>.\n";
-			return NULL;
+                    
+                   
+    
+                                           
+    
+               
+  
 
-		case CLI_GENERATE:
-			if (a->pos == 2)
-			{
-				return complete_device (a->word, a->n);
-			}
-			return NULL;
-	}
+                  
+  
+                       
+  
 
-	if (a->argc != 4)
-	{
-		return CLI_SHOWUSAGE;
-	}
+                                               
+                                                                
 
-	msg = send_at_command(a->argv[2], a->argv[3]);
-	ast_cli (a->fd, "[%s] '%s' %s\n", a->argv[2], a->argv[3], msg);
-
-	return CLI_SUCCESS;
-}
+                    
+ 
 
 
 static char* cli_diagmode (struct ast_cli_entry* e, int cmd, struct ast_cli_args* a)
@@ -1089,43 +1080,41 @@ static char* cli_setgroupimsi (struct ast_cli_entry* e, int cmd, struct ast_cli_
 }
 
 
-static char* cli_ussd (struct ast_cli_entry* e, int cmd, struct ast_cli_args* a)
-{
-	const char * msg;
-	int status;
-	void * msgid;
+extern char * svistok_bridge_upstream_cli_ussd(struct ast_cli_entry * e, int cmd, struct ast_cli_args * a);
+      
+              
 
-	switch (cmd)
-	{
-		case CLI_INIT:
-			e->command = "dongle ussd";
-			e->usage =
-				"Usage: dongle ussd <device> <command>\n"
-				"       Send ussd <command> to the dongle\n"
-				"       with the specified <device>.\n";
-			return NULL;
+             
+  
+                
+                              
+             
+                                             
+                                                
+                                            
+               
 
-		case CLI_GENERATE:
-			if (a->pos == 2)
-			{
-				return complete_device (a->word, a->n);
-			}
-			return NULL;
-	}
+                    
+                   
+    
+                                           
+    
+               
+  
 
-	if (a->argc != 4)
-	{
-		return CLI_SHOWUSAGE;
-	}
+                  
+  
+                       
+  
 
-	msg = send_ussd(a->argv[2], a->argv[3], &status, &msgid);
-	if(status)
-		ast_cli (a->fd, "[%s] %s with id %p\n", a->argv[2], msg, msgid);
-	else
-		ast_cli (a->fd, "[%s] %s\n", a->argv[2], msg);
+                                                          
+           
+                                                                  
+     
+                                                
 
-	return CLI_SUCCESS;
-}
+                    
+ 
 
 static char* cli_sms (struct ast_cli_entry* e, int cmd, struct ast_cli_args* a)
 {
@@ -1190,43 +1179,41 @@ static char* cli_sms (struct ast_cli_entry* e, int cmd, struct ast_cli_args* a)
 	return CLI_SUCCESS;
 }
 
-static char * cli_pdu(struct ast_cli_entry * e, int cmd, struct ast_cli_args * a)
-{
-	const char * msg;
-	int status;
-	void * msgid;
+extern char * svistok_bridge_upstream_cli_pdu(struct ast_cli_entry * e, int cmd, struct ast_cli_args * a);
+        
+              
 
-	switch (cmd)
-	{
-		case CLI_INIT:
-			e->command = "dongle pdu";
-			e->usage =
-				"Usage: dongle pdu <device> <PDU>\n"
-				"       Send a <PDU> of sms from <device>\n";
-			return NULL;
+             
+  
+                
+                             
+             
+                                        
+                                                 
+               
 
-		case CLI_GENERATE:
-			if (a->pos == 2)
-			{
-				return complete_device (a->word, a->n);
-			}
-			return NULL;
-	}
+                    
+                   
+    
+                                           
+    
+               
+  
 
-	if (a->argc != 4)
-	{
-		return CLI_SHOWUSAGE;
-	}
+                  
+  
+                       
+  
 
-	msg = send_pdu(a->argv[2], a->argv[3], &status, &msgid);
+                                                         
 
-	if(status)
-		ast_cli(a->fd, "[%s] %s with id %p\n", a->argv[2], msg, msgid);
-	else
-		ast_cli(a->fd, "[%s] %s\n", a->argv[2], msg);
+           
+                                                                 
+     
+                                               
 
-	return CLI_SUCCESS;
-}
+                    
+ 
 
 #if ASTERISK_VERSION_NUM >= 10800
 typedef const char * const * ast_cli_complete2_t;
@@ -1234,355 +1221,340 @@ typedef const char * const * ast_cli_complete2_t;
 typedef char * const * ast_cli_complete2_t;
 #endif
 
-static char* cli_ccwa_set (struct ast_cli_entry* e, int cmd, struct ast_cli_args* a)
-{
-	static const char * const choices[] = { "enable", "disable", NULL };
-	const char * msg;
-	call_waiting_t enable;
+extern char * svistok_bridge_upstream_cli_ccwa_set(struct ast_cli_entry * e, int cmd, struct ast_cli_args * a);
+                                            
+                  
+                       
 
-	switch (cmd)
-	{
-		case CLI_INIT:
-			e->command = "dongle callwaiting";
-			e->usage =
-				"Usage: dongle callwaiting disable|enable <device>\n"
-				"       Disable/Enable Call-Waiting on <device>\n";
-			return NULL;
+             
+  
+                
+                                     
+             
+                                                         
+                                                       
+               
 
-		case CLI_GENERATE:
-			if (a->pos == 2)
-			{
-				return ast_cli_complete(a->word, (ast_cli_complete2_t)choices, a->n);
-			}
-			if (a->pos == 3)
-			{
-				return complete_device (a->word, a->n);
-			}
-			return NULL;
-	}
+                    
+                   
+    
+                                                                         
+    
+                   
+    
+                                           
+    
+               
+  
 
-	if (a->argc < 4)
-	{
-		return CLI_SHOWUSAGE;
-	}
-	if (strcasecmp("disable", a->argv[2]) == 0)
-		enable = CALL_WAITING_DISALLOWED;
-	else if (strcasecmp("enable", a->argv[2]) == 0)
-		enable = CALL_WAITING_ALLOWED;
-	else
-		return CLI_SHOWUSAGE;
+                 
+  
+                       
+  
+                                            
+                                   
+                                                
+                                
+     
+                       
 
-	msg = send_ccwa_set(a->argv[3], enable, NULL);
-	ast_cli (a->fd, "[%s] %s\n", a->argv[3], msg);
+                                               
+                                               
 
-	return CLI_SUCCESS;
-}
+                    
+ 
 
-static char* cli_reset (struct ast_cli_entry* e, int cmd, struct ast_cli_args* a)
-{
-	const char * msg;
+extern char * svistok_bridge_upstream_cli_reset(struct ast_cli_entry * e, int cmd, struct ast_cli_args * a);
+        
+  
+                
+                               
+             
+                                    
+                                     
+               
 
-	switch (cmd)
-	{
-		case CLI_INIT:
-			e->command = "dongle reset";
-			e->usage =
-				"Usage: dongle reset <device>\n"
-				"       Reset dongle <device>\n";
-			return NULL;
+                    
+                   
+    
+                                           
+    
+               
+  
 
-		case CLI_GENERATE:
-			if (a->pos == 2)
-			{
-				return complete_device (a->word, a->n);
-			}
-			return NULL;
-	}
+                  
+  
+                       
+  
 
-	if (a->argc != 3)
-	{
-		return CLI_SHOWUSAGE;
-	}
+                                    
+                                               
 
-	msg = send_reset(a->argv[2], NULL);
-	ast_cli (a->fd, "[%s] %s\n", a->argv[2], msg);
+                    
+ 
 
-	return CLI_SUCCESS;
-}
+                                                                             ;
+                                                               ;
 
-static const char * const a_choices[] = { "now", "gracefully", "when", NULL };
-static const char * const a_choices2[] = { "convenient", NULL };
-
-static const char * restate2str_msg(restate_time_t when)
-{
-	static const char * const choices[] = { "now", "gracefully", "when convenient" };
-	return enum2str(when, choices, ITEMS_OF(choices));
-}
+                                                        
+ 
+                                                                                  
+                                                   
+ 
 
 #/* */
-static char* cli_restart_event(struct ast_cli_entry* e, int cmd, struct ast_cli_args* a, dev_state_t event)
-{
+                                                                                                           
+ 
 
-	static char * const cmds[] = {
-		"dongle stop",
-		"dongle restart",
-		"dongle remove",
-		};
-	static const char * const usage[] = {
-		"Usage: dongle stop < now | gracefully | when convenient > <device>\n"
-		"       Stop dongle <device>\n",
+                               
+                
+                   
+                  
+    
+                                      
+                                                                        
+                                  
 
-		"Usage: dongle restart < now | gracefully | when convenient > <device>\n"
-		"       Restart dongle <device>\n",
+                                                                           
+                                     
 
-		"Usage: dongle remove < now | gracefully | when convenient > <device>\n"
-		"       Remove dongle <device>\n",
-		};
+                                                                          
+                                    
+    
 
-	const char * device = NULL;
-	const char * msg;
-	int i;
+                            
+                  
+       
 
-	switch (cmd)
-	{
-		case CLI_INIT:
-			e->command = cmds[event];
-			e->usage = usage[event];
-			return NULL;
+             
+  
+                
+                            
+                           
+               
 
-		case CLI_GENERATE:
-			switch(a->pos)
-			{
-				case 2:
-					return ast_cli_complete(a->word, (ast_cli_complete2_t)a_choices, a->n);
-				case 3:
-					if(strcasecmp(a->argv[2], "when") == 0)
-						return ast_cli_complete(a->word, (ast_cli_complete2_t)a_choices2, a->n);
-					return complete_device(a->word, a->n);
-					break;
-				case 4:
-					if(strcasecmp(a->argv[2], "when") == 0 && strcasecmp(a->argv[3], "convenient") == 0)
-						return complete_device(a->word, a->n);
-			}
-			return NULL;
-	}
+                    
+                 
+    
+           
+                                                                            
+           
+                                            
+                                                                              
+                                           
+           
+           
+                                                                                         
+                                            
+    
+               
+  
 
-	if(a->argc != 4 && a->argc != 5)
-	{
-		return CLI_SHOWUSAGE;
-	}
+                                 
+  
+                       
+  
 
-	for(i = 0; a_choices[i]; i++)
-	{
-		if(strcasecmp(a->argv[2], a_choices[i]) == 0)
-		{
-			if(i == RESTATE_TIME_CONVENIENT)
-			{
-				if(a->argc == 5 && strcasecmp(a->argv[3], a_choices2[0]) == 0)
-				{
-					device = a->argv[4];
-				}
-			}
-			else if(a->argc == 4)
-			{
-				device = a->argv[3];
-			}
+                              
+  
+                                               
+   
+                                   
+    
+                                                                  
+     
+                         
+     
+    
+                        
+    
+                        
+    
 
-			if(device)
-			{
-				msg = schedule_restart_event(event, i, device, NULL);
-				ast_cli(a->fd, "[%s] %s\n", device, msg);
-				return CLI_SUCCESS;
-			}
-			break;
-		}
-	}
-	return CLI_SHOWUSAGE;
-}
-
-#/* */
-static char* cli_stop(struct ast_cli_entry* e, int cmd, struct ast_cli_args* a)
-{
-	return cli_restart_event(e, cmd, a, DEV_STATE_STOPPED);
-}
+             
+    
+                                                         
+                                             
+                       
+    
+         
+   
+  
+                      
+ 
 
 #/* */
-static char* cli_restart(struct ast_cli_entry* e, int cmd, struct ast_cli_args* a)
-{
-	return cli_restart_event(e, cmd, a, DEV_STATE_RESTARTED);
-}
+extern char * svistok_bridge_upstream_cli_stop(struct ast_cli_entry * e, int cmd, struct ast_cli_args * a);
+                              
+ 
 
 #/* */
-static char * cli_remove(struct ast_cli_entry *e, int cmd, struct ast_cli_args *a)
-{
-	return cli_restart_event(e, cmd, a, DEV_STATE_REMOVED);
-}
+extern char * svistok_bridge_upstream_cli_restart(struct ast_cli_entry * e, int cmd, struct ast_cli_args * a);
+                                
+ 
 
 #/* */
-static char* cli_start(struct ast_cli_entry* e, int cmd, struct ast_cli_args* a)
-{
-	const char * msg;
-
-	switch (cmd)
-	{
-		case CLI_INIT:
-			e->command =	"dongle start";
-			e->usage   =	"Usage: dongle start <device>\n"
-					"       Start dongle <device>\n";
-			return NULL;
-
-		case CLI_GENERATE:
-			if(a->pos == 2)
-				return complete_device(a->word, a->n);
-			return NULL;
-	}
-
-	if (a->argc != 3)
-	{
-		return CLI_SHOWUSAGE;
-	}
-
-	msg = schedule_restart_event(DEV_STATE_STARTED, RESTATE_TIME_NOW, a->argv[2], NULL);
-	ast_cli(a->fd, "[%s] %s\n", a->argv[2], msg);
-
-	return CLI_SUCCESS;
-}
-
-static char * cli_reload(struct ast_cli_entry *e, int cmd, struct ast_cli_args *a)
-{
-	int ok = 0;
-	int i;
-
-	switch (cmd)
-	{
-		case CLI_INIT:
-			e->command =	"dongle reload";
-			e->usage   =	"Usage: dongle reload < now | gracefully | when convenient >\n"
-					"       Reloads the chan_dongle configuration\n";
-			return NULL;
-
-		case CLI_GENERATE:
-			switch(a->pos)
-			{
-				case 2:
-					return ast_cli_complete(a->word, (ast_cli_complete2_t)a_choices, a->n);
-				case 3:
-					if(strcasecmp(a->argv[2], "when") == 0)
-						return ast_cli_complete(a->word, (ast_cli_complete2_t)a_choices2, a->n);
-			}
-			return NULL;
-	}
-
-	if (a->argc != 3 && a->argc != 4)
-	{
-		return CLI_SHOWUSAGE;
-	}
-
-	for(i = 0; a_choices[i]; i++)
-	{
-		if(strcasecmp(a->argv[2], a_choices[i]) == 0)
-		{
-			if(i == RESTATE_TIME_CONVENIENT)
-			{
-				if(a->argc == 4 && strcasecmp(a->argv[3], a_choices2[0]) == 0)
-				{
-					ok = 1;
-				}
-			}
-			else if(a->argc == 3)
-			{
-				ok = 1;
-			}
-
-			if(ok)
-			{
-				pvt_reload(i);
-				return CLI_SUCCESS;
-			}
-			break;
-		}
-	}
-	return CLI_SHOWUSAGE;
-}
+extern char * svistok_bridge_upstream_cli_remove(struct ast_cli_entry * e, int cmd, struct ast_cli_args * a);
+                               
+ 
 
 #/* */
-static char * cli_discovery(struct ast_cli_entry * e, int cmd, struct ast_cli_args * a)
-{
-	const struct pdiscovery_cache_item * item;
-	const struct pdiscovery_result * res;
-	struct pvt * pvt;
-	const char * imei;
-	const char * imsi;
-	int imeilen;
-	int imsilen;
-	
-	switch (cmd) {
-		case CLI_INIT:
-			e->command =	"dongle discovery";
-			e->usage   =	"Usage: dongle discovery\n"
-					"       Discovery devices and create config\n";
-			return NULL;
+extern char * svistok_bridge_upstream_cli_start(struct ast_cli_entry * e, int cmd, struct ast_cli_args * a);
+       
+  
+                
+                               
+                                                
+                                      
+               
 
-		case CLI_GENERATE:
-			return NULL;
-	}
+                    
+                  
+                                          
+               
+  
 
-	if (a->argc != 2) {
-		return CLI_SHOWUSAGE;
-	}
+                  
+  
+                       
+  
 
-	AST_RWLIST_RDLOCK(&gpublic->devices);
-	for(res = pdiscovery_list_begin(&item); res; res = pdiscovery_list_next(&item)) {
-		AST_RWLIST_TRAVERSE (&gpublic->devices, pvt, entry) {
-			if(strcmp(PVT_STATE(pvt, data_tty), res->ports.ports[INTERFACE_TYPE_DATA]) == 0) {
-				break;
-			}
-		}
-		if(pvt) {
-/*
-			ast_cli(a->fd, "; existing device\n");
-			ast_cli(a->fd, "[%s](defaults)\n", PVT_ID(pvt));
+                                                                                     
+                                              
 
-			if(CONF_UNIQ(pvt, audio_tty)[0])
-				ast_cli(a->fd, "audio=%s\n", CONF_UNIQ(pvt, audio_tty));
-			else
-				ast_cli(a->fd, ";audio=%s\n", PVT_STATE(pvt, audio_tty));
+                    
+ 
 
-			if(CONF_UNIQ(pvt, data_tty)[0])
-				ast_cli(a->fd, "data=%s\n", CONF_UNIQ(pvt, data_tty));
-			else
-				ast_cli(a->fd, ";data=%s\n", PVT_STATE(pvt, data_tty));
+extern char * svistok_bridge_upstream_cli_reload(struct ast_cli_entry * e, int cmd, struct ast_cli_args * a);
+          
+  
+                
+                                
+                                                                               
+                                                      
+               
 
-			if(CONF_UNIQ(pvt, imei)[0])
-				ast_cli(a->fd, "imei=%s\n", CONF_UNIQ(pvt, imei));
-			else
-				ast_cli(a->fd, ";imei=%s\n", pvt->imei);
+                    
+                 
+    
+           
+                                                                            
+           
+                                            
+                                                                              
+    
+               
+  
 
-			if(CONF_UNIQ(pvt, imsi)[0])
-				ast_cli(a->fd, "imsi=%s\n\n", CONF_UNIQ(pvt, imsi));
-			else
-				ast_cli(a->fd, ";imsi=%s\n\n", pvt->imsi);
-*/
-		} else {
-			imei = S_OR(res->imei, "");
-			imsi = S_OR(res->imsi, "");
+                                  
+  
+                       
+  
 
-			imeilen = strlen(imei);
-			imsilen = strlen(imsi);
+                              
+  
+                                               
+   
+                                   
+    
+                                                                  
+     
+            
+     
+    
+                        
+    
+           
+    
 
-			ast_cli(a->fd, "; discovered device\n");
-			ast_cli(a->fd, "[dc_%s_%s](defaults)\n", imei + imeilen - MIN(imeilen,4), imsi + imsilen - MIN(imsilen,4));
-			ast_cli(a->fd, ";audio=%s\n", res->ports.ports[INTERFACE_TYPE_VOICE]);
-			ast_cli(a->fd, ";data=%s\n", res->ports.ports[INTERFACE_TYPE_DATA]);
-			ast_cli(a->fd, "imei=%s\n", imei);
-			ast_cli(a->fd, "imsi=%s\n\n", imsi);
-		}
-	}
-	pdiscovery_list_end();
-	AST_RWLIST_UNLOCK(&gpublic->devices);
-	
-	return CLI_SUCCESS;
-}
+         
+    
+                  
+                       
+    
+         
+   
+  
+                      
+ 
+
+#/* */
+extern char * svistok_bridge_upstream_cli_discovery(struct ast_cli_entry * e, int cmd, struct ast_cli_args * a);
+                    
+                                      
+                  
+                   
+                   
+             
+             
+ 
+               
+                
+                                   
+                                           
+                                                    
+               
+
+                    
+               
+  
+
+                    
+                       
+  
+
+                                      
+                                                                                  
+                                                       
+                                                                                     
+          
+    
+   
+           
+  
+                                         
+                                                   
+
+                                   
+                                                            
+       
+                                                             
+
+                                  
+                                                          
+       
+                                                           
+
+                              
+                                                      
+       
+                                            
+
+                              
+                                                        
+       
+                                              
+  
+          
+                              
+                              
+
+                          
+                          
+
+                                           
+                                                                                                              
+                                                                         
+                                                                       
+                                     
+                                       
+   
+  
+                       
+                                      
+ 
+                    
+ 
 
 
 
@@ -1617,16 +1589,16 @@ static struct ast_cli_entry cli[] = {
 };
 
 #/* */
-EXPORT_DEF void cli_register()
-{
-	ast_cli_register_multiple (cli, ITEMS_OF(cli));
-}
+                              
+ 
+                                                
+ 
 
 #/* */
-EXPORT_DEF void cli_unregister()
-{
-	ast_cli_unregister_multiple (cli, ITEMS_OF(cli));
-}
+                                
+ 
+                                                  
+ 
 
 /*
 static char * ast_str_truncate2(struct ast_str *buf, ssize_t len)

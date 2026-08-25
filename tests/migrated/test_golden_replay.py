@@ -74,6 +74,8 @@ def compile_and_run(case: str, driver: str, sources: list[Path]) -> str:
         "-DICONV_T=iconv_t",
         "-include",
         str(config),
+        "-include",
+        str(BUILD_ROOT / "generated" / "composed-header-defines.h"),
         "-I",
         str(STUB_ROOT),
         "-I",
@@ -127,7 +129,7 @@ class MigratedGoldenReplayTests(unittest.TestCase):
             PDU_DRIVER,
             [
                 root / "pdu" / "pdu-upstream.c",
-                root / "pdu" / "pdu-svistok.c",
+                root / "pdu" / "pdu-overlay.c",
                 PROJECT_ROOT / "asterisk-chan-dongle" / "char_conv.c",
             ],
         )
@@ -141,7 +143,7 @@ class MigratedGoldenReplayTests(unittest.TestCase):
             BUFFER_DRIVER,
             [
                 root / "ringbuffer" / "ringbuffer-upstream.c",
-                root / "ringbuffer" / "ringbuffer-svistok.c",
+                root / "ringbuffer" / "ringbuffer-overlay.c",
                 PROJECT_ROOT / "asterisk-chan-dongle" / "memmem.c",
                 PROJECT_ROOT / "asterisk-chan-dongle" / "mixbuffer.c",
             ],
@@ -156,9 +158,9 @@ class MigratedGoldenReplayTests(unittest.TestCase):
             AT_READ_DRIVER,
             [
                 root / "at_read" / "at_read-upstream.c",
-                root / "at_read" / "at_read-svistok.c",
+                root / "at_read" / "at_read-overlay.c",
                 root / "ringbuffer" / "ringbuffer-upstream.c",
-                root / "ringbuffer" / "ringbuffer-svistok.c",
+                root / "ringbuffer" / "ringbuffer-overlay.c",
                 PROJECT_ROOT / "asterisk-chan-dongle" / "memmem.c",
             ],
         )

@@ -8,6 +8,9 @@
 */
 #ifndef CHAN_DONGLE_H_INCLUDED
 #define CHAN_DONGLE_H_INCLUDED
+#ifdef SVISTOK_COMPOSED_CHAN_DONGLE_H_HEADER
+#include SVISTOK_COMPOSED_CHAN_DONGLE_H_HEADER
+#else
 
 #include <asterisk.h>
 #include <asterisk/lock.h>
@@ -23,7 +26,7 @@
 
 #include "select.h"
 
-#define MODULE_DESCRIPTION	"Huawei 3G Dongle Channel Driver"
+/* SVISTOK_BASELINE_UNIT macro MODULE_DESCRIPTION */
 /*define MAXDONGLEDEVICES	512*/
 #define MAXDONGLEDEVICES	256
 
@@ -48,25 +51,14 @@
 extern int nosim2offline;
 
 
-INLINE_DECL const char * dev_state2str(dev_state_t state)
-{
-	return enum2str(state, dev_state_strs, ITEMS_OF(dev_state_strs));
-}
+/* SVISTOK_BASELINE_UNIT function dev_state2str */
 
-INLINE_DECL const char * dev_state2str_msg(dev_state_t state)
-{
-	static const char * const states[] = { "Stop scheduled", "Restart scheduled", "Removal scheduled", "Start scheduled" };
-	return enum2str(state, states, ITEMS_OF(states));
-}
+/* SVISTOK_BASELINE_UNIT function dev_state2str_msg */
 
 /* Only linear is allowed */
 EXPORT_DECL struct ast_format chan_dongle_format;
 EXPORT_DECL struct ast_format_cap * chan_dongle_format_cap;
-typedef enum {
-	RESTATE_TIME_NOW	= 0,
-	RESTATE_TIME_GRACEFULLY,
-	RESTATE_TIME_CONVENIENT,
-} restate_time_t;
+/* SVISTOK_BASELINE_UNIT typedef restate_time_t */
 
 /* state */
 typedef struct pvt_state
@@ -82,7 +74,7 @@ typedef struct pvt_state
 	uint8_t			chan_count[CALL_STATES_NUMBER];	/*!< channel number grouped by state */
 } pvt_state_t;
 
-#define PVT_STATE_T(state, name)			((state)->name)
+/* SVISTOK_BASELINE_UNIT macro PVT_STATE_T */
 
 /* statictics */
 typedef struct pvt_stat
@@ -214,9 +206,9 @@ extern uint32_t		total_stat_pddl[2];			/* Последние PDD для PDDL з�
 extern uint32_t		total_stat_datt;			/* Когда последний раз дозванивался */
 
 
-#define PVT_STAT_T(stat, name)			((stat)->name)
+/* SVISTOK_BASELINE_UNIT macro PVT_STAT_T */
 
-struct at_queue_task;
+/* SVISTOK_BASELINE_UNIT record at_queue_task */
 
 typedef struct soupri
 {
@@ -260,7 +252,7 @@ typedef struct pvt
 	struct timeval		dtmf_end_time;			/*!< time of end of last DTMF digit */
 
 	int			timeout;			/*!< used to set the timeout for data */
-#define DATA_READ_TIMEOUT	10000				/* 10 seconds */
+/* SVISTOK_BASELINE_UNIT macro DATA_READ_TIMEOUT */
 
 	unsigned long		channel_instanse;		/*!< number of channels created on this device */
 	unsigned int		rings;				/*!< ring/ccwa  number distributed to at_response_clcc() */
@@ -366,8 +358,8 @@ typedef struct pvt
 	unsigned int		outgoing_ussd:1;		/*!< outgoing sms */
 	unsigned int		incoming_sms:1;			/*!< incoming sms */
 	unsigned int		volume_sync_step:2;		/*!< volume synchronized stage */
-#define VOLUME_SYNC_BEGIN	0
-#define VOLUME_SYNC_DONE	3
+/* SVISTOK_BASELINE_UNIT macro VOLUME_SYNC_BEGIN */
+/* SVISTOK_BASELINE_UNIT macro VOLUME_SYNC_DONE */
 
 	unsigned int		use_pdu:1;			/*!< PDU SMS mode in force */
 	unsigned int		has_sms:1;			/*!< device has SMS support */
@@ -399,15 +391,15 @@ typedef struct pvt
 	pvt_stat_t		stat;				/*!< various statistics */
 } pvt_t;
 
-#define CONF_GLOBAL(name)		(gpublic->global_settings.name)
-#define SCONF_GLOBAL(state, name)	((state)->global_settings.name)
+/* SVISTOK_BASELINE_UNIT macro CONF_GLOBAL */
+/* SVISTOK_BASELINE_UNIT macro SCONF_GLOBAL */
 
-#define CONF_SHARED(pvt, name)		SCONFIG(&((pvt)->settings), name)
-#define CONF_UNIQ(pvt, name)		UCONFIG(&((pvt)->settings), name)
-#define PVT_ID(pvt)			UCONFIG(&((pvt)->settings), id)
+/* SVISTOK_BASELINE_UNIT macro CONF_SHARED */
+/* SVISTOK_BASELINE_UNIT macro CONF_UNIQ */
+/* SVISTOK_BASELINE_UNIT macro PVT_ID */
 
-#define PVT_STATE(pvt, name)		PVT_STATE_T(&(pvt)->state, name)
-#define PVT_STAT(pvt, name)		PVT_STAT_T(&(pvt)->stat, name)
+/* SVISTOK_BASELINE_UNIT macro PVT_STATE */
+/* SVISTOK_BASELINE_UNIT macro PVT_STAT */
 
 typedef struct public_state
 {
@@ -424,47 +416,42 @@ typedef struct public_state
 
 EXPORT_DECL public_state_t * gpublic;
 
-EXPORT_DECL void clean_read_data(const char * devname, int fd);
-EXPORT_DECL int pvt_get_pseudo_call_idx(const struct pvt * pvt);
-EXPORT_DECL int ready4voice_call(const struct pvt* pvt, const struct cpvt * current_cpvt, int opts);
-EXPORT_DECL int is_dial_possible(const struct pvt * pvt, int opts);
+/* SVISTOK_BASELINE_UNIT declaration clean_read_data */
+/* SVISTOK_BASELINE_UNIT declaration pvt_get_pseudo_call_idx */
+/* SVISTOK_BASELINE_UNIT declaration ready4voice_call */
+/* SVISTOK_BASELINE_UNIT declaration is_dial_possible */
 
-EXPORT_DECL const char * pvt_str_state(const struct pvt* pvt);
-EXPORT_DECL struct ast_str * pvt_str_state_ex(const struct pvt* pvt);
-EXPORT_DECL const char * GSM_regstate2str(int gsm_reg_status);
-EXPORT_DECL const char * sys_mode2str(int sys_mode);
-EXPORT_DECL const char * sys_submode2str(int sys_submode);
-EXPORT_DECL char* rssi2dBm(int rssi, char* buf, unsigned len);
+/* SVISTOK_BASELINE_UNIT declaration pvt_str_state */
+/* SVISTOK_BASELINE_UNIT declaration pvt_str_state_ex */
+/* SVISTOK_BASELINE_UNIT declaration GSM_regstate2str */
+/* SVISTOK_BASELINE_UNIT declaration sys_mode2str */
+/* SVISTOK_BASELINE_UNIT declaration sys_submode2str */
+/* SVISTOK_BASELINE_UNIT declaration rssi2dBm */
 
-EXPORT_DECL void pvt_on_create_1st_channel(struct pvt* pvt);
-EXPORT_DECL void pvt_on_remove_last_channel(struct pvt* pvt);
-EXPORT_DECL void pvt_reload(restate_time_t when);
-EXPORT_DECL int pvt_enabled(const struct pvt * pvt);
-EXPORT_DECL void pvt_try_restate(struct pvt * pvt);
+/* SVISTOK_BASELINE_UNIT declaration pvt_on_create_1st_channel */
+/* SVISTOK_BASELINE_UNIT declaration pvt_on_remove_last_channel */
+/* SVISTOK_BASELINE_UNIT declaration pvt_reload */
+/* SVISTOK_BASELINE_UNIT declaration pvt_enabled */
+/* SVISTOK_BASELINE_UNIT declaration pvt_try_restate */
 
-EXPORT_DECL int opentty (const char* dev, char ** lockfile);
-EXPORT_DECL void closetty(int fd, char ** lockfname);
-EXPORT_DECL int lock_try(const char * devname, char ** lockname);
-EXPORT_DECL struct pvt * find_device_ex(struct public_state * state, const char * name);
+/* SVISTOK_BASELINE_UNIT declaration opentty */
+/* SVISTOK_BASELINE_UNIT declaration closetty */
+/* SVISTOK_BASELINE_UNIT declaration lock_try */
+/* SVISTOK_BASELINE_UNIT declaration find_device_ex */
 
-INLINE_DECL struct pvt * find_device (const char* name)
-{
-	return find_device_ex(gpublic, name);
-}
+/* SVISTOK_BASELINE_UNIT function find_device */
 
-EXPORT_DECL struct pvt * find_device_ext(const char* name, const char ** reason);
-EXPORT_DECL struct pvt * find_device_by_resource_ex(struct public_state * state, const char * resource, int opts, const struct ast_channel * requestor, int * exists);
+/* SVISTOK_BASELINE_UNIT declaration find_device_ext */
+/* SVISTOK_BASELINE_UNIT declaration find_device_by_resource_ex */
 
-INLINE_DECL struct pvt * find_device_by_resource(const char * resource, int opts, const struct ast_channel * requestor, int * exists)
-{
-	return find_device_by_resource_ex(gpublic, resource, opts, requestor, exists);
-}
+/* SVISTOK_BASELINE_UNIT function find_device_by_resource */
 
-EXPORT_DECL struct ast_module * self_module();
+/* SVISTOK_BASELINE_UNIT declaration self_module */
 
 static struct pvt * pvt_create(const pvt_config_t * settings);
 static void pvt_destroy(struct pvt * pvt);
 
-#define PVT_NO_CHANS(pvt)		(PVT_STATE(pvt, chansno) == 0)
+/* SVISTOK_BASELINE_UNIT macro PVT_NO_CHANS */
 
+#endif /* SVISTOK_COMPOSED_CHAN_DONGLE_H_HEADER */
 #endif /* CHAN_DONGLE_H_INCLUDED */

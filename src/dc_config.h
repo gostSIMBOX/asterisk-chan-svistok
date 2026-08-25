@@ -3,6 +3,9 @@
 */
 #ifndef CHAN_DONGLE_DC_CONFIG_H_INCLUDED
 #define CHAN_DONGLE_DC_CONFIG_H_INCLUDED
+#ifdef SVISTOK_COMPOSED_DC_CONFIG_H_HEADER
+#include SVISTOK_COMPOSED_DC_CONFIG_H_HEADER
+#else
 
 #include <asterisk.h>
 #include <asterisk/channel.h>		/* AST_MAX_CONTEXT MAX_LANGUAGE */
@@ -10,38 +13,21 @@
 #include <asterisk-chan-dongle/export.h>	/* EXPORT_DECL EXPORT_DEF */
 #include <asterisk-chan-dongle/mutils.h>
 
-#define CONFIG_FILE		"dongle.conf"
-#define DEVNAMELEN		31
-#define IMEI_SIZE		15
-#define IMSI_SIZE		15
+/* SVISTOK_BASELINE_UNIT macro CONFIG_FILE */
+/* SVISTOK_BASELINE_UNIT macro DEVNAMELEN */
+/* SVISTOK_BASELINE_UNIT macro IMEI_SIZE */
+/* SVISTOK_BASELINE_UNIT macro IMSI_SIZE */
 #define SERIAL_SIZE		16
 #define DEVPATHLEN		512
 
-typedef enum {
-	DEV_STATE_STOPPED	= 0,
-	DEV_STATE_RESTARTED,
-	DEV_STATE_REMOVED,
-	DEV_STATE_STARTED,
-} dev_state_t;
+/* SVISTOK_BASELINE_UNIT typedef dev_state_t */
 EXPORT_DECL const char * const dev_state_strs[4];
 
-typedef enum {
-	CALL_WAITING_DISALLOWED = 0,
-	CALL_WAITING_ALLOWED,
-	CALL_WAITING_AUTO
-} call_waiting_t;
+/* SVISTOK_BASELINE_UNIT typedef call_waiting_t */
 
-INLINE_DECL const char * dc_cw_setting2str(call_waiting_t cw)
-{
-	static const char * const options[] = { "disabled", "allowed", "auto" };
-	return enum2str(cw, options, ITEMS_OF(options));
-}
+/* SVISTOK_BASELINE_UNIT function dc_cw_setting2str */
 
-typedef enum {
-	DC_DTMF_SETTING_OFF = 0,
-	DC_DTMF_SETTING_INBAND,
-	DC_DTMF_SETTING_RELAX,
-} dc_dtmf_setting_t;
+/* SVISTOK_BASELINE_UNIT typedef dc_dtmf_setting_t */
 
 /*
  Config API
@@ -85,22 +71,17 @@ typedef struct dc_sconfig
 	dc_dtmf_setting_t	dtmf;				/*!< off/inband/relax incoming DTMF detection, default DC_DTMF_SETTING_RELAX */
 
 	int			mindtmfgap;			/*!< minimal time in ms from end of previews DTMF and begining of next */
-#define DEFAULT_MINDTMFGAP	45
+/* SVISTOK_BASELINE_UNIT macro DEFAULT_MINDTMFGAP */
 
 	int			mindtmfduration;		/*!< minimal DTMF duration in ms */
-#define DEFAULT_MINDTMFDURATION	80
+/* SVISTOK_BASELINE_UNIT macro DEFAULT_MINDTMFDURATION */
 
 	int			mindtmfinterval;		/*!< minimal DTMF interval beetween ends in ms, applied only on same digit */
-#define DEFAULT_MINDTMFINTERVAL	200
+/* SVISTOK_BASELINE_UNIT macro DEFAULT_MINDTMFINTERVAL */
 } dc_sconfig_t;
 
 /* Global settings */
-typedef struct dc_gconfig
-{
-	struct ast_jb_conf	jbconf;				/*!< jitter buffer settings, disabled by default */
-	int			discovery_interval;		/*!< The device discovery interval */
-#define DEFAULT_DISCOVERY_INT	60
-} dc_gconfig_t;
+/* SVISTOK_BASELINE_UNIT typedef dc_gconfig_t */
 
 /* Local required (unique) settings */
 typedef struct dc_uconfig
@@ -117,19 +98,16 @@ typedef struct dc_uconfig
 } dc_uconfig_t;
 
 /* all Config settings join in one place */
-typedef struct pvt_config
-{
-	dc_uconfig_t		unique;				/*!< unique settings */
-	dc_sconfig_t		shared;				/*!< possible inherited settings */
-} pvt_config_t;
-#define SCONFIG(cfg,name)	((cfg)->shared.name)
-#define UCONFIG(cfg,name)	((cfg)->unique.name)
+/* SVISTOK_BASELINE_UNIT typedef pvt_config_t */
+/* SVISTOK_BASELINE_UNIT macro SCONFIG */
+/* SVISTOK_BASELINE_UNIT macro UCONFIG */
 
-EXPORT_DECL const char * dc_dtmf_setting2str(dc_dtmf_setting_t dtmf);
-EXPORT_DECL void dc_sconfig_fill_defaults(struct dc_sconfig * config);
-EXPORT_DECL void dc_sconfig_fill(struct ast_config * cfg, const char * cat, struct dc_sconfig * config);
-EXPORT_DECL void dc_gconfig_fill(struct ast_config * cfg, const char * cat, struct dc_gconfig * config);
-EXPORT_DECL int dc_config_fill(struct ast_config * cfg, const char * cat, const struct dc_sconfig * parent, struct pvt_config * config);
+/* SVISTOK_BASELINE_UNIT declaration dc_dtmf_setting2str */
+/* SVISTOK_BASELINE_UNIT declaration dc_sconfig_fill_defaults */
+/* SVISTOK_BASELINE_UNIT declaration dc_sconfig_fill */
+/* SVISTOK_BASELINE_UNIT declaration dc_gconfig_fill */
+/* SVISTOK_BASELINE_UNIT declaration dc_config_fill */
 
 
+#endif /* SVISTOK_COMPOSED_DC_CONFIG_H_HEADER */
 #endif /* CHAN_DONGLE_DC_CONFIG_H_INCLUDED */

@@ -2,6 +2,7 @@
   "audited_on": "2026-08-25",
   "build": {
     "asterisk_include": "/Users/anton/proj/nativemind.net/simbox.nativemind.net/libsCpp/asterisk-chan-svistok/tests/characterization/stubs",
+    "baseline_slices": 16,
     "bridges": 81,
     "compatibility_stubs": true,
     "compiler": "/usr/bin/clang",
@@ -9,6 +10,7 @@
     "module_name": "chan_svistok.so",
     "object_ownership_errors": 0,
     "objects": 36,
+    "overlay_compositions": 16,
     "public_bridges": 0,
     "public_symbols_checked": 296,
     "schema_version": 1,
@@ -27,7 +29,7 @@
         "python3",
         "tests/test_source_guards.py"
       ],
-      "duration_seconds": 0.109,
+      "duration_seconds": 0.101,
       "name": "source guards",
       "returncode": 0,
       "status": "passed"
@@ -37,7 +39,7 @@
         "python3",
         "tests/test_inventory.py"
       ],
-      "duration_seconds": 0.093,
+      "duration_seconds": 0.09,
       "name": "52/109 inventory",
       "returncode": 0,
       "status": "passed"
@@ -47,7 +49,7 @@
         "python3",
         "tests/test_copy_receipts.py"
       ],
-      "duration_seconds": 0.184,
+      "duration_seconds": 0.068,
       "name": "copy receipts/exclusions",
       "returncode": 0,
       "status": "passed"
@@ -57,7 +59,7 @@
         "python3",
         "tests/test_config.py"
       ],
-      "duration_seconds": 0.057,
+      "duration_seconds": 0.051,
       "name": "effective config",
       "returncode": 0,
       "status": "passed"
@@ -67,7 +69,7 @@
         "python3",
         "tests/test_include_ownership.py"
       ],
-      "duration_seconds": 0.678,
+      "duration_seconds": 0.671,
       "name": "include ownership",
       "returncode": 0,
       "status": "passed"
@@ -77,7 +79,7 @@
         "python3",
         "tests/test_abi.py"
       ],
-      "duration_seconds": 0.19,
+      "duration_seconds": 0.24,
       "name": "canonical ABI",
       "returncode": 0,
       "status": "passed"
@@ -87,7 +89,7 @@
         "python3",
         "tests/test_state_relocations.py"
       ],
-      "duration_seconds": 0.055,
+      "duration_seconds": 0.052,
       "name": "single-owner state",
       "returncode": 0,
       "status": "passed"
@@ -97,7 +99,7 @@
         "python3",
         "tests/slicer/test_manifest.py"
       ],
-      "duration_seconds": 1.008,
+      "duration_seconds": 1.223,
       "name": "symbol manifest",
       "returncode": 0,
       "status": "passed"
@@ -107,7 +109,7 @@
         "python3",
         "tests/slicer/test_slicing.py"
       ],
-      "duration_seconds": 0.661,
+      "duration_seconds": 0.683,
       "name": "syntax-aware slicing",
       "returncode": 0,
       "status": "passed"
@@ -117,7 +119,7 @@
         "python3",
         "tests/slicer/test_bridges.py"
       ],
-      "duration_seconds": 0.658,
+      "duration_seconds": 0.597,
       "name": "static bridges",
       "returncode": 0,
       "status": "passed"
@@ -127,8 +129,18 @@
         "python3",
         "tests/slicer/test_provenance.py"
       ],
-      "duration_seconds": 0.237,
+      "duration_seconds": 0.281,
       "name": "body provenance",
+      "returncode": 0,
+      "status": "passed"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/slicer/test_overlay_purity.py"
+      ],
+      "duration_seconds": 4.774,
+      "name": "overlay purity",
       "returncode": 0,
       "status": "passed"
     },
@@ -137,8 +149,28 @@
         "python3",
         "tests/slicer/test_materialization.py"
       ],
-      "duration_seconds": 5.527,
-      "name": "adapted range materialization",
+      "duration_seconds": 4.562,
+      "name": "delta/baseline composition",
+      "returncode": 0,
+      "status": "passed"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/slicer/test_overlay_extraction.py"
+      ],
+      "duration_seconds": 0.055,
+      "name": "overlay extraction",
+      "returncode": 0,
+      "status": "passed"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/slicer/test_app_upstream_reuse.py"
+      ],
+      "duration_seconds": 0.06,
+      "name": "direct app_register baseline reuse",
       "returncode": 0,
       "status": "passed"
     },
@@ -147,7 +179,7 @@
         "python3",
         "tests/slicer/test_at_parse_pilot.py"
       ],
-      "duration_seconds": 1.591,
+      "duration_seconds": 1.775,
       "name": "at_parse pilot",
       "returncode": 0,
       "status": "passed"
@@ -157,7 +189,7 @@
         "python3",
         "tests/slicer/test_full_generation.py"
       ],
-      "duration_seconds": 5.618,
+      "duration_seconds": 0.113,
       "name": "full slice generation",
       "returncode": 0,
       "status": "passed"
@@ -167,7 +199,7 @@
         "python3",
         "tests/test_module_build.py"
       ],
-      "duration_seconds": 8.24,
+      "duration_seconds": 2.664,
       "name": "chan_svistok.so compatibility build",
       "returncode": 0,
       "status": "passed"
@@ -177,7 +209,7 @@
         "python3",
         "tests/characterization/test_harness.py"
       ],
-      "duration_seconds": 0.722,
+      "duration_seconds": 0.474,
       "name": "legacy harness oracle",
       "returncode": 0,
       "status": "passed"
@@ -187,7 +219,7 @@
         "python3",
         "tests/characterization/test_pdu_oracle.py"
       ],
-      "duration_seconds": 0.735,
+      "duration_seconds": 0.479,
       "name": "legacy PDU oracle",
       "returncode": 0,
       "status": "passed"
@@ -197,7 +229,7 @@
         "python3",
         "tests/characterization/test_at_parse_oracle.py"
       ],
-      "duration_seconds": 0.814,
+      "duration_seconds": 0.555,
       "name": "legacy AT parser oracle",
       "returncode": 0,
       "status": "passed"
@@ -207,7 +239,7 @@
         "python3",
         "tests/characterization/test_buffers_oracle.py"
       ],
-      "duration_seconds": 0.773,
+      "duration_seconds": 0.512,
       "name": "legacy buffer oracle",
       "returncode": 0,
       "status": "passed"
@@ -217,7 +249,7 @@
         "python3",
         "tests/characterization/test_at_read_oracle.py"
       ],
-      "duration_seconds": 0.759,
+      "duration_seconds": 0.51,
       "name": "legacy AT read oracle",
       "returncode": 0,
       "status": "passed"
@@ -227,7 +259,7 @@
         "python3",
         "tests/characterization/test_programmer_oracle.py"
       ],
-      "duration_seconds": 0.69,
+      "duration_seconds": 0.416,
       "name": "legacy programmer oracle",
       "returncode": 0,
       "status": "passed"
@@ -237,7 +269,7 @@
         "python3",
         "tests/characterization/test_queue_oracle.py"
       ],
-      "duration_seconds": 0.719,
+      "duration_seconds": 0.444,
       "name": "legacy queue oracle",
       "returncode": 0,
       "status": "passed"
@@ -247,7 +279,7 @@
         "python3",
         "tests/characterization/test_state_oracle.py"
       ],
-      "duration_seconds": 0.7,
+      "duration_seconds": 0.468,
       "name": "legacy state oracle",
       "returncode": 0,
       "status": "passed"
@@ -257,7 +289,7 @@
         "python3",
         "tests/characterization/test_golden_manifest.py"
       ],
-      "duration_seconds": 0.058,
+      "duration_seconds": 0.057,
       "name": "golden fixture hashes",
       "returncode": 0,
       "status": "passed"
@@ -267,7 +299,7 @@
         "python3",
         "tests/migrated/test_golden_replay.py"
       ],
-      "duration_seconds": 18.485,
+      "duration_seconds": 2.417,
       "name": "migrated golden replay",
       "returncode": 0,
       "status": "passed"
@@ -324,12 +356,19 @@
     "module_new": 12,
     "module_total": 52
   },
+  "overlay": {
+    "modified_paths": 28,
+    "removed_c_units": 214,
+    "removed_header_units": 166,
+    "removed_upstream_units": 380
+  },
   "ownership": {
     "bridges": 81,
     "declarations": 222,
     "files": 28,
     "macros": 147,
-    "root_symbols": 420
+    "root_symbols": 420,
+    "types": 44
   },
   "schema_version": 1,
   "status": "available_checks_passed"

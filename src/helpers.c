@@ -37,53 +37,53 @@ static int is_valid_ussd_string(const char* number)
 }
 
 #/* */
-EXPORT_DEF int is_valid_phone_number(const char* number)
-{
-	if(number[0] == '+')
-		number++;
-	return is_valid_ussd_string(number);
-}
+                                                        
+ 
+                     
+           
+                                     
+ 
 
 
 #/* */
-EXPORT_DEF int get_at_clir_value (struct pvt* pvt, int clir)
-{
-	int res = 0;
+                                                            
+ 
+             
 
-	switch (clir)
-	{
-		case AST_PRES_ALLOWED_NETWORK_NUMBER:
-		case AST_PRES_ALLOWED_USER_NUMBER_FAILED_SCREEN:
-		case AST_PRES_ALLOWED_USER_NUMBER_NOT_SCREENED:
-		case AST_PRES_ALLOWED_USER_NUMBER_PASSED_SCREEN:
-		case AST_PRES_NUMBER_NOT_AVAILABLE:
-			ast_debug (2, "[%s] callingpres: %s\n", PVT_ID(pvt), ast_describe_caller_presentation (clir));
-			res = 2;
-			break;
+              
+  
+                                       
+                                                  
+                                                 
+                                                  
+                                     
+                                                                                                 
+           
+         
 
-		case AST_PRES_PROHIB_NETWORK_NUMBER:
-		case AST_PRES_PROHIB_USER_NUMBER_FAILED_SCREEN:
-		case AST_PRES_PROHIB_USER_NUMBER_NOT_SCREENED:
-		case AST_PRES_PROHIB_USER_NUMBER_PASSED_SCREEN:
-			ast_debug (2, "[%s] callingpres: %s\n", PVT_ID(pvt), ast_describe_caller_presentation (clir));
-			res = 1;
-			break;
+                                      
+                                                 
+                                                
+                                                 
+                                                                                                 
+           
+         
 
-		default:
-			ast_log (LOG_WARNING, "[%s] Unsupported callingpres: %d\n", PVT_ID(pvt), clir);
-			if ((clir & AST_PRES_RESTRICTION) != AST_PRES_ALLOWED)
-			{
-				res = 0;
-			}
-			else
-			{
-				res = 2;
-			}
-			break;
-	}
+          
+                                                                                  
+                                                         
+    
+            
+    
+       
+    
+            
+    
+         
+  
 
-	return res;
-}
+            
+ 
 
 typedef int (*at_cmd_f)(struct cpvt*, const char*, const char*, unsigned, int, void **);
 
@@ -140,65 +140,65 @@ static const char* send2(const char* dev_name, int * status, int online, const c
 }
 
 #/* */
-EXPORT_DEF const char* send_ussd(const char* dev_name, const char* ussd, int * status, void ** id)
-{
-	if(is_valid_ussd_string(ussd))
-		return send2(dev_name, status, 1, "Error adding USSD command to queue", "USSD queued for send", (at_cmd_f)at_enque_ussd, ussd, 0, 0, 0, id);
-	if(status)
-		*status = 0;
-	return "Invalid USSD";
-}
+                                                                                                  
+ 
+                               
+                                                                                                                                              
+           
+              
+                       
+ 
 
 #/* */
-EXPORT_DEF const char * send_sms(const char * dev_name, const char * number, const char * message, const char * validity, const char * report, int * status, void ** id)
-{
-	if(is_valid_phone_number(number))
-	{
-		int val = 0;
-		int srr = 0;
+                                                                                                                                                                        
+ 
+                                  
+  
+              
+              
 
-		if(validity)
-		{
-			val = strtol (validity, NULL, 10);
-			if(val <= 0)
-				val = 0;
-		}
+              
+   
+                                     
+               
+            
+   
 
-		if(report)
-			srr = ast_true (report);
+            
+                           
 
 
 
-		return send2(dev_name, status, 1, "Error adding SMS commands to queue", "SMS queued for send", at_enque_sms, number, message, val, srr, id);
-	}
-	if(status)
-		*status = 0;
-	return "Invalid destination number";
-}
-
-#/* */
-EXPORT_DEF const char * send_pdu(const char * dev_name, const char * pdu, int * status, void ** id)
-{
-	return send2(dev_name, status, 1, "Error adding SMS commands to queue", "SMS queued for send", at_enque_pdu, pdu, NULL, 0, 0, id);
-}
+                                                                                                                                              
+  
+           
+              
+                                     
+ 
 
 #/* */
-EXPORT_DEF const char* send_reset(const char* dev_name, int * status)
-{
-	return send2(dev_name, status, 0, "Error adding reset command to queue", "Reset command queued for execute", (at_cmd_f)at_enque_reset, 0, 0, 0, 0, NULL);
-}
+                                                                                                   
+ 
+                                                                                                                                   
+ 
 
 #/* */
-EXPORT_DEF const char* send_ccwa_set(const char* dev_name, call_waiting_t enable, int * status)
-{
-	return send2(dev_name, status, 1, "Error adding CCWA commands to queue", "Call-Waiting commands queued for execute", (at_cmd_f)at_enque_set_ccwa, 0, 0, enable, 0, NULL);
-}
+                                                                     
+ 
+                                                                                                                                                          
+ 
 
 #/* */
-EXPORT_DEF const char* send_at_command(const char* dev_name, const char* command)
-{
-	return send2(dev_name, NULL, 0, "Error adding command", "Command queued for execute", (at_cmd_f)at_enque_user_cmd, command, NULL, 0, 0, NULL);
-}
+                                                                                               
+ 
+                                                                                                                                                                          
+ 
+
+#/* */
+                                                                                 
+ 
+                                                                                                                                               
+ 
 
 EXPORT_DEF const char* schedule_restart_event(dev_state_t event, restate_time_t when, const char* dev_name, int * status)
 {
