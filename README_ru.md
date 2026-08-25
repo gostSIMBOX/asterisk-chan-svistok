@@ -77,6 +77,52 @@
 - **Оборудование**: Huawei UMTS модем с USB интерфейсом
 - **SIM**: Код PIN должен быть отключен
 
+## Владение исходниками и сборка
+
+Проект собирается из двух неизменяемых эталонов, а не из очередной плоской
+копии форка:
+
+- `asterisk-chan-dongle/` владеет всеми реализациями, доказанно оставшимися без
+  изменений.
+- В `src/` находятся 12 новых Svistok-файлов и 28 изменённых legacy-файлов, а
+  также небольшие target-owned файлы интеграции ABI/state.
+- `manifests/module-files.json` содержит полный closure из 52 файлов модуля и
+  список из 109 путей `DO NOT COPY`. 12 идентичных файлов в `src` не
+  дублируются.
+- `manifests/symbol-ownership.json` назначает единственного владельца функциям,
+  file-scope данным, макросам, декларациям и определениям из напрямую
+  включаемых `.c`.
+
+Для каждого из 16 изменённых корневых translation units сборка создаёт два
+временных среза. Неизменённые тела компилируются из
+`asterisk-chan-dongle/`, изменённые и новые — из скопированного кода `src/`.
+Связи между static-символами реализованы скрытыми build-time мостами
+`svistok_bridge_*`. Все сгенерированные файлы находятся только в `build/`.
+
+Сборка с установленными заголовками Asterisk (каталог должен содержать
+`asterisk.h` и `asterisk/`):
+
+```sh
+make module ASTERISK_INCLUDE=/usr/include BUILD_DIR=build/module
+```
+
+Результат: `build/module/chan_svistok.so`. Для детерминированной проверки на
+хосте без Asterisk доступна максимальная compatibility-сборка:
+
+```sh
+make compatibility-module BUILD_DIR=build/compatibility
+```
+
+Compatibility-артефакт доказывает корректность slicing, линковки, владения
+символами и ABI-контрактов, но не предназначен для загрузки в настоящий
+Asterisk. Проверки load/unload и сценарии discovery/call/SMS/USSD/programming
+требуют совместимой Linux/Asterisk-среды и поддерживаемого оборудования. Точные
+пробелы уровней T3/T4 записаны в `manifests/effective-legacy-config.json`.
+
+Деревья `legacy/asterisk-chan-svistok-v2014` и
+`asterisk-chan-dongle/` являются read-only входами. Их commits и чистота
+проверяются `tools/check_source_guards.py` до и после сборок/тестов.
+
 ## Структура проекта
 
 ```

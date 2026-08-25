@@ -1,0 +1,14 @@
+initial|0|8
+write-a|6
+read-upd|5
+write-b|4
+wrapped|2|fWXYZ|3|2
+after-X|1|fW|2|0
+cross-XYZ|0||0|0
+overflow-write|3|8|0
+over-read|8|0|8
+mix-attach|2
+mix-write|4|4
+mix-result|3000|32767|4
+mix-read|0|0|0
+mix-detach|0

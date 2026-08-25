@@ -1,0 +1,336 @@
+{
+  "audited_on": "2026-08-25",
+  "build": {
+    "asterisk_include": "/Users/anton/proj/nativemind.net/simbox.nativemind.net/libsCpp/asterisk-chan-svistok/tests/characterization/stubs",
+    "bridges": 81,
+    "compatibility_stubs": true,
+    "compiler": "/usr/bin/clang",
+    "module": "/Users/anton/proj/nativemind.net/simbox.nativemind.net/libsCpp/asterisk-chan-svistok/build/module-test/chan_svistok.so",
+    "module_name": "chan_svistok.so",
+    "object_ownership_errors": 0,
+    "objects": 36,
+    "public_bridges": 0,
+    "public_symbols_checked": 296,
+    "schema_version": 1,
+    "single_owner_state": [
+      "nosim2offline",
+      "total_stat_acdl",
+      "total_stat_datt",
+      "total_stat_pddl"
+    ],
+    "slices": 32,
+    "unresolved_bridges": 0
+  },
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "tests/test_source_guards.py"
+      ],
+      "duration_seconds": 0.109,
+      "name": "source guards",
+      "returncode": 0,
+      "status": "passed"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/test_inventory.py"
+      ],
+      "duration_seconds": 0.093,
+      "name": "52/109 inventory",
+      "returncode": 0,
+      "status": "passed"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/test_copy_receipts.py"
+      ],
+      "duration_seconds": 0.184,
+      "name": "copy receipts/exclusions",
+      "returncode": 0,
+      "status": "passed"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/test_config.py"
+      ],
+      "duration_seconds": 0.057,
+      "name": "effective config",
+      "returncode": 0,
+      "status": "passed"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/test_include_ownership.py"
+      ],
+      "duration_seconds": 0.678,
+      "name": "include ownership",
+      "returncode": 0,
+      "status": "passed"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/test_abi.py"
+      ],
+      "duration_seconds": 0.19,
+      "name": "canonical ABI",
+      "returncode": 0,
+      "status": "passed"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/test_state_relocations.py"
+      ],
+      "duration_seconds": 0.055,
+      "name": "single-owner state",
+      "returncode": 0,
+      "status": "passed"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/slicer/test_manifest.py"
+      ],
+      "duration_seconds": 1.008,
+      "name": "symbol manifest",
+      "returncode": 0,
+      "status": "passed"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/slicer/test_slicing.py"
+      ],
+      "duration_seconds": 0.661,
+      "name": "syntax-aware slicing",
+      "returncode": 0,
+      "status": "passed"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/slicer/test_bridges.py"
+      ],
+      "duration_seconds": 0.658,
+      "name": "static bridges",
+      "returncode": 0,
+      "status": "passed"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/slicer/test_provenance.py"
+      ],
+      "duration_seconds": 0.237,
+      "name": "body provenance",
+      "returncode": 0,
+      "status": "passed"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/slicer/test_materialization.py"
+      ],
+      "duration_seconds": 5.527,
+      "name": "adapted range materialization",
+      "returncode": 0,
+      "status": "passed"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/slicer/test_at_parse_pilot.py"
+      ],
+      "duration_seconds": 1.591,
+      "name": "at_parse pilot",
+      "returncode": 0,
+      "status": "passed"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/slicer/test_full_generation.py"
+      ],
+      "duration_seconds": 5.618,
+      "name": "full slice generation",
+      "returncode": 0,
+      "status": "passed"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/test_module_build.py"
+      ],
+      "duration_seconds": 8.24,
+      "name": "chan_svistok.so compatibility build",
+      "returncode": 0,
+      "status": "passed"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/characterization/test_harness.py"
+      ],
+      "duration_seconds": 0.722,
+      "name": "legacy harness oracle",
+      "returncode": 0,
+      "status": "passed"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/characterization/test_pdu_oracle.py"
+      ],
+      "duration_seconds": 0.735,
+      "name": "legacy PDU oracle",
+      "returncode": 0,
+      "status": "passed"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/characterization/test_at_parse_oracle.py"
+      ],
+      "duration_seconds": 0.814,
+      "name": "legacy AT parser oracle",
+      "returncode": 0,
+      "status": "passed"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/characterization/test_buffers_oracle.py"
+      ],
+      "duration_seconds": 0.773,
+      "name": "legacy buffer oracle",
+      "returncode": 0,
+      "status": "passed"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/characterization/test_at_read_oracle.py"
+      ],
+      "duration_seconds": 0.759,
+      "name": "legacy AT read oracle",
+      "returncode": 0,
+      "status": "passed"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/characterization/test_programmer_oracle.py"
+      ],
+      "duration_seconds": 0.69,
+      "name": "legacy programmer oracle",
+      "returncode": 0,
+      "status": "passed"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/characterization/test_queue_oracle.py"
+      ],
+      "duration_seconds": 0.719,
+      "name": "legacy queue oracle",
+      "returncode": 0,
+      "status": "passed"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/characterization/test_state_oracle.py"
+      ],
+      "duration_seconds": 0.7,
+      "name": "legacy state oracle",
+      "returncode": 0,
+      "status": "passed"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/characterization/test_golden_manifest.py"
+      ],
+      "duration_seconds": 0.058,
+      "name": "golden fixture hashes",
+      "returncode": 0,
+      "status": "passed"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/migrated/test_golden_replay.py"
+      ],
+      "duration_seconds": 18.485,
+      "name": "migrated golden replay",
+      "returncode": 0,
+      "status": "passed"
+    }
+  ],
+  "external_gaps": [
+    {
+      "reason": "Full behavior requires the Asterisk device graph, channel locks, and the production /var/svistok state model; pure stat and queue transitions are covered at T2.",
+      "surface": [
+        "limits.c",
+        "share.c",
+        "select.c"
+      ],
+      "tier": "T3"
+    },
+    {
+      "reason": "Discovery requires Linux sysfs/udev and the production modem topology unavailable on the Darwin host.",
+      "surface": [
+        "simnode/adiscovery_core.c",
+        "simnode/adiscovery_svistok.c",
+        "pdiscovery.c"
+      ],
+      "tier": "T3"
+    },
+    {
+      "reason": "End-to-end serial programming requires supported modem hardware; deterministic CRC logic is covered at T1.",
+      "surface": [
+        "programmator/ttyprog_core.c",
+        "programmator/ttyprog_svistok.c",
+        "dserial.c"
+      ],
+      "tier": "T4"
+    },
+    {
+      "reason": "Load/unload/call parity requires a Linux Asterisk installation and real or emulated modem endpoints.",
+      "surface": [
+        "chan_svistok.so in Asterisk"
+      ],
+      "tier": "T4"
+    }
+  ],
+  "host": {
+    "machine": "arm64",
+    "system": "Darwin"
+  },
+  "inventory": {
+    "baseline_entries": 60,
+    "excluded_regular": 104,
+    "excluded_symlinks": 5,
+    "excluded_total": 109,
+    "legacy_entries": 161,
+    "module_identical": 12,
+    "module_modified": 28,
+    "module_new": 12,
+    "module_total": 52
+  },
+  "ownership": {
+    "bridges": 81,
+    "declarations": 222,
+    "files": 28,
+    "macros": 147,
+    "root_symbols": 420
+  },
+  "schema_version": 1,
+  "status": "available_checks_passed"
+}

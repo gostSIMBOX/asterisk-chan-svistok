@@ -77,6 +77,50 @@ This project is based on **chan_dongle** by Artem Makhutov, Dmitry Vagin, and bg
 - **Hardware**: Huawei UMTS dongle with USB interface
 - **SIM**: PIN code disabled
 
+## Source ownership and build
+
+This tree is composed from two immutable references rather than a flattened
+fork:
+
+- `asterisk-chan-dongle/` owns every implementation proven unchanged.
+- `src/` contains the 12 Svistok-only and 28 modified legacy paths, plus small
+  target-owned ABI/state integration files.
+- `manifests/module-files.json` is the exhaustive 52-path module closure and
+  109-path `DO NOT COPY` list. The 12 identical paths are not duplicated in
+  `src`.
+- `manifests/symbol-ownership.json` assigns functions, file data, macros,
+  declarations, and directly included `.c` definitions to one owner.
+
+The build generates two build-only slices for each of the 16 modified root
+translation units. Unchanged bodies compile from `asterisk-chan-dongle/`;
+modified/new bodies compile from the copied code in `src/`. Hidden
+`svistok_bridge_*` aliases/wrappers connect cross-slice static functions and
+state. Generated files are written only below `build/`.
+
+Build against installed Asterisk headers (the include directory must contain
+`asterisk.h` and `asterisk/`):
+
+```sh
+make module ASTERISK_INCLUDE=/usr/include BUILD_DIR=build/module
+```
+
+The result is `build/module/chan_svistok.so`. A host-only maximum compilation
+using compatibility headers is available for deterministic CI checks:
+
+```sh
+make compatibility-module BUILD_DIR=build/compatibility
+```
+
+That compatibility artifact proves slicing, linking, symbol ownership, and ABI
+contracts; it is not loadable into a real Asterisk process. Full module
+load/unload and modem discovery/call/SMS/USSD/programming scenarios require a
+compatible Linux/Asterisk installation and supported hardware. The exact T3/T4
+gaps are recorded in `manifests/effective-legacy-config.json`.
+
+Both `legacy/asterisk-chan-svistok-v2014` and
+`asterisk-chan-dongle/` are read-only inputs. The build and tests enforce their
+commits and clean status with `tools/check_source_guards.py`.
+
 ## Project Structure
 
 ```

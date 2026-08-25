@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "reason": "Replace legacy header tentative definitions with one canonical storage owner; names, types, zero initialization, and Svistok ownership are preserved.",
+  "source_header": "src/chan_dongle.h",
+  "storage_owner": "src/svistok_state.c",
+  "symbols": [
+    {
+      "name": "nosim2offline",
+      "type": "int"
+    },
+    {
+      "name": "total_stat_acdl",
+      "type": "uint32_t"
+    },
+    {
+      "name": "total_stat_pddl",
+      "type": "uint32_t[2]"
+    },
+    {
+      "name": "total_stat_datt",
+      "type": "uint32_t"
+    }
+  ]
+}

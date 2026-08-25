@@ -1,0 +1,4 @@
+wait|3|0
+read|6|6
+result|1|0|4F4B0D|4
+remaining|1

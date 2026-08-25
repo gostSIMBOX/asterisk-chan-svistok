@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "target_module": "chan_svistok.so",
+  "sources": {
+    "baseline": {
+      "entry_count": 60,
+      "expected_commit": "ab939532c71b991de2f66582d7ee2c553b6a918e",
+      "path": "asterisk-chan-dongle"
+    },
+    "legacy": {
+      "entry_count": 161,
+      "expected_commit": "1b358acd5ea29f1c10aebb9f1ed82246c52cdaed",
+      "path": "../../legacy/asterisk-chan-svistok-v2014"
+    }
+  }
+}

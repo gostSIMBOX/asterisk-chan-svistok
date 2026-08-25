@@ -1,0 +1,9 @@
+#define SAME_MACRO 1
+#define CHANGED_MACRO 22
+#define ADDED_MACRO 4
+
+#if FEATURE_MODE
+#define CONDITIONAL_MACRO 10
+#else
+#define CONDITIONAL_MACRO 200
+#endif

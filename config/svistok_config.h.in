@@ -1,0 +1,37 @@
+#ifndef SVISTOK_CONFIG_H_INCLUDED
+#define SVISTOK_CONFIG_H_INCLUDED
+
+#define AST_MODULE "@AST_MODULE@"
+#define BUILD_APPLICATIONS 1
+#define BUILD_MANAGER 1
+#define HAVE_FCNTL_H 1
+#define HAVE_INTTYPES_H 1
+#define HAVE_MEMCHR 1
+#define HAVE_MEMMEM 1
+#define HAVE_MEMMOVE 1
+#define HAVE_MEMORY_H 1
+#define HAVE_MEMSET 1
+#define HAVE_STDINT_H 1
+#define HAVE_STDLIB_H 1
+#define HAVE_STRCASECMP 1
+#define HAVE_STRCHR 1
+#define HAVE_REALPATH 1
+#define HAVE_STRINGS_H 1
+#define HAVE_STRING_H 1
+#define HAVE_STRNCASECMP 1
+#define HAVE_STRTOL 1
+#define HAVE_SYS_STAT_H 1
+#define HAVE_SYS_TIME_H 1
+#define HAVE_SYS_TYPES_H 1
+#define HAVE_TERMIOS_H 1
+#define HAVE_UNISTD_H 1
+#define ICONV_CONST
+#define ICONV_T iconv_t
+#define HAVE_AST_CONTROL_SRCCHANGE
+#define MODULE_BUGREPORT "http://code.google.com/p/asterisk-chan-dongle/issues/list"
+#define PACKAGE_REVISION "13"
+#define MODULE_URL "http://code.google.com/p/asterisk-chan-dongle"
+#define MODULE_VERSION "1.1"
+#define STDC_HEADERS 1
+
+#endif

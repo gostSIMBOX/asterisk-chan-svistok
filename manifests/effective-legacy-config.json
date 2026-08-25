@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "captured_on": "2026-08-25",
+  "host": "Darwin 25.3.0 arm64",
+  "compiler": {
+    "path": "/usr/bin/clang",
+    "version": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+    "target": "arm64-apple-darwin25.3.0"
+  },
+  "common_flags": [
+    "-std=gnu89",
+    "-Wno-invalid-pp-token",
+    "-Wno-deprecated-non-prototype",
+    "-DICONV_CONST=",
+    "-DICONV_T=iconv_t"
+  ],
+  "oracle_environment": {
+    "outputs": "build/characterization only",
+    "source_guards": "before and after every executable",
+    "asterisk": "target-owned minimal ABI stubs",
+    "iconv": "system libiconv",
+    "clock": "real except deterministic stat.c replacement",
+    "filesystem": "no legacy-tree, /var/svistok, or device writes"
+  },
+  "explicit_gaps": [
+    {
+      "tier": "T3",
+      "surface": ["limits.c", "share.c", "select.c"],
+      "reason": "Full behavior requires the Asterisk device graph, channel locks, and the production /var/svistok state model; pure stat and queue transitions are covered at T2."
+    },
+    {
+      "tier": "T3",
+      "surface": ["simnode/adiscovery_core.c", "simnode/adiscovery_svistok.c", "pdiscovery.c"],
+      "reason": "Discovery requires Linux sysfs/udev and the production modem topology unavailable on the Darwin host."
+    },
+    {
+      "tier": "T4",
+      "surface": ["programmator/ttyprog_core.c", "programmator/ttyprog_svistok.c", "dserial.c"],
+      "reason": "End-to-end serial programming requires supported modem hardware; deterministic CRC logic is covered at T1."
+    },
+    {
+      "tier": "T4",
+      "surface": ["chan_svistok.so in Asterisk"],
+      "reason": "Load/unload/call parity requires a Linux Asterisk installation and real or emulated modem endpoints."
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+empty|FFFF|0000
+ascii|6F91|6E90
+diag|7026|D98F

@@ -1,0 +1,6 @@
+insert|0|0|0
+initial|state=3,5|stat=3,5|head=10,0/2
+advance|state=3,4|stat=3,5|head=11,1/2
+mismatch-removes-task|state=2,3|stat=3,5|head=20,0/2
+ignore-mismatch|state=2,2|stat=3,5|head=21,1/2
+flush|state=0,0|stat=3,5|head=-1,0/0

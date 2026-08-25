@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "legacy_commit": "1b358acd5ea29f1c10aebb9f1ed82246c52cdaed",
+  "normalization": [
+    "Clock-dependent stat transitions use a deterministic replacement for time(3).",
+    "Filesystem calls in stat.c are recorder stubs; only call counts and state are emitted.",
+    "Asterisk logging is discarded and device identifiers are fixed test values."
+  ],
+  "fixtures": [
+    {
+      "path": "fixtures/at_parse/vectors.txt",
+      "sha256": "6c9173dca374e0124e39e737236843868db23974c7197e30f1bd9cb3c141ce20",
+      "sources": ["at_parse.c", "pdu.c", "char_conv.c", "memmem.c"],
+      "covered_symbols": ["at_parse_cnum", "at_parse_cops", "at_parse_spn", "at_parse_cmti", "at_parse_cusd", "at_parse_csq", "at_parse_rssi", "at_parse_mode", "at_parse_sysinfo", "at_parse_csca", "at_parse_clcc", "at_parse_ccwa"]
+    },
+    {
+      "path": "fixtures/buffers/at-read.txt",
+      "sha256": "4a057c0fceb5bce868d1b1c56037a12847b8345fa7c8aefd9f533a1c05022f1b",
+      "sources": ["at_read.c", "ringbuffer.c", "memmem.c"],
+      "covered_symbols": ["at_wait", "at_read", "at_read_result_iov"]
+    },
+    {
+      "path": "fixtures/buffers/ringbuffer.txt",
+      "sha256": "ab4c769f49997d1db241fc9d5d36b67a6b71b287a0e224f1bed4494dbfbde6e5",
+      "sources": ["ringbuffer.c", "memmem.c", "mixbuffer.c"],
+      "covered_symbols": ["rb_init", "rb_write", "rb_read_upd", "rb_read_all_iov", "rb_read_until_char_after_iov", "rb_read_until_mem_iov", "mixb_init", "mixb_attach", "mixb_write", "mixb_read_upd", "mixb_detach"]
+    },
+    {
+      "path": "fixtures/pdu/build-vectors.txt",
+      "sha256": "e9bc81f89972f847216bee5c21b558776b39c526d93cb160255b55e692cad0f6",
+      "sources": ["pdu.c", "char_conv.c"],
+      "covered_symbols": ["pdu_digit2code", "pdu_build"]
+    },
+    {
+      "path": "fixtures/programmer/crc.txt",
+      "sha256": "8e121152280c859272917a3e373e0ebf40e0e099f25626d17ac94612b15ff9ae",
+      "sources": ["programmator/crc.c"],
+      "covered_symbols": ["pppfcs16", "crcdat"]
+    },
+    {
+      "path": "fixtures/state/queue.txt",
+      "sha256": "7d0afdd585e8485cdb675c02a6af50d90b06320a8e1c1e5edbb39bdfd2ecaffc",
+      "sources": ["at_queue.c"],
+      "covered_symbols": ["at_queue_insert_const", "at_queue_handle_result", "at_queue_flush", "at_queue_head_task"]
+    },
+    {
+      "path": "fixtures/state/stat.txt",
+      "sha256": "8f755161ad1f5fa3346043656b1ce27e57c7d2dd3792f674d22d3bf75e927352",
+      "sources": ["stat.c"],
+      "covered_symbols": ["v_stat_call_start", "v_stat_call_response", "v_stat_call_pddc", "v_stat_call_fas", "v_stat_call_connected", "v_stat_call_process", "v_stat_call_end", "billing_save"]
+    }
+  ]
+}

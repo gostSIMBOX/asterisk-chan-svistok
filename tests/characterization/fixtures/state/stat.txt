@@ -1,0 +1,5 @@
+start|sf=0|start=1000|response=0|connected=0|fas=0|pddc=0|saved=0|end=0|writes=7,0|limits=0,0,0
+response|sf=0|start=1000|response=1010|connected=0|fas=1011|pddc=1011|saved=0|end=0|writes=7,0|limits=0,0,0
+connected|sf=1|start=1000|response=1010|connected=1020|fas=1011|pddc=1011|saved=1020|end=0|writes=10,0|limits=0,0,0
+process|sf=1|start=1000|response=1010|connected=1020|fas=1011|pddc=1011|saved=1020|end=0|writes=10,0|limits=1,0,0
+end|sf=0|start=1000|response=1010|connected=1020|fas=1011|pddc=1011|saved=1020|end=1030|writes=12,1|limits=1,1,10
