@@ -37,6 +37,10 @@ class IncludeOwnershipTests(unittest.TestCase):
         )
         local = set(inventory["module"]["new"] + inventory["module"]["modified"])
         local.update({"svistok_abi.h", "svistok_state.c"})
+        layout_promotion = json.loads(
+            (PROJECT_ROOT / "manifests/function-layout-promotion.json").read_text()
+        )
+        local.update(layout_promotion["after"])
         upstream = set(inventory["module"]["identical"])
         for source in SRC_ROOT.rglob("*"):
             if not source.is_file():
@@ -45,7 +49,12 @@ class IncludeOwnershipTests(unittest.TestCase):
             text = source.read_text(encoding="latin-1")
             for delimiter, include in INCLUDE_PATTERN.findall(text):
                 if delimiter == '"':
-                    resolved = (relative_source.parent / include).as_posix()
+                    sibling = SRC_ROOT / relative_source.parent / include
+                    resolved = (
+                        sibling.resolve().relative_to(SRC_ROOT.resolve()).as_posix()
+                        if sibling.is_file()
+                        else Path(include).as_posix()
+                    )
                     self.assertIn(resolved, local, f"implicit/unowned include in {relative_source}: {include}")
                 elif include.startswith("asterisk-chan-dongle/"):
                     resolved = include.removeprefix("asterisk-chan-dongle/")
@@ -62,6 +71,11 @@ class IncludeOwnershipTests(unittest.TestCase):
         compiler = shutil.which("clang") or shutil.which("cc")
         self.assertIsNotNone(compiler)
         for relative in manifest_tool.MODIFIED_ROOTS:
+            source = SRC_ROOT / relative
+            if not source.is_file():
+                source = SRC_ROOT / "svistok" / relative
+            if not source.is_file():
+                continue
             completed = subprocess.run(
                 [
                     str(compiler),
@@ -77,7 +91,7 @@ class IncludeOwnershipTests(unittest.TestCase):
                     str(PROJECT_ROOT),
                     "-MM",
                     "-MG",
-                    str(SRC_ROOT / relative),
+                    str(source),
                 ],
                 check=False,
                 stdout=subprocess.PIPE,

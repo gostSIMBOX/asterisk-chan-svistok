@@ -44,6 +44,11 @@ class CopyReceiptTests(unittest.TestCase):
         adaptations = {
             entry["file"]: entry for entry in adaptations_manifest["files"]
         }
+        layout_promotion = json.loads(
+            (PROJECT_ROOT / "manifests" / "function-layout-promotion.json").read_text(
+                encoding="utf-8"
+            )
+        )
         rows = {}
         receipt_lines = (
             PROJECT_ROOT / "manifests" / "copy-receipts.sha256"
@@ -62,7 +67,7 @@ class CopyReceiptTests(unittest.TestCase):
         }
         self.assertEqual(40, len(expected))
         self.assertEqual(expected.keys(), rows.keys())
-        self.assertTrue(expected.keys() <= actual)
+        self.assertTrue(expected.keys() <= actual | set(layout_promotion["removed"]))
         for path, relation in expected.items():
             legacy = LEGACY_ROOT / path
             destination = SRC_ROOT / path
@@ -83,7 +88,16 @@ class CopyReceiptTests(unittest.TestCase):
                 self.assertIn(path, promoted)
                 backup = Path(promotion["backup"]) / path
                 self.assertEqual(sha256(backup), promoted[path]["before_sha256"])
-                self.assertEqual(sha256(destination), promoted[path]["after_sha256"])
+                self.assertEqual(
+                    promoted[path]["after_sha256"],
+                    layout_promotion["before"][path],
+                )
+                if path in layout_promotion["after"]:
+                    self.assertEqual(
+                        sha256(destination), layout_promotion["after"][path]
+                    )
+                else:
+                    self.assertIn(path, layout_promotion["removed"])
 
         self.assertEqual(set(inventory["module"]["modified"]), promoted.keys())
         self.assertTrue(adaptations.keys() <= set(inventory["module"]["new"]))

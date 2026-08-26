@@ -1,0 +1,304 @@
+{
+  "files": [
+    {
+      "file": "app.c",
+      "new": [],
+      "removed": [],
+      "root_removed": false,
+      "root_sha256": "eafcae3e969b905a9191fa79e63afb09f40d0679b5c63d18b044c39e11e73274"
+    },
+    {
+      "file": "at_command.c",
+      "new": [
+        "at_enque_cfun1",
+        "at_enque_cfun5",
+        "at_enque_cfun6",
+        "at_enque_cfun_v",
+        "at_enque_cmd_proc",
+        "at_enque_cpin_v",
+        "at_enque_iccid",
+        "at_enque_initialization_modem",
+        "at_enque_initialization_sim",
+        "at_enque_initialization_sim_e",
+        "at_enque_initialization_sim_mb",
+        "at_enque_sn",
+        "at_enque_spn",
+        "at_enque_sysinfo"
+      ],
+      "removed": [
+        "at_enque_cfun1",
+        "at_enque_cfun5",
+        "at_enque_cfun6",
+        "at_enque_cfun_v",
+        "at_enque_cmd_proc",
+        "at_enque_cpin_v",
+        "at_enque_iccid",
+        "at_enque_initialization_modem",
+        "at_enque_initialization_sim",
+        "at_enque_initialization_sim_e",
+        "at_enque_initialization_sim_mb",
+        "at_enque_sn",
+        "at_enque_spn",
+        "at_enque_sysinfo"
+      ],
+      "root_removed": false,
+      "root_sha256": "73c275e589bf1afe926a0a2339c9eecf269f6725c6f2cb2fb3a96c812fa3145d"
+    },
+    {
+      "file": "at_parse.c",
+      "new": [
+        "at_parse_cds",
+        "at_parse_spn",
+        "at_parse_sysinfo"
+      ],
+      "removed": [
+        "at_parse_cds",
+        "at_parse_cpin",
+        "at_parse_spn",
+        "at_parse_sysinfo"
+      ],
+      "root_removed": true,
+      "root_sha256": "bb3ac77b90410ab1f82b7a2f09631fe3bdc99f3ca5d37ea2de6e3e4f9b3a64ea"
+    },
+    {
+      "file": "at_queue.c",
+      "new": [
+        "at_log"
+      ],
+      "removed": [
+        "at_log",
+        "at_write"
+      ],
+      "root_removed": true,
+      "root_sha256": "a2f9ccc976a61ebaadc9b49c1ad139f2cad668ba38ba9b0811a387da54174f05"
+    },
+    {
+      "file": "at_read.c",
+      "new": [],
+      "removed": [],
+      "root_removed": false,
+      "root_sha256": "adc037567fde0f5143f2d75bdac52a99623635c183cfcf835420972a1c4db03e"
+    },
+    {
+      "file": "at_response.c",
+      "new": [
+        "at_response_cardlock",
+        "at_response_cds",
+        "at_response_cfun_v",
+        "at_response_cvoice",
+        "at_response_dsflowrpt",
+        "at_response_freqlock",
+        "at_response_iccid",
+        "at_response_simst",
+        "at_response_sn",
+        "at_response_spn",
+        "at_response_srvst",
+        "at_response_sysinfo",
+        "at_response_unknown"
+      ],
+      "removed": [
+        "at_response_cardlock",
+        "at_response_cds",
+        "at_response_cfun_v",
+        "at_response_cgmi",
+        "at_response_cgmr",
+        "at_response_cgsn",
+        "at_response_cimi",
+        "at_response_cops",
+        "at_response_csq",
+        "at_response_cvoice",
+        "at_response_dsflowrpt",
+        "at_response_freqlock",
+        "at_response_iccid",
+        "at_response_mode",
+        "at_response_rssi",
+        "at_response_simst",
+        "at_response_sn",
+        "at_response_spn",
+        "at_response_srvst",
+        "at_response_sysinfo",
+        "at_response_unknown"
+      ],
+      "root_removed": false,
+      "root_sha256": "6e36060624209f6934ad5c575cba6fcc117748c1b102f2f132f0b4425cc345b9"
+    },
+    {
+      "file": "chan_dongle.c",
+      "new": [
+        "ast_channel_get_var",
+        "ast_channel_show_vars",
+        "can_sms"
+      ],
+      "removed": [
+        "ast_channel_get_var",
+        "ast_channel_show_vars",
+        "can_sms",
+        "closetty",
+        "load_module",
+        "lock_try"
+      ],
+      "root_removed": false,
+      "root_sha256": "1d09d3058fe0e18e480d7ab2012118e1cda47b73fadf5bf01d64366f34b40cb9"
+    },
+    {
+      "file": "channel.c",
+      "new": [],
+      "removed": [
+        "iov_write"
+      ],
+      "root_removed": false,
+      "root_sha256": "d1488f1d272192850aac8ca444ca287dda30b0659b838b6abf13627617ab4ae6"
+    },
+    {
+      "file": "cli.c",
+      "new": [
+        "cli_changeimei",
+        "cli_diagmode",
+        "cli_dongle_update",
+        "cli_setgroup",
+        "cli_setgroupimsi",
+        "cli_show_devicesd",
+        "cli_show_devicesi",
+        "cli_show_devicesl"
+      ],
+      "removed": [
+        "cli_changeimei",
+        "cli_diagmode",
+        "cli_dongle_update",
+        "cli_setgroup",
+        "cli_setgroupimsi",
+        "cli_show_devicesd",
+        "cli_show_devicesi",
+        "cli_show_devicesl",
+        "getACD"
+      ],
+      "root_removed": false,
+      "root_sha256": "693f0c1456d710b993f5b0f908254f39279755005ca43fbc01b16e2aaad633fa"
+    },
+    {
+      "file": "cpvt.c",
+      "new": [],
+      "removed": [
+        "init_pipe"
+      ],
+      "root_removed": true,
+      "root_sha256": "15bab525678420e06bc082bb9b29ad6caf0df9ffbd024876ef0f070e51cc3309"
+    },
+    {
+      "file": "dc_config.c",
+      "new": [],
+      "removed": [],
+      "root_removed": false,
+      "root_sha256": "6a112dbf630342404b8934074d9347d68d9bbda30e7183334efb2a2d66f598ac"
+    },
+    {
+      "file": "helpers.c",
+      "new": [],
+      "removed": [],
+      "root_removed": false,
+      "root_sha256": "a4c380148567f21e4008355ff22b01717bc23702de97d7ce7e094537bb9df2c7"
+    },
+    {
+      "file": "manager.c",
+      "new": [],
+      "removed": [],
+      "root_removed": false,
+      "root_sha256": "f48b350f12c52d1704f1fa7652f495ce9918d58ea274664452b921ccaf4dd26d"
+    },
+    {
+      "file": "pdiscovery.c",
+      "new": [
+        "pdiscovery_handle_sn"
+      ],
+      "removed": [
+        "info_copy",
+        "info_free",
+        "pdiscovery_do_cmd",
+        "pdiscovery_handle_sn",
+        "pdiscovery_list_begin"
+      ],
+      "root_removed": false,
+      "root_sha256": "be0082f663bb924c44a26988003ded77c5fe4753d27e16b8289eb264f9596216"
+    },
+    {
+      "file": "pdu.c",
+      "new": [
+        "pdu_parse_cds"
+      ],
+      "removed": [
+        "pdu_parse_cds"
+      ],
+      "root_removed": false,
+      "root_sha256": "a4d6cb4c61aadf5f01c7f5595d524e45bea65bdebe10391d98215148e9533509"
+    },
+    {
+      "file": "ringbuffer.c",
+      "new": [
+        "rb_read_until_char_after_iov"
+      ],
+      "removed": [
+        "rb_read_until_char_after_iov"
+      ],
+      "root_removed": true,
+      "root_sha256": "25170d8bd05f35ee302571c1d430e13ef85c55d89fe5e69fcba02ef17ad817ee"
+    }
+  ],
+  "hook_proxy": {
+    "hooks": {
+      "svistok/hooks/at_parse.c": "cae433ab06030897d4a0e25e58ce2722a54783c7f7a38ce27fee277e4a16d54b",
+      "svistok/hooks/at_queue.c": "ae459c230ed8512b088b5d224f0d402768f08bf595178b59591f6d0a50416d36",
+      "svistok/hooks/at_response.c": "c5efd848aaba079df9c6d32b302b522f1eff095e0cc77a3809af3583990c930d",
+      "svistok/hooks/chan_dongle.c": "3026dc24feb32e9554a4f8994566e9c10a2d6797c572bc72adffbb162da0f5a8",
+      "svistok/hooks/cli.c": "c1cc343d87fe9f042c27466c1210b6d0473d4e6f9690125c85bd1ee1bf3da416",
+      "svistok/hooks/pdiscovery.c": "93a8a9dde7bb72acf40b4ce144e13ef4fbfdd344902e513663ead3ade8274868"
+    },
+    "proxies": {
+      "dongle/at_parse.c": "0d07a43435464d5ef2cd06cc34ac8a873b29b390fd9a91b7b2646b0b81227b13",
+      "dongle/at_queue.c": "7cb8dc77f2fe00268b5929af2dd5b0d56b1edb1109038287d025252fad6c82b0",
+      "dongle/at_response.c": "249cb22a344996bc50c53856cfc48f3df21c32e2d8624c0099f374a3c4d38cbe",
+      "dongle/chan_dongle.c": "bb7c72aa457136b7d093af9bf413c5902aa825c6bd70d7f24403830f993a2dc8",
+      "dongle/cli.c": "cdcd5e80833d87eebcbc54ae09e59abf455652483bda4be8009760fcbda2fa90",
+      "dongle/pdiscovery.c": "b174568ecc0a391d9d5950261234e5e6ca08fe10b21067800e7322b5d75e8644"
+    }
+  },
+  "new_declaration_headers": {
+    "svistok/at_command.h": [
+      "at_enque_cfun1",
+      "at_enque_cfun5",
+      "at_enque_cfun6",
+      "at_enque_cfun_v",
+      "at_enque_cmd_proc",
+      "at_enque_cpin_v",
+      "at_enque_iccid",
+      "at_enque_initialization_modem",
+      "at_enque_initialization_sim",
+      "at_enque_initialization_sim_e",
+      "at_enque_initialization_sim_mb",
+      "at_enque_sn",
+      "at_enque_spn",
+      "at_enque_sysinfo"
+    ],
+    "svistok/at_parse.h": [
+      "at_parse_cds",
+      "at_parse_spn",
+      "at_parse_sysinfo"
+    ],
+    "svistok/at_queue.h": [
+      "at_log"
+    ],
+    "svistok/chan_dongle.h": [
+      "ast_channel_get_var",
+      "ast_channel_show_vars",
+      "can_sms"
+    ],
+    "svistok/pdu.h": [
+      "pdu_parse_cds"
+    ],
+    "svistok/ringbuffer.h": [
+      "rb_read_until_char_after_iov"
+    ]
+  },
+  "schema_version": 1,
+  "source_root": "/Users/anton/proj/nativemind.net/simbox.nativemind.net/libsCpp/asterisk-chan-svistok/build/function-layout-backup/src",
+  "stage": "/Users/anton/proj/nativemind.net/simbox.nativemind.net/libsCpp/asterisk-chan-svistok/build/staging-function-layout/src"
+}

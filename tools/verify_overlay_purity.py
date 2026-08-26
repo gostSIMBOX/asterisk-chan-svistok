@@ -35,6 +35,7 @@ def ownership_errors(
     relative: str,
     manifest_symbols: list[dict[str, Any]],
     local_definitions: dict[tuple[str, str], dict[str, Any]],
+    proxy_symbols: set[str] | None = None,
 ) -> list[dict[str, Any]]:
     """Compare physically local definitions with their declared owner."""
     errors: list[dict[str, Any]] = []
@@ -64,7 +65,11 @@ def ownership_errors(
                 "range": record["definition_range"],
                 "baseline_sha256": entry["baseline"]["source_sha256"],
             })
-        elif entry["owner"] == "svistok" and entry.get("legacy") is not None:
+        elif (
+            entry["owner"] == "svistok"
+            and entry.get("legacy") is not None
+            and record["symbol"] not in (proxy_symbols or set())
+        ):
             expected_hash = entry["legacy"]["source_sha256"]
             if record.get("source_sha256") != expected_hash:
                 errors.append({
@@ -104,21 +109,53 @@ def verify_tree(
         for item in summary["generated_slices"]
         if item.get("kind") == "overlay-composition"
     }
-    records = {
-        record["legacy_file"]: record for record in ownership["files"]
-    }
+    materialized = json.loads(
+        (generated_root / "materialized-manifest.json").read_text(encoding="utf-8")
+    )
+    records = {record["legacy_file"]: record for record in materialized["files"]}
+    layout = json.loads(
+        (PROJECT_ROOT / "manifests/function-layout.json").read_text(encoding="utf-8")
+    )
+    proxy_by_file: dict[str, set[str]] = {}
+    for entry in layout["functions"]:
+        if entry["layout_owner"] == "dongle-proxy":
+            proxy_by_file.setdefault(entry["source_file"], set()).add(entry["symbol"])
     errors: list[dict[str, Any]] = []
     checked = 0
     for relative in clang_manifest.MODIFIED_ROOTS:
-        source = compositions[relative]
+        source = compositions.get(relative)
+        if source is None:
+            local = {}
+            errors.extend(
+                ownership_errors(
+                    relative,
+                    records[relative]["symbols"],
+                    local,
+                    proxy_by_file.get(relative, set()),
+                )
+            )
+            continue
         ast = clang_manifest.dump_ast(
             source,
             ("-I", str(src_root)),
         )
         grouped = clang_manifest.definitions_by_provenance(ast, source, src_root)
-        local = grouped.get(relative, {})
+        local = {}
+        for physical in (
+            relative,
+            f"svistok/{relative}",
+            f"dongle/{relative}",
+        ):
+            local.update(grouped.get(physical, {}))
         checked += len(local)
-        errors.extend(ownership_errors(relative, records[relative]["symbols"], local))
+        errors.extend(
+            ownership_errors(
+                relative,
+                records[relative]["symbols"],
+                local,
+                proxy_by_file.get(relative, set()),
+            )
+        )
 
     checked_header_markers = 0
     compose_headers = load_tool("compose_headers")

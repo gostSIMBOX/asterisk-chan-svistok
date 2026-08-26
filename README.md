@@ -83,9 +83,13 @@ This tree is composed from two immutable references rather than a flattened
 fork:
 
 - `asterisk-chan-dongle/` owns every implementation proven unchanged.
-- `src/` contains the 12 Svistok-only paths and only the new/modified units
-  extracted from 28 modified legacy paths, plus small target-owned ABI/state
+- `src/` contains only Svistok-owned new/modified units and small ABI/state
   integration files. It does not contain unchanged function bodies.
+- `src/svistok/*.c` owns the 45 functions absent from chan_dongle;
+  `src/svistok/hooks/*.c` owns additions extracted from 14 safely decomposed
+  functions; `src/dongle/*.c` contains six proxy-only fragments.
+- Six `src/svistok/*.h` headers own all 23 external new-only declarations;
+  compatibility headers include them after defining the required ABI types.
 - `manifests/module-files.json` is the exhaustive 52-path module closure and
   109-path `DO NOT COPY` list. The 12 identical paths are not duplicated in
   `src`.
@@ -93,8 +97,9 @@ fork:
   declarations, and directly included `.c` definitions to one owner.
 
 For each of the 16 modified root translation units, the build generates one
-baseline slice and one non-filtering composition that includes the physical
-`src` delta as-is. Unchanged bodies, such as `app_register()`, are defined
+baseline slice. Fifteen units also need a non-filtering overlay composition;
+`cpvt.c` is now entirely baseline-owned. Unchanged bodies, such as
+`app_register()`, are defined
 under their original names by baseline-derived objects; no forwarding wrapper
 or duplicate implementation is generated. Modified/new bodies compile from
 `src/`. Build-only composed headers obtain unchanged declarations, types and
@@ -102,10 +107,21 @@ macros from `asterisk-chan-dongle/`. Hidden `svistok_bridge_*` aliases/wrappers
 are used only where cross-object access to static symbols/state is required.
 Generated files are written only below `build/`.
 
+The checked partition is 45 new functions, six false-modified functions
+returned directly to baseline, 14 hook/proxy compositions, and 87 retained
+inseparable modified functions. Every proxy calls exactly one hidden pristine
+`svistok_dongle_impl_*` entry. The authoritative complete lists and hashes are
+in `manifests/function-layout.json`; the readable list is in the final appendix
+of the SDD file inventory. Empty root shells `at_parse.c`, `at_queue.c`,
+`ringbuffer.c`, and `cpvt.c` were removed.
+
 Reproduce the physical-overlay and complete sequential audits with:
 
 ```sh
 python3 tools/verify_overlay_purity.py
+python3 tools/verify_function_layout.py
+python3 tools/verify_proxy_contract.py
+python3 tools/verify_proxy_runtime.py
 python3 tools/final_audit.py
 ```
 

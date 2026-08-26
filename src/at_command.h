@@ -1,6 +1,10 @@
 /*
-   Copyright (C) 2010 bg <bg_one@mail.ru>
-*/
+ * Copyright (C) 2014-2026 Anton Dodonov (NativeMind)
+ * https://github.com/Anton-Dodonov
+ * http://linkedin.com/in/anton-dodonov/
+ * mailto:anton.v.dodonov@gmail.com
+ */
+
 #ifndef CHAN_DONGLE_AT_SEND_H_INCLUDED
 #define CHAN_DONGLE_AT_SEND_H_INCLUDED
 #ifdef SVISTOK_COMPOSED_AT_COMMAND_H_HEADER
@@ -167,20 +171,32 @@ INLINE_DECL const char* at_cmd2str (at_cmd_t cmd)
 
 EXPORT_DECL const char* at_cmd2str (at_cmd_t cmd);
 /* SVISTOK_BASELINE_UNIT declaration at_enque_initialization */
-EXPORT_DECL int at_enque_initialization_sim(struct cpvt* cpvt);
-EXPORT_DECL int at_enque_initialization_modem(struct cpvt* cpvt);
+
+
+
+
 /* SVISTOK_BASELINE_UNIT declaration at_enque_ping */
 /* SVISTOK_BASELINE_UNIT declaration at_enque_cops */
-EXPORT_DECL int at_enque_spn (struct cpvt * cpvt);
-EXPORT_DECL int at_enque_iccid (struct cpvt * cpvt);
-EXPORT_DECL int at_enque_sn (struct cpvt * cpvt);
-EXPORT_DECL int at_enque_cmd_proc (struct cpvt * cpvt, const char* cmd);
-EXPORT_DECL int at_enque_cpin_v (struct cpvt * cpvt);
-EXPORT_DECL int at_enque_cfun_v (struct cpvt * cpvt);
-EXPORT_DECL int at_enque_cfun1 (struct cpvt * cpvt);
-EXPORT_DECL int at_enque_cfun5 (struct cpvt * cpvt);
-EXPORT_DECL int at_enque_cfun6 (struct cpvt * cpvt);
-EXPORT_DECL int at_enque_sysinfo (struct cpvt * cpvt);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* SVISTOK_BASELINE_UNIT declaration at_enque_sms */
 /* SVISTOK_BASELINE_UNIT declaration at_enque_pdu */
@@ -201,4 +217,5 @@ EXPORT_DECL int at_enque_sysinfo (struct cpvt * cpvt);
 /* SVISTOK_BASELINE_UNIT declaration at_hangup_immediality */
 
 #endif /* SVISTOK_COMPOSED_AT_COMMAND_H_HEADER */
+#include "svistok/at_command.h"
 #endif /* CHAN_DONGLE_AT_SEND_H_INCLUDED */

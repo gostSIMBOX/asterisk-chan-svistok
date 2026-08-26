@@ -1,6 +1,10 @@
-/*1
-   Copyright (C) 2011 bg <bg_one@mail.ru>
-*/
+/*
+ * Copyright (C) 2014-2026 Anton Dodonov (NativeMind)
+ * https://github.com/Anton-Dodonov
+ * http://linkedin.com/in/anton-dodonov/
+ * mailto:anton.v.dodonov@gmail.com
+ */
+
 #ifdef HAVE_CONFIG_H
 #include <svistok_config.h>
 #endif /* HAVE_CONFIG_H */
@@ -110,36 +114,12 @@ extern struct discovery_cache svistok_bridge_upstream_cache;
  
 
 #/* */
-static void info_free(struct pdiscovery_result * res)
-{
-	if(res->imsi) {
-		ast_free(res->imsi);
-		res->imsi = NULL;
-	}	
 
-	if(res->imei) {
-		ast_free(res->imei);
-		res->imei = NULL;
-	}		
 
-	if(res->serial) {
-		ast_free(res->serial);
-		res->serial = NULL;
-	}		
-
-}
 
 #/* */
-static void info_copy(struct pdiscovery_result * dst, const struct pdiscovery_result * src)
-{
-	if(src->imei)
-		dst->imei = ast_strdup(src->imei);
-	if(src->imsi)
-		dst->imsi = ast_strdup(src->imsi);
-	if(src->serial)
-		dst->serial = ast_strdup(src->serial);
 
-}
+
 
 #/* */
 extern void svistok_bridge_upstream_result_free(struct pdiscovery_result * res);
@@ -452,30 +432,8 @@ extern char * svistok_bridge_upstream_pdiscovery_handle_ati(const char * devname
              
  
 
-static char * pdiscovery_handle_sn(const char * devname, char * str)
-{
-	static const char SERIAL[] = "\r\n^SN:";
-	char * serial = strstr(str, SERIAL);
 
-	if(serial) {
-		serial += STRLEN(SERIAL);
-		while(serial[0] == ' ')
-			serial++;
-		str = serial;
 
-		while((str[0] >= '0' && str[0] <= '9')||(str[0] >= 'A' && str[0] <= 'Z'))
-			str++;
-		if((str - serial) == SERIAL_SIZE && str[0] == '\r' && str[1] == '\n') {
-			str[0] = 0;
-			serial = ast_strdup(serial);
-			str[0] = '\r';
-			ast_debug(4, "[%s discovery] found S %s\n", devname, serial);
-			return serial;
-		}
-	}
-
-	return NULL;
-}
 
 
 #/* 0D 0A 15 digits 0D 0A */
@@ -577,44 +535,8 @@ static int pdiscovery_handle_response(const struct pdiscovery_request * req, con
 
 
 #/* return zero on sucess */
-static int pdiscovery_do_cmd(const struct pdiscovery_request * req, int fd, const char * name, const char * cmd, unsigned length, struct pdiscovery_result * res)
-{
-	int timeout;
-	char buf[1024 + 1];
-	struct ringbuffer rb;
-	struct iovec iov[2];
-	int iovcnt;
-	size_t wrote;
 
-	ast_debug(4, "[%s discovery] use %s for IMEI/IMSI discovery\n", req->name, name);
 
-	clean_read_data(req->name, fd);
-	wrote = write_all(fd, cmd, length);
-	if(wrote == length) {
-		timeout = PDISCOVERY_TIMEOUT;
-		rb_init(&rb, buf, sizeof(buf) - 1);
-		while(timeout > 0 && at_wait(fd, &timeout) != 0) {
-			iovcnt = at_read(fd, name, &rb);
-			if(iovcnt > 0) {
-				iovcnt = rb_read_all_iov(&rb, iov);
-				if(pdiscovery_handle_response(req, iov, iovcnt, res))
-					return 0;
-			} else {
-				snprintf(buf, sizeof(buf), "Read Failed\r\nErrorCode: %d", errno);
-				manager_event_message_raw("DonglePortFail", name, buf);
-				ast_log (LOG_ERROR, "[%s discovery] read from %s failed: %s\n", req->name, name, strerror(errno));
-				return -1;
-			}
-		}
-		manager_event_message_raw("DonglePortFail", name, "Response Failed");
-		ast_log (LOG_ERROR, "[%s discovery] failed to get valid response from %s in %d msec\n", req->name, name, PDISCOVERY_TIMEOUT);
-	} else {
-		snprintf(buf, sizeof(buf), "Write Failed\r\nErrorCode: %d", errno);
-		manager_event_message_raw("DonglePortFail", name, buf);
-		ast_log (LOG_ERROR, "[%s discovery] write to %s failed: %s\n", req->name, name, strerror(errno));
-	}
-	return 1;
-}
 
 #/* return non-zero on fail */
 static int pdiscovery_get_info(const char * port, const struct pdiscovery_request * req, struct pdiscovery_result * res)
@@ -803,23 +725,8 @@ EXPORT_DEF int pdiscovery_lookup(const char * devname, const char * imei, const 
 }
 
 #/* */
-EXPORT_DEF const struct pdiscovery_result * pdiscovery_list_begin(const struct pdiscovery_cache_item ** opaque)
-{
-	const struct pdiscovery_cache_item * item;
-	struct pdiscovery_result res;
-	const struct pdiscovery_request req = {
-		"list", 
-		"ANY", 
-		"ANY", 
-		};
 
-	memset(&res, 0, sizeof(res));
-	pdiscovery_request_do(sys_bus_usb_devices, STRLEN(sys_bus_usb_devices), &req, &res);
-	result_free(&res);
 
-	*opaque = item = cache_first_readlock(&cache);
-	return item != NULL ? &item->res : NULL;
-}
 
 #/* */
                                                                                                                
@@ -830,7 +737,3 @@ EXPORT_DEF const struct pdiscovery_result * pdiscovery_list_begin(const struct p
  
 
 #/* */
-                                      
- 
-                      
- 

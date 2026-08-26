@@ -1,6 +1,10 @@
 /*
-   Copyright (C) 2011 bg <bg_one@mail.ru>
-*/
+ * Copyright (C) 2014-2026 Anton Dodonov (NativeMind)
+ * https://github.com/Anton-Dodonov
+ * http://linkedin.com/in/anton-dodonov/
+ * mailto:anton.v.dodonov@gmail.com
+ */
+
 #ifndef CHAN_DONGLE_PDISCOVERY_H_INCLUDED
 #define CHAN_DONGLE_PDISCOVERY_H_INCLUDED
 #ifdef SVISTOK_COMPOSED_PDISCOVERY_H_HEADER

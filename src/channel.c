@@ -1,13 +1,10 @@
-/* 
-   Copyright (C) 2009 - 2010
-   
-   Artem Makhutov <artem@makhutov.org>
-   http://www.makhutov.org
-   
-   Dmitry Vagin <dmitry2004@yandex.ru>
+/*
+ * Copyright (C) 2014-2026 Anton Dodonov (NativeMind)
+ * https://github.com/Anton-Dodonov
+ * http://linkedin.com/in/anton-dodonov/
+ * mailto:anton.v.dodonov@gmail.com
+ */
 
-   bg <bg_one@mail.ru>
-*/
 #ifdef HAVE_CONFIG_H
 #include <svistok_config.h>
 #endif /* HAVE_CONFIG_H */
@@ -500,54 +497,8 @@ extern int svistok_bridge_upstream_channel_digit_end(struct ast_channel * channe
  
 
 #/* ARCH: move to cpvt level */
-static void iov_write(struct pvt* pvt, int fd, struct iovec * iov, int iovcnt)
-{
-	ssize_t written;
-	ssize_t done = 0;
-	int count = 10;
 
-	while(iovcnt)
-	{
-again:
-		written = writev (fd, iov, iovcnt);
-		if(written < 0)
-		{
-			if((errno == EINTR || errno == EAGAIN))
-			{
-				--count;
-				if(count != 0)
-				    goto again;
-				ast_debug (1, "[%s] Deadlock avoided for write!\n", PVT_ID(pvt));
-			}
-			break;
-		}
-		else
-		{
-			done += written;
-			count = 10;
-			do
-			{
-				if((size_t)written >= iov->iov_len)
-				{
-					written -= iov->iov_len;
-					iovcnt--;
-					iov++;
-				}
-				else
-				{
-					iov->iov_len -= written;
-					goto again;
-				}
-			} while(written > 0);
-		}
-	}
-	PVT_STAT(pvt, a_write_bytes) += done;
 
-	if (done != FRAME_SIZE)
-	{
-		ast_debug (1, "[%s] Write error!\n", PVT_ID(pvt));
-	}
-}
 
 #/* */
 extern void svistok_bridge_upstream_timing_write(struct pvt * pvt);

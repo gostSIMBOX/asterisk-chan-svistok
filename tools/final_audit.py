@@ -31,6 +31,11 @@ CHECKS = (
     ("delta/baseline composition", ["python3", "tests/slicer/test_materialization.py"]),
     ("overlay extraction", ["python3", "tests/slicer/test_overlay_extraction.py"]),
     ("direct app_register baseline reuse", ["python3", "tests/slicer/test_app_upstream_reuse.py"]),
+    ("function layout manifest", ["python3", "tests/layout/test_function_layout_manifest.py"]),
+    ("function physical paths", ["python3", "tests/layout/test_function_paths.py"]),
+    ("new declaration headers", ["python3", "tests/layout/test_header_layout.py"]),
+    ("proxy source contract", ["python3", "tests/layout/test_proxy_contract.py"]),
+    ("proxy runtime ordering", ["python3", "tests/layout/test_proxy_runtime.py"]),
     ("at_parse pilot", ["python3", "tests/slicer/test_at_parse_pilot.py"]),
     ("full slice generation", ["python3", "tests/slicer/test_full_generation.py"]),
     ("chan_svistok.so compatibility build", ["python3", "tests/test_module_build.py"]),
@@ -94,6 +99,14 @@ def main() -> int:
             encoding="utf-8"
         )
     )
+    function_layout = json.loads(
+        (PROJECT_ROOT / "manifests/function-layout.json").read_text(encoding="utf-8")
+    )
+    function_promotion = json.loads(
+        (PROJECT_ROOT / "manifests/function-layout-promotion.json").read_text(
+            encoding="utf-8"
+        )
+    )
     report = {
         "schema_version": 1,
         "audited_on": date.today().isoformat(),
@@ -130,6 +143,12 @@ def main() -> int:
             ),
         },
         "build": build_report,
+        "function_layout": {
+            "counts": function_layout["counts"],
+            "new_files": function_layout["new_files"],
+            "proxy_files": function_layout["proxy_files"],
+            "removed_root_files": function_promotion["removed"],
+        },
         "external_gaps": gaps,
     }
     OUTPUT.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")

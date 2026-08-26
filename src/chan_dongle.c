@@ -144,60 +144,12 @@ static int lock_create(const char * lockfile)
 }
 
 #/* return pid of owner, 0 if free */
-EXPORT_DEF int lock_try(const char * devname, char ** lockname)
-{
-	int fd;
-	int len;
-	int pid = 0;
-	int assigned;
-	int fd2;
-	char name[1024];
-	char buffer[65];
 
-	lock_build(devname, name, sizeof(name));
 
-	/* FIXME: rise conditions: some time between lock check and got lock */
-	fd = open(name, O_RDONLY);
-	if(fd >= 0)
-	{
-		len = read(fd, buffer, sizeof(buffer) - 1);
-		if(len > 0)
-		{
-			buffer[len] = 0;
-			assigned = sscanf(buffer, "%d %d", &len, &fd2);
-			if(assigned > 0 && kill(len, 0) == 0)
-			{
-				if(len == getpid() && assigned > 1)
-				{
-					if(port_status(fd2) == 0)
-						pid = len;
-				}
-				else
-					pid = len;
-			}
-		}
-		close(fd);
-	}
-
-	if(pid == 0)
-	{
-		unlink(name);
-		lock_create(name);
-		*lockname = ast_strdup(name);
-	}
-	return pid;
-}
 
 #/* */
-EXPORT_DEF void closetty(int fd, char ** lockfname)
-{
-	close(fd);
 
-	/* remove lock */
-	unlink(*lockfname);
-	ast_free(*lockfname);
-	*lockfname = NULL;
-}
+
 
 EXPORT_DEF int opentty (const char* dev, char ** lockfile)
 {
@@ -1123,25 +1075,10 @@ EXPORT_DEF int ready4voice_call(const struct pvt* pvt, const struct cpvt * curre
  
 
 
-EXPORT_DEF int can_sms(struct pvt* pvt);
-EXPORT_DEF int can_sms(struct pvt* pvt)
-{
 
-	if(pvt->ring || PVT_STATE(pvt, chan_count[CALL_STATE_INCOMING])) return 0; //state = "Ring";
-	if(pvt->cwaiting || PVT_STATE(pvt, chan_count[CALL_STATE_WAITING])) return 0; //state = "Waiting";
-	if(pvt->dialing ||
-			(PVT_STATE(pvt, chan_count[CALL_STATE_INIT])
-				+
-				PVT_STATE(pvt, chan_count[CALL_STATE_DIALING])
-				+
-				PVT_STATE(pvt, chan_count[CALL_STATE_ALERTING])) > 0)
-			return 0; //state = "Dialing";
 
-	if(PVT_STATE(pvt, chan_count[CALL_STATE_ACTIVE]) > 0) return 0; //state = "Active";
-	if(PVT_STATE(pvt, chan_count[CALL_STATE_ONHOLD]) > 0) return 0; //state = "Held";
 
-	return 1;
-}
+
 
 
 #/* return locked pvt or NULL */
@@ -1211,37 +1148,11 @@ EXPORT_DEF struct pvt * find_device_ext (const char * name, const char ** reason
 
 
 
-void ast_channel_show_vars(const struct ast_channel *parent)
-{
-        struct ast_var_t *current;
-        const char *varname;
 
-        AST_LIST_TRAVERSE(ast_channel_varshead(parent), current, entries) {
-//                int vartype = 0;
 
-                varname = ast_var_full_name(current);
-                if (!varname)
-                        continue;
 
-	    ast_verb(3, "%s=%s\n",varname, ast_var_value(current));
-        }
-}
 
-void ast_channel_get_var(const struct ast_channel *parent, char *varname1, char *value)
-{
-        struct ast_var_t *current;
-        const char *varname;
-	strcpy(value,"");
-        AST_LIST_TRAVERSE(ast_channel_varshead(parent), current, entries) {
-//                int vartype = 0;
 
-                varname = ast_var_full_name(current);
-                if (!varname)
-                        continue;
-		if(strcmp(varname,varname1)==0) {strcpy(value, ast_var_value(current));}
-//	    ast_verb(3, "%s=%s\n",varname, ast_var_value(current));
-        }
-}
 
 #include "select.c"
 
@@ -1800,29 +1711,8 @@ extern void svistok_bridge_upstream_devices_destroy(public_state_t * state);
  
 
 
-static int load_module()
-{
-	int rv;
-	dserial_init();
-	clear_state();
-	putfiles("","svistok","version",svistok_version);
-	IAXME_get();
 
-	gpublic = ast_calloc(1, sizeof(*gpublic));
-	if(gpublic)
-	{
-		pdiscovery_init();
-		rv = public_state_init(gpublic);
-		if(rv != AST_MODULE_LOAD_SUCCESS)
-			ast_free(gpublic);
-	}
-	else
-	{
-		ast_log (LOG_ERROR, "Unable to allocate global state structure\n");
-		rv = AST_MODULE_LOAD_DECLINE;
-	}
-	return rv;
-}
+
 
 #/* */
 static int public_state_init(struct public_state * state)
@@ -1941,13 +1831,3 @@ AST_MODULE_INFO(ASTERISK_GPL_KEY, AST_MODFLAG_DEFAULT, MODULE_DESCRIPTION,
 	       );
 
 //AST_MODULE_INFO_STANDARD (ASTERISK_GPL_KEY, MODULE_DESCRIPTION);
-
-                                           
- 
-                              
- 
-
-
-
-
-

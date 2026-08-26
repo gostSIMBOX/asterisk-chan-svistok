@@ -35,10 +35,10 @@ class FullGenerationTests(unittest.TestCase):
         summary = load_tool("generate_all_slices").generate(ownership, BUILD_ROOT)
         self.assertEqual(16, summary["translation_units"])
         self.assertEqual(16, summary["baseline_slices"])
-        self.assertEqual(16, summary["overlay_compositions"])
-        self.assertEqual(32, len(summary["generated_slices"]))
+        self.assertEqual(15, summary["overlay_compositions"])
+        self.assertEqual(31, len(summary["generated_slices"]))
         self.assertEqual(166, summary["composed_header_baseline_units"])
-        self.assertEqual(81, summary["bridge_count"])
+        self.assertEqual(83, summary["bridge_count"])
         self.assertTrue(
             all(Path(item["source"]).is_file() for item in summary["generated_slices"])
         )

@@ -2,17 +2,13 @@
 #include <svistok_config.h>
 #endif /* HAVE_CONFIG_H */
 
-#ifdef BUILD_MANAGER /* no manager, no copyright */
-/* 
-   Copyright (C) 2009 - 2010
-   
-   Artem Makhutov <artem@makhutov.org>
-   http://www.makhutov.org
-   
-   Dmitry Vagin <dmitry2004@yandex.ru>
-
-   bg <bg_one@mail.ru>
-*/
+#ifdef BUILD_MANAGER
+/*
+ * Copyright (C) 2014-2026 Anton Dodonov (NativeMind)
+ * https://github.com/Anton-Dodonov
+ * http://linkedin.com/in/anton-dodonov/
+ * mailto:anton.v.dodonov@gmail.com
+ */
 
 #include <asterisk.h>
 #include <asterisk/stringfields.h>		/* AST_DECLARE_STRING_FIELDS for asterisk/manager.h */

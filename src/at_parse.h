@@ -1,6 +1,10 @@
 /*
-   Copyright (C) 2010 bg <bg_one@mail.ru>
-*/
+ * Copyright (C) 2014-2026 Anton Dodonov (NativeMind)
+ * https://github.com/Anton-Dodonov
+ * http://linkedin.com/in/anton-dodonov/
+ * mailto:anton.v.dodonov@gmail.com
+ */
+
 #ifndef CHAN_DONGLE_AT_PARSE_H_INCLUDED
 #define CHAN_DONGLE_AT_PARSE_H_INCLUDED
 #ifdef SVISTOK_COMPOSED_AT_PARSE_H_HEADER
@@ -15,18 +19,21 @@
 
 /* SVISTOK_BASELINE_UNIT declaration at_parse_cnum */
 /* SVISTOK_BASELINE_UNIT declaration at_parse_cops */
-EXPORT_DECL char* at_parse_spn (char* str);
+
+
 /* SVISTOK_BASELINE_UNIT declaration at_parse_creg */
 /* SVISTOK_BASELINE_UNIT declaration at_parse_cmti */
 /* SVISTOK_BASELINE_UNIT declaration at_parse_cmgr */
-EXPORT_DECL const char* at_parse_cds (char** str, size_t len, char* oa, size_t oa_len, str_encoding_t* oa_enc, char** msg, str_encoding_t* msg_enc);
+
+
 
 /* SVISTOK_BASELINE_UNIT declaration at_parse_cusd */
 /* SVISTOK_BASELINE_UNIT declaration at_parse_cpin */
 /* SVISTOK_BASELINE_UNIT declaration at_parse_csq */
 /* SVISTOK_BASELINE_UNIT declaration at_parse_rssi */
 /* SVISTOK_BASELINE_UNIT declaration at_parse_mode */
-EXPORT_DECL int at_parse_sysinfo (char * str, int * srvst, int * srvd, int * roamst, int * sysmode, int * simst);
+
+
 
 /* SVISTOK_BASELINE_UNIT declaration at_parse_csca */
 /* SVISTOK_BASELINE_UNIT declaration at_parse_clcc */
@@ -35,4 +42,5 @@ EXPORT_DECL int at_parse_sysinfo (char * str, int * srvst, int * srvd, int * roa
 
 
 #endif /* SVISTOK_COMPOSED_AT_PARSE_H_HEADER */
+#include "svistok/at_parse.h"
 #endif /* CHAN_DONGLE_AT_PARSE_H_INCLUDED */

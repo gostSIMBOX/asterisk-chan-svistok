@@ -1,0 +1,179 @@
+{
+  "layout_counts": {
+    "baseline": 6,
+    "dongle-proxy": 14,
+    "svistok-inseparable": 87,
+    "svistok-new": 45
+  },
+  "schema_version": 1,
+  "source_files": [
+    {
+      "file": "src/app.c",
+      "sha256": "eafcae3e969b905a9191fa79e63afb09f40d0679b5c63d18b044c39e11e73274"
+    },
+    {
+      "file": "src/app.h",
+      "sha256": "403fa331240202856b85ad0cc5660bdbf7ab0834b3e0525d915f68b984e88488"
+    },
+    {
+      "file": "src/at_command.c",
+      "sha256": "5ea207a0b68cdf8ea3a5998446c9cd0eddff1ef2c01c4beef128012049fca20b"
+    },
+    {
+      "file": "src/at_command.h",
+      "sha256": "4dd5498668721bb4c595830296c29959b977e7f67ca31d346465033c0633b151"
+    },
+    {
+      "file": "src/at_parse.c",
+      "sha256": "9926c49ddac3d74a49f5d5ef35163c1174976361892cb1409982a8b6dcc22eb5"
+    },
+    {
+      "file": "src/at_parse.h",
+      "sha256": "5052fab58b5925c2a12acd5bf8fceb26725baf0ceb5d6ae5b1d5ce21d3ee9e92"
+    },
+    {
+      "file": "src/at_queue.c",
+      "sha256": "da51820e96b7932530b1fc279639a47b4c829b6b7dcc1dc0e338bd3911bae8de"
+    },
+    {
+      "file": "src/at_read.c",
+      "sha256": "adc037567fde0f5143f2d75bdac52a99623635c183cfcf835420972a1c4db03e"
+    },
+    {
+      "file": "src/at_response.c",
+      "sha256": "fbf4e65ccf8b324789fed9f0e7dbe208b3e79bbe84b5ec087fe6bb020e353ba7"
+    },
+    {
+      "file": "src/at_response.h",
+      "sha256": "cbdb4391c01748e02d7d242b251a2d5f7fe933a41dd09f0ed0d55ac5c1af2b05"
+    },
+    {
+      "file": "src/chan_dongle.c",
+      "sha256": "2fde78504669c5d4f1f6215bb232da2a6513b49cf47688b2f1e076133bbf9fad"
+    },
+    {
+      "file": "src/chan_dongle.h",
+      "sha256": "e6e2b5700d460afd1b7740ec44cabd539dd88e1ca67045e10a214a43c839d27c"
+    },
+    {
+      "file": "src/channel.c",
+      "sha256": "cabbb998f37fa16ff53d937720dafd3c98bee2795b3c53e43b201cb839c452b7"
+    },
+    {
+      "file": "src/channel.h",
+      "sha256": "0bbb230e25127f96de770a73de753774ec52218117defcdf02c22c065f9a46f1"
+    },
+    {
+      "file": "src/cli.c",
+      "sha256": "6f83c98dc48bc01aed7cfbae9799f947a037f0c400a040b0f3bb5173799e3715"
+    },
+    {
+      "file": "src/cli.h",
+      "sha256": "07f580ed8d339c488a6e53e1a92d1a1ee0bb3b1ddeb0c298a6827a1228d96a96"
+    },
+    {
+      "file": "src/cpvt.c",
+      "sha256": "817183bd3e68d7465394b8d096faf99b7e60933fc34842f22aaa2a34d51d14b8"
+    },
+    {
+      "file": "src/cpvt.h",
+      "sha256": "f74ae5c3fdc7341cc059b8050da9f3103e44752b0ed95272d1894fb509b22779"
+    },
+    {
+      "file": "src/dc_config.c",
+      "sha256": "6a112dbf630342404b8934074d9347d68d9bbda30e7183334efb2a2d66f598ac"
+    },
+    {
+      "file": "src/dc_config.h",
+      "sha256": "48867895a10a0f6d3c02a013d8f901d51b39c2560db62f0ec8d0955aa09290d5"
+    },
+    {
+      "file": "src/dserial.c",
+      "sha256": "ead47b71441eec3ac99e98232281c0ff22ed6e34e46e08807b96866a6aa6b030"
+    },
+    {
+      "file": "src/helpers.c",
+      "sha256": "a4c380148567f21e4008355ff22b01717bc23702de97d7ce7e094537bb9df2c7"
+    },
+    {
+      "file": "src/limits.c",
+      "sha256": "e6f7bddc6c41bc9bc601402e69235bd893f9cfd0d186da323ffb0345de4cf188"
+    },
+    {
+      "file": "src/manager.c",
+      "sha256": "f48b350f12c52d1704f1fa7652f495ce9918d58ea274664452b921ccaf4dd26d"
+    },
+    {
+      "file": "src/pdiscovery.c",
+      "sha256": "7af8f3d125e7ff7b23b280efab2839d6c3244de11e670e0fe787f5851d77bcc4"
+    },
+    {
+      "file": "src/pdiscovery.h",
+      "sha256": "ff990a158669a91fa276f905bbd37bbdf569903470fe6f2112b77b9b3eefecf2"
+    },
+    {
+      "file": "src/pdu.c",
+      "sha256": "5ae7dc347a765bc831d7f75966def3455a55de285426dab26e0e09cd696e1021"
+    },
+    {
+      "file": "src/pdu.h",
+      "sha256": "a5575f8def89fcda7c95679874660645f1938322acfdbea55cd2dde104f93213"
+    },
+    {
+      "file": "src/programmator/crc.c",
+      "sha256": "271364a9c08922d5c9fce7943c866ee4645e719f819067ff7edb4e4c7230abc3"
+    },
+    {
+      "file": "src/programmator/ttyprog_core.c",
+      "sha256": "37248ff3293d116f8be6fff6e7ceb6c47570247e29b14863177214770182a0fa"
+    },
+    {
+      "file": "src/programmator/ttyprog_svistok.c",
+      "sha256": "71e4e41f9c71ecb3af5e8b0fdfc45ff88d209c00e46db050500f2109814d6a51"
+    },
+    {
+      "file": "src/ringbuffer.c",
+      "sha256": "93bb973a38d91edf0f33f02392d9fc18046ed78a38ebf4f2003ec31330ca300a"
+    },
+    {
+      "file": "src/ringbuffer.h",
+      "sha256": "721413a6aa9d5e7578202dea6b7ec659ea7b38b0057dacfcbc3fcb0cebbc79b7"
+    },
+    {
+      "file": "src/select.c",
+      "sha256": "8c0868f1b1694026cc97190311c93e2e737be1d4636d5b7bc57de98a26f1c9c4"
+    },
+    {
+      "file": "src/select.h",
+      "sha256": "bb034f016560e120a0d55bbe139214414a11910e59cf6cc5332f92182847e183"
+    },
+    {
+      "file": "src/share.c",
+      "sha256": "002022bb7fef330e13e2144bb8451893f95e15fe3f2f8628d39b26fcb6b0b7d3"
+    },
+    {
+      "file": "src/share.h",
+      "sha256": "6e47d3ff393c1b15498f4310a88bf1623a88cbc56df2183fae005aaf820698bb"
+    },
+    {
+      "file": "src/simnode/adiscovery_core.c",
+      "sha256": "37bfb9264da0600c3ea0c363ce54c8a13219b8530542f5a901c7e2fc131dd7cd"
+    },
+    {
+      "file": "src/simnode/adiscovery_svistok.c",
+      "sha256": "8600fe4840861c8bada4126a8a65f73aca1fce22cf700da424f610ed71a490a1"
+    },
+    {
+      "file": "src/stat.c",
+      "sha256": "f99fa947e731e360f18317fe7b5bab2625522a115106a56818e42f0a1165158d"
+    },
+    {
+      "file": "src/svistok_abi.h",
+      "sha256": "2b6d0972a97a941c5b43c38ff7e4bb677ac9b82e1f1b806c6606d6b3c7c14de0"
+    },
+    {
+      "file": "src/svistok_state.c",
+      "sha256": "11d2e6989d471b137fd92781cea6168ede7d515ee05ea7e44b01cdebe91d7cd8"
+    }
+  ]
+}

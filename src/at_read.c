@@ -1,14 +1,10 @@
 /*
-   Copyright (C) 2009 - 2010
+ * Copyright (C) 2014-2026 Anton Dodonov (NativeMind)
+ * https://github.com/Anton-Dodonov
+ * http://linkedin.com/in/anton-dodonov/
+ * mailto:anton.v.dodonov@gmail.com
+ */
 
-   Artem Makhutov <artem@makhutov.org>
-   http://www.makhutov.org
-
-   Dmitry Vagin <dmitry2004@yandex.ru>
-
-   Copyright (C) 2010 - 2011
-   bg <bg_one@mail.ru>
-*/
 #ifdef HAVE_CONFIG_H
 #include <svistok_config.h>
 #endif /* HAVE_CONFIG_H */

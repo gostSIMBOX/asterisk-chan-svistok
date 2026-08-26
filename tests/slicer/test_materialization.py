@@ -35,7 +35,7 @@ class OverlayMaterializationTests(unittest.TestCase):
         generated = PROJECT_ROOT / "build" / "materialization-test"
         summary = load_tool("generate_all_slices").generate(ownership, generated)
         self.assertEqual(16, summary["baseline_slices"])
-        self.assertEqual(16, summary["overlay_compositions"])
+        self.assertEqual(15, summary["overlay_compositions"])
         self.assertEqual(166, summary["composed_header_baseline_units"])
 
 

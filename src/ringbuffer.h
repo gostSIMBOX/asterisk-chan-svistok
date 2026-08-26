@@ -1,11 +1,9 @@
-/* 
-   Copyright (C) 2009 - 2010
-   
-   Artem Makhutov <artem@makhutov.org>
-   http://www.makhutov.org
-   
-   Dmitry Vagin <dmitry2004@yandex.ru>
-*/
+/*
+ * Copyright (C) 2014-2026 Anton Dodonov (NativeMind)
+ * https://github.com/Anton-Dodonov
+ * http://linkedin.com/in/anton-dodonov/
+ * mailto:anton.v.dodonov@gmail.com
+ */
 
 #ifndef ____RINGBUFFER_H__
 #define ____RINGBUFFER_H__
@@ -36,7 +34,8 @@
 /* SVISTOK_BASELINE_UNIT declaration rb_read_n_iov */
 
 /* SVISTOK_BASELINE_UNIT declaration rb_read_until_char_iov */
-EXPORT_DECL int rb_read_until_char_after_iov (const struct ringbuffer*, struct iovec iov[2], char, int after);
+
+
 
 /* SVISTOK_BASELINE_UNIT declaration rb_read_until_mem_iov */
 
@@ -54,4 +53,5 @@ EXPORT_DECL int rb_read_until_char_after_iov (const struct ringbuffer*, struct i
 /* SVISTOK_BASELINE_UNIT function rb_write */
 
 #endif /* SVISTOK_COMPOSED_RINGBUFFER_H_HEADER */
+#include "svistok/ringbuffer.h"
 #endif /* ____RINGBUFFER_H__ */

@@ -1,13 +1,10 @@
-/* 
-   Copyright (C) 2009 - 2010
-   
-   Artem Makhutov <artem@makhutov.org>
-   http://www.makhutov.org
-   
-   Dmitry Vagin <dmitry2004@yandex.ru>
+/*
+ * Copyright (C) 2014-2026 Anton Dodonov (NativeMind)
+ * https://github.com/Anton-Dodonov
+ * http://linkedin.com/in/anton-dodonov/
+ * mailto:anton.v.dodonov@gmail.com
+ */
 
-   bg <bg_one@mail.ru>
-*/
 #ifdef HAVE_CONFIG_H
 #include <svistok_config.h>
 #endif /* HAVE_CONFIG_H */
@@ -18,10 +15,10 @@
 #include <errno.h>			/* errno */
 #include <stdlib.h>			/* strtol */
 
-#include "at_parse.h"
+#include "../at_parse.h"
 #include <asterisk-chan-dongle/mutils.h>	/* ITEMS_OF() */
-#include "chan_dongle.h"
-#include "pdu.h"			/* pdu_parse() */
+#include "../chan_dongle.h"
+#include "../pdu.h"			/* pdu_parse() */
 
 #/* */
 extern unsigned int svistok_bridge_upstream_mark_line(char * line, const char * delimiters, char ** pointers);
@@ -109,34 +106,8 @@ extern unsigned int svistok_bridge_upstream_mark_line(char * line, const char * 
  
 
 
-EXPORT_DEF char* at_parse_spn (char* str)
-{
-	/*
-	 * parse COPS response in the following format:
-	 * +COPS: <mode>[,<format>,<oper>,<?>]
-	 *
-	 * example 
-	 *  ^SPN:1,0,SIM-1
-	 *  +COPS: 0,0,"TELE2",0
-	 */
 
-	char delimiters[] = ":,,";
-	char * marks[STRLEN(delimiters)];
 
-	/* parse URC only here */
-	if(mark_line(str, delimiters, marks) == ITEMS_OF(marks))
-	{
-		marks[2]++;
-		/*quotes if(marks[2][0] == '"')
-			marks[2]++;
-		if(marks[3][-1] == '"')
-			marks[3]--;
-		marks[3][0] = 0;*/
-		return marks[2];
-	}
-
-	return NULL;
-}
 
 
 
@@ -376,47 +347,8 @@ EXPORT_DEF char* at_parse_spn (char* str)
                                      
  
 
-EXPORT_DEF const char* at_parse_cds(char** str, attribute_unused size_t len, char* oa, size_t oa_len, str_encoding_t* oa_enc, char** msg, str_encoding_t* msg_enc)
-{
-	/* from +CDS: 25
-	 * parse cmgr info in the following PDU format
-	 * +CMGR: message_status,[address_text],TPDU_length<CR><LF>
-	 * SMSC_number_and_TPDU<CR><LF><CR><LF>
-	 * OK<CR><LF>
-	 *
-	 *	sample
-	 * +CMGR: 1,,31
-	 * 07911234567890F3040B911234556780F20008012150220040210C041F04400438043204350442<CR><LF><CR><LF>
-	 * OK<CR><LF>
-	 */
 
-	char delimiters[] = ":\n";
-	char * marks[STRLEN(delimiters)];
-	char * end;
-	size_t tpdu_length;
 
-	if(mark_line(*str, delimiters, marks) == ITEMS_OF(marks))
-	{
-		tpdu_length = strtol(marks[0] + 2, &end, 10);
-		if(tpdu_length <= 0 || end[0] != '\r')
-			return "Invalid TPDU length in CDS PDU status line";
-
-		ast_verb(3,"CDS length: %d, %s, %s",tpdu_length, end+2,marks[1] + 1);
-		*str = marks[1] + 1;
-
-FILE * fp;
-fp=fopen("/var/log/cds.log","a");
-if(fp)
-{
-    fprintf(fp,"%s\n",*str);
-    fclose(fp);
-}
-
-		return pdu_parse_cds(str, tpdu_length+8, oa, oa_len, oa_enc, msg, msg_enc);
-	}
-
-	return "Can't parse +CDS response";
-}
 
 
 /*!
@@ -525,27 +457,8 @@ if(fp)
  * \return -1 on error (parse error) or card lock
  */
 
-EXPORT_DEF int at_parse_cpin (char* str, size_t len)
-{
-	static const struct {
-		const char	* value;
-		unsigned	length;
-	} resp[] = {
-		{ "READY", 5 },
-		{ "SIM PIN", 7 },
-		{ "SIM PUK", 7 },
-	};
 
-	ast_verb(3,"ATCPIN: %s",str);
 
-	unsigned idx;
-	for(idx = 0; idx < ITEMS_OF(resp); idx++)
-	{
-		if(memmem (str, len, resp[idx].value, resp[idx].length) != NULL)
-			return idx;
-	}
-	return -1;
-}
 
 /*!
  * \brief Parse +CSQ response
@@ -614,15 +527,8 @@ EXPORT_DEF int at_parse_cpin (char* str, size_t len)
  
 
 
-EXPORT_DEF int at_parse_sysinfo (char * str, int * srvst, int * srvd, int * roamst, int * sysmode, int * simst)
-{
-	/*
-	    ^SYSINFO:1,0,1,3,0,,3
-	    srv_status >, < srv_domain >,< roam_status >, < sys_mode >,< sim_state 
-	 */
 
-	return sscanf (str, "^SYSINFO:%d,%d,%d,%d,%d", srvst, srvd, roamst, sysmode, simst) == 5 ? 0 : -1;
-}
+
 
 
 #/* */
@@ -701,29 +607,86 @@ EXPORT_DEF int at_parse_sysinfo (char * str, int * srvst, int * srvd, int * roam
  
 
 #/* */
-                                                         
- 
-    
-                        
-                            
-                 
-                            
-               
-                                                     
-                             
-   
-                           
-                                                                                                
-    
-                           
-                                  
 
-                          
-                                                         
-  
-                                            
-            
-  
+/* Svistok-only composition fragment. */
 
-           
- 
+EXPORT_DEF const char* at_parse_cds(char** str, attribute_unused size_t len, char* oa, size_t oa_len, str_encoding_t* oa_enc, char** msg, str_encoding_t* msg_enc)
+{
+	/* from +CDS: 25
+	 * parse cmgr info in the following PDU format
+	 * +CMGR: message_status,[address_text],TPDU_length<CR><LF>
+	 * SMSC_number_and_TPDU<CR><LF><CR><LF>
+	 * OK<CR><LF>
+	 *
+	 *	sample
+	 * +CMGR: 1,,31
+	 * 07911234567890F3040B911234556780F20008012150220040210C041F04400438043204350442<CR><LF><CR><LF>
+	 * OK<CR><LF>
+	 */
+
+	char delimiters[] = ":\n";
+	char * marks[STRLEN(delimiters)];
+	char * end;
+	size_t tpdu_length;
+
+	if(mark_line(*str, delimiters, marks) == ITEMS_OF(marks))
+	{
+		tpdu_length = strtol(marks[0] + 2, &end, 10);
+		if(tpdu_length <= 0 || end[0] != '\r')
+			return "Invalid TPDU length in CDS PDU status line";
+
+		ast_verb(3,"CDS length: %d, %s, %s",tpdu_length, end+2,marks[1] + 1);
+		*str = marks[1] + 1;
+
+FILE * fp;
+fp=fopen("/var/log/cds.log","a");
+if(fp)
+{
+    fprintf(fp,"%s\n",*str);
+    fclose(fp);
+}
+
+		return pdu_parse_cds(str, tpdu_length+8, oa, oa_len, oa_enc, msg, msg_enc);
+	}
+
+	return "Can't parse +CDS response";
+}
+
+EXPORT_DEF char* at_parse_spn (char* str)
+{
+	/*
+	 * parse COPS response in the following format:
+	 * +COPS: <mode>[,<format>,<oper>,<?>]
+	 *
+	 * example 
+	 *  ^SPN:1,0,SIM-1
+	 *  +COPS: 0,0,"TELE2",0
+	 */
+
+	char delimiters[] = ":,,";
+	char * marks[STRLEN(delimiters)];
+
+	/* parse URC only here */
+	if(mark_line(str, delimiters, marks) == ITEMS_OF(marks))
+	{
+		marks[2]++;
+		/*quotes if(marks[2][0] == '"')
+			marks[2]++;
+		if(marks[3][-1] == '"')
+			marks[3]--;
+		marks[3][0] = 0;*/
+		return marks[2];
+	}
+
+	return NULL;
+}
+
+EXPORT_DEF int at_parse_sysinfo (char * str, int * srvst, int * srvd, int * roamst, int * sysmode, int * simst)
+{
+	/*
+	    ^SYSINFO:1,0,1,3,0,,3
+	    srv_status >, < srv_domain >,< roam_status >, < sys_mode >,< sim_state 
+	 */
+
+	return sscanf (str, "^SYSINFO:%d,%d,%d,%d,%d", srvst, srvd, roamst, sysmode, simst) == 5 ? 0 : -1;
+}

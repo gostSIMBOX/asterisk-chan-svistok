@@ -1,0 +1,19 @@
+{
+  "hooks": {
+    "svistok/hooks/at_parse.c": "cae433ab06030897d4a0e25e58ce2722a54783c7f7a38ce27fee277e4a16d54b",
+    "svistok/hooks/at_queue.c": "ae459c230ed8512b088b5d224f0d402768f08bf595178b59591f6d0a50416d36",
+    "svistok/hooks/at_response.c": "c5efd848aaba079df9c6d32b302b522f1eff095e0cc77a3809af3583990c930d",
+    "svistok/hooks/chan_dongle.c": "3026dc24feb32e9554a4f8994566e9c10a2d6797c572bc72adffbb162da0f5a8",
+    "svistok/hooks/cli.c": "c1cc343d87fe9f042c27466c1210b6d0473d4e6f9690125c85bd1ee1bf3da416",
+    "svistok/hooks/pdiscovery.c": "93a8a9dde7bb72acf40b4ce144e13ef4fbfdd344902e513663ead3ade8274868"
+  },
+  "proxies": {
+    "dongle/at_parse.c": "0d07a43435464d5ef2cd06cc34ac8a873b29b390fd9a91b7b2646b0b81227b13",
+    "dongle/at_queue.c": "7cb8dc77f2fe00268b5929af2dd5b0d56b1edb1109038287d025252fad6c82b0",
+    "dongle/at_response.c": "249cb22a344996bc50c53856cfc48f3df21c32e2d8624c0099f374a3c4d38cbe",
+    "dongle/chan_dongle.c": "bb7c72aa457136b7d093af9bf413c5902aa825c6bd70d7f24403830f993a2dc8",
+    "dongle/cli.c": "cdcd5e80833d87eebcbc54ae09e59abf455652483bda4be8009760fcbda2fa90",
+    "dongle/pdiscovery.c": "b174568ecc0a391d9d5950261234e5e6ca08fe10b21067800e7322b5d75e8644"
+  },
+  "schema_version": 1
+}

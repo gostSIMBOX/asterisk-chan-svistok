@@ -1,16 +1,32 @@
 {
-  "audited_on": "2026-08-25",
+  "audited_on": "2026-08-26",
   "build": {
     "asterisk_include": "/Users/anton/proj/nativemind.net/simbox.nativemind.net/libsCpp/asterisk-chan-svistok/tests/characterization/stubs",
     "baseline_slices": 16,
-    "bridges": 81,
+    "bridges": 83,
     "compatibility_stubs": true,
     "compiler": "/usr/bin/clang",
+    "hidden_baseline_entries": [
+      "svistok_dongle_impl_at_parse_cpin",
+      "svistok_dongle_impl_at_response_cgmi",
+      "svistok_dongle_impl_at_response_cgmr",
+      "svistok_dongle_impl_at_response_cgsn",
+      "svistok_dongle_impl_at_response_cimi",
+      "svistok_dongle_impl_at_response_cops",
+      "svistok_dongle_impl_at_response_csq",
+      "svistok_dongle_impl_at_response_mode",
+      "svistok_dongle_impl_at_response_rssi",
+      "svistok_dongle_impl_at_write",
+      "svistok_dongle_impl_getACD",
+      "svistok_dongle_impl_info_copy",
+      "svistok_dongle_impl_info_free",
+      "svistok_dongle_impl_load_module"
+    ],
     "module": "/Users/anton/proj/nativemind.net/simbox.nativemind.net/libsCpp/asterisk-chan-svistok/build/module-test/chan_svistok.so",
     "module_name": "chan_svistok.so",
     "object_ownership_errors": 0,
-    "objects": 36,
-    "overlay_compositions": 16,
+    "objects": 35,
+    "overlay_compositions": 15,
     "public_bridges": 0,
     "public_symbols_checked": 296,
     "schema_version": 1,
@@ -20,7 +36,7 @@
       "total_stat_datt",
       "total_stat_pddl"
     ],
-    "slices": 32,
+    "slices": 31,
     "unresolved_bridges": 0
   },
   "checks": [
@@ -29,7 +45,7 @@
         "python3",
         "tests/test_source_guards.py"
       ],
-      "duration_seconds": 0.101,
+      "duration_seconds": 0.108,
       "name": "source guards",
       "returncode": 0,
       "status": "passed"
@@ -39,7 +55,7 @@
         "python3",
         "tests/test_inventory.py"
       ],
-      "duration_seconds": 0.09,
+      "duration_seconds": 0.093,
       "name": "52/109 inventory",
       "returncode": 0,
       "status": "passed"
@@ -49,7 +65,7 @@
         "python3",
         "tests/test_copy_receipts.py"
       ],
-      "duration_seconds": 0.068,
+      "duration_seconds": 0.07,
       "name": "copy receipts/exclusions",
       "returncode": 0,
       "status": "passed"
@@ -69,7 +85,7 @@
         "python3",
         "tests/test_include_ownership.py"
       ],
-      "duration_seconds": 0.671,
+      "duration_seconds": 0.675,
       "name": "include ownership",
       "returncode": 0,
       "status": "passed"
@@ -79,7 +95,7 @@
         "python3",
         "tests/test_abi.py"
       ],
-      "duration_seconds": 0.24,
+      "duration_seconds": 0.277,
       "name": "canonical ABI",
       "returncode": 0,
       "status": "passed"
@@ -89,7 +105,7 @@
         "python3",
         "tests/test_state_relocations.py"
       ],
-      "duration_seconds": 0.052,
+      "duration_seconds": 0.054,
       "name": "single-owner state",
       "returncode": 0,
       "status": "passed"
@@ -99,7 +115,7 @@
         "python3",
         "tests/slicer/test_manifest.py"
       ],
-      "duration_seconds": 1.223,
+      "duration_seconds": 1.25,
       "name": "symbol manifest",
       "returncode": 0,
       "status": "passed"
@@ -109,7 +125,7 @@
         "python3",
         "tests/slicer/test_slicing.py"
       ],
-      "duration_seconds": 0.683,
+      "duration_seconds": 0.728,
       "name": "syntax-aware slicing",
       "returncode": 0,
       "status": "passed"
@@ -119,7 +135,7 @@
         "python3",
         "tests/slicer/test_bridges.py"
       ],
-      "duration_seconds": 0.597,
+      "duration_seconds": 0.922,
       "name": "static bridges",
       "returncode": 0,
       "status": "passed"
@@ -129,7 +145,7 @@
         "python3",
         "tests/slicer/test_provenance.py"
       ],
-      "duration_seconds": 0.281,
+      "duration_seconds": 0.254,
       "name": "body provenance",
       "returncode": 0,
       "status": "passed"
@@ -139,7 +155,7 @@
         "python3",
         "tests/slicer/test_overlay_purity.py"
       ],
-      "duration_seconds": 4.774,
+      "duration_seconds": 4.643,
       "name": "overlay purity",
       "returncode": 0,
       "status": "passed"
@@ -149,7 +165,7 @@
         "python3",
         "tests/slicer/test_materialization.py"
       ],
-      "duration_seconds": 4.562,
+      "duration_seconds": 4.446,
       "name": "delta/baseline composition",
       "returncode": 0,
       "status": "passed"
@@ -159,7 +175,7 @@
         "python3",
         "tests/slicer/test_overlay_extraction.py"
       ],
-      "duration_seconds": 0.055,
+      "duration_seconds": 0.058,
       "name": "overlay extraction",
       "returncode": 0,
       "status": "passed"
@@ -169,8 +185,58 @@
         "python3",
         "tests/slicer/test_app_upstream_reuse.py"
       ],
-      "duration_seconds": 0.06,
+      "duration_seconds": 0.058,
       "name": "direct app_register baseline reuse",
+      "returncode": 0,
+      "status": "passed"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/layout/test_function_layout_manifest.py"
+      ],
+      "duration_seconds": 0.067,
+      "name": "function layout manifest",
+      "returncode": 0,
+      "status": "passed"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/layout/test_function_paths.py"
+      ],
+      "duration_seconds": 4.409,
+      "name": "function physical paths",
+      "returncode": 0,
+      "status": "passed"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/layout/test_header_layout.py"
+      ],
+      "duration_seconds": 0.066,
+      "name": "new declaration headers",
+      "returncode": 0,
+      "status": "passed"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/layout/test_proxy_contract.py"
+      ],
+      "duration_seconds": 7.387,
+      "name": "proxy source contract",
+      "returncode": 0,
+      "status": "passed"
+    },
+    {
+      "command": [
+        "python3",
+        "tests/layout/test_proxy_runtime.py"
+      ],
+      "duration_seconds": 0.302,
+      "name": "proxy runtime ordering",
       "returncode": 0,
       "status": "passed"
     },
@@ -179,7 +245,7 @@
         "python3",
         "tests/slicer/test_at_parse_pilot.py"
       ],
-      "duration_seconds": 1.775,
+      "duration_seconds": 2.001,
       "name": "at_parse pilot",
       "returncode": 0,
       "status": "passed"
@@ -189,7 +255,7 @@
         "python3",
         "tests/slicer/test_full_generation.py"
       ],
-      "duration_seconds": 0.113,
+      "duration_seconds": 0.129,
       "name": "full slice generation",
       "returncode": 0,
       "status": "passed"
@@ -199,7 +265,7 @@
         "python3",
         "tests/test_module_build.py"
       ],
-      "duration_seconds": 2.664,
+      "duration_seconds": 3.166,
       "name": "chan_svistok.so compatibility build",
       "returncode": 0,
       "status": "passed"
@@ -209,7 +275,7 @@
         "python3",
         "tests/characterization/test_harness.py"
       ],
-      "duration_seconds": 0.474,
+      "duration_seconds": 0.702,
       "name": "legacy harness oracle",
       "returncode": 0,
       "status": "passed"
@@ -219,7 +285,7 @@
         "python3",
         "tests/characterization/test_pdu_oracle.py"
       ],
-      "duration_seconds": 0.479,
+      "duration_seconds": 0.698,
       "name": "legacy PDU oracle",
       "returncode": 0,
       "status": "passed"
@@ -229,7 +295,7 @@
         "python3",
         "tests/characterization/test_at_parse_oracle.py"
       ],
-      "duration_seconds": 0.555,
+      "duration_seconds": 0.791,
       "name": "legacy AT parser oracle",
       "returncode": 0,
       "status": "passed"
@@ -239,7 +305,7 @@
         "python3",
         "tests/characterization/test_buffers_oracle.py"
       ],
-      "duration_seconds": 0.512,
+      "duration_seconds": 0.757,
       "name": "legacy buffer oracle",
       "returncode": 0,
       "status": "passed"
@@ -249,7 +315,7 @@
         "python3",
         "tests/characterization/test_at_read_oracle.py"
       ],
-      "duration_seconds": 0.51,
+      "duration_seconds": 0.731,
       "name": "legacy AT read oracle",
       "returncode": 0,
       "status": "passed"
@@ -259,7 +325,7 @@
         "python3",
         "tests/characterization/test_programmer_oracle.py"
       ],
-      "duration_seconds": 0.416,
+      "duration_seconds": 0.654,
       "name": "legacy programmer oracle",
       "returncode": 0,
       "status": "passed"
@@ -269,7 +335,7 @@
         "python3",
         "tests/characterization/test_queue_oracle.py"
       ],
-      "duration_seconds": 0.444,
+      "duration_seconds": 0.665,
       "name": "legacy queue oracle",
       "returncode": 0,
       "status": "passed"
@@ -279,7 +345,7 @@
         "python3",
         "tests/characterization/test_state_oracle.py"
       ],
-      "duration_seconds": 0.468,
+      "duration_seconds": 0.689,
       "name": "legacy state oracle",
       "returncode": 0,
       "status": "passed"
@@ -289,7 +355,7 @@
         "python3",
         "tests/characterization/test_golden_manifest.py"
       ],
-      "duration_seconds": 0.057,
+      "duration_seconds": 0.059,
       "name": "golden fixture hashes",
       "returncode": 0,
       "status": "passed"
@@ -299,7 +365,7 @@
         "python3",
         "tests/migrated/test_golden_replay.py"
       ],
-      "duration_seconds": 2.417,
+      "duration_seconds": 2.446,
       "name": "migrated golden replay",
       "returncode": 0,
       "status": "passed"
@@ -341,6 +407,39 @@
       "tier": "T4"
     }
   ],
+  "function_layout": {
+    "counts": {
+      "baseline": 6,
+      "dongle-proxy": 14,
+      "svistok-inseparable": 87,
+      "svistok-new": 45
+    },
+    "new_files": [
+      "src/svistok/at_command.c",
+      "src/svistok/at_parse.c",
+      "src/svistok/at_queue.c",
+      "src/svistok/at_response.c",
+      "src/svistok/chan_dongle.c",
+      "src/svistok/cli.c",
+      "src/svistok/pdiscovery.c",
+      "src/svistok/pdu.c",
+      "src/svistok/ringbuffer.c"
+    ],
+    "proxy_files": [
+      "src/dongle/at_parse.c",
+      "src/dongle/at_queue.c",
+      "src/dongle/at_response.c",
+      "src/dongle/chan_dongle.c",
+      "src/dongle/cli.c",
+      "src/dongle/pdiscovery.c"
+    ],
+    "removed_root_files": [
+      "at_parse.c",
+      "at_queue.c",
+      "cpvt.c",
+      "ringbuffer.c"
+    ]
+  },
   "host": {
     "machine": "arm64",
     "system": "Darwin"

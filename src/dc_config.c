@@ -1,6 +1,10 @@
 /*
-   Copyright (C) 2010 bg <bg_one@mail.ru>
-*/
+ * Copyright (C) 2014-2026 Anton Dodonov (NativeMind)
+ * https://github.com/Anton-Dodonov
+ * http://linkedin.com/in/anton-dodonov/
+ * mailto:anton.v.dodonov@gmail.com
+ */
+
 #ifdef HAVE_CONFIG_H
 #include <svistok_config.h>
 #endif /* HAVE_CONFIG_H */

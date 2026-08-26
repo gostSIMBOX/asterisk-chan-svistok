@@ -1,14 +1,10 @@
-/* 
-   Copyright (C) 2009 - 2010
+/*
+ * Copyright (C) 2014-2026 Anton Dodonov (NativeMind)
+ * https://github.com/Anton-Dodonov
+ * http://linkedin.com/in/anton-dodonov/
+ * mailto:anton.v.dodonov@gmail.com
+ */
 
-   Artem Makhutov <artem@makhutov.org>
-   http://www.makhutov.org
-
-   Dmitry Vagin <dmitry2004@yandex.ru>
-
-   Copyright (C) 2010 - 2011
-   bg <bg_one@mail.ru>
-*/
 #ifdef HAVE_CONFIG_H
 #include <svistok_config.h>
 #endif /* HAVE_CONFIG_H */
@@ -17,9 +13,10 @@
 #include <asterisk/utils.h>		/* ast_free() */
 
 #include <asterisk-chan-dongle/at_queue.h>
-#include "chan_dongle.h"		/* struct pvt */
+#include "../chan_dongle.h"		/* struct pvt */
 
-void at_log(struct pvt* pvt, const char* buf, size_t count);
+#include "at_queue.h"
+
 
 /*!
  * \brief Free an item data
@@ -190,44 +187,12 @@ void at_log(struct pvt* pvt, const char* buf, size_t count);
 
 #/* */
 
-void at_log(struct pvt* pvt, const char* buf, size_t count)
-{
-    char filename[256]="/var/svistok/dongles/log/";
-    FILE *fp;
-
-    strcat(filename,PVT_ID(pvt));
-    strcat(filename,".at");
-    fp=fopen(filename,"a");
-    if(fp)
-    {
-	fwrite(buf,1,count,fp);
-	fclose(fp);
-    }
-}
 
 
-EXPORT_DEF int at_write (struct pvt* pvt, const char* buf, size_t count)
-{
-	size_t wrote;
-	char dn[256];
-	timenow(dn);
 
 
-	at_log(pvt,dn,strlen(dn));
-	at_log(pvt," >> ",4);
-	at_log(pvt,buf,count);
 
-	ast_debug (5, "[%s] [%.*s]\n", PVT_ID(pvt), (int) count, buf);
 
-	wrote = write_all(pvt->data_fd, buf, count);
-	PVT_STAT(pvt, d_write_bytes) += wrote;
-	if(wrote != count)
-	{
-		ast_debug (1, "[%s] write() error: %d\n", PVT_ID(pvt), errno);
-	}
-
-	return wrote != count;
-}
 
 /*!
  * \brief Remove an cmd item from the front of the queue
@@ -394,18 +359,20 @@ EXPORT_DEF int at_write (struct pvt* pvt, const char* buf, size_t count)
  
 
 #/* */
-                                                       
- 
-                     
-                                                     
 
-        
-  
-                      
-   
-                                                         
-   
-  
+/* Svistok-only composition fragment. */
 
-                   
- 
+void at_log(struct pvt* pvt, const char* buf, size_t count)
+{
+    char filename[256]="/var/svistok/dongles/log/";
+    FILE *fp;
+
+    strcat(filename,PVT_ID(pvt));
+    strcat(filename,".at");
+    fp=fopen(filename,"a");
+    if(fp)
+    {
+	fwrite(buf,1,count,fp);
+	fclose(fp);
+    }
+}

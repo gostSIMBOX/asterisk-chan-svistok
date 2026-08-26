@@ -454,4 +454,5 @@ static void pvt_destroy(struct pvt * pvt);
 /* SVISTOK_BASELINE_UNIT macro PVT_NO_CHANS */
 
 #endif /* SVISTOK_COMPOSED_CHAN_DONGLE_H_HEADER */
+#include "svistok/chan_dongle.h"
 #endif /* CHAN_DONGLE_H_INCLUDED */

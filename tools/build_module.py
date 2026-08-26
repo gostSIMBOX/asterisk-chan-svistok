@@ -137,7 +137,11 @@ def build(
         if (relative, "upstream") not in object_by_pair:
             continue
         side_symbols = {
-            side: defined_symbols(object_by_pair[(relative, side)])
+            side: (
+                defined_symbols(object_by_pair[(relative, side)])
+                if (relative, side) in object_by_pair
+                else set()
+            )
             for side in ("upstream", "svistok")
         }
         entries = list(record["symbols"])
@@ -162,6 +166,24 @@ def build(
                 ownership_errors.append(f"{relative}: {symbol} duplicated in {other}")
     if ownership_errors:
         raise RuntimeError("object ownership audit failed: " + "; ".join(ownership_errors))
+    layout = json.loads(
+        (PROJECT_ROOT / "manifests/function-layout.json").read_text(encoding="utf-8")
+    )
+    hidden_baseline_entries = sorted({
+        entry["composition"]["baseline_entry"]
+        for entry in layout["functions"]
+        if entry["layout_owner"] == "dongle-proxy"
+    })
+    all_object_symbols = {
+        symbol for object_path in objects for symbol in defined_symbols(object_path)
+    }
+    missing_hidden_entries = set(hidden_baseline_entries) - all_object_symbols
+    if len(hidden_baseline_entries) != 14 or missing_hidden_entries:
+        raise RuntimeError(
+            "hidden dongle implementation mismatch: "
+            f"expected={len(hidden_baseline_entries)}, "
+            f"missing={sorted(missing_hidden_entries)}"
+        )
 
     module = build_root / "chan_svistok.so"
     link = [compiler]
@@ -210,6 +232,7 @@ def build(
         "public_bridges": 0,
         "public_symbols_checked": checked_public_symbols,
         "object_ownership_errors": 0,
+        "hidden_baseline_entries": hidden_baseline_entries,
         "baseline_slices": summary["baseline_slices"],
         "overlay_compositions": summary["overlay_compositions"],
         "single_owner_state": sorted(relocated_state),

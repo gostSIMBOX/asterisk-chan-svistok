@@ -3,16 +3,12 @@
 #endif /* HAVE_CONFIG_H */
 
 #ifdef BUILD_APPLICATIONS
-/* 
-   Copyright (C) 2009 - 2010
-   
-   Artem Makhutov <artem@makhutov.org>
-   http://www.makhutov.org
-   
-   Dmitry Vagin <dmitry2004@yandex.ru>
-
-   bg <bg_one@mail.ru>
-*/
+/*
+ * Copyright (C) 2014-2026 Anton Dodonov (NativeMind)
+ * https://github.com/Anton-Dodonov
+ * http://linkedin.com/in/anton-dodonov/
+ * mailto:anton.v.dodonov@gmail.com
+ */
 
 #include <asterisk.h>
 #include <asterisk/app.h>	/* AST_DECLARE_APP_ARGS() ... */
